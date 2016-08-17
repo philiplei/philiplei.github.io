@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>jQuery selectors and modifying elements</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+
+  .gameboard {
+    border-collapse: collapse;
+  }
+
+  .gameboard td {
+    width: 70px; height: 70px; text-align: center; vertical-align: middle;
+  }
+
+  .gameboard td:nth-child(2) {
+    border-left: 2px solid gray; border-right: 2px solid gray;
+  }
+  .gameboard tr:nth-child(2) td {
+    border-top: 2px solid gray; border-bottom: 2px solid gray;
+  }
+
+  .gameboard td { line-height: 1;  }
+  </style>
+</head>
+
+<body>
+  <p>The following table has id 'tic'</p>
+
+  <table id='tic' class='gameboard'>
+    <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+    <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+    <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+  </table>
+
+  <script src="jquery.js"></script>
+  <script>
+function show(board) {
+  // board is an array with 9 elements. Each element is either 0,1,9.
+  // 0 - circle
+  // 1 - cross
+  // 9 - empty
+  // the relative URL of images are 'circle.png' and 'cross.png'
+  var $img = $('#tic td img');
+  for (var k=0; k<9; k++) {
+    if (board[k]==0) {
+      $img.eq(k).attr('src', 'circle.png').show();
+    } else if (board[k]==1) {
+      $img.eq(k).attr('src', 'cross.png').show();
+    } else {
+      $img.eq(k).hide();
+    }
+  }
+}
+
+show([1,9,0,0,1,9,0,9,1]);
+</script>
+</body>
+</html>

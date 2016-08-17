@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Example: template</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+  table { border-collapse: collapse; }
+  thead { background-color: gray; color: black; font-weight: bold; }
+  td { padding: 0.6em 0.4em; }
+  tbody tr { border-top: 2px solid black; }
+  </style>
+</head>
+
+<body>
+  <p>Show part of the web pallette using template. Mimic the display at
+    <a href="http://www.quackit.com/css/css_color_codes.cfm">this site</a>.</p>
+
+  <script id="color-table-template" type="text/x-handlebars-template">
+  <table class="color-table">
+  <thead>
+    <tr><td>Color Name<td>Hex Code RGB<td>Decimal Code RGB</tr>
+  <tbody>
+    {{#each color}}
+    <tr style="background-color: {{name}}; color: white">
+      <td>{{name}}
+      <td>{{hexrgb}}
+      <td>{{decrgb}}
+    </tr>
+    {{/each}}
+  </table>
+  </script>
+
+
+<script src="jquery.js"></script>
+<script src="handlebars.js"></script>
+<script>
+var palette = { color: [
+  { name: 'purple',  hexrgb: '#800080', decrgb: [128,0,128]},
+  { name: 'fuchsia', hexrgb: '#FF00FF', decrgb: [255,0,255]},
+  { name: 'lime',    hexrgb: '#00FF00', decrgb: [0, 255, 0]},
+  { name: 'teal',    hexrgb: '#008080', decrgb: [0,128,128]},
+  { name: 'aqua',    hexrgb: '#00FFFF', decrgb: [0,255,255]},
+  { name: 'blue',    hexrgb: '#0000FF', decrgb: [0,0,255]}
+]};
+var source = $("#color-table-template").html();
+var template = Handlebars.compile(source);
+
+var html = template(palette);
+$('body').append(html);
+
+</script>
+</body>
+</html>

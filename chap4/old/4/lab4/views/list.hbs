@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <title>List of todo</title>
+  <meta charset="UTF-8" />
+  <link rel='stylesheet' href='common.css'/>
+</head>
+
+<body>
+  <h1>List of all todo</h1>
+  <table class='todo'>
+    <thead>
+      <tr><th>Due date<th>Task<th>Category<th>Priority<td></tr>
+    </thead>
+    <tbody>
+      {{#each data}}
+      <tr><td>{{due}}<td>{{task}}<td>{{category}}<td>{{priority}}
+          <td><a href="/edit.html?id={{id}}">edit</a>
+          <form class='inline' action="/delete" method="post">
+            <input type='hidden' name='id' value='{{id}}'>
+            <button>delete</button>
+          </form>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <p><a href="/add.html">Add a todo</a></p>
+</body>
+</html>

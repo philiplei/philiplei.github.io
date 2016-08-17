@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+  <title>Lab3-5. jQuery: form controls</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+    form { border: 1px solid lightgreen; padding: 1em; }
+    #F1 div { margin: 8px 0px; height: 1.5em; }
+    form label { float: left; width: 6em; }
+    form div.mesg { border: 1px dashed gray; color: black; background-color: lightblue; padding: 0.3em; }
+
+    #F3 div { padding: 5px; }
+    #F3 div.highlight { background-color: lightblue; }
+  </style>
+  <script src="jquery.js"></script>
+  <script>
+  
+    // Part 1
+    function displayFormData () {
+      var nickname = $("input[name=nickname]").val();
+      var lang = [ ];
+      $('input[name=lang]:checked').each(
+        function () { lang.push( $(this).val() ); }
+      ); 
+      var iq = $('input[name=IQ]:checked').val();
+      var major = $('select[name=major]').val();
+      var s = 'Welcome ' + nickname + '! ';
+      s += 'You can speak ' + lang + '. ';
+      s += 'Your IQ is ' + iq + '. ';
+      s += 'Your major is ' + major + '.';
+      $('#mesg1').text(s);
+    }
+    
+    $(document).ready( function () {
+        $('#btn11').click(displayFormData);
+        $('#F1').change( function (e) {
+            console.log('change: at ' + this.nodeName + '[' + this.name + ']');
+        });
+    })
+   
+    // Part 2
+    
+    function changeYear() {
+        var y = $('select[name="year"]').val()
+        $('ul li').hide();
+        $('ul li.'+y).show();
+    }
+    $(document).ready( function() {
+       $('select[name="year"]').change(changeYear);
+       changeYear();
+    });
+  
+    // Part 3
+    
+    function highlight() {
+        $(this).parent().addClass('highlight');
+    }
+    function unhighlight() {
+        $(this).parent().removeClass('highlight');
+    }
+
+    $(document).ready( function() {
+       $('#F3 input[type="text"]').focusin(highlight).focusout(unhighlight);
+    });
+  </script>
+</head>
+
+<body>
+  <h1>Lab 3-5. jQuery: form controls and related events</h1>
+ 
+  <h2>Part 1. Manipulating form controls</h2>
+  <p>This example demonstrates reading and changing value of form controls using jQuery.</p>
+
+  <form id='F1' action="#">
+    <div><label>Nickname</label> <input type="text" name="nickname"/></div>
+    <div><label>Language</label> 
+      <input type="checkbox" name="lang" value="cn"/>Chinese
+      <input type="checkbox" name="lang" value="en"/>English
+      <input type="checkbox" name="lang" value="jp"/>Japanese
+    </div>
+    <div><label>IQ</label>
+      <input type="radio" name="IQ" value="low"/>&lt;80
+      <input type="radio" name="IQ" value="normal"/>80-120
+      <input type="radio" name="IQ" value="high"/>&gt;120
+    </div>
+    <div><label>Major</label>
+      <select name="major">
+        <option value='comp'>Computing</option>
+        <option value='soc'>Social</option>
+        <option value='pr'>Public admin</option>
+      </select>
+    </div>
+    <div>
+      <button type='button' id='btn11'>Submit</button>
+      <button type='button' id='btn22'>Set to my choice</button>
+
+    </div>
+    <div class='mesg' id='mesg1'>&nbsp;</div>
+  </form>
+
+  <p><span class='step'>Step 1.</span> Read the source code of the form
+  <code>form#F1</code> above. Notice the attribute <code>name</code> of the
+  controls. We can use it to select the controls and read / change their value.
+  Also notice how we handle the form submit event.</p>
+  
+  <dl>
+    <dt>Text box</dt>
+    <dd>to read the value, <code>$("input[name=nickname]").val()</code></dd>
+    <dd>to write the value, <code>$("input[name=nickname]").val('new value')</code></dd>
+    
+    <dt>Checkboxes</dt>
+    <dd>to find out which boxes are checked, use the code below
+    <br/><code>var lang = [ ];<br/>
+      $('input[name=lang]:checked').each(<br/>
+      &nbsp;&nbsp;function () { lang.push( $(this).val() ); }<br/>
+      );</code></dd>
+    <dd>to check one or more boxes,
+    <code>$("input[name=lang]").val(['cn','en'])</code></dd>
+    
+    <dt>Radio buttons</dt>
+    <dd>to find out which radio button is checked,
+    <code>$('input[name=IQ]:checked').val()</code></dd>
+    <dd>to check one of the radio buttons,
+    <code>$("input[name=IQ]").val(['high'])</code></dd>
+    
+    <dt>Pull-down menu</dt>
+    <dd>to find out which option is selected,
+    <code>$('select[name=major]').val()</code></dd>
+    <dd>to select an option,
+    <code>$('select[name=major]').val('comp')</code></dd>
+  </dl>
+  
+  <p><span class='step'>Step 2.</span> Write javascript code to set the form
+  controls to the following values when you click the button 'Set to my choice':
+  Nickname: Peter; Language: Chinese, English; IQ: >120; Major: Computing</p>
+
+
+  <h2>Part 2. Form events</h2>
+  <p>This example demonstrates usage of some form-related events, including
+  <code>change</code>, <code>focusin</code> and <code>focusout</code>.
+  The event <code>submit</code> will be covered in next lab.</p>
+  
+  <form id='F2' action="#">
+  <p>Courses offered for student in <select name="year">
+    <option value='y1'>year 1</option>
+    <option value='y2'>year 2</option>
+    <option value='y3'>year 3</option>
+  </select>
+  </p>
+  
+  <ul>
+    <li class='y1'>COMP111 Introduction to Computing</li>
+    <li class='y1'>COMP112 Programming I</li>
+    <li class='y1'>COMP113 Web technologies</li>
+    <li class='y2'>COMP211 Database design</li>
+    <li class='y2'>COMP212 Programming II</li>
+    <li class='y2'>COMP213 Operating systems</li>
+    <li class='y3'>COMP311 Multimedia application development</li>
+    <li class='y3'>COMP312 Internet Programming II</li>
+    <li class='y3'>COMP313 Project management</li>
+  </ul>
+  <p>Font size: <select name="fontsize">
+    <option value='12pt'>12pt</option>
+    <option value='16pt'>16pt</option>
+    <option value='20pt'>20pt</option>
+  </select>
+  </p>  
+  </form>
+  
+  <p><span class='step'>Step 1.</span> The course list above is refreshed when
+  the user selects different year in their study. Read the source code to see how
+  it works.</p>
+  
+  <p><span class='step'>Step 2.</span> Add JavaScript to change the font size of
+  the list according to the setting in the pull-down menu named 'fontsize'.</p>
+    
+  <form id='F3' action="#">
+    <div>What's your favorite ... ?</div>
+    <div><label>sport</label>
+      <input type='text' name='favsport'/>
+    </div>
+    <div><label>color</label>
+      <input type='text' name='favcolor'/>
+    </div>
+    <div><label>food</label>
+      <input type='text' name='favfood'/>
+    </div>
+  </form>
+  
+  <p><span class='step'>Step 3.</span> When a text input field gains focus in
+  the form <code>#F3</code> above, the <code>div</code> that contains the input
+  field is highlighted. Read the source code of the <code>focusin</code> and
+  <code>focusout</code> event handlers for the form and see how this effect is
+  implemented.</p>
+
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+Admin interface:
+   http://vdi-philiplei.ipm.edu.mo:8080/phpmyadmin/
+
+Login credential:
+var conn = mysql.createConnection({
+  host     : 'vdi-philiplei.ipm.edu.mo',
+  database : 'comp312',
+  user     : 'peter',
+  password : ''
+});
+
+Install module command:
+   npm install mysql

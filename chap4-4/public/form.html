@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <title>Static files</title>
+  <meta charset="UTF-8" />
+  <style>
+    #F1, #F2 { border: 1px dashed green; padding: 4px; }
+
+    form { border: 1px solid lightgreen; padding: 1em; }
+    form div { margin: 8px 0px; height: 1.5em; }
+    form label { float: left; width: 6em; }
+    form div.mesg { border: 1px dashed gray; color: black; background-color: lightblue; padding: 0.3em; }
+
+  </style>  
+</head>
+
+<body>
+  <h1>Sample HTML form</h1>
+  <p>The following form submits to http://localhost:3000/save using POST.</p>
+
+  <form id='F1' action="http://localhost:3000/save" method='POST'>
+    <div><label>Nickname</label> <input type="text" name="nickname"/></div>
+
+    <div><label>Language</label> 
+      <input type="checkbox" name="lang" value="cn"/>Chinese
+      <input type="checkbox" name="lang" value="en"/>English
+      <input type="checkbox" name="lang" value="jp"/>Japanese
+    </div>
+    <div><label>IQ</label>
+      <input type="radio" name="IQ" value="low"/>&lt;80
+      <input type="radio" name="IQ" value="normal"/>80-120
+      <input type="radio" name="IQ" value="high"/>&gt;120
+    </div>
+    <div><label>Major</label>
+
+      <select name="major">
+        <option value='comp'>Computing</option>
+        <option value='soc'>Social</option>
+        <option value='pr'>Public admin</option>
+      </select>
+    </div>
+    <div>
+      <button type='submit'>Submit</button>
+    </div>
+  </form></body>
+</html>
+

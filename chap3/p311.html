@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Example: new content</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+  div#zone3, div#zone1, div#zone2 { padding: 10px; border-radius: 10px; overflow: auto; margin-bottom: 10px; }
+  div#zone1 { background: #aadddd; }
+  div#zone2 { background: #ddaadd; }
+  div#zone3 { background: #ddddaa; }
+  div.label { float: right; background: white; color: gray; padding: 3px 3px; border-radius: 3px; }
+  </style>
+</head>
+
+<body>
+
+  <p>The three images below have id <code>tiger</code>, <code>ox</code> and <code>rooster</code>.</p>
+  <div id='zone1' class='zones'>
+    <div class='label'>div#zone1</div>
+    <img id='tiger' src='ani/tiger.png'><img id='ox' src='ani/ox.png'><img id='rooster' src='ani/rooster.png'>
+  </div>
+
+  <div id='zone2' class='zones'>
+    <div class='label'>div#zone2</div>
+  </div>
+
+  <div id='zone3' class='zones'>
+    <div class='label'>div#zone3</div>
+  </div>
+
+  <p>Try the following.</p>
+  <ul>
+    <li>Create a dragon image with <code>var d = $('&lt;img>').attr('id', 'dragon').attr('src', 'ani/dragon.png')</code></li>
+    <li><i>Note: this image is not shown because it is not attached to the current DOM yet</i></li>
+    <li>Append this image to the start of <code>div#zone1</code> with
+       <code>$('#zone1').prepend(d);</code></li>
+    <li>Append this image to the end of <code>div#zone1</code> with
+          <code>$('#zone1').append(d);</code></li>
+    <li><i>Note: if the source element is already attached to DOM, it is removed from the original location and moved to the target.</i></li>
+    <li>Select the ox image (id='ox') and move it to the front of the tiger image.<br>
+      <code>var e = $('#ox'); $('#tiger').before(e);</code>, or in 1 statement: <br>
+      <code>$('#tiger').before($('#ox'))</code>
+    </li>
+    <li>Next, move the ox image behind the last image (rooster)</li>
+    <li>Move all images in <code>div#zone1</code> to <code>div#zone2</code> with
+      <code>$('#zone2').append($('#zone1 img'))</code></li>
+  </ul>
+
+  <p>The following involves more than 1 targets. The source content are cloned on demand.</p>
+  <ul>
+    <li><code>$('#zone2,#zone3').append($('#ox'))</code> - move the ox image to two targets</li>
+    <li><code>$('img').after($('&lt;img>').attr('src', 'ani/dragon.png'))</code> - insert a dragon image after every image</li>
+  </ul>
+
+  <script src="jquery.js"></script>
+</body>
+</html>

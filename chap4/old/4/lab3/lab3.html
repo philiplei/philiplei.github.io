@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <title>Express.js basics</title>
+  <meta charset="UTF-8" />
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; line-height: 1.4; }
+    h1 { font-size: 1.5em; margin: 2px 2px; }
+    h2 { font-size: 1.2em; border-bottom: solid 1px lightblue; }
+    .step { font-style: italic; background-color: lightgreen; }
+    code { color: darkblue; }
+    </style>  
+</head>
+
+<body>
+  <h1>Lab 4-3. Express.js basics</h1>
+  <p>This lab discuss the basics of HTTP request handling in Express.js. The goal is to write
+  an HTTP server that can return static files and process some queries.</p> 
+   
+  <h2>Part 1. Installation</h2>
+
+  <p><span class='step'>Step 1.</span> Install the Express.js framework by running the command <code>npm install express</code> in command prompt. You should run the command in the folder <code>lab3</code>. The installed modules will be used by the five programs in this lab.</p>
+
+  <p><span class='step'>Step 3.</span> Run the simple HTTP server
+  <code>app1.js</code> and visit the server at <a
+  href="http://localhost:3000/">http://localhost:3000/</a>. Read the <a
+  href="app1.js">source code</a>.</p>
+
+
+
+  <h2>Part 2. Routes</h2>
+  
+  <p><span class='step'>Step 1.</span> The examples also use the middleware 'morgan' to log HTTP request. Install it by running the command <code>npm install morgan</code>.</p>
+
+  <p><span class='step'>Step 2.</span> Run the simple HTTP server
+  <code>app2.js</code> and visit the server at <a
+  href="http://localhost:3000/">http://localhost:3000/</a>. Read the <a
+  href="app2.js">source code</a>.</p>
+  
+  <p>Below are some URL routes handled by the application</p>
+  <ul>
+    <li>http://localhost:3000/book/456</li>
+    <li>http://localhost:3000/user/321/upload/photo1.png</li>
+    <li>http://localhost:3000/admin/anyThing</li>
+    <li>http://localhost:3000/search?q=webapp&lang=cn</li>
+  </ul>
+
+  <p><span class='step'>Step 3.</span> Variables in a route is accessible in 
+    <code>req.params</code>, and variables in query string in 
+    <code>req.query</code></p>
+
+  <h2>Part 3. Making a response</h2>
+
+  <p><span class='step'>Step 1.</span> Run the simple HTTP server
+  <code>app3.js</code> and visit the server at <a
+  href="http://localhost:3000/">http://localhost:3000/</a>. Read the <a
+  href="app3.js">source code</a>.</p>
+
+  <p>Below are some URL handled by the application</p>
+  <ul>
+    <li>http://localhost:3000/</li>
+    <li>http://localhost:3000/tiger.png</li>
+    <li>http://localhost:3000/ipm</li>
+  </ul>
+
+  <h2>Part 4. Middlewares and routing</h2>
+
+  <p><span class='step'>Step 1.</span> Run the server
+  <code>app4.js</code> and visit the server at <a
+  href="http://localhost:3000/">http://localhost:3000/</a>. Read the <a
+  href="app4.js">source code</a>.</p>
+
+  <p>The middleware <code>static</code> finds file in a folder that matches the URL. If found, returns the file as the response.</p>
+
+  <ul>
+    <li>http://localhost:3000/ox.png</li>
+    <li>http://localhost:3000/pig.png</li>
+    <li>http://localhost:3000/tiger.png</li>
+  </ul>
+
+  <p><span class='step'>Step 2.</span> Pay attention to the order of middleware and routes.</p>
+
+
+  <h2>Part 5. POST and body-parser middleware</h2>
+
+<p><span class='step'>Step 1.</span> The middleware <code>body-parser</code> parses the content of request body and make the form data available at the object <code>req.body</code>. Install it by <code>npm install body-parser</code></p>
+
+  <p><span class='step'>Step 2.</span> Run the simple HTTP server
+  <code>app5.js</code> and visit the server at <a
+  href="http://localhost:3000/">http://localhost:3000/</a>. Read the <a
+  href="app5.js">source code</a>.</p>
+
+  <ul>
+    <li>The route <code>app.post()</code> captures a POST request to a URL patttern.</li>
+    <li>The middleware <code>body-parser</code> parses the message body of the POST request. The result is available as the object <code>req.body</code>.</li>
+  </ul>
+
+ 
+</body>
+</html>
+

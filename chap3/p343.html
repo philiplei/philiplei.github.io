@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Example: form</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+    form { border: 1px solid lightgreen; padding: 1em; }
+    #F1 div { margin: 8px 0px; height: 1.5em; }
+    form label { float: left; width: 8em; }
+    form div.mesg { border: 1px dashed gray; color: black; background-color: lightblue; padding: 0.3em; }
+  </style>
+</head>
+
+<body>
+  <p>This form asks you to select your IQ level.</p>
+  <form id='F1' action="#">
+    <div><label>IQ</label>
+      <input type="radio" name="IQ" value="low"/>&lt;80
+      <input type="radio" name="IQ" value="normal"/>80-120
+      <input type="radio" name="IQ" value="high"/>&gt;120
+    </div>
+    <div><label>Is the score real?</label>
+        <input type="checkbox" name="real" value='yes'/>
+    </div>
+    <div>
+    <button type="button" id='set'>Set to my case</button>
+    <button type="button" id='show'>Show the input</button>
+    </div>
+  </form>
+  <p id='detail'></p>
+
+<script src="jquery.js"></script>
+<script>
+$('#F1 input').on('click focusin focusout change', (event) => {
+  var target_name = $(event.target).attr('name');
+  console.log(`${event.type}: ${target_name}`);
+});
+
+$('button#set').on('click', (event) => {
+  $('input[name="IQ"]').val(['normal']);
+  $('input[name="real"]').prop('checked', true);
+});
+
+$('button#show').on('click', (event) => {
+  var iq = $('input[name="IQ"]:checked').val();
+  var real = $('input[name="real"]').prop('checked');
+  $('#detail').text(`Your IQ is "${iq}" and it is "${real}".`);
+})
+</script>
+</body>
+</html>

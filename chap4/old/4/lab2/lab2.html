@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <title>Node.js basics</title>
+  <meta charset="UTF-8" />
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; line-height: 1.4; }
+    h1 { font-size: 1.5em; margin: 2px 2px; }
+    h2 { font-size: 1.2em; border-bottom: solid 1px lightblue; }
+    .step { font-style: italic; background-color: lightgreen; }
+    code { color: darkblue; }
+    
+    #F1, #F2 { border: 1px dashed green; padding: 4px; }
+
+    form { border: 1px solid lightgreen; padding: 1em; width: 400px; }
+    form div { margin: 8px 0px; height: 1.5em; }
+    form label { float: left; width: 6em; }
+    form div.mesg { border: 1px dashed gray; color: black; background-color: lightblue; padding: 0.3em; }
+    span.label { background-color: red; color: white; padding: 1px 5px; 
+      border-radius: 2px; font-size: 80%;}
+    </style>  
+</head>
+
+<body>
+  <h1>Lab 4-2. Node.js HTTP basics</h1>
+  <p>This lab discuss the basics of the HTTP module. This includes sending HTTP requests (GET or POST) and how to handle request in an HTTP server. The goal is to write
+  an HTTP server that can return static files and process some queries.</p> 
+  
+  <h2>Part 1. HTTP clients</h2>
+  <p><span class='step'>Step 1.</span> A program sends HTTP requests with the function
+  <code>http.get()</code> or <code>http.request()</code>. 
+  The functions are availabe in the <code>http</code> module.
+  The following examples import the module with <code>require()</code>.</p>
+
+  <ul>
+  <li><a href='weather1.js'>weather1.js</a> and <a href='weather2.js'>weather2.js</a> 
+   - send a GET request to a web site to get Macau weather info</li>
+  <li><a href='classtimetab.js'>classtimetab.js</a>
+   - send a POST request to an IPM web site to get class time table, and save the HTML response in a file</li>
+  </ul>
+
+  <p>Notice several things:</p>
+  <ul>
+    <li>The incoming HTTP response message is an <a
+    href="http://nodejs.org/api/http.html#http_http_incomingmessage">http.IncomingMessage</a>. Use the <code>data</code> and <code>end</code> events to read the message body.</li>
+    <li>The module <code>http</code> and <code>https</code> have similar interface. It is simple to use HTTPS in node.js.</li>
+    <li><code>http.request()</code> returns a <a href="http://nodejs.org/api/http.html#http_class_http_clientrequest">http.ClientRequest</a> object. This object is a writable stream. To send a POST request, write the request message body by writing to this stream.</li>
+  </ul>
+
+  <h2>Part 2. HTTP servers</h2>
+
+  <p><span class='step'>Step 1.</span> Run the simple HTTP server
+  <code>serv1.js</code> and visit the server at <a
+  href="http://localhost:3000/">http://localhost:3000/</a>. Read the <a
+  href="serv1.js">source code</a> and notice
+  several points:</p>
+  
+  <ul>
+    <li>how to create a HTTP server that listens on a certain port (<a
+    href="http://nodejs.org/api/http.html">API reference</a>)</li>
+    <li>how to write an event handler to handle an HTTP request</li>
+    <li>how to register the event handler</li>
+    <li>how to build the HTTP response with <code>resp.writeHead()</code>,
+    <code>resp.write()</code> and <code>resp.end()</code>. (Refer to 
+    <a
+    href="http://nodejs.org/api/http.html#http_class_http_serverresponse">http.ServerResponse</a>
+    in the above API page)</li>
+  </ul>
+
+  <p><span class='step'>Step 2.</span> Run the simple HTTP server
+  <code>serv2.js</code>, which accepts GET / POST requests and display data in
+  the requests. Use the following two forms to test the server.</p>
+
+  <p>The first form submits to http://localhost:3000/save using GET.</p>
+
+  <form id='F1' action="http://localhost:3000/save" method='GET'>
+    <div><label>Nickname</label> <input type="text" name="nickname"/></div>
+
+    <div><label>Language</label> 
+      <input type="checkbox" name="lang" value="cn"/>Chinese
+      <input type="checkbox" name="lang" value="en"/>English
+      <input type="checkbox" name="lang" value="jp"/>Japanese
+    </div>
+    <div><label>IQ</label>
+      <input type="radio" name="IQ" value="low"/>&lt;80
+      <input type="radio" name="IQ" value="normal"/>80-120
+      <input type="radio" name="IQ" value="high"/>&gt;120
+    </div>
+    <div><label>Major</label>
+
+      <select name="major">
+        <option value='comp'>Computing</option>
+        <option value='soc'>Social</option>
+        <option value='pr'>Public admin</option>
+      </select>
+    </div>
+    <div>
+      <button type='submit'>Submit</button>
+    </div>
+  </form>
+  
+<p>The first form submits to http://localhost:3000/save using POST.</p>
+
+  <form id='F1' action="http://localhost:3000/save" method='POST'>
+    <div><label>Nickname</label> <input type="text" name="nickname"/></div>
+
+    <div><label>Language</label> 
+      <input type="checkbox" name="lang" value="cn"/>Chinese
+      <input type="checkbox" name="lang" value="en"/>English
+      <input type="checkbox" name="lang" value="jp"/>Japanese
+    </div>
+    <div><label>IQ</label>
+      <input type="radio" name="IQ" value="low"/>&lt;80
+      <input type="radio" name="IQ" value="normal"/>80-120
+      <input type="radio" name="IQ" value="high"/>&gt;120
+    </div>
+    <div><label>Major</label>
+
+      <select name="major">
+        <option value='comp'>Computing</option>
+        <option value='soc'>Social</option>
+        <option value='pr'>Public admin</option>
+      </select>
+    </div>
+    <div>
+      <button type='submit'>Submit</button>
+    </div>
+  </form>
+
+  <p>Read the <a
+  href="serv2.js">source code</a> and notice
+  several points:</p>
+  
+  <ul>
+    <li>how to get basic information of the request object (ref: <a
+    href="http://nodejs.org/api/http.html#http_http_incomingmessage">http.IncomingMessage</a>)</li>
+    <li>how to collect chunks of the request body in the two events 'data' and 'end'</li>
+    <li>how to parse the query in the URL into a JavaScript object using the module <code>url</code>. E.g. try to run the following code
+    <pre>
+var url = require('url');
+var s = 'http://www.example.com/add?a=1&b=2';
+url.parse(s, true)     
+    </pre></li>
+  </ul>
+    
+  <h2>Part 3. File I/O</h2>
+  <p><span class='label'>Adavnced</span> Run the simple HTTP server <code>serv3.js</code>, which reads files in the
+  working directory and returns to the browser. For example, this page is accessible at
+  <a href="http://localhost:3000/lab2.html">http://localhost:3000/lab2.html</a>
+
+  <p><span class='step'>Step 1.</span> Read the <a href="serv3.js">source code</a> and notice
+  that the following file operations work asynchronously:</p>
+  <ul>
+    <li>use <a
+    href="http://nodejs.org/api/fs.html#fs_fs_exists_path_callback">fs.exists()</a>
+    to check whether a file exists</li>
+    <li>use <a
+    href="http://nodejs.org/api/fs.html#fs_fs_readfile_filename_options_callback">fs.readFile()</a>
+    to read the entire contents of a file.</li>
+  </ul>
+ 
+ 
+</body>
+</html>

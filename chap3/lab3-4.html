@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+  <title>Lab 3-4. jQuery keyboard events</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+  /* Step 1 */
+  div#greenbox { border: 1px solid #55aa55; border-radius: 5px;  padding: 5px; }
+  span#mesg_keypress, span#mesg_keypress2, span#mesg_keydown, span#mesg_keyup { font-size: 1.5em; }
+
+  /* Step 2-4 */
+  div#form1 {
+    border: 1px solid #5555aa; border-radius: 3px; padding: 5px;
+  }
+  div#form1 span.bigText { font-size: 3em; background: #aaeeee; padding: 4px; }
+  </style>
+  
+  <script src="jquery.js"></script>
+ 
+
+  <script> 
+    // Step 1
+    $(document).ready( function () {
+      $(document).keydown( function (event) {
+        $('#mesg_keydown').text(event.which);
+      } );
+      $(document).keyup( function (event) {
+        $('#mesg_keyup').text(event.which);
+      } );
+      $(document).keypress( function (event) {
+        $('#mesg_keypress').text(event.which);
+        $('#mesg_keypress2').text("'"+String.fromCharCode(event.which)+"'");
+      } );
+    } );
+    
+    // Steps 2-4
+    $(document).ready( function () {
+      $('input[name="username"]').keypress( function (event) {
+        $('span.bigText').text( $('input[name="username"]').val() );
+        var c = $('span.log').text();
+        c = parseInt(c,10)+1;
+        $('span.log').text(c);
+        // stop event bubbling
+        //event.stopPropagation();
+        // Now the text box ignores the key pressed 
+        //event.preventDefault();
+      })
+    })
+  </script>
+
+</head>
+
+<body>
+  <h1>Lab 3-4. jQuery keyboard events</h1>
+  <p>This example shows how to handle some keyboard events in jQuery.</p>       
+
+  <h2>Part 1. Keyboard events</h2>
+  <p>This example shows how to handle <code>keydown</code>, <code>keyup</code> and
+  <code>keypress</code> events. Notice the difference of
+  the two events.</p>
+  
+  <div id='greenbox'>
+    <div><code>keypress</code> event returns
+    <code>event.which</code>= <span id='mesg_keypress'></span>
+    , when converted to string <span id='mesg_keypress2'></span>.</div>
+    <div><code>keydown</code> event returns <code>event.which</code>=
+    <span id='mesg_keydown'></span></div>
+    <div><code>keyup</code> event returns <code>event.which</code>=
+    <span id='mesg_keyup'></span></div>
+  </div>
+  
+  <p><span class='step'>Step 1</span> An event handler for <code>keypress</code>
+  and <code>keydown</code> display some data about the events in the green box above.
+  The event handlers listen to events at <code>$(document)</code>. Most events bubble
+  to the document object.</p>
+  <p>Read the source code of the event handlers.</p>
+  
+  <div id='form1'>
+    <div>
+      <input type='text' name='username'/>
+      The text box receives <span class='log'>0</span> keypress event.
+    </div>
+    <div><span class='bigText'> </span></div>
+  </div>
+  
+  <p><span class='step'>Step 2</span> When a text box obtains input focus,
+  keyboard events are also triggered at the element, and then bubble up to
+  parent and ancestors and finally to document.</p>
+  
+  <p>Type some text in the text box above. Observe that <code>keypress</code>
+  events are triggered in both the <code>&lt;input></code>
+  element and the document.</p>
+
+  <p><span class='step'>Step 3</span> Stop the <code>keypress</code> events from
+  propagating to the document by <code>event.stopPropagation()</code>.
+  Next, try to disable the default action
+  by <code>event.preventDefault()</code>.</p>
+  
+  <p><span class='step'>Step 4</span> Modify the event handler for
+  <code>keypress</code> so that the text box only accepts numbers (digits 0-9).</p>
+
+
+</body>
+</html>

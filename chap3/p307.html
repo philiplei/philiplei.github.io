@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>jQuery selectors and modifying elements</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+  div#sample { padding: 0.7em; margin: 12px 0px; }
+
+  span#mesg { padding: 2px 10px; }
+  div.dialog { padding: 8px 8px; margin: 8px; }
+
+  table#z { border-collapse: collapse; }
+  table#z td { padding: 4px 16px; border: 1px solid gray;}
+  table#z thead { background-color: gray; color: white; }
+  table#z img { width: 48px; height: 48px; }
+
+  .center {
+    position: fixed; top: 30%; left: 30%;
+    width: 300px !important; height: 300px !important;
+    background-color: lightblue; border: 1px solid gray;
+    border-radius: 30px; padding: 10px;
+  }
+
+  .gameboard {
+    border-collapse: collapse;
+  }
+
+  .gameboard td {
+    width: 70px; height: 70px; text-align: center; vertical-align: middle;
+  }
+
+  .gameboard td:nth-child(2) {
+    border-left: 2px solid gray; border-right: 2px solid gray;
+  }
+  .gameboard tr:nth-child(2) td {
+    border-top: 2px solid gray; border-bottom: 2px solid gray;
+  }
+
+  .gameboard td { line-height: 1;  }
+
+  .checkerboard { border-collapse: collapse; }
+  .checkerboard td { width: 32px; height: 32px; border: 1px solid gray; }
+  </style>
+</head>
+
+<body>
+  <h1>jQuery selectors and modifying elements</h1>
+
+  <div id='sample'>
+    <p>The following is a <code>&lt;span&gt;</code> with id 'mesg':
+    <span id="mesg">mesg</span>
+    <div class="dialog">This is a dialog box <br>
+      in the class 'dialog'</div>
+      <p>The following table has id 'z'</p>
+    <table id='z'>
+      <thead>
+        <tr><td>year</td><td>zodiac</td><td>img</td></tr>
+      </thead>
+      <tbody>
+        <tr><td>2010</td><td>tiger</td><td><img src='ani/tiger.png'/></td></tr>
+        <tr><td>2011</td><td>rabbit</td><td><img src='ani/rabbit.png'/></td></tr>
+        <tr><td>2012</td><td>dragon</td><td><img src='ani/dragon.png'/></td></tr>
+        <tr><td>2013</td><td>snake</td><td><img src='ani/snake.png'/></td></tr>
+        <tr><td>2014</td><td>horse</td><td><img src='ani/horse.png'/></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Try each of the following.</p>
+  <ul>
+    <li><code>$('#mesg').css('color', 'white').css('background-color', 'red')</code></li>
+    <li><code>$('#mesg').css(...)</code> - change font related properties
+      (e.g. font-family, font-size).
+       <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font">(online reference)</a></li>
+    <li><code>$('div.dialog').css('width', '100px').css('border', '1px solid green')</code></li>
+    <li><code>$('#z tbody tr:nth-child(even)').css('background-color', 'lightblue')</code></li>
+    <li><code>$('#z img').css('transform',  'rotate(45deg)')</code> - rotate all images by 45deg
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function">(online reference)</a></li>
+    <li><code>$('#z img[src*="tiger"]').css('width', '120px')</code> - change the width of the image with a image file name that contains "tiger"</li>
+    <li><code>$('#z img').eq(4).css('transform', 'scale(3,3) translate(30px,0)')</code> - resize by 2 times</li>
+    <li><code>$('#z img').slice(2,4).css('transform', 'translate(200px,0) rotate(90deg)')</code> </li>
+  </ul>
+
+  <p>Reload this page before trying the following.</p>
+  <ul>
+    <li><code>$('#z img').eq(0).addClass('center')</code> - add a class to the element. This HTML code includes some style rules for the class <code>center</code></li>
+    <li><code>$('#z img').eq(0).removeClass('center')</code> - remove the class from the element</li>
+  </ul>
+
+  <p>The following table has id 'checker'</p>
+
+
+
+  <table id='checker' class='checkerboard'>
+  <thead>
+    <tr><th><th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9</tr>
+  <tbody>
+    <tr><th>1<td><td><td><td><td><td><td><td><td></tr>
+    <tr><th>2<td><td><td><td><td><td><td><td><td></tr>
+    <tr><th>3<td><td><td><td><td><td><td><td><td></tr>
+    <tr><th>4<td><td><td><td><td><td><td><td><td></tr>
+    <tr><th>5<td><td><td><td><td><td><td><td><td></tr>
+    <tr><th>6<td><td><td><td><td><td><td><td><td></tr>
+    <tr><th>7<td><td><td><td><td><td><td><td><td></tr>
+    <tr><th>8<td><td><td><td><td><td><td><td><td></tr>
+    <tr><th>9<td><td><td><td><td><td><td><td><td></tr>
+  </table>
+
+  <button id='btn1'>color me</button>
+
+  <script src="jquery.js"></script>
+  <script>
+function colorChecker () {
+  var k=1;
+  $('#checker tr:nth-child(odd) td:nth-child(odd)').css('background-color', 'lightblue');
+  $('#checker tr:nth-child(even) td:nth-child(even)').css('background-color', 'lightblue');
+}
+
+$('#btn1').on('click', (e)=> { colorChecker(); })
+
+// TODO: make animation!
+</script>
+</body>
+</html>

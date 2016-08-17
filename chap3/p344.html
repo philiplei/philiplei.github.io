@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Example: form</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+    form { border: 1px solid lightgreen; padding: 1em; }
+    #F1 div { margin: 8px 0px; height: 1.5em; }
+    form div.mesg { border: 1px dashed gray; color: black; background-color: lightblue; padding: 0.3em; }
+    input:disabled { background-color: lightgray; }
+  </style>
+</head>
+
+<body>
+  <p>This example demonstrates handling of <code>change</code> events for pull-down and radio button groups.</p>
+
+  <form id='F1' action="#">
+  <p>Courses offered for student in
+  <select name="year">
+    <option value='y1'>year 1</option>
+    <option value='y2'>year 2</option>
+    <option value='y3'>year 3</option>
+  </select>
+  </p>
+
+  <ul>
+    <li class='y1'>COMP111 Introduction to Computing</li>
+    <li class='y1'>COMP112 Programming I</li>
+    <li class='y1'>COMP113 Web technologies</li>
+    <li class='y2'>COMP211 Database design</li>
+    <li class='y2'>COMP212 Programming II</li>
+    <li class='y2'>COMP213 Operating systems</li>
+    <li class='y3'>COMP311 Multimedia application development</li>
+    <li class='y3'>COMP312 Internet Programming II</li>
+    <li class='y3'>COMP313 Project management</li>
+  </ul>
+  <p>Which OS are you running?
+    <br><label><input type="radio" name="os" value="windows"> Windows</label>
+    <br><label><input type="radio" name="os" value="macos"> macOS</label>
+    <br><label><input type="radio" name="os" value="linux"> Linux</label>
+    <br><label><input type="radio" name="os" value="other"> Other: </label>
+    <input type="text" name="otheros" value=""/>
+   </p>
+  </form>
+<script src="jquery.js"></script>
+<script>
+function changeYear() {
+  var y = $('select[name="year"]').val()
+  $('ul li').hide();
+  $('ul li.'+y).show();
+}
+
+$('select[name="year"]').on("change", changeYear);
+changeYear();
+
+$('input[name="os"]').on('change', (event)=>{
+  // the radio button that the user checks
+  if ($(event.target).val()==='other') {
+    $('input[name="otheros"]').prop('disabled', false);
+  } else {
+    $('input[name="otheros"]').prop('disabled', true).val('');
+  }
+})
+/*
+$('input').on('click focusin focusout change', (event) => {
+  var target_name = $(event.target).attr('name');
+  console.log(`${event.type}: ${target_name}`);
+});
+*/
+</script>
+</body>
+</html>

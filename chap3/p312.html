@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Example: new content</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+  div#sample { padding: 0.7em; margin: 12px 0px; border: 1px solid green; overflow: auto;}
+  table { border-collapse: collapse; }
+  table td { padding: 4px; border: 1px solid gray;}
+  table thead { background-color: gray; color: white; }
+  </style>
+</head>
+
+<body>
+  <p>Click the button to fill in content in the table</p>
+  <table>
+    <thead>
+    <tr><td>N<td>binary<td>hexadecimal</tr>
+    <tbody>
+    <tr><td><td><td></tr>
+  </table>
+  <p>
+  <button type="button">Cick to fill the table</button></p>
+  <script src="jquery.js"></script>
+  <script>
+$('button').on('click', (event) => {
+  var $t = $('table tbody');
+  // clear the table body
+  $t.empty();
+  for (var k=16; k<32; k++) {
+    // create a new row
+    var $r = $('<tr>');
+    // and append three cells to the row
+    $('<td>').html(k).appendTo($r);
+    $('<td>').html(k.toString(2)).appendTo($r);
+    $('<td>').html(k.toString(16)).appendTo($r);
+    // append the row to the table body
+    $t.append($r);
+  }
+});
+</script>
+</body>
+</html>

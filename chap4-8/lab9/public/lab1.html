@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>  
+<title>Consuming and implementing RPC style Web API</title>
+<meta charset="UTF-8" />
+<style>
+  body { font-family: Arial, Helvetica, sans-serif; line-height: 1.4; }
+  h1 { font-size: 1.5em; margin: 2px 2px; }
+  h2 { font-size: 1.2em; border-bottom: solid 1px lightblue; }
+  .step { font-style: italic; background-color: lightgreen; }
+  code { color: darkblue; }
+  
+  #F1, #F2, #F3 { border: 1px dashed green; padding: 4px; }
+
+  table#todo { border-collapse: collapse; border: 1px solid gray; }
+  table#todo td { border: 1px solid gray; padding: 4px 8px; }
+  table#todo thead { background-color: gray; color: white; }
+
+  </style>
+
+<script src="jquery-2.1.1.min.js"></script>
+<script>
+
+// Part 1. Ajax GET
+
+$(document).ready( function () {
+  $('#btn11').click( function () {
+    //var query = { start: '2011-05-02', end: '2011-05-08' };
+    var query = $('#F1').serialize();
+    $.get('/getTodo', query, function (data) {
+      fillTodoTable(data.data);
+    });
+  });   
+});
+
+function fillTodoTable (todoList) {
+  var tbody = $('table#todo tbody');
+  tbody.empty();
+  for (var i=0; i<todoList.length; i++) {
+    var row = '<tr><td>'+todoList[i].id+'</td>';
+    row += '<td>'+todoList[i].due+'</td>';
+    row += '<td>'+todoList[i].task+'</td>';
+    row += '<td>'+todoList[i].tags+'</td>';
+    row += '</tr>';
+    var r = $(row);
+    tbody.append(r);
+  }
+}
+
+
+// Part 2. Ajax POST
+
+$(document).ready( function () {    
+  $('#F2').submit( function () {
+    //var query = { due: '2013-05-25', task: 'Something new', tags: 'home' };
+    var query = $(this).serialize();
+    $.post('/addTodo', query, function (data, textStatus, jqXHR) {
+      //alert('Response status=' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    return false;
+  });    
+});
+ 
+</script>
+</head>
+
+<body>
+  <h1>Lab 1. Consuming and implementing RPC style Web API</h1>
+  <p>Simple form submission in HTML generates a GET / POST request that the
+  browser sends to the server synchronously. This example demonstrates how
+  to send similar requests using Ajax.</p>
+
+  <p><em>Notice:</em> Examples in this page requires a server side program to
+  generate response.  So you must run <code>app.js</code> with
+  Node.js and load this lab file at <a
+  href='http://localhost:3000/lab1.html'>http://localhost:3000/lab1.html</a>.</p>
+  
+  <p>The web service <code>app.js</code> implements a RPC-style web
+  service with the following three operations.</p>
+  
+  <ul>
+    <li><code>GET /getTodo</code>: get a list of events in JSON
+    format. JavaScript code in browser needs to render the data in HTML. The operation
+    supports parameters <code>start</code> and <code>end</code>.</li>
+    <li><code>POST /addTodo</code>: add a new event. The event detail is in the
+    POST request body, encoded as urlencoded.</li>
+    <li><code>POST /updateTodo</code>: update an existing event. The event detail
+     is in the POST request body, encoded as urlencoded.</li>
+    <li><code>POST /delTodo</code>: delete an existing event with the given id. 
+    The id is in the POST request body, encoded as urlencoded.</li>
+  </ul>
+
+  <p>Try <a href="lab1b.html">lab1b.html</a> for a demonstration of all these operations.</p>
+
+  
+  <h2>Part 1. Asynchronous GET request using $.get( )</h2>
+  
+  <form id='F1'>
+    <p>start: <input type='text' name='start' value='2013-05-02' />
+    end: <input type='text' name='end' value='2013-05-08'>
+    <button type='button' id='btn11'>Load todo's</button></p>
+    <table id="todo">
+      <thead><tr><th>id</th><th>Due date</th><th>Task</th><th>Tags</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </form>  
+  
+
+  <p><span class='step'>Step 1.</span> Submit <code>form#F1</code> above.
+  Observe what requests are sent by the browser in the Ajax calls.</p>
+
+  <p><span class='step'>Step 2.</span> Read the source code to check how to
+  serialize form data and send asynchronous GET request using
+  <code>$.get()</code>.</p>
+  
+    
+  <h2>Part 2. Asychronous POST request using $.post()</h2>
+ 
+  <form id='F2' action='#'>
+    <p>due: <input type='text' name='due' value='2013-05-05'><br>
+    task: <input type='text' name='task' value='a new task is posted!'><br>
+    tags: <input type='text' name='tags' value='study'><br>
+    <button type='submit' id='btn21'>Add a todo</button></p>
+  </form>
+  
+  <p>The form above <code>form#F2</code> submits POST request to the server script at
+  <code>http://localhost:3000/addTodo</code>. This adds a new event to the todo
+  list in the server.</p>
+  
+  <p><span class='step'>Step 1.</span> Add some new events, and refresh the todo list in Part 1.</p>
+
+  <p><span class='step'>Step 2.</span> Install <a href="http://www.getpostman.com/">Postman</a> in Google
+  Chrome browser. Use the tool to add / delete / update events from
+  the web service, as documented in the start of this section. <em>You should
+  know the general format of the HTTP messages.</em></p>
+
+  
+  <p><span class='step'>Step 3.</span> Write code to delete an existing todo when the user clicks the button in the above form.</p>
+
+  <form id='F3' action='#'>
+    <p>id: <input type='text' name='id' value='1'><br>
+    <button type='submit' id='btn21'>Delete the todo</button></p>
+  </form>
+ 
+</body>
+</html>
+
