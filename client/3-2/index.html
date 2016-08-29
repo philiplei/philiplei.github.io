@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.16" />
+    <meta name="generator" content="Hugo 0.15" />
     <meta name="description" content="">
 
 
@@ -357,13 +357,13 @@
 <ul>
 <li>
 <ul>
-<li><a href="#basics">Basics</a></li>
-<li><a href="#exercise">Exercise</a></li>
-<li><a href="#select-by-structure">Select by structure</a></li>
-<li><a href="#select-by-position">Select by position</a></li>
-<li><a href="#exercise-1">Exercise</a></li>
-<li><a href="#css-styles">CSS styles</a></li>
-<li><a href="#exercise-2">Exercise</a></li>
+<li><a href="#basics:cf410c1bdab3e599fdd6bdc1d66e6be9">Basics</a></li>
+<li><a href="#exercise:cf410c1bdab3e599fdd6bdc1d66e6be9">Exercise</a></li>
+<li><a href="#select-by-structure:cf410c1bdab3e599fdd6bdc1d66e6be9">Select by structure</a></li>
+<li><a href="#select-by-position:cf410c1bdab3e599fdd6bdc1d66e6be9">Select by position</a></li>
+<li><a href="#exercise-1:cf410c1bdab3e599fdd6bdc1d66e6be9">Exercise</a></li>
+<li><a href="#css-styles:cf410c1bdab3e599fdd6bdc1d66e6be9">CSS styles</a></li>
+<li><a href="#exercise-2:cf410c1bdab3e599fdd6bdc1d66e6be9">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -383,7 +383,7 @@
 
 <p>This lab covers how to select elements in the DOM tree using <code>$()</code> jQuery functions and methods.</p>
 
-<h2 id="basics">Basics</h2>
+<h2 id="basics:cf410c1bdab3e599fdd6bdc1d66e6be9">Basics</h2>
 
 <p>When you provide a CSS selectors to the jQuery function <code>$()</code>, it returns a collection of HTML elements that are matched by the CSS selector.  This part uses the example file <a href="/chap3/p302.html">p302.html</a>.</p>
 
@@ -415,13 +415,13 @@
 <li><code>$(selector).attr(attrName, value)</code> sets the attribute value of the named attribute of all elements in the collection</li>
 </ul>
 
-<h2 id="exercise">Exercise</h2>
+<h2 id="exercise:cf410c1bdab3e599fdd6bdc1d66e6be9">Exercise</h2>
 
 <p>Write a JavaScript program to display the Chinese birth sign for a given year birth. Start your work with <a href="/chap3/p303.html">p303.html</a>. Refer to <a href="/chap3/p303-done.html">sample answer</a> for a sample run.</p>
 
 <p>To make the problem simpler, assume that the birth sign for a whole year is the same. For example, the birth sign for the year 2008 is rat. (In case you don&rsquo;t know what birth sign is, please try <a href="https://www.travelchinaguide.com/intro/social_customs/zodiac/">this web site</a>.)</p>
 
-<h2 id="select-by-structure">Select by structure</h2>
+<h2 id="select-by-structure:cf410c1bdab3e599fdd6bdc1d66e6be9">Select by structure</h2>
 
 <p>When the HTML elements you want to select are embedded in other elements, you can use descendant selector, child selector and pseudo-class like <code>:nth-child(n)</code>. This part uses the example file <a href="/chap3/p304.html">p304.html</a>.</p>
 
@@ -483,7 +483,7 @@ for (var row of $('#marks tbody tr')) {
 }
 </code></pre>
 
-<h2 id="select-by-position">Select by position</h2>
+<h2 id="select-by-position:cf410c1bdab3e599fdd6bdc1d66e6be9">Select by position</h2>
 
 <p>You can selects elements in a jQuery collection.</p>
 
@@ -493,7 +493,7 @@ for (var row of $('#marks tbody tr')) {
 <li><code>$(selector).slice(m,n)</code> selects a range of elements</li>
 </ul>
 
-<h2 id="exercise-1">Exercise</h2>
+<h2 id="exercise-1:cf410c1bdab3e599fdd6bdc1d66e6be9">Exercise</h2>
 
 <ol>
 <li><p>Add JavaScript code to <a href="/chap3/p305.html">p305.html</a> to fill in the numbers in the multiplication table <code>table#multitable</code> when the user clicks the button below the table. You can refer to the output of the <a href="/chap3/p305-done.html">sample answer</a>. However, before attempting to solve the questions, don&rsquo;t read the source code of the answer.</p></li>
@@ -501,7 +501,7 @@ for (var row of $('#marks tbody tr')) {
 <li><p>There is a tic tac toe game board in the file <a href="/chap3/p306.html">p306.html</a>. Write a function <code>show(stones)</code> to set the game board according to the parameter, which is an array of 9 elements. An element of 0 corresponds to a circle, an element of 1 corresponds to a cross, and an element of 9 corresponds to an empty cell. Refer to the <a href="/chap3/p306-done.html">sample answer</a> for a sample run.</p></li>
 </ol>
 
-<h2 id="css-styles">CSS styles</h2>
+<h2 id="css-styles:cf410c1bdab3e599fdd6bdc1d66e6be9">CSS styles</h2>
 
 <p>There are two ways to change the CSS styles of elements. The first method is to add inline style with <code>$().css()</code>. This part uses the example file <a href="/chap3/p307.html">p307.html</a>.</p>
 
@@ -516,7 +516,7 @@ for (var row of $('#marks tbody tr')) {
 <li><code>$(selector).removeClass(className)</code> removes the specified class from the elements in the collection</li>
 </ul>
 
-<h2 id="exercise-2">Exercise</h2>
+<h2 id="exercise-2:cf410c1bdab3e599fdd6bdc1d66e6be9">Exercise</h2>
 
 <p>Add JavaScript code to <a href="/chap3/p308.html">p308.html</a> to show student&rsquo;s name and mark. Complete the function <code>show()</code> according to the comment. You can refer to the output of the <a href="/chap3/p308-done.html">sample answer</a>.</p>
 

@@ -17,7 +17,7 @@
       <guid>http://comp312.ipm.mo/basics/</guid>
       <description>
 
-&lt;h2 id=&#34;javascript-basics&#34;&gt;JavaScript Basics&lt;/h2&gt;
+&lt;h2 id=&#34;javascript-basics:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;JavaScript Basics&lt;/h2&gt;
 
 &lt;p&gt;This &lt;strong&gt;lab&lt;/strong&gt; goes through the basics of the JavaScript programming language.&lt;/p&gt;
 </description>
@@ -33,7 +33,7 @@
 
 &lt;p&gt;This lab goes through the basic data types (Number and String) and control structures of the JavaScript programming language.&lt;/p&gt;
 
-&lt;h2 id=&#34;number&#34;&gt;Number&lt;/h2&gt;
+&lt;h2 id=&#34;number:855bd0b6902ba912a5e7d4153423beed&#34;&gt;Number&lt;/h2&gt;
 
 &lt;p&gt;Two basic data types in JavaScript are &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number&#34;&gt;Number&lt;/a&gt; and String.
 There are no separate types for integers and doubles.&lt;/p&gt;
@@ -59,7 +59,7 @@ var x = Math.sin(Math.PI/2)  // 1
 var y = Math.sqrt(-1) // NaN
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;string&#34;&gt;String&lt;/h2&gt;
+&lt;h2 id=&#34;string:855bd0b6902ba912a5e7d4153423beed&#34;&gt;String&lt;/h2&gt;
 
 &lt;p&gt;Strings can be delimited with single quote or double quote. Join two strings
 with &lt;code&gt;+&lt;/code&gt;. Use the property &lt;code&gt;.length&lt;/code&gt; to check number of characters in a string.
@@ -85,7 +85,7 @@ var A = &amp;quot;202.175.3.3&amp;quot;.split(&#39;.&#39;);
 // an array [&#39;202&#39;, &#39;175&#39;, &#39;3&#39;, &#39;3&#39;]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;conversion&#34;&gt;Conversion&lt;/h2&gt;
+&lt;h2 id=&#34;conversion:855bd0b6902ba912a5e7d4153423beed&#34;&gt;Conversion&lt;/h2&gt;
 
 &lt;p&gt;User input are usually returned as string. Before calculation, use &lt;code&gt;parseInt()&lt;/code&gt; or &lt;code&gt;parseFloat()&lt;/code&gt; to convert the string into an integer / floating point number.&lt;/p&gt;
 
@@ -118,7 +118,7 @@ var r = parseFloat(s);
 console.log(`Area = ${Math.PI * r * r}`);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;comparison&#34;&gt;Comparison&lt;/h2&gt;
+&lt;h2 id=&#34;comparison:855bd0b6902ba912a5e7d4153423beed&#34;&gt;Comparison&lt;/h2&gt;
 
 &lt;p&gt;You can compare numbers and strings using the operators &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;lt;=&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;gt;=&lt;/code&gt;, &lt;code&gt;==&lt;/code&gt; and &lt;code&gt;!=&lt;/code&gt;.
 Comparison results are either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
@@ -136,7 +136,7 @@ Comparison results are either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false
 
 &lt;p&gt;Similar to Java, you can use &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; to combine comparison tests.&lt;/p&gt;
 
-&lt;h2 id=&#34;control-structure&#34;&gt;Control structure&lt;/h2&gt;
+&lt;h2 id=&#34;control-structure:855bd0b6902ba912a5e7d4153423beed&#34;&gt;Control structure&lt;/h2&gt;
 
 &lt;p&gt;The control structure if, for and while are similar to those in Java. Please read the online reference of &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else&#34;&gt;if&amp;hellip;else&lt;/a&gt;,
 &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for&#34;&gt;for&lt;/a&gt;,
@@ -177,7 +177,7 @@ while (i*i&amp;lt;100) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercise:855bd0b6902ba912a5e7d4153423beed&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Write a program to calculate the sum of even positive numbers up to 30.
@@ -219,7 +219,7 @@ console.log(sqr);
 
 &lt;p&gt;This lab goes through the basics of the JavaScript arrays and functions.&lt;/p&gt;
 
-&lt;h2 id=&#34;array&#34;&gt;Array&lt;/h2&gt;
+&lt;h2 id=&#34;array:751e016222acc825af018628bf936c15&#34;&gt;Array&lt;/h2&gt;
 
 &lt;p&gt;An &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array&#34;&gt;array&lt;/a&gt; is a sequence of values that may have different types. Arrays can change size in run-time. The &lt;code&gt;length&lt;/code&gt; property refers to the number of elements inside the array.
 Use the operator &lt;code&gt;[]&lt;/code&gt; to locate an element at the given index.&lt;/p&gt;
@@ -248,7 +248,7 @@ for (var x of P) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;basic-array-methods&#34;&gt;Basic array methods&lt;/h2&gt;
+&lt;h2 id=&#34;basic-array-methods:751e016222acc825af018628bf936c15&#34;&gt;Basic array methods&lt;/h2&gt;
 
 &lt;p&gt;Arrays are objects in JavaScript and have some built-in methods. See &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array&#34;&gt;online reference&lt;/a&gt; for a list of all methods.
 The following shows some common methods.&lt;/p&gt;
@@ -280,7 +280,7 @@ for (var k=9; k&amp;lt;200; k+=2) {
 console.log(P);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;functions&#34;&gt;Functions&lt;/h2&gt;
+&lt;h2 id=&#34;functions:751e016222acc825af018628bf936c15&#34;&gt;Functions&lt;/h2&gt;
 
 &lt;p&gt;There are two ways to define functions: &lt;code&gt;function&lt;/code&gt; keyword and arrow function. This lab covers the first. We use a function to group some statements that can be reused.&lt;/p&gt;
 
@@ -354,7 +354,7 @@ function odd(n) {
 }
 --&gt;
 
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercise:751e016222acc825af018628bf936c15&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Write a &lt;strong&gt;function&lt;/strong&gt; &lt;code&gt;sum(A)&lt;/code&gt; to calculate the sum of elements in an array &lt;code&gt;A&lt;/code&gt;.
@@ -394,7 +394,7 @@ console.log(search(x, 1)); // should print -1;
 
 &lt;p&gt;This lab covers the basics of objects (as data structure). It also covers part of JSON.&lt;/p&gt;
 
-&lt;h2 id=&#34;objects&#34;&gt;Objects&lt;/h2&gt;
+&lt;h2 id=&#34;objects:51a54ca2b6504050813f27f36d3dbb0e&#34;&gt;Objects&lt;/h2&gt;
 
 &lt;p&gt;In JavaScript, objects are a collection of properties. Each property
 is a pair of name and value. You can access each property with the dot notation.&lt;/p&gt;
@@ -437,7 +437,7 @@ var mid = midpoint(p1, p2);
 dir(mid);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;complicated-data&#34;&gt;Complicated data&lt;/h2&gt;
+&lt;h2 id=&#34;complicated-data:51a54ca2b6504050813f27f36d3dbb0e&#34;&gt;Complicated data&lt;/h2&gt;
 
 &lt;p&gt;You can nest objects to model more complicated data.&lt;/p&gt;
 
@@ -494,7 +494,7 @@ console.log(
 };
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercise:51a54ca2b6504050813f27f36d3dbb0e&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;p&gt;Use the time table data structure above to complete this exercise.&lt;/p&gt;
 
@@ -516,7 +516,7 @@ console.log(
       <guid>http://comp312.ipm.mo/basics/2-4/</guid>
       <description>
 
-&lt;h2 id=&#34;functions-as-first-class-values&#34;&gt;Functions as first-class values&lt;/h2&gt;
+&lt;h2 id=&#34;functions-as-first-class-values:8f8679018181f9c68b8f50f2e680210f&#34;&gt;Functions as first-class values&lt;/h2&gt;
 
 &lt;p&gt;Functions in JavaScript are often describe as first-class values. (In fact, functions are objects, with their own properties and methods.) This means that, in many cases, if you can do something on numbers or strings, you can also do the same on functions. In particular,
 you can save a function in a variable, pass a function to another function, or return a function from a function.&lt;/p&gt;
@@ -546,7 +546,7 @@ var mul = function(a,b) { return a*b; }
 reduce([6,7,8,9], mul); // returns 3024
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;map-and-filter&#34;&gt;Map and filter&lt;/h2&gt;
+&lt;h2 id=&#34;map-and-filter:8f8679018181f9c68b8f50f2e680210f&#34;&gt;Map and filter&lt;/h2&gt;
 
 &lt;p&gt;A common case in processing a large amount of data in arrays is to iterate the elements and perform some processing or filtering on each element.&lt;/p&gt;
 
@@ -616,7 +616,7 @@ for (var s of e) {
 f = e.filter(function(s) { return (s.length&amp;lt;5); });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;sorting&#34;&gt;Sorting&lt;/h2&gt;
+&lt;h2 id=&#34;sorting:8f8679018181f9c68b8f50f2e680210f&#34;&gt;Sorting&lt;/h2&gt;
 
 &lt;p&gt;JavaScript arrays have a built-in &lt;code&gt;sort&lt;/code&gt; method. It can sort numbers and strings, but it does not know how to sort other objects.&lt;/p&gt;
 
@@ -648,7 +648,7 @@ function cmp (p1, p2) {
 p.sort(cmp);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;timer&#34;&gt;Timer&lt;/h2&gt;
+&lt;h2 id=&#34;timer:8f8679018181f9c68b8f50f2e680210f&#34;&gt;Timer&lt;/h2&gt;
 
 &lt;p&gt;Both browsers and Node.js support timers. Timers allow schedule of execution of a function in the future. There are two kinds of timers: one time (&lt;code&gt;setTimeout()&lt;/code&gt;), and periodic (&lt;code&gt;setInterval()&lt;/code&gt;). In either case, you pass the function to execute as a callback. Refer to the &lt;a href=&#34;https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers&#34;&gt;online reference&lt;/a&gt; for detail.&lt;/p&gt;
 
@@ -672,7 +672,7 @@ function tick() {
 tick();
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;arrow-functions&#34;&gt;Arrow functions&lt;/h2&gt;
+&lt;h2 id=&#34;arrow-functions:8f8679018181f9c68b8f50f2e680210f&#34;&gt;Arrow functions&lt;/h2&gt;
 
 &lt;p&gt;Anonymous functions are very common in JavaScript programming because of the asynchronous nature of client-side or server-side programming. (E.g. register a callback to handle mouse click). Therefore, ES6 defines a new syntax called &lt;dfn&gt;arrow functions&lt;/dfn&gt; to define anonymous function. Usually, arrow functions are defined and passed directly to another function.&lt;/p&gt;
 
@@ -708,7 +708,7 @@ var e = [&#39;joy&#39;, &#39;sadness&#39;, &#39;anger&#39;, &#39;disgust&#39;, &
 f = e.filter(s =&amp;gt; s.length&amp;lt;5);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;excersie&#34;&gt;Excersie&lt;/h2&gt;
+&lt;h2 id=&#34;excersie:8f8679018181f9c68b8f50f2e680210f&#34;&gt;Excersie&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Given an array &lt;code&gt;var N = [ 32, 53, 42, 25, 48, 10 ]&lt;/code&gt;, write a program to do the following. You should use callback functions.&lt;/p&gt;
@@ -749,7 +749,7 @@ f = e.filter(s =&amp;gt; s.length&amp;lt;5);
 
 &lt;p&gt;There are two basic types of collections in JavaScript. (Another type is Set, not covered here.)&lt;/p&gt;
 
-&lt;h2 id=&#34;arrays-as-collections&#34;&gt;Arrays as collections&lt;/h2&gt;
+&lt;h2 id=&#34;arrays-as-collections:7ca16074685f2bdef80cf45ba4944844&#34;&gt;Arrays as collections&lt;/h2&gt;
 
 &lt;p&gt;Arrays keep objects in a sequence. You retrieve an element from an array by position.&lt;/p&gt;
 
@@ -770,7 +770,7 @@ for (var x of b) {
 [0, ...b, 12]; // returns [0, 2, 4, 6, 8, 10, 12]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;maps&#34;&gt;Maps&lt;/h2&gt;
+&lt;h2 id=&#34;maps:7ca16074685f2bdef80cf45ba4944844&#34;&gt;Maps&lt;/h2&gt;
 
 &lt;p&gt;ES6 defines a new kind of collections called &lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map&#34;&gt;Map&lt;/a&gt;. A map stores key/value pairs.
 (In previous version of JavaScript, objects are often used as map.) You create a Map by submitting a list of key/value pairs to the constructor. Each pair is written as an array of two elements, namely key and value. You retrieve an element from a map using a key with the method &lt;code&gt;.get(key)&lt;/code&gt;. You add / replace an element in the map with the method &lt;code&gt;.set(key,value)&lt;/code&gt;. You can also delete an element from a map with &lt;code&gt;.delete(key)&lt;/code&gt;, and check the number of elements with the property &lt;code&gt;.size&lt;/code&gt;.&lt;/p&gt;
@@ -844,7 +844,7 @@ for (var [k,v] of wordCount) {
       <guid>http://comp312.ipm.mo/basics/2-6/</guid>
       <description>
 
-&lt;h2 id=&#34;a-short-example&#34;&gt;A short example&lt;/h2&gt;
+&lt;h2 id=&#34;a-short-example:79614a28dc841bf68e19c4136ca2bf1d&#34;&gt;A short example&lt;/h2&gt;
 
 &lt;p&gt;Up to now, we have encountered several built-in classes in JavaScript. They include
 &lt;code&gt;Array&lt;/code&gt; and &lt;code&gt;Map&lt;/code&gt;. Before we discuss how to define our own class, let&amp;rsquo;s examine the usage of another built-in class &lt;code&gt;Date&lt;/code&gt;, which represents a single moment in time. &lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date&#34;&gt;(online reference)&lt;/a&gt;&lt;/p&gt;
@@ -864,7 +864,7 @@ var dow = now.getDay(); // 0-6, where 0 means Sunday
 console.log(now.toLocaleString());
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;defining-class&#34;&gt;Defining class&lt;/h2&gt;
+&lt;h2 id=&#34;defining-class:79614a28dc841bf68e19c4136ca2bf1d&#34;&gt;Defining class&lt;/h2&gt;
 
 &lt;p&gt;ES6 has a new syntax to define class. It is similar to the syntax in Java.&lt;/p&gt;
 
@@ -924,7 +924,7 @@ console.log(&#39;c1 contains c2? &#39;, contains(c1,c2) );
 console.log(&#39;c1 contains c3? &#39;, contains(c1,c3) );
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercise:79614a28dc841bf68e19c4136ca2bf1d&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Define a class Point that can be used in the following ways&lt;/p&gt;

@@ -17,7 +17,7 @@
       <guid>http://comp312.ipm.mo/client/</guid>
       <description>
 
-&lt;h2 id=&#34;client-side-programming&#34;&gt;Client-side programming&lt;/h2&gt;
+&lt;h2 id=&#34;client-side-programming:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Client-side programming&lt;/h2&gt;
 
 &lt;p&gt;This &lt;strong&gt;lab&lt;/strong&gt; goes through the basics of the JavaScript programming inside the Web browser environment.
 We&amp;rsquo;ll use jQuery library to&lt;/p&gt;
@@ -92,7 +92,7 @@ We&amp;rsquo;ll use jQuery library to&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://comp312.ipm.mo/chap3/p301.html&#34;&gt;example&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;first-example&#34;&gt;first example&lt;/h2&gt;
+&lt;h2 id=&#34;first-example:bbef13b3f36124915c5dbc798731f3dc&#34;&gt;first example&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;select nodes using &lt;code&gt;$(CSS selector)&lt;/code&gt;  use ID only&lt;/li&gt;
@@ -118,7 +118,7 @@ We&amp;rsquo;ll use jQuery library to&lt;/p&gt;
 
 &lt;p&gt;This lab covers how to select elements in the DOM tree using &lt;code&gt;$()&lt;/code&gt; jQuery functions and methods.&lt;/p&gt;
 
-&lt;h2 id=&#34;basics&#34;&gt;Basics&lt;/h2&gt;
+&lt;h2 id=&#34;basics:cf410c1bdab3e599fdd6bdc1d66e6be9&#34;&gt;Basics&lt;/h2&gt;
 
 &lt;p&gt;When you provide a CSS selectors to the jQuery function &lt;code&gt;$()&lt;/code&gt;, it returns a collection of HTML elements that are matched by the CSS selector.  This part uses the example file &lt;a href=&#34;http://comp312.ipm.mo/chap3/p302.html&#34;&gt;p302.html&lt;/a&gt;.&lt;/p&gt;
 
@@ -150,13 +150,13 @@ We&amp;rsquo;ll use jQuery library to&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;$(selector).attr(attrName, value)&lt;/code&gt; sets the attribute value of the named attribute of all elements in the collection&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercise:cf410c1bdab3e599fdd6bdc1d66e6be9&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;p&gt;Write a JavaScript program to display the Chinese birth sign for a given year birth. Start your work with &lt;a href=&#34;http://comp312.ipm.mo/chap3/p303.html&#34;&gt;p303.html&lt;/a&gt;. Refer to &lt;a href=&#34;http://comp312.ipm.mo/chap3/p303-done.html&#34;&gt;sample answer&lt;/a&gt; for a sample run.&lt;/p&gt;
 
 &lt;p&gt;To make the problem simpler, assume that the birth sign for a whole year is the same. For example, the birth sign for the year 2008 is rat. (In case you don&amp;rsquo;t know what birth sign is, please try &lt;a href=&#34;https://www.travelchinaguide.com/intro/social_customs/zodiac/&#34;&gt;this web site&lt;/a&gt;.)&lt;/p&gt;
 
-&lt;h2 id=&#34;select-by-structure&#34;&gt;Select by structure&lt;/h2&gt;
+&lt;h2 id=&#34;select-by-structure:cf410c1bdab3e599fdd6bdc1d66e6be9&#34;&gt;Select by structure&lt;/h2&gt;
 
 &lt;p&gt;When the HTML elements you want to select are embedded in other elements, you can use descendant selector, child selector and pseudo-class like &lt;code&gt;:nth-child(n)&lt;/code&gt;. This part uses the example file &lt;a href=&#34;http://comp312.ipm.mo/chap3/p304.html&#34;&gt;p304.html&lt;/a&gt;.&lt;/p&gt;
 
@@ -218,7 +218,7 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;select-by-position&#34;&gt;Select by position&lt;/h2&gt;
+&lt;h2 id=&#34;select-by-position:cf410c1bdab3e599fdd6bdc1d66e6be9&#34;&gt;Select by position&lt;/h2&gt;
 
 &lt;p&gt;You can selects elements in a jQuery collection.&lt;/p&gt;
 
@@ -228,7 +228,7 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
 &lt;li&gt;&lt;code&gt;$(selector).slice(m,n)&lt;/code&gt; selects a range of elements&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;exercise-1&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercise-1:cf410c1bdab3e599fdd6bdc1d66e6be9&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Add JavaScript code to &lt;a href=&#34;http://comp312.ipm.mo/chap3/p305.html&#34;&gt;p305.html&lt;/a&gt; to fill in the numbers in the multiplication table &lt;code&gt;table#multitable&lt;/code&gt; when the user clicks the button below the table. You can refer to the output of the &lt;a href=&#34;http://comp312.ipm.mo/chap3/p305-done.html&#34;&gt;sample answer&lt;/a&gt;. However, before attempting to solve the questions, don&amp;rsquo;t read the source code of the answer.&lt;/p&gt;&lt;/li&gt;
@@ -236,7 +236,7 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
 &lt;li&gt;&lt;p&gt;There is a tic tac toe game board in the file &lt;a href=&#34;http://comp312.ipm.mo/chap3/p306.html&#34;&gt;p306.html&lt;/a&gt;. Write a function &lt;code&gt;show(stones)&lt;/code&gt; to set the game board according to the parameter, which is an array of 9 elements. An element of 0 corresponds to a circle, an element of 1 corresponds to a cross, and an element of 9 corresponds to an empty cell. Refer to the &lt;a href=&#34;http://comp312.ipm.mo/chap3/p306-done.html&#34;&gt;sample answer&lt;/a&gt; for a sample run.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;css-styles&#34;&gt;CSS styles&lt;/h2&gt;
+&lt;h2 id=&#34;css-styles:cf410c1bdab3e599fdd6bdc1d66e6be9&#34;&gt;CSS styles&lt;/h2&gt;
 
 &lt;p&gt;There are two ways to change the CSS styles of elements. The first method is to add inline style with &lt;code&gt;$().css()&lt;/code&gt;. This part uses the example file &lt;a href=&#34;http://comp312.ipm.mo/chap3/p307.html&#34;&gt;p307.html&lt;/a&gt;.&lt;/p&gt;
 
@@ -251,7 +251,7 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
 &lt;li&gt;&lt;code&gt;$(selector).removeClass(className)&lt;/code&gt; removes the specified class from the elements in the collection&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;exercise-2&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercise-2:cf410c1bdab3e599fdd6bdc1d66e6be9&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;p&gt;Add JavaScript code to &lt;a href=&#34;http://comp312.ipm.mo/chap3/p308.html&#34;&gt;p308.html&lt;/a&gt; to show student&amp;rsquo;s name and mark. Complete the function &lt;code&gt;show()&lt;/code&gt; according to the comment. You can refer to the output of the &lt;a href=&#34;http://comp312.ipm.mo/chap3/p308-done.html&#34;&gt;sample answer&lt;/a&gt;.&lt;/p&gt;
 
@@ -281,7 +281,7 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
 
 &lt;p&gt;&lt;a href=&#34;http://comp312.ipm.mo/chap3/p311.html&#34;&gt;p311.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;create-new-html-content&#34;&gt;Create new HTML content&lt;/h2&gt;
+&lt;h2 id=&#34;create-new-html-content:ea5c74532ea585d792ffc5ecba7767b0&#34;&gt;Create new HTML content&lt;/h2&gt;
 
 &lt;p&gt;You can create new HTML content by passing HTML code to the jQuery function &lt;code&gt;$(htmlCode)&lt;/code&gt;.  The newly created elements are detached from the current DOM tree, and not displayed.  To show the content, you have to attach the elements to the DOM tree.&lt;/p&gt;
 
@@ -302,7 +302,7 @@ var img = $(&#39;&amp;lt;img&amp;gt;&#39;).attr(&#39;src&#39;, &#39;ani/dragon.p
 $(&#39;body&#39;).append(img);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;insert-content-to-dom-tree&#34;&gt;Insert content to DOM tree&lt;/h2&gt;
+&lt;h2 id=&#34;insert-content-to-dom-tree:ea5c74532ea585d792ffc5ecba7767b0&#34;&gt;Insert content to DOM tree&lt;/h2&gt;
 
 &lt;p&gt;There are several methods you can use to insert new / existing content into the current DOM tree.&lt;/p&gt;
 
@@ -348,7 +348,7 @@ for (var k=16; k&amp;lt;32; k++) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercise:ea5c74532ea585d792ffc5ecba7767b0&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;p&gt;In this exercise, you have to populate an HTML table with JSON data.
 - exercise: populate html table with json data&lt;/p&gt;
@@ -367,7 +367,7 @@ for (var k=16; k&amp;lt;32; k++) {
 
 &lt;p&gt;This lab covers how to handle events with event handlers using the jQuery library.&lt;/p&gt;
 
-&lt;h2 id=&#34;basic-event-handling&#34;&gt;Basic event handling&lt;/h2&gt;
+&lt;h2 id=&#34;basic-event-handling:0daf9bef3eba6d32a1428afa07d01624&#34;&gt;Basic event handling&lt;/h2&gt;
 
 &lt;p&gt;The basic function to register event handler is &lt;code&gt;$().on(events, handler)&lt;/code&gt; &lt;a href=&#34;https://api.jquery.com/on/&#34;&gt;(online reference)&lt;/a&gt; This method attaches the event handler (a function) to handle the events (e.g &amp;lsquo;click&amp;rsquo;, &amp;lsquo;mousemove&amp;rsquo;) to each element in the jQuery collection. Different ways to attach event handlers are given in the following sample code.&lt;/p&gt;
 
@@ -394,7 +394,7 @@ function btn1_click (event) {
 $(&#39;button#btn1&#39;).on(&#39;click&#39;, btn1_click);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;mouse-event-and-event-object&#34;&gt;Mouse event and event object&lt;/h2&gt;
+&lt;h2 id=&#34;mouse-event-and-event-object:0daf9bef3eba6d32a1428afa07d01624&#34;&gt;Mouse event and event object&lt;/h2&gt;
 
 &lt;p&gt;The browser triggers several mouse-related events when the user interacts with the HTML elements using the mouse. Some common mouse events are: &lt;code&gt;click&lt;/code&gt;, &lt;code&gt;mouseenter&lt;/code&gt;, &lt;code&gt;mouseleave&lt;/code&gt; and &lt;code&gt;mousemove&lt;/code&gt;.
 The event handler is passed a &lt;a href=&#34;http://api.jquery.com/category/events/event-object/&#34;&gt;Event object&lt;/a&gt; as the first parameter.
@@ -429,7 +429,7 @@ $(&#39;#zodiac img&#39;).on(&#39;click&#39;, event =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;attach-data-to-dom-elements&#34;&gt;Attach data to DOM elements&lt;/h2&gt;
+&lt;h2 id=&#34;attach-data-to-dom-elements:0daf9bef3eba6d32a1428afa07d01624&#34;&gt;Attach data to DOM elements&lt;/h2&gt;
 
 &lt;p&gt;Although we can distinguish which element triggers an event with &lt;code&gt;event.target&lt;/code&gt;, usually it is more convenient if we can pass some application specific information (e.g. record id) to the event handler.  There are several ways to do this.  The example &lt;a href=&#34;http://comp312.ipm.mo/chap3/p323.html&#34;&gt;p323.html&lt;/a&gt; uses the jQuery method &lt;code&gt;$().data(name, value)&lt;/code&gt; to attach any JavaScript data to a DOM element.&lt;/p&gt;
 
@@ -466,7 +466,7 @@ $(&#39;#tic td&#39;).on(&#39;click&#39;, (event)=&amp;gt;{
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;pass-data-to-event-handler&#34;&gt;Pass data to event handler&lt;/h2&gt;
+&lt;h2 id=&#34;pass-data-to-event-handler:0daf9bef3eba6d32a1428afa07d01624&#34;&gt;Pass data to event handler&lt;/h2&gt;
 
 &lt;p&gt;Instead of attaching JavaScript data to DOM element, you can specify these JavaScript data when registering an event handler. When the event triggers, jQuery passes the specified data to the event handler as &lt;code&gt;event.data&lt;/code&gt;.&lt;/p&gt;
 
@@ -504,7 +504,7 @@ for (var i=0; i&amp;lt;$rows.length; i++) {
 
 &lt;p&gt;This lab covers jQuery methods and events related to form control.&lt;/p&gt;
 
-&lt;h2 id=&#34;text-input&#34;&gt;Text input&lt;/h2&gt;
+&lt;h2 id=&#34;text-input:8d98439641754e0566ec6c4060e37447&#34;&gt;Text input&lt;/h2&gt;
 
 &lt;p&gt;The basic control for entering text is text input boxes.
 When the input box gains the input focus, keyboard input changes its value. Try the demo
@@ -523,7 +523,7 @@ occur.&lt;/p&gt;
 &amp;lt;/script&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;selection&#34;&gt;Selection&lt;/h2&gt;
+&lt;h2 id=&#34;selection:8d98439641754e0566ec6c4060e37447&#34;&gt;Selection&lt;/h2&gt;
 
 &lt;p&gt;There are several form controls that allow the user to select one out of several options. The HTML &lt;code&gt;&amp;lt;select&amp;gt;&lt;/code&gt; element is the easiest to work with using jQuery. Try the demo
 &lt;a href=&#34;http://comp312.ipm.mo/chap3/p342.html&#34;&gt;p342.html&lt;/a&gt; to see how to set/change the selection and some events that the &lt;code&gt;&amp;lt;select&amp;gt;&lt;/code&gt; element fires.&lt;/p&gt;
@@ -603,7 +603,7 @@ $(&#39;input[name=&amp;quot;os&amp;quot;]&#39;).on(&#39;change&#39;, (event)=&am
 &amp;lt;/script&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;missing-exercise&#34;&gt;Missing: exercise&lt;/h2&gt;
+&lt;h2 id=&#34;missing-exercise:8d98439641754e0566ec6c4060e37447&#34;&gt;Missing: exercise&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// Disable #x
 $( &amp;quot;#x&amp;quot; ).prop( &amp;quot;disabled&amp;quot;, true );
@@ -612,7 +612,7 @@ $( &amp;quot;#x&amp;quot; ).prop( &amp;quot;disabled&amp;quot;, true );
 // readOnly
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;form-submission&#34;&gt;form submission&lt;/h2&gt;
+&lt;h2 id=&#34;form-submission:8d98439641754e0566ec6c4060e37447&#34;&gt;form submission&lt;/h2&gt;
 
 &lt;p&gt;event. default action&lt;/p&gt;
 </description>
@@ -640,7 +640,7 @@ $( &amp;quot;#x&amp;quot; ).prop( &amp;quot;disabled&amp;quot;, true );
 &lt;li&gt;{{#if}}&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;basic-operation&#34;&gt;Basic operation&lt;/h2&gt;
+&lt;h2 id=&#34;basic-operation:0acc7f683f17301d1361a2a9d40e010c&#34;&gt;Basic operation&lt;/h2&gt;
 
 &lt;p&gt;There are many HTML template systems. While their syntax can be quite different, the basic operation remain similar. First, a template defines the presentation of some data in some format. Handlebars uses HTML code directly in the template. In the template, there are some placeholders, to be replaced by some data later. In Handlebars, these placeholders use the expression &lt;code&gt;{{ }}&lt;/code&gt;.&lt;/p&gt;
 
@@ -684,7 +684,7 @@ var html = template(context);
 
 &lt;p&gt;There are some technical detail to embed the template in the HTML file and load the Handlebars library. Please refer to source code of &lt;a href=&#34;http://comp312.ipm.mo/chap3/p361.html&#34;&gt;p361.html&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;loop&#34;&gt;Loop&lt;/h2&gt;
+&lt;h2 id=&#34;loop:0acc7f683f17301d1361a2a9d40e010c&#34;&gt;Loop&lt;/h2&gt;
 
 &lt;p&gt;Handlebars provides the block helper &lt;code&gt;{{#each property}} ... {{/each}}&lt;/code&gt; to
 repeat part of the template for each element in the named property, which is an array.
@@ -718,7 +718,7 @@ For example, we have a array of color in this context object.&lt;/p&gt;
 
 &lt;p&gt;Inside the pair &lt;code&gt;{{#each color}}&lt;/code&gt; and &lt;code&gt;{{/each}}&lt;/code&gt;, the placeholders refer to each element in the array. Notice that we can also interpolate value in HTML attribute.  See &lt;a href=&#34;http://comp312.ipm.mo/chap3/p362.html&#34;&gt;p362.html&lt;/a&gt; for how the example works.&lt;/p&gt;
 
-&lt;h2 id=&#34;conditions&#34;&gt;Conditions&lt;/h2&gt;
+&lt;h2 id=&#34;conditions:0acc7f683f17301d1361a2a9d40e010c&#34;&gt;Conditions&lt;/h2&gt;
 
 &lt;p&gt;Suppose you have some objects that represents email. You want to show different icons to distinguish read email from unread email.&lt;/p&gt;
 
@@ -739,7 +739,7 @@ var email2 = { read: false, sender: &#39;John&#39;, subject: &#39;..&#39; };
 &amp;lt;/p&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;advanced-example&#34;&gt;Advanced example&lt;/h2&gt;
+&lt;h2 id=&#34;advanced-example:0acc7f683f17301d1361a2a9d40e010c&#34;&gt;Advanced example&lt;/h2&gt;
 
 &lt;p&gt;Time table example, template version.  Use both &lt;code&gt;{{#each}}&lt;/code&gt; and &lt;code&gt;{{#if}}&lt;/code&gt;.
 Also need to enrich the context object.  (no logic in template.)
@@ -757,7 +757,7 @@ Also need to enrich the context object.  (no logic in template.)
 
 &lt;p&gt;This lab is about a JavaScript charting library called &lt;a href=&#34;http://www.chartjs.org/&#34;&gt;Chart.js&lt;/a&gt;. You can use charts to visualize complicated data. In addition, this library also demonstrate a common design in JavaScript API: using JSON data to provide complex options.&lt;/p&gt;
 
-&lt;h2 id=&#34;basic-operation&#34;&gt;Basic operation&lt;/h2&gt;
+&lt;h2 id=&#34;basic-operation:a5480191441ecb5ce9f13a53c82cd81a&#34;&gt;Basic operation&lt;/h2&gt;
 
 &lt;p&gt;We call the constructor of class &lt;code&gt;Chart&lt;/code&gt; to create a chart. The constructor accepts two parameters: the first is a canvas element, and the second is a JSON data object (a JavaScript object) which has at least three properties: chart type, data to be plotted, and options. Try the demo &lt;a href=&#34;http://comp312.ipm.mo/chap3/p371.html&#34;&gt;p371.html&lt;/a&gt;.&lt;/p&gt;
 
@@ -803,7 +803,7 @@ can get quite complicated. So let&amp;rsquo;s start with a simpler version. Belo
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;more-datasets-and-options&#34;&gt;More datasets and options&lt;/h2&gt;
+&lt;h2 id=&#34;more-datasets-and-options:a5480191441ecb5ce9f13a53c82cd81a&#34;&gt;More datasets and options&lt;/h2&gt;
 
 &lt;p&gt;Notice that the property &lt;code&gt;datasets&lt;/code&gt; has array value, because the chart can display more than one dataset. See &lt;a href=&#34;http://comp312.ipm.mo/chap3/p372.html&#34;&gt;p372.html&lt;/a&gt; for an example of two datasets. This example also shows how the options object groups various settings. Please refer to &lt;a href=&#34;http://www.chartjs.org/docs/&#34;&gt;Chart.js online reference&lt;/a&gt; for detail.&lt;/p&gt;
 
@@ -852,7 +852,7 @@ can get quite complicated. So let&amp;rsquo;s start with a simpler version. Belo
 &lt;li&gt;delegation. event.target, event.currentTarget&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;basic-operation&#34;&gt;Basic operation&lt;/h2&gt;
+&lt;h2 id=&#34;basic-operation:60b38532c046fa4d9aed7d7df133b719&#34;&gt;Basic operation&lt;/h2&gt;
 
 &lt;p&gt;We call the constructor of class &lt;code&gt;Chart&lt;/code&gt; to create a chart. The constructor accepts two parameters: the first is a canvas element, and the second is a JSON data object (a JavaScript object) which has at least three properties: chart type, data to be plotted, and options. Try the demo &lt;a href=&#34;http://comp312.ipm.mo/chap3/p371.html&#34;&gt;p371.html&lt;/a&gt;.&lt;/p&gt;
 
@@ -886,27 +886,27 @@ var myChart = new Chart(canvas, {
 
 &lt;p&gt;This lab covers some advanced concepts in jQuery event handling&lt;/p&gt;
 
-&lt;h2 id=&#34;event-loop&#34;&gt;Event loop&lt;/h2&gt;
+&lt;h2 id=&#34;event-loop:43370cbb6aef38b697e69e95655856d1&#34;&gt;Event loop&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;asynchronous nature. event-driven&lt;/li&gt;
 &lt;li&gt;ajax, any other IO-related events?&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;closure&#34;&gt;closure&amp;hellip;&lt;/h2&gt;
+&lt;h2 id=&#34;closure:43370cbb6aef38b697e69e95655856d1&#34;&gt;closure&amp;hellip;&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;how to introduce?&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;event-bubbling&#34;&gt;event bubbling&lt;/h2&gt;
+&lt;h2 id=&#34;event-bubbling:43370cbb6aef38b697e69e95655856d1&#34;&gt;event bubbling&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;handle in ancestor&lt;/li&gt;
 &lt;li&gt;stop propagation&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;delegation&#34;&gt;delegation&lt;/h2&gt;
+&lt;h2 id=&#34;delegation:43370cbb6aef38b697e69e95655856d1&#34;&gt;delegation&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;register at an ancestor&lt;/li&gt;

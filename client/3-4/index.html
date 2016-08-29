@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.16" />
+    <meta name="generator" content="Hugo 0.15" />
     <meta name="description" content="">
 
 
@@ -357,10 +357,10 @@
 <ul>
 <li>
 <ul>
-<li><a href="#basic-event-handling">Basic event handling</a></li>
-<li><a href="#mouse-event-and-event-object">Mouse event and event object</a></li>
-<li><a href="#attach-data-to-dom-elements">Attach data to DOM elements</a></li>
-<li><a href="#pass-data-to-event-handler">Pass data to event handler</a></li>
+<li><a href="#basic-event-handling:0daf9bef3eba6d32a1428afa07d01624">Basic event handling</a></li>
+<li><a href="#mouse-event-and-event-object:0daf9bef3eba6d32a1428afa07d01624">Mouse event and event object</a></li>
+<li><a href="#attach-data-to-dom-elements:0daf9bef3eba6d32a1428afa07d01624">Attach data to DOM elements</a></li>
+<li><a href="#pass-data-to-event-handler:0daf9bef3eba6d32a1428afa07d01624">Pass data to event handler</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -380,7 +380,7 @@
 
 <p>This lab covers how to handle events with event handlers using the jQuery library.</p>
 
-<h2 id="basic-event-handling">Basic event handling</h2>
+<h2 id="basic-event-handling:0daf9bef3eba6d32a1428afa07d01624">Basic event handling</h2>
 
 <p>The basic function to register event handler is <code>$().on(events, handler)</code> <a href="https://api.jquery.com/on/">(online reference)</a> This method attaches the event handler (a function) to handle the events (e.g &lsquo;click&rsquo;, &lsquo;mousemove&rsquo;) to each element in the jQuery collection. Different ways to attach event handlers are given in the following sample code.</p>
 
@@ -407,7 +407,7 @@ function btn1_click (event) {
 $('button#btn1').on('click', btn1_click);
 </code></pre>
 
-<h2 id="mouse-event-and-event-object">Mouse event and event object</h2>
+<h2 id="mouse-event-and-event-object:0daf9bef3eba6d32a1428afa07d01624">Mouse event and event object</h2>
 
 <p>The browser triggers several mouse-related events when the user interacts with the HTML elements using the mouse. Some common mouse events are: <code>click</code>, <code>mouseenter</code>, <code>mouseleave</code> and <code>mousemove</code>.
 The event handler is passed a <a href="http://api.jquery.com/category/events/event-object/">Event object</a> as the first parameter.
@@ -442,7 +442,7 @@ $('#zodiac img').on('click', event =&gt; {
 });
 </code></pre>
 
-<h2 id="attach-data-to-dom-elements">Attach data to DOM elements</h2>
+<h2 id="attach-data-to-dom-elements:0daf9bef3eba6d32a1428afa07d01624">Attach data to DOM elements</h2>
 
 <p>Although we can distinguish which element triggers an event with <code>event.target</code>, usually it is more convenient if we can pass some application specific information (e.g. record id) to the event handler.  There are several ways to do this.  The example <a href="/chap3/p323.html">p323.html</a> uses the jQuery method <code>$().data(name, value)</code> to attach any JavaScript data to a DOM element.</p>
 
@@ -479,7 +479,7 @@ $('#tic td').on('click', (event)=&gt;{
 });
 </code></pre>
 
-<h2 id="pass-data-to-event-handler">Pass data to event handler</h2>
+<h2 id="pass-data-to-event-handler:0daf9bef3eba6d32a1428afa07d01624">Pass data to event handler</h2>
 
 <p>Instead of attaching JavaScript data to DOM element, you can specify these JavaScript data when registering an event handler. When the event triggers, jQuery passes the specified data to the event handler as <code>event.data</code>.</p>
 

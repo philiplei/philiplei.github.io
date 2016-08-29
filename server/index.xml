@@ -17,7 +17,7 @@
       <guid>http://comp312.ipm.mo/server/</guid>
       <description>
 
-&lt;h2 id=&#34;server-side-programming&#34;&gt;Server-side programming&lt;/h2&gt;
+&lt;h2 id=&#34;server-side-programming:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Server-side programming&lt;/h2&gt;
 
 &lt;p&gt;This &lt;strong&gt;lab&lt;/strong&gt; goes through the basics of the JavaScript programming on the server side using Node.js.&lt;/p&gt;
 
@@ -114,7 +114,7 @@ res.send json, res.status code.&lt;/li&gt;
 
 &lt;p&gt;This lab goes through the basics of the Node.js platform.&lt;/p&gt;
 
-&lt;h2 id=&#34;quick-start&#34;&gt;Quick start&lt;/h2&gt;
+&lt;h2 id=&#34;quick-start:a563211a927fab65b9eb4322c1dd380a&#34;&gt;Quick start&lt;/h2&gt;
 
 &lt;p&gt;Node.js &lt;a href=&#34;https://nodejs.org&#34;&gt;(https://nodejs.org)&lt;/a&gt; is a platform built on Chrome&amp;rsquo;s JavaScript runtime for easily building fast, scalable network applications. Node.js supports the same basic JavaScript programming language as web browsers. Both Node.js and Google Chrome use the V8 JavaScript engine.&lt;/p&gt;
 
@@ -168,7 +168,7 @@ console.log(&#39;The largest is %d&#39;, largest(N));
 &lt;li&gt;and other APIs in the &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/Reference/API&#34;&gt;Web API&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;event-loop-in-node&#34;&gt;Event loop in Node&lt;/h2&gt;
+&lt;h2 id=&#34;event-loop-in-node:a563211a927fab65b9eb4322c1dd380a&#34;&gt;Event loop in Node&lt;/h2&gt;
 
 &lt;p&gt;Similar to JavaScript runtime in browser, Node includes an &lt;strong&gt;event loop&lt;/strong&gt; that handles events.
 The event loop continues until all events are handled and there are no future events. Some common cases that trigger events are:&lt;/p&gt;
@@ -204,7 +204,7 @@ timer = setInterval(tick, 1000);
 
 &lt;p&gt;At any time, Node runs at most 1 event handler. If there are no pending events, the event loop blocks and wait for any future events.  If Node determines that there are no more future events, it quits.&lt;/p&gt;
 
-&lt;h2 id=&#34;modules&#34;&gt;Modules&lt;/h2&gt;
+&lt;h2 id=&#34;modules:a563211a927fab65b9eb4322c1dd380a&#34;&gt;Modules&lt;/h2&gt;
 
 &lt;p&gt;An important feature of Node is &lt;strong&gt;modules&lt;/strong&gt;, which allows you to import new functionalities to the Node platform. The Node platform comes with some built-in modules (which are installed together with Node).  See the &lt;a href=&#34;https://nodejs.org/en/docs/&#34;&gt;online reference&lt;/a&gt; for a list of the built-in modules.&lt;/p&gt;
 
@@ -235,7 +235,7 @@ console.log(&#39;Start monitoring free memory. Ctrl-C to quit.&#39;)
 setInterval(tick, 1000);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;evented-i-o&#34;&gt;Evented I/O&lt;/h2&gt;
+&lt;h2 id=&#34;evented-i-o:a563211a927fab65b9eb4322c1dd380a&#34;&gt;Evented I/O&lt;/h2&gt;
 
 &lt;p&gt;Node.js has only 1 thread to run JavaScript code. If this thread blocks to wait for I/O completion, the whole Node process is blocked and cannot process other events. Consider the following example.&lt;/p&gt;
 
@@ -275,7 +275,7 @@ fs.readFile(&#39;intro.txt&#39;, &#39;utf8&#39;, (err, data)=&amp;gt;{
 &lt;li&gt;&lt;code&gt;fs.appendFile(filename, content, options, callback)&lt;/code&gt; - append the given content to the end of the file&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;sequential-i-o-operations&#34;&gt;Sequential I/O operations&lt;/h2&gt;
+&lt;h2 id=&#34;sequential-i-o-operations:a563211a927fab65b9eb4322c1dd380a&#34;&gt;Sequential I/O operations&lt;/h2&gt;
 
 &lt;p&gt;Consider the following longer example.  We&amp;rsquo;d like to replace the word &amp;lsquo;MPI&amp;rsquo; by &amp;lsquo;IPM&amp;rsquo; in the input file &amp;lsquo;intro.txt&amp;rsquo;. The first version uses synchronous I/O. (Notice that this is just for illustration. In most Node application, you should use asynchronous I/O to allow better performance.) In this program, while Node is waiting for I/O completion, it &lt;strong&gt;cannot&lt;/strong&gt; process any other events.&lt;/p&gt;
 
@@ -323,7 +323,7 @@ function readDone (err, data) {
 fs.readFile(&#39;intro.txt&#39;, &#39;utf8&#39;, readDone);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercise:a563211a927fab65b9eb4322c1dd380a&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Write a program to combine two text file &amp;lsquo;in1.txt&amp;rsquo; and &amp;lsquo;in2.txt&amp;rsquo; to an output text file &amp;lsquo;out.txt&amp;rsquo;.
@@ -346,7 +346,7 @@ Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;co
 
 &lt;p&gt;This lab goes through events and event emitters in Node.js.&lt;/p&gt;
 
-&lt;h2 id=&#34;once-off-anonymous-events&#34;&gt;Once-off anonymous events&lt;/h2&gt;
+&lt;h2 id=&#34;once-off-anonymous-events:8a6727bceb33d3720e22daed20320e77&#34;&gt;Once-off anonymous events&lt;/h2&gt;
 
 &lt;p&gt;In Node, many asynchronous I/O operations has a callback parameter. These operations generate an once-off event when the I/O completes (with data or error). The event is appended to the event queue and the event loop periodically extracts the event in the front of queue and executes the registered event handler (the callback).&lt;/p&gt;
 
@@ -361,7 +361,7 @@ Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;co
 })
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;timer-events&#34;&gt;Timer events&lt;/h2&gt;
+&lt;h2 id=&#34;timer-events:8a6727bceb33d3720e22daed20320e77&#34;&gt;Timer events&lt;/h2&gt;
 
 &lt;p&gt;JavaScript timers &lt;code&gt;setTimeout()&lt;/code&gt; and &lt;code&gt;setInterval()&lt;/code&gt; also trigger anonymous events. &lt;code&gt;setTimeout()&lt;/code&gt; generates an once-off event. On the other hand, &lt;code&gt;setInterval()&lt;/code&gt; generates events repeatedly until you clear the timer by &lt;code&gt;clearInterval()&lt;/code&gt;.  The Node process does not quit when there is an active timer that may trigger events in the future. (Advanced: &lt;code&gt;timer.unref()&lt;/code&gt; affects this.)&lt;/p&gt;
 
@@ -374,7 +374,7 @@ var timer = setInterval(
 );
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;event-emitters&#34;&gt;Event emitters&lt;/h2&gt;
+&lt;h2 id=&#34;event-emitters:8a6727bceb33d3720e22daed20320e77&#34;&gt;Event emitters&lt;/h2&gt;
 
 &lt;p&gt;Objects that inherit from the class &lt;code&gt;EventEmitter&lt;/code&gt; &lt;a href=&#34;https://nodejs.org/dist/latest-v6.x/docs/api/events.html&#34;&gt;(online reference)&lt;/a&gt; can also trigger events. An event emitter is similar to DOM node in browsers.&lt;/p&gt;
 
@@ -404,7 +404,7 @@ server.listen(3000, () =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;installing-modules&#34;&gt;Installing modules&lt;/h2&gt;
+&lt;h2 id=&#34;installing-modules:8a6727bceb33d3720e22daed20320e77&#34;&gt;Installing modules&lt;/h2&gt;
 
 &lt;p&gt;Next, we use an external module to demonstrate more features of EventEmitter.&lt;/p&gt;
 
@@ -441,7 +441,7 @@ This special event reports error and demonstrates an important difference betwee
 
 &lt;p&gt;Now, try to generate an &lt;code&gt;error&lt;/code&gt; event by changing the file name to an non-existing file.&lt;/p&gt;
 
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercise:8a6727bceb33d3720e22daed20320e77&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;p&gt;TODO TODO&lt;/p&gt;
 </description>
@@ -457,13 +457,13 @@ This special event reports error and demonstrates an important difference betwee
 
 &lt;p&gt;This lab demonstrate how send HTTP requests using the &lt;code&gt;request&lt;/code&gt; modules.&lt;/p&gt;
 
-&lt;h2 id=&#34;module-request&#34;&gt;Module request&lt;/h2&gt;
+&lt;h2 id=&#34;module-request:e085f72ecf58de022c860d0c16b3db02&#34;&gt;Module request&lt;/h2&gt;
 
 &lt;p&gt;Node.js has a built-in module called &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt; for making HTTP clients and servers. They are efficient implementation of the HTTP protocol. However, the modules are low-level and not convenient to use. Therefore, the Node community has developed several modules for writing HTTP clients and servers. This lab is about the client-side of HTTP.&lt;/p&gt;
 
 &lt;p&gt;A popular choice for HTTP clients is the &lt;code&gt;request&lt;/code&gt; module. &lt;a href=&#34;https://www.npmjs.com/package/request&#34;&gt;(online reference)&lt;/a&gt;.  Before using the module the first time in a project, install it with &lt;code&gt;npm install request&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;get-an-url&#34;&gt;GET an URL&lt;/h2&gt;
+&lt;h2 id=&#34;get-an-url:e085f72ecf58de022c860d0c16b3db02&#34;&gt;GET an URL&lt;/h2&gt;
 
 &lt;p&gt;The following example fetches the current weather report from &lt;a href=&#34;http://rss.smg.gov.mo/e_ActualWeather_rss.xml&#34;&gt;http://rss.smg.gov.mo/e_ActualWeather_rss.xml&lt;/a&gt;.&lt;/p&gt;
 
@@ -481,7 +481,7 @@ request.get(url, (err, res, body) =&amp;gt; {
 
 &lt;p&gt;The callback for &lt;code&gt;request.get&lt;/code&gt; takes three parameters. The first is the error object. The second is an object of class &lt;code&gt;http.IncomingMessage&lt;/code&gt; &lt;a href=&#34;https://nodejs.org/api/http.html#http_class_http_incomingmessage&#34;&gt;(online reference)&lt;/a&gt;. It represent the HTTP response message. You can use it to check HTTP status code and headers. The last parameter is the message body of the HTTP response.   The next example downloads an image from IPM website and saves it.&lt;/p&gt;
 
-&lt;h2 id=&#34;options-object-pattern&#34;&gt;Options object pattern&lt;/h2&gt;
+&lt;h2 id=&#34;options-object-pattern:e085f72ecf58de022c860d0c16b3db02&#34;&gt;Options object pattern&lt;/h2&gt;
 
 &lt;p&gt;The JavaScript programming language does not support named parameters.  Some APIs make use of a pattern caled &lt;strong&gt;options object pattern&lt;/strong&gt; to pass named parameters to a function. For example, if you need to give more information about the HTTP request in addition to URL, you can group these information in an option object and pass it as the first parameter of &lt;code&gt;reqeust.get()&lt;/code&gt;. Refer to online reference for &lt;a href=&#34;https://www.npmjs.com/package/request#requestoptions-callback&#34;&gt;all available options&lt;/a&gt;.&lt;/p&gt;
 
@@ -512,7 +512,7 @@ request.get(options, (err, res, body) =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;post-request&#34;&gt;POST request&lt;/h2&gt;
+&lt;h2 id=&#34;post-request:e085f72ecf58de022c860d0c16b3db02&#34;&gt;POST request&lt;/h2&gt;
 
 &lt;p&gt;In the next example, we want to download the class time table from the IPM web app at
 &lt;a href=&#34;https://wapps.ipm.edu.mo/siweb/time_prog.asp&#34;&gt;https://wapps.ipm.edu.mo/siweb/time_prog.asp&lt;/a&gt;.
@@ -545,7 +545,7 @@ request.post(options, (err, res, body) =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercise:e085f72ecf58de022c860d0c16b3db02&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;p&gt;TODO TODO&lt;/p&gt;
 </description>
@@ -561,7 +561,7 @@ request.post(options, (err, res, body) =&amp;gt; {
 
 &lt;p&gt;This lab first covers the concept of a Node app and dependency management in package.json. Next it starts the discussion on the web app framework Express.js.&lt;/p&gt;
 
-&lt;h2 id=&#34;node-app-and-package-json&#34;&gt;Node app and package.json&lt;/h2&gt;
+&lt;h2 id=&#34;node-app-and-package-json:03d977fa566deb9ec8c90ba8ba60e1d5&#34;&gt;Node app and package.json&lt;/h2&gt;
 
 &lt;p&gt;In this lab, we&amp;rsquo;ll use the Express.js framework and some other modules to build
 web app server. As an Node application makes use of more NPM modules, it becomes difficult to install the modules manually with the command &lt;code&gt;npm install module-name&lt;/code&gt;. Instead, you can describe the dependencies of a Node app in a JSON txt file called &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
@@ -588,7 +588,7 @@ web app server. As an Node application makes use of more NPM modules, it becomes
 
 &lt;p&gt;This command installs the latest version of specified module. In addition, it updates &lt;code&gt;package.json&lt;/code&gt; and adds the module to the dependencies.  Try the command and check the change in &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;express-js&#34;&gt;Express.js&lt;/h2&gt;
+&lt;h2 id=&#34;express-js:03d977fa566deb9ec8c90ba8ba60e1d5&#34;&gt;Express.js&lt;/h2&gt;
 
 &lt;p&gt;Express.js &lt;a href=&#34;http://expressjs.com/&#34;&gt;(website)&lt;/a&gt; is a web framework to simplify development of Web applications.&lt;/p&gt;
 
@@ -615,7 +615,7 @@ app.get(&#39;/&#39;, function(req, res) {
 app.listen(3000);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;routes&#34;&gt;Routes&lt;/h2&gt;
+&lt;h2 id=&#34;routes:03d977fa566deb9ec8c90ba8ba60e1d5&#34;&gt;Routes&lt;/h2&gt;
 
 &lt;p&gt;When a web server receives an HTTP request, it has to decide how to handle the request, and return the result as an HTTP response.  Such decision usually depends on the HTTP method (either GET or POST in most cases) and the path in the URL (e.g. &amp;ldquo;/about.html&amp;rdquo;).   The combination of HTTP method and the URL path is usually referred to as an endpoint of the web service.&lt;/p&gt;
 
@@ -650,7 +650,7 @@ app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
 
 &lt;p&gt;&lt;strong&gt;The order of routes is significant!&lt;/strong&gt;  An Express app checks the routes in the order they are defined. When a route matches the HTTP methods and URL path, the Express app executes its callback function to handle the request.  The callback usually returns an HTTP response with &lt;code&gt;res.send()&lt;/code&gt; or similar methods. When a response is returned, the Express app will &lt;strong&gt;stop&lt;/strong&gt; checking the remaining routes.&lt;/p&gt;
 
-&lt;h2 id=&#34;making-responses&#34;&gt;Making responses&lt;/h2&gt;
+&lt;h2 id=&#34;making-responses:03d977fa566deb9ec8c90ba8ba60e1d5&#34;&gt;Making responses&lt;/h2&gt;
 
 &lt;p&gt;You can use the &lt;code&gt;res&lt;/code&gt; object in the route callback to build a response. &lt;a href=&#34;http://expressjs.com/en/4x/api.html#res&#34;&gt;(online reference)&lt;/a&gt; The &lt;code&gt;res&lt;/code&gt; object has several common methods:&lt;/p&gt;
 
@@ -675,7 +675,7 @@ app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
 
 &lt;p&gt;This lab demonstrate how to use middleware and how to handle form submit using GET and POST. We&amp;rsquo;ll end this part with the implementation of a classic web app. (i.e. before AJAX).&lt;/p&gt;
 
-&lt;h2 id=&#34;middlewares&#34;&gt;Middlewares&lt;/h2&gt;
+&lt;h2 id=&#34;middlewares:8d567a234da7dfb8c63f015e90d88395&#34;&gt;Middlewares&lt;/h2&gt;
 
 &lt;p&gt;In the previous lab, we saw that an Express app is essentially a sequence of routes.  When a request arrives at an Express app, the app tries to find a match of the path in the order of routes in the sequence.  If there is a match, the app assumes the callback of the route will generate a response, and skip any remaining routes.&lt;/p&gt;
 
@@ -718,7 +718,7 @@ app.listen(3000);
 
 &lt;p&gt;Most middlewares should be registered &lt;em&gt;before routes&lt;/em&gt;. If a middleware is registered after a route, and the route returns a response for a request, the middleware will NOT run for this request. As an experiment, move the middleware &amp;lsquo;morgan&amp;rsquo; between the two routes.&lt;/p&gt;
 
-&lt;h2 id=&#34;serving-static-content&#34;&gt;Serving static content&lt;/h2&gt;
+&lt;h2 id=&#34;serving-static-content:8d567a234da7dfb8c63f015e90d88395&#34;&gt;Serving static content&lt;/h2&gt;
 
 &lt;p&gt;There is a special middleware bundled with Express. This middleware &lt;code&gt;express-session&lt;/code&gt; serves static assets (typically HTML, CSS, images, and client-side library) to clients. The middleware tries to match the files in a folder against the URL path of the request. If there is a match, it returns the file, with a suitable MIME-type, in a response. This makes it simple to creates a simplistic HTTP server.&lt;/p&gt;
 
@@ -735,7 +735,7 @@ app.listen(3000, () =&amp;gt; {
 
 &lt;p&gt;In general, routes should be placed before the &amp;lsquo;static&amp;rsquo; middleware. Otherwise, a static file that matches the URL path will be handled by the &amp;lsquo;static&amp;rsquo; middleware and will not be handled by any routes after the middleware.  Try to move the specified route in &lt;a href=&#34;http://comp312.ipm.mo/chap4-5/app4.js&#34;&gt;app4.js&lt;/a&gt; to experiment.&lt;/p&gt;
 
-&lt;h2 id=&#34;handling-form-submit&#34;&gt;Handling form submit&lt;/h2&gt;
+&lt;h2 id=&#34;handling-form-submit:8d567a234da7dfb8c63f015e90d88395&#34;&gt;Handling form submit&lt;/h2&gt;
 
 &lt;p&gt;Data that are submitted using GET method are available in the object &lt;code&gt;req.query&lt;/code&gt;. In the following example, the route GET &amp;lsquo;/add&amp;rsquo; obtains the two numbers &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; from a GET request, and returns the result of &amp;lsquo;a+b&amp;rsquo; in response.&lt;/p&gt;
 
@@ -794,7 +794,7 @@ app.post(&#39;/append&#39;, (req, res) =&amp;gt; {
 
 &lt;p&gt;This lab demonstrate how to use templates in Express app.&lt;/p&gt;
 
-&lt;h2 id=&#34;template-engine&#34;&gt;Template engine&lt;/h2&gt;
+&lt;h2 id=&#34;template-engine:e9aa1a48e3bbbe63ae948a73dc82d4cb&#34;&gt;Template engine&lt;/h2&gt;
 
 &lt;p&gt;In previous lab, we embedded HTML template inside JavaScript code to render data. This approach becomes impractical when the HTML code or the data become more complicated.  A better approach is to use some template system to render data in the server side.&lt;/p&gt;
 
@@ -820,9 +820,9 @@ app.set(&#39;view engine&#39;, &#39;hbs&#39;);
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;writing-modules&#34;&gt;Writing modules??&lt;/h2&gt;
+&lt;h2 id=&#34;writing-modules:e9aa1a48e3bbbe63ae948a73dc82d4cb&#34;&gt;Writing modules??&lt;/h2&gt;
 
-&lt;h2 id=&#34;example-of-query&#34;&gt;example of query??&lt;/h2&gt;
+&lt;h2 id=&#34;example-of-query:e9aa1a48e3bbbe63ae948a73dc82d4cb&#34;&gt;example of query??&lt;/h2&gt;
 </description>
     </item>
     
@@ -836,7 +836,7 @@ app.set(&#39;view engine&#39;, &#39;hbs&#39;);
 
 &lt;p&gt;This lab demonstrate how to use a file-based database &lt;code&gt;sqlite&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;sqlite&#34;&gt;SQLite&lt;/h2&gt;
+&lt;h2 id=&#34;sqlite:e2dd2df3957cc94d33ec8236ee414600&#34;&gt;SQLite&lt;/h2&gt;
 
 &lt;p&gt;SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine (from &lt;a href=&#34;https://www.sqlite.org/&#34;&gt;https://www.sqlite.org/&lt;/a&gt;).
 The whole database is stored in a file, and an application can open this database directly without connecting to any server.&lt;/p&gt;
@@ -860,7 +860,7 @@ INSERT INTO `task` (`due`, `what`, `category`, `done`) VALUES
   (&#39;2016-10-31&#39;, &#39;COMP312 HW 2&#39;, &#39;study&#39;, 0);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;retrieve-data-with-select&#34;&gt;Retrieve data with SELECT&lt;/h2&gt;
+&lt;h2 id=&#34;retrieve-data-with-select:e2dd2df3957cc94d33ec8236ee414600&#34;&gt;Retrieve data with SELECT&lt;/h2&gt;
 
 &lt;p&gt;SQLite supports both basic and advanced features of SELECT statement. The following demonstrates the steps to read data from a database.&lt;/p&gt;
 
@@ -892,7 +892,7 @@ db.close();
 
 &lt;p&gt;You might notice that we use the &lt;code&gt;function&lt;/code&gt; expression in callback. This is required because &lt;code&gt;sqlite3&lt;/code&gt; uses the &lt;code&gt;this&lt;/code&gt; keyword for result in UPDATE, DELETE and INSERT. For consistency, we&amp;rsquo;ll use &lt;code&gt;function&lt;/code&gt; expression instead of arrow functions in all callbacks for our SQLite examples.&lt;/p&gt;
 
-&lt;h2 id=&#34;placeholders&#34;&gt;Placeholders&lt;/h2&gt;
+&lt;h2 id=&#34;placeholders:e2dd2df3957cc94d33ec8236ee414600&#34;&gt;Placeholders&lt;/h2&gt;
 
 &lt;p&gt;You can supply parameters to fill in placeholders in SQL statements in &lt;code&gt;sqlite3&lt;/code&gt;. This is especially useful because the module will perform suitable quoting for string. Please refer to &lt;a href=&#34;https://github.com/mapbox/node-sqlite3/wiki/API&#34;&gt;online reference&lt;/a&gt; for more ways to use placeholders.&lt;/p&gt;
 
@@ -906,7 +906,7 @@ db.each(&amp;quot;SELECT due, what FROM task WHERE done=? AND category=?&amp;quo
 );
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;insert-update-and-delete&#34;&gt;INSERT, UPDATE and DELETE&lt;/h2&gt;
+&lt;h2 id=&#34;insert-update-and-delete:e2dd2df3957cc94d33ec8236ee414600&#34;&gt;INSERT, UPDATE and DELETE&lt;/h2&gt;
 
 &lt;p&gt;Use the method &lt;code&gt;db.run()&lt;/code&gt; to execute INSERT, UPDATE and DELETE statements. In the callback to this method, the property &lt;code&gt;this.changes&lt;/code&gt; indicates the number of rows affected by the query, and the property &lt;code&gt;this.lastID&lt;/code&gt; contains the value of the last inserted row ID.  (That is the INTEGER PRIMARY KEY in our table. Refer to this for &lt;a href=&#34;https://www.sqlite.org/autoinc.html&#34;&gt;more info&lt;/a&gt;.)&lt;/p&gt;
 
