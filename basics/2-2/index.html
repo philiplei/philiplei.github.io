@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.15" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -357,10 +357,11 @@
 <ul>
 <li>
 <ul>
-<li><a href="#array:751e016222acc825af018628bf936c15">Array</a></li>
-<li><a href="#basic-array-methods:751e016222acc825af018628bf936c15">Basic array methods</a></li>
-<li><a href="#functions:751e016222acc825af018628bf936c15">Functions</a></li>
-<li><a href="#exercise:751e016222acc825af018628bf936c15">Exercise</a></li>
+<li><a href="#array">Array</a></li>
+<li><a href="#basic-array-methods">Basic array methods</a></li>
+<li><a href="#functions">Functions</a></li>
+<li><a href="#a-note-on-variable-scope">A note on variable scope</a></li>
+<li><a href="#exercise">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -380,7 +381,7 @@
 
 <p>This lab goes through the basics of the JavaScript arrays and functions.</p>
 
-<h2 id="array:751e016222acc825af018628bf936c15">Array</h2>
+<h2 id="array">Array</h2>
 
 <p>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> is a sequence of values that may have different types. Arrays can change size in run-time. The <code>length</code> property refers to the number of elements inside the array.
 Use the operator <code>[]</code> to locate an element at the given index.</p>
@@ -401,7 +402,9 @@ for (var i=0; i&lt;P.length; i++) {
 }
 </code></pre>
 
-<p>ES6 has a new control structure <code>for of</code> to iterate arrays and other iterable objects.</p>
+<p>ES6 has a new control structure <code>for of</code> to iterate arrays and other iterable objects.
+You can use it to <strong>read</strong> the entries of an array one by one.
+This control structure is convenient when you only need to access the content of an array, but not the position.</p>
 
 <pre><code class="language-JavaScript">var P = [ 2,3,5,7,11 ] ;  // small primes
 for (var x of P) {
@@ -409,7 +412,15 @@ for (var x of P) {
 }
 </code></pre>
 
-<h2 id="basic-array-methods:751e016222acc825af018628bf936c15">Basic array methods</h2>
+<p>In case you need read-only access to the entries and their position, use the method <code>.entries()</code> of Array. The method is an iterable list of tuples <code>[index, value]</code>.</p>
+
+<pre><code class="language-JavaScript">var num = [ 'zero', 'um', 'dois', 'tres' ];
+for (var [idx, s] of num.entries()) {
+  console.log(`In portuguese, ${s} means ${idx}.`)
+}
+</code></pre>
+
+<h2 id="basic-array-methods">Basic array methods</h2>
 
 <p>Arrays are objects in JavaScript and have some built-in methods. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">online reference</a> for a list of all methods.
 The following shows some common methods.</p>
@@ -441,7 +452,7 @@ for (var k=9; k&lt;200; k+=2) {
 console.log(P);
 </code></pre>
 
-<h2 id="functions:751e016222acc825af018628bf936c15">Functions</h2>
+<h2 id="functions">Functions</h2>
 
 <p>There are two ways to define functions: <code>function</code> keyword and arrow function. This lab covers the first. We use a function to group some statements that can be reused.</p>
 
@@ -483,7 +494,7 @@ function bigger2 (a,b) {
 function bigger3 (a,b) { return a&gt;b ? a : b; }
 </code></pre>
 
-<p>The next example defines a function that find the largest numbers in an array, assuming that the array has at least 1 element.</p>
+<p>The next example defines a function that finds the largest numbers in an array, assuming that the array has at least 1 element.</p>
 
 <pre><code class="language-JavaScript">function max (A) {
   var x = A[0]; // assume the 0th element is the largest
@@ -497,9 +508,13 @@ function bigger3 (a,b) { return a&gt;b ? a : b; }
 max([2,3,5,8,7,1,4,6]); // return 8
 </code></pre>
 
+<h2 id="a-note-on-variable-scope">A note on variable scope</h2>
+
 <p>In JavaScript, variables have function scope. That means that variables defined within a function are only visible inside the function. They are sometimes called <dfn>local variables</dfn>. Function parameters also work like local variables. A new copy of These variables is created when the function executes, and removed when no code has access to them anymore. For simple case like the above example, the local variables are removed when the function returns.</p>
 
-<p>On the other hand, variables defined outside any functions are <dfn>global variables</dfn>, and are visible inside any functions.</p>
+<p>On the other hand, variables defined outside any functions are <dfn>global variables</dfn>, and are visible inside any functions. It is generally recommended to use global variables as little as possible.</p>
+
+<p>In addition, you can define a function inside another function. Such nesting functions create nesting variable scopes.</p>
 
 <!--
 function sum(A) {
@@ -515,7 +530,7 @@ function odd(n) {
 }
 -->
 
-<h2 id="exercise:751e016222acc825af018628bf936c15">Exercise</h2>
+<h2 id="exercise">Exercise</h2>
 
 <ol>
 <li><p>Write a <strong>function</strong> <code>sum(A)</code> to calculate the sum of elements in an array <code>A</code>.
@@ -535,7 +550,7 @@ console.log(odd(9)); // should print [1,3,5,7,9]
 console.log(sum(odd(10*2-1))); // should print 100
 </code></pre></li>
 
-<li><p>Write a function <code>search(A, n)</code> to search for an number <code>n</code> in the array <code>A</code>. Returns the   position of the element if it is found. If it is not found, return -1. Test your function with the following code.</p>
+<li><p>Write a function <code>search(A, n)</code> to search for an number <code>n</code> in the array <code>A</code>. Return the   position of the element if it is found. If it is not found, return -1. Test your function with the following code.</p>
 
 <pre><code class="language-JavaScript">var x = [6, 8, 3, -2];
 console.log(search(x, 3)); // should print 2;

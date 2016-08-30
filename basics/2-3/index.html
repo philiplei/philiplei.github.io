@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.15" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -357,9 +357,10 @@
 <ul>
 <li>
 <ul>
-<li><a href="#objects:51a54ca2b6504050813f27f36d3dbb0e">Objects</a></li>
-<li><a href="#complicated-data:51a54ca2b6504050813f27f36d3dbb0e">Complicated data</a></li>
-<li><a href="#exercise:51a54ca2b6504050813f27f36d3dbb0e">Exercise</a></li>
+<li><a href="#objects">Objects</a></li>
+<li><a href="#complicated-data">Complicated data</a></li>
+<li><a href="#a-note-on-object-notation">A note on object notation</a></li>
+<li><a href="#exercise">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -379,12 +380,13 @@
 
 <p>This lab covers the basics of objects (as data structure). It also covers part of JSON.</p>
 
-<h2 id="objects:51a54ca2b6504050813f27f36d3dbb0e">Objects</h2>
+<h2 id="objects">Objects</h2>
 
 <p>In JavaScript, objects are a collection of properties. Each property
 is a pair of name and value. You can access each property with the dot notation.</p>
 
-<pre><code class="language-JavaScript">var peter = {
+<pre><code class="language-JavaScript">// define an object with 3 properties
+var peter = {
   firstName: &quot;Peter&quot;,
   lastName: &quot;Chan&quot;,
   age: 19
@@ -405,6 +407,7 @@ dir(point); // show structure, only avail in Chrome console
 <p>Functions can accept objects, and return objects. In the following, objects with the two properties <code>x</code> and <code>y</code> represent points on a plane.</p>
 
 <pre><code class="language-JavaScript">function distance (p1, p2) {
+  // the function Math.hypot() can also be used here
   var sum_sqr = Math.pow(p1.x-p2.x, 2) + Math.pow(p1.y-p2.y, 2);
   return Math.sqrt(sum_sqr);
 }
@@ -422,9 +425,10 @@ var mid = midpoint(p1, p2);
 dir(mid);
 </code></pre>
 
-<h2 id="complicated-data:51a54ca2b6504050813f27f36d3dbb0e">Complicated data</h2>
+<h2 id="complicated-data">Complicated data</h2>
 
-<p>You can nest objects to model more complicated data.</p>
+<p>A property can take another object as value. This put an object inside another object.
+Use nesting objects to represent a hierarchy of properties.</p>
 
 <pre><code class="language-JavaScript">var flight = {
   airline: &quot;Oceanic&quot;,
@@ -479,7 +483,29 @@ console.log(
 };
 </code></pre>
 
-<h2 id="exercise:51a54ca2b6504050813f27f36d3dbb0e">Exercise</h2>
+<h2 id="a-note-on-object-notation">A note on object notation</h2>
+
+<p>In addition to the dot notation, you can also use array notation to access a property in objects.</p>
+
+<pre><code class="language-JavaScript">var person = { name: 'Peter' };
+// same as person.age = 20;
+person['age'] = 20;
+</code></pre>
+
+<p>The array notation is necessary is you only know the property names in run-time, or the property names contains non-ASCII characters.</p>
+
+<pre><code class="language-JavaScript">var cn2en = {
+  '春': 'spring', '夏': 'summer',
+  '秋': 'autumn', '冬' : 'winter'
+};
+cn2en['春']  // 'spring'
+// the following has syntax error
+//cn2en.春
+</code></pre>
+
+<p>The JavaScript language also has a <code>for .. in ..</code> control structure to enumerate the properties of an object. We skip its discussion because it is tricky to use.</p>
+
+<h2 id="exercise">Exercise</h2>
 
 <p>Use the time table data structure above to complete this exercise.</p>
 

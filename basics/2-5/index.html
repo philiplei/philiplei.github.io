@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.15" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -357,8 +357,8 @@
 <ul>
 <li>
 <ul>
-<li><a href="#arrays-as-collections:7ca16074685f2bdef80cf45ba4944844">Arrays as collections</a></li>
-<li><a href="#maps:7ca16074685f2bdef80cf45ba4944844">Maps</a></li>
+<li><a href="#arrays-as-collections">Arrays as collections</a></li>
+<li><a href="#maps">Maps</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -378,7 +378,7 @@
 
 <p>There are two basic types of collections in JavaScript. (Another type is Set, not covered here.)</p>
 
-<h2 id="arrays-as-collections:7ca16074685f2bdef80cf45ba4944844">Arrays as collections</h2>
+<h2 id="arrays-as-collections">Arrays as collections</h2>
 
 <p>Arrays keep objects in a sequence. You retrieve an element from an array by position.</p>
 
@@ -399,7 +399,7 @@ for (var x of b) {
 [0, ...b, 12]; // returns [0, 2, 4, 6, 8, 10, 12]
 </code></pre>
 
-<h2 id="maps:7ca16074685f2bdef80cf45ba4944844">Maps</h2>
+<h2 id="maps">Maps</h2>
 
 <p>ES6 defines a new kind of collections called <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>. A map stores key/value pairs.
 (In previous version of JavaScript, objects are often used as map.) You create a Map by submitting a list of key/value pairs to the constructor. Each pair is written as an array of two elements, namely key and value. You retrieve an element from a map using a key with the method <code>.get(key)</code>. You add / replace an element in the map with the method <code>.set(key,value)</code>. You can also delete an element from a map with <code>.delete(key)</code>, and check the number of elements with the property <code>.size</code>.</p>

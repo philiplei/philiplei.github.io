@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
     
-    <title>3-3 Creating new content</title>
+    <title>2-3 Objects and JSON data</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/hybrid.css" rel="stylesheet">
@@ -23,7 +23,7 @@
     
 
   </head>
-  <body class="" data-url="/client/3-3/">
+  <body class="" data-url="/basic/2-3/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -43,7 +43,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/basic/">
+      <li class="dd-item  parent" data-nav-id="/basic/">
         <a href="/basic/">
           <span>
             
@@ -75,7 +75,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/basic/2-3/">
+            <li class="dd-item active" data-nav-id="/basic/2-3/">
               <a href="/basic/2-3/">
                 <span>2-3 Objects and JSON data     </i></span>
               </a>
@@ -114,7 +114,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/client/">
+      <li class="dd-item  " data-nav-id="/client/">
         <a href="/client/">
           <span>
             
@@ -146,7 +146,7 @@
           
           
           
-            <li class="dd-item active" data-nav-id="/client/3-3/">
+            <li class="dd-item " data-nav-id="/client/3-3/">
               <a href="/client/3-3/">
                 <span>3-3 Creating new content     </i></span>
               </a>
@@ -314,17 +314,17 @@
                 
                 
                   
-                
-                  
                     
                     
-                <a href="/client/" itemprop="url"><span itemprop="title">Client-side programming</span></a> <i class="fa fa-angle-right"></i>
+                <a href="/basic/" itemprop="url"><span itemprop="title">JavaScript basics</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
                   
                 
-                <span itemprop="title"> 3-3 Creating new content</span>
+                  
+                
+                <span itemprop="title"> 2-3 Objects and JSON data</span>
               </div>
               
                   <div class="progress">
@@ -333,9 +333,10 @@
 <ul>
 <li>
 <ul>
-<li><a href="#create-new-html-content:ea5c74532ea585d792ffc5ecba7767b0">Create new HTML content</a></li>
-<li><a href="#insert-content-to-dom-tree:ea5c74532ea585d792ffc5ecba7767b0">Insert content to DOM tree</a></li>
-<li><a href="#exercise:ea5c74532ea585d792ffc5ecba7767b0">Exercise</a></li>
+<li><a href="#objects:51a54ca2b6504050813f27f36d3dbb0e">Objects</a></li>
+<li><a href="#complicated-data:51a54ca2b6504050813f27f36d3dbb0e">Complicated data</a></li>
+<li><a href="#a-note-on-object-notation:51a54ca2b6504050813f27f36d3dbb0e">A note on object notation</a></li>
+<li><a href="#exercise:51a54ca2b6504050813f27f36d3dbb0e">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -348,88 +349,149 @@
             
     	        <div id="body-inner">
                 
-                <h1>3-3 Creating new content</h1>
+                <h1>2-3 Objects and JSON data</h1>
                 
 
 
 
-<p>This lab covers how to create new content into the DOM tree using <code>$()</code> jQuery functions and methods.</p>
+<p>This lab covers the basics of objects (as data structure). It also covers part of JSON.</p>
 
-<p><a href="/chap3/p311.html">p311.html</a></p>
+<h2 id="objects:51a54ca2b6504050813f27f36d3dbb0e">Objects</h2>
 
-<h2 id="create-new-html-content:ea5c74532ea585d792ffc5ecba7767b0">Create new HTML content</h2>
+<p>In JavaScript, objects are a collection of properties. Each property
+is a pair of name and value. You can access each property with the dot notation.</p>
 
-<p>You can create new HTML content by passing HTML code to the jQuery function <code>$(htmlCode)</code>.  The newly created elements are detached from the current DOM tree, and not displayed.  To show the content, you have to attach the elements to the DOM tree.</p>
-
-<pre><code class="language-JavaScript">var p = $('&lt;p&gt;A new paragraph &lt;em&gt;created&lt;/em&gt; by jQuery&lt;/p&gt;');
-dir(p);
-// append to the document body to show this element
-$('body').append(p);
-// now you can see it
+<pre><code class="language-JavaScript">// define an object with 3 properties
+var peter = {
+  firstName: &quot;Peter&quot;,
+  lastName: &quot;Chan&quot;,
+  age: 19
+};
+console.log(peter.lastName)  // &quot;Chan&quot;
+peter.age ++;
+console.log(`${peter.firstName} is now ${peter.age} years old.`);
 </code></pre>
 
-<p>When you supply html code to jQuery function, it returns a jQuery collection, just like the collection returned when you supply a CSS selector. Therefore, you can use the jQuery methods like <code>$().html()</code> or <code>$().attr()</code> to configure the newly created elements.</p>
+<p>Use assignment to change value of an existing property, or add a new property.</p>
 
-<pre><code class="language-JavaScript">var link = $('&lt;a&gt;').html('Macao Poly').attr('href', 'http://www.ipm.edu.mo');
-// this is the same as $('&lt;a href=&quot;http://www.ipm.edu.mo&quot;&gt;Macao Poly&lt;/a&gt;');
-$('body').append(link);
-
-var img = $('&lt;img&gt;').attr('src', 'ani/dragon.png');
-$('body').append(img);
+<pre><code class="language-JavaScript">var point = { };  // empty objects
+point.x = 10; // add property
+point.y = 8;
+dir(point); // show structure, only avail in Chrome console
 </code></pre>
 
-<h2 id="insert-content-to-dom-tree:ea5c74532ea585d792ffc5ecba7767b0">Insert content to DOM tree</h2>
+<p>Functions can accept objects, and return objects. In the following, objects with the two properties <code>x</code> and <code>y</code> represent points on a plane.</p>
 
-<p>There are several methods you can use to insert new / existing content into the current DOM tree.</p>
-
-<ul>
-<li><code>$().append(content)</code> - adds the content at the end of each element in the collection</li>
-<li><code>$().prepend(content)</code> - adds the content at the start of each element in the collection</li>
-<li><code>$().after(content)</code> - adds the content after each element in the collection</li>
-<li><code>$().before(content)</code> - adds the content before each element in the collection</li>
-</ul>
-
-<p>If the source content is already attached to the current DOM, the content is removed first, and then attached at the target location.  If you want to keep the source content at the original position, clone the source content before inserting.</p>
-
-<pre><code class="language-JavaScript">// assume img#tiger is in the DOM
-// make a clone
-var c = $('img#tiger').clone();
-// and insert it after the ox image
-$('#ox').after(c);
-</code></pre>
-
-<p>You can also remove elements from the DOM temporarily with <code>var a = $(selector).remove()</code>, and later reinsert <code>a</code> back to the DOM.  To remove all content inside an element, use <code>$(selector).empty()</code>.</p>
-
-<p>The four insertion methods have a counterpart version that reverse the order of source and target.  (<code>$().appendTo()</code>, <code>$().prependTo()</code>, <code>$().insertBefore()</code> and <code>$().insertAfter()</code>) They are useful if you want to chain other methods on the source.  See <a href="https://api.jquery.com/category/manipulation/dom-insertion-inside/">online reference</a> or more detail.</p>
-
-<pre><code class="language-JavaScript">$('#rooster').after($('#tiger'))
-// is the same as ...
-$('#tiger').insertAfter($('#rooster'))
-</code></pre>
-
-<p>The following creates new rows and inserts into the table. See the demo <a href="/chap3/p312.html">p312.html</a></p>
-
-<pre><code class="language-JavaScript">var $t = $('table tbody');
-// clear the table body
-$t.empty();
-for (var k=16; k&lt;32; k++) {
-  // create a new row
-  var $r = $('&lt;tr&gt;');
-  // and append three cells to the row
-  $('&lt;td&gt;').html(k).appendTo($r);
-  $('&lt;td&gt;').html(k.toString(2)).appendTo($r);
-  $('&lt;td&gt;').html(k.toString(16)).appendTo($r);
-  // append the row to the table body
-  $t.append($r);
+<pre><code class="language-JavaScript">function distance (p1, p2) {
+  // the function Math.hypot() can also be used here
+  var sum_sqr = Math.pow(p1.x-p2.x, 2) + Math.pow(p1.y-p2.y, 2);
+  return Math.sqrt(sum_sqr);
 }
+
+function midpoint (p1, p2) {
+  return {
+    x: (p1.x+p2.x) / 2,
+    y: (p1.y+p2.y) / 2
+  }
+}
+
+var p1 = { x: 0, y: 0 }, p2 = { x: 3, y: 4 };
+console.log(`Distance = ${distance(p1,p2)}`);
+var mid = midpoint(p1, p2);
+dir(mid);
 </code></pre>
 
-<h2 id="exercise:ea5c74532ea585d792ffc5ecba7767b0">Exercise</h2>
+<h2 id="complicated-data:51a54ca2b6504050813f27f36d3dbb0e">Complicated data</h2>
 
-<p>In this exercise, you have to populate an HTML table with JSON data.
-- exercise: populate html table with json data</p>
+<p>A property can take another object as value. This put an object inside another object.
+Use nesting objects to represent a hierarchy of properties.</p>
 
-<p>Solution done in <a href="/chap3/p313.html">p313.html</a></p>
+<pre><code class="language-JavaScript">var flight = {
+  airline: &quot;Oceanic&quot;,
+  number: 815,
+  departure: {
+     IATA: &quot;SYD&quot;,
+     time: &quot;2004-09-22 14:55&quot;,
+     city: &quot;Sydney&quot;
+  },
+  arrival: {
+     IATA: &quot;LAX&quot;,
+     time: &quot;2004-09-23 10:42&quot;,
+     city: &quot;Los Angeles&quot;
+  }
+};
+
+console.log(
+   'This flight goes from ',
+   flight.departure.city,
+   ' to ',
+   flight.arrival.city
+);
+</code></pre>
+
+<p>By mixing arrays and objects, you can use JavaScript data structure to represent some complicated data. This forms the basis of the JSON data format.</p>
+
+<pre><code class="language-JavaScript">var timetab = {
+  acadYear: &quot;2016/17&quot;,
+  semester: 1,
+  courses: [
+    {
+      code: 'comp211', title: 'Database design', year: 2,
+      lectures: [
+        { dow: 2, start: 1130, end: 1300, room: 'A203' },
+        { dow: 4, start: 1000, end: 1130, room: 'A318' }
+      ]
+    },
+    {
+      code: 'comp212', title: 'Programming II', year: 2,
+      lectures: [
+        { dow: 4, start: 1430, end: 1600, room: 'A317' },
+        { dow: 3, start: 1600, end: 1730, room: 'A210' }
+      ]
+    },
+    {
+      code: 'comp214', title: 'Computer networks', year: 2,
+      lectures: [
+        { dow: 5, start: 1000, end: 1300, room: 'A206' }
+      ]
+    }
+  ]
+};
+</code></pre>
+
+<h2 id="a-note-on-object-notation:51a54ca2b6504050813f27f36d3dbb0e">A note on object notation</h2>
+
+<p>In addition to the dot notation, you can also use array notation to access a property in objects.</p>
+
+<pre><code class="language-JavaScript">var person = { name: 'Peter' };
+// same as person.age = 20;
+person['age'] = 20;
+</code></pre>
+
+<p>The array notation is necessary is you only know the property names in run-time, or the property names contains non-ASCII characters.</p>
+
+<pre><code class="language-JavaScript">var cn2en = {
+  '春': 'spring', '夏': 'summer',
+  '秋': 'autumn', '冬' : 'winter'
+};
+cn2en['春']  // 'spring'
+// the following has syntax error
+//cn2en.春
+</code></pre>
+
+<p>The JavaScript language also has a <code>for .. in ..</code> control structure to enumerate the properties of an object. We skip its discussion because it is tricky to use.</p>
+
+<h2 id="exercise:51a54ca2b6504050813f27f36d3dbb0e">Exercise</h2>
+
+<p>Use the time table data structure above to complete this exercise.</p>
+
+<ol>
+<li><p>Write a program to print the content of the time table.</p></li>
+
+<li><p>Write a program to show the number of lectures of each course. The output should include course code, course title, and number of lectures per week.</p></li>
+
+<li><p>Write a program to list the lectures on Thursday <code>dow==4</code>. The output should include course code, title, start and end time, and room.</p></li>
+</ol>
 
 
       

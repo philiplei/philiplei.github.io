@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
     
-    <title>3-3 Creating new content</title>
+    <title>2-5 Defining class</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/hybrid.css" rel="stylesheet">
@@ -23,7 +23,7 @@
     
 
   </head>
-  <body class="" data-url="/client/3-3/">
+  <body class="" data-url="/basic/2-5/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -43,7 +43,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/basic/">
+      <li class="dd-item  parent" data-nav-id="/basic/">
         <a href="/basic/">
           <span>
             
@@ -91,7 +91,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/basic/2-5/">
+            <li class="dd-item active" data-nav-id="/basic/2-5/">
               <a href="/basic/2-5/">
                 <span>2-5 Defining class     </i></span>
               </a>
@@ -114,7 +114,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/client/">
+      <li class="dd-item  " data-nav-id="/client/">
         <a href="/client/">
           <span>
             
@@ -146,7 +146,7 @@
           
           
           
-            <li class="dd-item active" data-nav-id="/client/3-3/">
+            <li class="dd-item " data-nav-id="/client/3-3/">
               <a href="/client/3-3/">
                 <span>3-3 Creating new content     </i></span>
               </a>
@@ -314,17 +314,17 @@
                 
                 
                   
-                
-                  
                     
                     
-                <a href="/client/" itemprop="url"><span itemprop="title">Client-side programming</span></a> <i class="fa fa-angle-right"></i>
+                <a href="/basic/" itemprop="url"><span itemprop="title">JavaScript basics</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
                   
                 
-                <span itemprop="title"> 3-3 Creating new content</span>
+                  
+                
+                <span itemprop="title"> 2-5 Defining class</span>
               </div>
               
                   <div class="progress">
@@ -333,9 +333,11 @@
 <ul>
 <li>
 <ul>
-<li><a href="#create-new-html-content:ea5c74532ea585d792ffc5ecba7767b0">Create new HTML content</a></li>
-<li><a href="#insert-content-to-dom-tree:ea5c74532ea585d792ffc5ecba7767b0">Insert content to DOM tree</a></li>
-<li><a href="#exercise:ea5c74532ea585d792ffc5ecba7767b0">Exercise</a></li>
+<li><a href="#array-as-class:7ca16074685f2bdef80cf45ba4944844">Array as Class</a></li>
+<li><a href="#date:7ca16074685f2bdef80cf45ba4944844">Date</a></li>
+<li><a href="#maps:7ca16074685f2bdef80cf45ba4944844">Maps</a></li>
+<li><a href="#defining-class:7ca16074685f2bdef80cf45ba4944844">Defining class</a></li>
+<li><a href="#exercise:7ca16074685f2bdef80cf45ba4944844">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -348,88 +350,205 @@
             
     	        <div id="body-inner">
                 
-                <h1>3-3 Creating new content</h1>
+                <h1>2-5 Defining class</h1>
                 
 
 
 
-<p>This lab covers how to create new content into the DOM tree using <code>$()</code> jQuery functions and methods.</p>
+<p>Before we discuss how to define our own class, let&rsquo;s first look at some samples classes in the JavaScript language.</p>
 
-<p><a href="/chap3/p311.html">p311.html</a></p>
+<p>Many values in JavaScript are objects. In lab 2-3, we created an object as a group of properties. Each property has a name and a value. The following is an example of object literal, in which we list the properties in <code>{ }</code>.</p>
 
-<h2 id="create-new-html-content:ea5c74532ea585d792ffc5ecba7767b0">Create new HTML content</h2>
-
-<p>You can create new HTML content by passing HTML code to the jQuery function <code>$(htmlCode)</code>.  The newly created elements are detached from the current DOM tree, and not displayed.  To show the content, you have to attach the elements to the DOM tree.</p>
-
-<pre><code class="language-JavaScript">var p = $('&lt;p&gt;A new paragraph &lt;em&gt;created&lt;/em&gt; by jQuery&lt;/p&gt;');
-dir(p);
-// append to the document body to show this element
-$('body').append(p);
-// now you can see it
+<pre><code class="language-JavaScript">var point = { x: 2, y: 3 };  
+point.x;  // 2
+dir(point); // show structure, only avail in Chrome console
 </code></pre>
 
-<p>When you supply html code to jQuery function, it returns a jQuery collection, just like the collection returned when you supply a CSS selector. Therefore, you can use the jQuery methods like <code>$().html()</code> or <code>$().attr()</code> to configure the newly created elements.</p>
+<h2 id="array-as-class:7ca16074685f2bdef80cf45ba4944844">Array as Class</h2>
 
-<pre><code class="language-JavaScript">var link = $('&lt;a&gt;').html('Macao Poly').attr('href', 'http://www.ipm.edu.mo');
-// this is the same as $('&lt;a href=&quot;http://www.ipm.edu.mo&quot;&gt;Macao Poly&lt;/a&gt;');
-$('body').append(link);
+<p>JavaScript arrays are also objects, in the sense that an array has many methods, which we can invoke with the dot notation. In fact, each method is a property with a function as value. Refer to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Array_instances">online ref</a> for a list of methods of array objects.</p>
 
-var img = $('&lt;img&gt;').attr('src', 'ani/dragon.png');
-$('body').append(img);
+<pre><code class="language-JavaScript">var a = [2,3,4];
+a.unshift(1);
+a.push(5);
+var b = a.map(x=&gt;x*2-1);
+console.log(b.join(','));
 </code></pre>
 
-<h2 id="insert-content-to-dom-tree:ea5c74532ea585d792ffc5ecba7767b0">Insert content to DOM tree</h2>
+<p>A main difference between the object <code>point</code> and array objects is that there is a <dfn>constructor function</dfn> to create array objects.  In OOP sense, a <dfn>class</dfn> defines a template for similar objects, and provides (at least) one constructor object to build new objects belonging to the class.  We have a special syntax <code>[1,2,3]</code> to create new array objects in JavaScript. But you can also use the general constructor function syntax.</p>
 
-<p>There are several methods you can use to insert new / existing content into the current DOM tree.</p>
-
-<ul>
-<li><code>$().append(content)</code> - adds the content at the end of each element in the collection</li>
-<li><code>$().prepend(content)</code> - adds the content at the start of each element in the collection</li>
-<li><code>$().after(content)</code> - adds the content after each element in the collection</li>
-<li><code>$().before(content)</code> - adds the content before each element in the collection</li>
-</ul>
-
-<p>If the source content is already attached to the current DOM, the content is removed first, and then attached at the target location.  If you want to keep the source content at the original position, clone the source content before inserting.</p>
-
-<pre><code class="language-JavaScript">// assume img#tiger is in the DOM
-// make a clone
-var c = $('img#tiger').clone();
-// and insert it after the ox image
-$('#ox').after(c);
-</code></pre>
-
-<p>You can also remove elements from the DOM temporarily with <code>var a = $(selector).remove()</code>, and later reinsert <code>a</code> back to the DOM.  To remove all content inside an element, use <code>$(selector).empty()</code>.</p>
-
-<p>The four insertion methods have a counterpart version that reverse the order of source and target.  (<code>$().appendTo()</code>, <code>$().prependTo()</code>, <code>$().insertBefore()</code> and <code>$().insertAfter()</code>) They are useful if you want to chain other methods on the source.  See <a href="https://api.jquery.com/category/manipulation/dom-insertion-inside/">online reference</a> or more detail.</p>
-
-<pre><code class="language-JavaScript">$('#rooster').after($('#tiger'))
-// is the same as ...
-$('#tiger').insertAfter($('#rooster'))
-</code></pre>
-
-<p>The following creates new rows and inserts into the table. See the demo <a href="/chap3/p312.html">p312.html</a></p>
-
-<pre><code class="language-JavaScript">var $t = $('table tbody');
-// clear the table body
-$t.empty();
-for (var k=16; k&lt;32; k++) {
-  // create a new row
-  var $r = $('&lt;tr&gt;');
-  // and append three cells to the row
-  $('&lt;td&gt;').html(k).appendTo($r);
-  $('&lt;td&gt;').html(k.toString(2)).appendTo($r);
-  $('&lt;td&gt;').html(k.toString(16)).appendTo($r);
-  // append the row to the table body
-  $t.append($r);
+<pre><code class="language-JavaScript">var b = new Array(2,4,6,8,10);
+for (var x of b) {
+  console.log(x);
 }
 </code></pre>
 
-<h2 id="exercise:ea5c74532ea585d792ffc5ecba7767b0">Exercise</h2>
+<h2 id="date:7ca16074685f2bdef80cf45ba4944844">Date</h2>
 
-<p>In this exercise, you have to populate an HTML table with JSON data.
-- exercise: populate html table with json data</p>
+<p>Up to now, we have encountered several built-in classes in JavaScript. They include
+<code>Array</code> and <code>Map</code>. Before we discuss how to define our own class, let&rsquo;s examine the usage of another built-in class <code>Date</code>, which represents a single moment in time. <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date">(online reference)</a></p>
 
-<p>Solution done in <a href="/chap3/p313.html">p313.html</a></p>
+<pre><code class="language-JavaScript">// call a constructor to create an object of the class
+// create a Date object for this moment
+var now = new Date();
+// create a Date object for the Macau SAR establishment day
+var sare = new Date(&quot;1999-12-20&quot;);
+// create a Date object for the coming X'mas
+var xmas = new Date(2016,11,25); // month: 0-11
+</code></pre>
+
+<pre><code class="language-JavaScript">// an object usually have some methods
+var now = new Date();
+var dow = now.getDay(); // 0-6, where 0 means Sunday
+console.log(now.toLocaleString());
+</code></pre>
+
+<h2 id="maps:7ca16074685f2bdef80cf45ba4944844">Maps</h2>
+
+<p>ES6 defines a new kind of collections called <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>. A map stores key/value pairs.
+(In previous version of JavaScript, objects are often used as map.) You create a Map by submitting a list of key/value pairs to the constructor. Each pair is written as an array of two elements, namely key and value. You retrieve an element from a map using a key with the method <code>.get(key)</code>. You add / replace an element in the map with the method <code>.set(key,value)</code>. You can also delete an element from a map with <code>.delete(key)</code>, and check the number of elements with the property <code>.size</code>.</p>
+
+<pre><code class="language-JavaScript">// creates a new Map with two key/value pairs
+var m = new Map([ ['one', 1], ['two', 2] ]);
+// use .get to retrieve an element
+console.log('one =&gt; ', m.get('one'));
+// use .set to add / replace an element
+m.set('three', 3);
+// now, m is Map {&quot;one&quot; =&gt; 1, &quot;two&quot; =&gt; 2, &quot;three&quot; =&gt; 3}
+console.log('Does the map contains the key \'four\'? ', m.has('four'));
+console.log('No, so .get returns ', m.get('four'));  // undefined
+</code></pre>
+
+<p>A map is iterable, and the <code>for ...of</code> loop returns a key/value pair in each step.</p>
+
+<pre><code class="language-JavaScript">var m = new Map([ ['one', 1], ['two', 2], ['three', 3] ]);
+for (var [k,v] of m) {
+  console.log(`k = ${k}  v = ${v}`);
+}
+</code></pre>
+
+<h2 id="defining-class:7ca16074685f2bdef80cf45ba4944844">Defining class</h2>
+
+<p>ES6 has a new syntax to define class. It is similar to the syntax in Java.</p>
+
+<pre><code class="language-JavaScript">class Circle {
+  // create a Circle object at (x,y) with the given radius
+  constructor (x, y, radius) {
+    // inside a constructor,
+    // this refers to the new object being created
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+  }
+  // define a method for Circle object
+  area () {
+    // inside a method,
+    // this refers to the object that invokes the method
+    return this.radius * this.radius * Math.PI;
+  }
+  // override the default toString method
+  toString () {
+    return `circle at (${this.x},${this.y}) of radius ${this.radius}`;
+  }
+}
+
+var c = new Circle(0,0,10);
+// call the method on the Circle object
+var a = c.area();
+console.log(`The area is ${a}.`);
+// this calls c.toString()
+console.log(`What is c? ${c}`);
+</code></pre>
+
+<p>The object created by a constructor is similar to object literal. Compare the structure of the two objects below.</p>
+
+<pre><code class="language-JavaScript">// assume you've run the code listing above
+dir(c);
+var c2 = { x: 0, y: 0, radius: 10 };
+dir(c2);
+c2.area = function () { return this.radius*this.radius*Math.PI }
+c2.area();
+</code></pre>
+
+<p>All properties in JavaScript objects are public. We can access the properties outside methods.</p>
+
+<pre><code class="language-JavaScript">// assume the above definition of Circle class
+// check whether the Circle c1 fully contains the Circle c2
+function contains (c1, c2) {
+  // calculate distance between center of the two circles
+  var dist = Math.sqrt(Math.pow(c1.x-c2.x, 2) + Math.pow(c1.y-c2.y, 2));
+  return (dist &lt; c1.radius-c2.radius);
+}
+
+var c1 = new Circle(0, 0, 10);
+var c2 = new Circle(3, 4, 4);
+var c3 = new Circle(3, 4, 8);
+console.log('c1 contains c2? ', contains(c1,c2) );
+console.log('c1 contains c3? ', contains(c1,c3) );
+</code></pre>
+
+<h2 id="exercise:7ca16074685f2bdef80cf45ba4944844">Exercise</h2>
+
+<ol>
+<li><p>Define a class Point that can be used in the following ways</p>
+
+<pre><code class="language-JavaScript">var p1 = new Point(0,0);
+p1.toString();  // &quot;(0,0)&quot;
+p1.moveTo(3,-2); // now p1 is (3,-2)
+</code></pre></li>
+
+<li><p>Define a function for the Point objects</p>
+
+<pre><code class="language-JavaScript">var p1 = new Point(0,0);
+var p2 = new Point(5,12);
+var d = distance(p1, p2);  // 13
+</code></pre></li>
+</ol>
+
+<!--
+You can also iterate on the keys or values of a map. `m.keys()` and `m.values()`
+return an iterable collection that contains the keys and values. And you can also use the spread operator `...` to insert the content of these collections into an array.
+
+```JavaScript
+var m = new Map([ ['one', 1], ['two', 2], ['three', 3] ]);
+for (var k of m.keys()) {
+  console.log(`k = ${k}`);
+}
+
+console.log('The keys are ', [...m.keys()]);
+console.log('The values are ', [...m.values()]);
+console.log('The elements are ', [...m]);
+```
+
+
+Example.
+
+```JavaScript
+var para = `JavaScript is a high-level, dynamic, untyped, and interpreted programming language. It has been standardized in the ECMAScript language specification. Alongside HTML and CSS, it is one of the three core technologies of World Wide Web content production; the majority of websites employ it and it is supported by all modern Web browsers without plug-ins. JavaScript is prototype-based with first-class functions, making it a multi-paradigm language, supporting object-oriented, imperative, and functional programming styles. It has an API for working with text, arrays, dates and regular expressions, but does not include any I/O, such as networking, storage, or graphics facilities, relying for these upon the host environment in which it is embedded.`;
+// use space and punctuation marks to split the string into words
+var words = para.split(/[ ,\.;\-]/);
+// remove empty string
+words = words.filter(w => w!=="");
+// change all words into lower case
+words = words.map(w => w.toLowerCase()); // 116 words in the paragraph
+
+// count number of times a word appear in the paragraph
+var wordCount = new Map();
+for (var w of words) {
+  if (wordCount.has(w)) {
+    wordCount.set(w, wordCount.get(w)+1);
+  } else {
+    wordCount.set(w, 1);
+  }
+}
+
+// print which words appear more than once
+for (var [k,v] of wordCount) {
+  if (v==1) continue;
+  console.log(`${k}: ${v}`);
+}
+```
+-->
 
 
       

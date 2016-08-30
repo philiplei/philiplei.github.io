@@ -177,15 +177,48 @@ We&amp;rsquo;ll use jQuery library to&lt;/p&gt;
     
     <item>
       <title>JavaScript basics</title>
-      <link>http://comp312.ipm.mo/basics/</link>
+      <link>http://comp312.ipm.mo/basic/</link>
       <pubDate>Thu, 26 May 2016 10:14:43 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basics/</guid>
+      <guid>http://comp312.ipm.mo/basic/</guid>
       <description>
 
 &lt;h2 id=&#34;javascript-basics:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;JavaScript Basics&lt;/h2&gt;
 
 &lt;p&gt;This &lt;strong&gt;lab&lt;/strong&gt; goes through the basics of the JavaScript programming language.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2-1. Basic data types and control structures
+
+&lt;ul&gt;
+&lt;li&gt;numbers, strings, conversion, selection and looping&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2-2. Arrays and functions
+
+&lt;ul&gt;
+&lt;li&gt;array basics. function statement&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2-3. Objects and JSON data format
+
+&lt;ul&gt;
+&lt;li&gt;model data by mixing arrays and objects&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2-4. Callbacks and arrow functions
+
+&lt;ul&gt;
+&lt;li&gt;functions as values, callback, timer, arrow function&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2-5. Some built-in class: Collections and iterable objects
+
+&lt;ul&gt;
+&lt;li&gt;Object literal&lt;/li&gt;
+&lt;li&gt;built-in classes: Array, Date, Map&lt;/li&gt;
+&lt;li&gt;define class&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2-6. Regular expression&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Others: exception, JSON, promise, closure&lt;/p&gt;
 </description>
     </item>
     
@@ -451,10 +484,10 @@ Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;co
     
     <item>
       <title>2-1 Basic data types and control</title>
-      <link>http://comp312.ipm.mo/basics/2-1/</link>
+      <link>http://comp312.ipm.mo/basic/2-1/</link>
       <pubDate>Thu, 26 May 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basics/2-1/</guid>
+      <guid>http://comp312.ipm.mo/basic/2-1/</guid>
       <description>
 
 &lt;p&gt;This lab goes through the basic data types (Number and String) and control structures of the JavaScript programming language.&lt;/p&gt;
@@ -462,19 +495,21 @@ Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;co
 &lt;h2 id=&#34;number:855bd0b6902ba912a5e7d4153423beed&#34;&gt;Number&lt;/h2&gt;
 
 &lt;p&gt;Two basic data types in JavaScript are &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number&#34;&gt;Number&lt;/a&gt; and String.
-There are no separate types for integers and doubles.&lt;/p&gt;
+There are no separate types for integers and doubles. (You define a variable &lt;code&gt;x&lt;/code&gt; with &lt;code&gt;var x&lt;/code&gt;. In ES6, you can also declare variables with &lt;code&gt;let x&lt;/code&gt; and constants with &lt;code&gt;const x&lt;/code&gt;.)&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;var a = 10;
-var b = 2e3;  /* 2 * (10*10*10) */
+&lt;pre&gt;&lt;code&gt;var a = 2;
+var b = 3e3;  /* 2 * (10*10*10) */
 var c;  /* c is undefined */
-c = a * 4 + b;
+c = a * 1.5 + b;
 console.log(c);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;In addition to the basic arithmetic operators (+, -, *, /, %) &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators&#34;&gt;(ref)&lt;/a&gt;, the Math built-in object &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math&#34;&gt;(ref)&lt;/a&gt; provides some useful functions.&lt;/p&gt;
+&lt;p&gt;In addition to the basic arithmetic operators (+, -, *, /, %) &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators&#34;&gt;(ref)&lt;/a&gt;, the Math built-in object &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math&#34;&gt;(ref)&lt;/a&gt; provides some useful functions (e.g. &lt;code&gt;Math.random()&lt;/code&gt;, &lt;code&gt;Math.floor()&lt;/code&gt;, &lt;code&gt;Math.ceil()&lt;/code&gt;, &lt;code&gt;Math.round()&lt;/code&gt;, &lt;code&gt;Math.pow()&lt;/code&gt;, &lt;code&gt;Math.sqrt()&lt;/code&gt; and trigonometric functions.)&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var r = 10;
-var area = Math.PI * r * r;
+&lt;p&gt;(Btw, the trailing semicolons of statements may be omitted if there is only 1 statement on a line.)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var r = 10
+var area = Math.PI * r * r
 // same as Math.PI * Math.pow(r,2)
 
 // a number from 1,2,3,4,5 and 6
@@ -488,8 +523,7 @@ var y = Math.sqrt(-1) // NaN
 &lt;h2 id=&#34;string:855bd0b6902ba912a5e7d4153423beed&#34;&gt;String&lt;/h2&gt;
 
 &lt;p&gt;Strings can be delimited with single quote or double quote. Join two strings
-with &lt;code&gt;+&lt;/code&gt;. Use the property &lt;code&gt;.length&lt;/code&gt; to check number of characters in a string.
-String literals use backslash &lt;code&gt;\&lt;/code&gt; to escape character, e.g. &lt;code&gt;\&amp;quot;&lt;/code&gt;, &lt;code&gt;\&#39;&lt;/code&gt;, &lt;code&gt;\\&lt;/code&gt; and &lt;code&gt;\n&lt;/code&gt;,&lt;/p&gt;
+with &lt;code&gt;+&lt;/code&gt;. Use the property &lt;code&gt;.length&lt;/code&gt; to check number of characters in a string.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;var user = &amp;quot;peterchan&amp;quot;;
 var domain = &#39;ymail.com&#39;;
@@ -497,7 +531,15 @@ var addr = user + &amp;quot;@&amp;quot; + domain;
 var n = &amp;quot;seven&amp;quot;.length;  // 5
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;String literals can also use methods defined in the String class. Examples:&lt;/p&gt;
+&lt;p&gt;String literals use backslash &lt;code&gt;\&lt;/code&gt; to escape character, e.g. &lt;code&gt;\&amp;quot;&lt;/code&gt;, &lt;code&gt;\&#39;&lt;/code&gt;, &lt;code&gt;\\&lt;/code&gt; and &lt;code&gt;\n&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// no need to escape, but if you may
+var s1 = &#39;A string with &amp;quot;double quoted text&amp;quot;.&#39;
+// escape the backlash character
+var s2 = &#39;c:\\inetpub\\index.html&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;String literals can also use methods defined in the String class &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String&#34;&gt;(ref)&lt;/a&gt;. Examples:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var text = &#39;Mississippi&#39;;
 var p = text.indexOf(&#39;ss&#39;); // location of &#39;ss&#39;
@@ -516,6 +558,7 @@ var A = &amp;quot;202.175.3.3&amp;quot;.split(&#39;.&#39;);
 &lt;p&gt;User input are usually returned as string. Before calculation, use &lt;code&gt;parseInt()&lt;/code&gt; or &lt;code&gt;parseFloat()&lt;/code&gt; to convert the string into an integer / floating point number.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var s = &amp;quot;3.14&amp;quot;;
+// unexpected result of string concatenation
 console.log(s+1);
 var pi = parseFloat(s);
 console.log(pi+1);
@@ -529,7 +572,7 @@ var s2 = &#39;&#39; + n; // automatic conversion in string concatenation
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;A new features in ES6 is &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals&#34;&gt;template string&lt;/a&gt;.
-Template strings support interpolation. They evaluate JavaScript expressions embedded in &lt;code&gt;${}&lt;/code&gt; and insert the result into the string.&lt;/p&gt;
+Template strings support interpolation. They evaluate JavaScript expressions embedded in &lt;code&gt;${}&lt;/code&gt; and insert the result into the string. Notice the back ticks used to delimit a template string.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var user = &amp;quot;Peter&amp;quot;;
 var age = 18;
@@ -547,7 +590,7 @@ console.log(`Area = ${Math.PI * r * r}`);
 &lt;h2 id=&#34;comparison:855bd0b6902ba912a5e7d4153423beed&#34;&gt;Comparison&lt;/h2&gt;
 
 &lt;p&gt;You can compare numbers and strings using the operators &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;lt;=&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;gt;=&lt;/code&gt;, &lt;code&gt;==&lt;/code&gt; and &lt;code&gt;!=&lt;/code&gt;.
-Comparison results are either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+Comparison results are either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;, which are the only two values in &lt;code&gt;boolean&lt;/code&gt; data type.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;&amp;quot;apple&amp;quot; == &amp;quot;Apple&amp;quot; // false
 &amp;quot;apple&amp;quot; &amp;lt; &#39;banana&#39; // true
@@ -559,6 +602,8 @@ Comparison results are either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false
 3 == &#39;3.0&#39; // true
 &#39;3&#39; == &#39;3.0&#39; // false!
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Some authors recommend the usage of &lt;code&gt;===&lt;/code&gt; instead of &lt;code&gt;==&lt;/code&gt; in comparison. The operator &lt;code&gt;===&lt;/code&gt; &lt;strong&gt;does not convert&lt;/strong&gt; values before comparison. Similarly, &lt;code&gt;!==&lt;/code&gt; checks whether two values are not equal without automatic type conversion.&lt;/p&gt;
 
 &lt;p&gt;Similar to Java, you can use &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; to combine comparison tests.&lt;/p&gt;
 
@@ -577,9 +622,11 @@ Comparison results are either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false
 var det = b * b - 4 * a * c;
 var root1, root2;
 if (det&amp;gt;=0) {
+  // these two are Number
   root1 = (-b - Math.sqrt(det)) / (2*a);
   root2 = (-b + Math.sqrt(det)) / (2*a);
 } else {
+  // these two are String.. sorry, no complex number support
   root1 = `${-b/2/a} - ${Math.sqrt(-det)/2/a}i`;
   root2 = `${-b/2/a} + ${Math.sqrt(-det)/2/a}i`;
 }
@@ -594,6 +641,7 @@ var sum = 0;
 for (var k=1; k&amp;lt;=10; k++) {
   sum += k;
 }
+console.log(`The sum of 1+2+...+10 = ${sum}.`);
 
 // calculate 1*1+2*2+...+n*n, where n*n&amp;lt;100;
 var i = 1; var sum = 0;
@@ -601,6 +649,17 @@ while (i*i&amp;lt;100) {
   sum += i*i;
   i++;
 }
+console.log(`The sum of squares &amp;lt; 100 is ${sum}.`)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;a-note-on-loose-typing:855bd0b6902ba912a5e7d4153423beed&#34;&gt;A note on loose typing&lt;/h2&gt;
+
+&lt;p&gt;You might have noticed that when you define a variable with &lt;code&gt;var x&lt;/code&gt;, you don&amp;rsquo;t need to specify a data type. A JavaScript variable is not tied to a specific data type in declaration, and can hold values of different data types.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var x = 10;
+x++;  // x is a Number
+x = x.toString(2);  // binary representation
+console.log(x); // x is not a String
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;exercise:855bd0b6902ba912a5e7d4153423beed&#34;&gt;Exercise&lt;/h2&gt;
@@ -909,18 +968,23 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
     
     <item>
       <title>2-2 Arrays and functions</title>
-      <link>http://comp312.ipm.mo/basics/2-2/</link>
+      <link>http://comp312.ipm.mo/basic/2-2/</link>
       <pubDate>Thu, 26 May 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basics/2-2/</guid>
+      <guid>http://comp312.ipm.mo/basic/2-2/</guid>
       <description>
 
 &lt;p&gt;This lab goes through the basics of the JavaScript arrays and functions.&lt;/p&gt;
 
 &lt;h2 id=&#34;array:751e016222acc825af018628bf936c15&#34;&gt;Array&lt;/h2&gt;
 
-&lt;p&gt;An &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array&#34;&gt;array&lt;/a&gt; is a sequence of values that may have different types. Arrays can change size in run-time. The &lt;code&gt;length&lt;/code&gt; property refers to the number of elements inside the array.
-Use the operator &lt;code&gt;[]&lt;/code&gt; to locate an element at the given index.&lt;/p&gt;
+&lt;p&gt;An &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array&#34;&gt;array&lt;/a&gt; keep values in a sequence. Arrays can change size in run-time. You retrieve an element from an array by position. Use the operator &lt;code&gt;[]&lt;/code&gt; to locate an element at the given index.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1,3,5,7,9];
+console.log(`The second odd number is ${a[1]}.`);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;length&lt;/code&gt; property refers to the number of elements inside the array.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var empty = [ ];
 var numbers = [ &#39;zero&#39;, &#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;four&#39; ] ;
@@ -938,11 +1002,21 @@ for (var i=0; i&amp;lt;P.length; i++) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;ES6 has a new control structure &lt;code&gt;for of&lt;/code&gt; to iterate arrays and other iterable objects.&lt;/p&gt;
+&lt;p&gt;ES6 has a new control structure &lt;code&gt;for of&lt;/code&gt; to iterate arrays and other iterable objects.
+You can use it to &lt;strong&gt;read&lt;/strong&gt; the entries of an array one by one.
+This control structure is convenient when you only need to access the content of an array, but not the position.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var P = [ 2,3,5,7,11 ] ;  // small primes
 for (var x of P) {
   console.log(x);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In case you need read-only access to the entries and their position, use the method &lt;code&gt;.entries()&lt;/code&gt; of Array. The method is an iterable list of tuples &lt;code&gt;[index, value]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var num = [ &#39;zero&#39;, &#39;um&#39;, &#39;dois&#39;, &#39;tres&#39; ];
+for (var [idx, s] of num.entries()) {
+  console.log(`In portuguese, ${s} means ${idx}.`)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1020,7 +1094,7 @@ function bigger2 (a,b) {
 function bigger3 (a,b) { return a&amp;gt;b ? a : b; }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The next example defines a function that find the largest numbers in an array, assuming that the array has at least 1 element.&lt;/p&gt;
+&lt;p&gt;The next example defines a function that finds the largest numbers in an array, assuming that the array has at least 1 element.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function max (A) {
   var x = A[0]; // assume the 0th element is the largest
@@ -1034,9 +1108,13 @@ function bigger3 (a,b) { return a&amp;gt;b ? a : b; }
 max([2,3,5,8,7,1,4,6]); // return 8
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h2 id=&#34;a-note-on-variable-scope:751e016222acc825af018628bf936c15&#34;&gt;A note on variable scope&lt;/h2&gt;
+
 &lt;p&gt;In JavaScript, variables have function scope. That means that variables defined within a function are only visible inside the function. They are sometimes called &lt;dfn&gt;local variables&lt;/dfn&gt;. Function parameters also work like local variables. A new copy of These variables is created when the function executes, and removed when no code has access to them anymore. For simple case like the above example, the local variables are removed when the function returns.&lt;/p&gt;
 
-&lt;p&gt;On the other hand, variables defined outside any functions are &lt;dfn&gt;global variables&lt;/dfn&gt;, and are visible inside any functions.&lt;/p&gt;
+&lt;p&gt;On the other hand, variables defined outside any functions are &lt;dfn&gt;global variables&lt;/dfn&gt;, and are visible inside any functions. It is generally recommended to use global variables as little as possible.&lt;/p&gt;
+
+&lt;p&gt;In addition, you can define a function inside another function. Such nesting functions create nesting variable scopes.&lt;/p&gt;
 
 &lt;!--
 function sum(A) {
@@ -1072,7 +1150,7 @@ console.log(odd(9)); // should print [1,3,5,7,9]
 console.log(sum(odd(10*2-1))); // should print 100
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;Write a function &lt;code&gt;search(A, n)&lt;/code&gt; to search for an number &lt;code&gt;n&lt;/code&gt; in the array &lt;code&gt;A&lt;/code&gt;. Returns the   position of the element if it is found. If it is not found, return -1. Test your function with the following code.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Write a function &lt;code&gt;search(A, n)&lt;/code&gt; to search for an number &lt;code&gt;n&lt;/code&gt; in the array &lt;code&gt;A&lt;/code&gt;. Return the   position of the element if it is found. If it is not found, return -1. Test your function with the following code.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var x = [6, 8, 3, -2];
 console.log(search(x, 3)); // should print 2;
@@ -1276,10 +1354,10 @@ for (var k=16; k&amp;lt;32; k++) {
     
     <item>
       <title>2-3 Objects and JSON data</title>
-      <link>http://comp312.ipm.mo/basics/2-3/</link>
+      <link>http://comp312.ipm.mo/basic/2-3/</link>
       <pubDate>Thu, 26 May 2016 19:13:37 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basics/2-3/</guid>
+      <guid>http://comp312.ipm.mo/basic/2-3/</guid>
       <description>
 
 &lt;p&gt;This lab covers the basics of objects (as data structure). It also covers part of JSON.&lt;/p&gt;
@@ -1289,7 +1367,8 @@ for (var k=16; k&amp;lt;32; k++) {
 &lt;p&gt;In JavaScript, objects are a collection of properties. Each property
 is a pair of name and value. You can access each property with the dot notation.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var peter = {
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// define an object with 3 properties
+var peter = {
   firstName: &amp;quot;Peter&amp;quot;,
   lastName: &amp;quot;Chan&amp;quot;,
   age: 19
@@ -1310,6 +1389,7 @@ dir(point); // show structure, only avail in Chrome console
 &lt;p&gt;Functions can accept objects, and return objects. In the following, objects with the two properties &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; represent points on a plane.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function distance (p1, p2) {
+  // the function Math.hypot() can also be used here
   var sum_sqr = Math.pow(p1.x-p2.x, 2) + Math.pow(p1.y-p2.y, 2);
   return Math.sqrt(sum_sqr);
 }
@@ -1329,7 +1409,8 @@ dir(mid);
 
 &lt;h2 id=&#34;complicated-data:51a54ca2b6504050813f27f36d3dbb0e&#34;&gt;Complicated data&lt;/h2&gt;
 
-&lt;p&gt;You can nest objects to model more complicated data.&lt;/p&gt;
+&lt;p&gt;A property can take another object as value. This put an object inside another object.
+Use nesting objects to represent a hierarchy of properties.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var flight = {
   airline: &amp;quot;Oceanic&amp;quot;,
@@ -1383,6 +1464,28 @@ console.log(
   ]
 };
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;a-note-on-object-notation:51a54ca2b6504050813f27f36d3dbb0e&#34;&gt;A note on object notation&lt;/h2&gt;
+
+&lt;p&gt;In addition to the dot notation, you can also use array notation to access a property in objects.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var person = { name: &#39;Peter&#39; };
+// same as person.age = 20;
+person[&#39;age&#39;] = 20;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The array notation is necessary is you only know the property names in run-time, or the property names contains non-ASCII characters.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var cn2en = {
+  &#39;春&#39;: &#39;spring&#39;, &#39;夏&#39;: &#39;summer&#39;,
+  &#39;秋&#39;: &#39;autumn&#39;, &#39;冬&#39; : &#39;winter&#39;
+};
+cn2en[&#39;春&#39;]  // &#39;spring&#39;
+// the following has syntax error
+//cn2en.春
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The JavaScript language also has a &lt;code&gt;for .. in ..&lt;/code&gt; control structure to enumerate the properties of an object. We skip its discussion because it is tricky to use.&lt;/p&gt;
 
 &lt;h2 id=&#34;exercise:51a54ca2b6504050813f27f36d3dbb0e&#34;&gt;Exercise&lt;/h2&gt;
 
@@ -1651,15 +1754,15 @@ for (var i=0; i&amp;lt;$rows.length; i++) {
     
     <item>
       <title>2-4 Callbacks and arrow functions</title>
-      <link>http://comp312.ipm.mo/basics/2-4/</link>
+      <link>http://comp312.ipm.mo/basic/2-4/</link>
       <pubDate>Thu, 26 May 2016 19:13:42 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basics/2-4/</guid>
+      <guid>http://comp312.ipm.mo/basic/2-4/</guid>
       <description>
 
 &lt;h2 id=&#34;functions-as-first-class-values:8f8679018181f9c68b8f50f2e680210f&#34;&gt;Functions as first-class values&lt;/h2&gt;
 
-&lt;p&gt;Functions in JavaScript are often describe as first-class values. (In fact, functions are objects, with their own properties and methods.) This means that, in many cases, if you can do something on numbers or strings, you can also do the same on functions. In particular,
+&lt;p&gt;Functions in JavaScript are often described as first-class values. (In fact, functions are objects, with their own properties and methods.) This means that, in many cases, if you can do something on numbers or strings, you can also do the same on functions. In particular,
 you can save a function in a variable, pass a function to another function, or return a function from a function.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function add (a,b) { return a+b; }
@@ -1693,6 +1796,7 @@ reduce([6,7,8,9], mul); // returns 3024
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1/2, 1/3, 1/4, 1/5, 1/6];
 var b = [];
+// round the numbers to 2 decimal places
 for (var n of a) {
   var n2 = Math.round(n*100) / 100;
   b.push(n2);
@@ -1772,7 +1876,7 @@ var p = [
 p.sort(); // sort by name? by age?
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You can teacher how to compare two objects with a callback functions.&lt;/p&gt;
+&lt;p&gt;You can teach &lt;code&gt;.sort()&lt;/code&gt; how to compare two objects with a callback function.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var p = [
   { name: &#39;Peter&#39;, age: 10 }, { name: &#39;Mary&#39;, age: 9 },
