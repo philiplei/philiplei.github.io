@@ -333,7 +333,9 @@
 <ul>
 <li>
 <ul>
-<li><a href="#first-example:bbef13b3f36124915c5dbc798731f3dc">first example</a></li>
+<li><a href="#document-tree-and-javascript-libraries:bbef13b3f36124915c5dbc798731f3dc">document tree and JavaScript libraries</a></li>
+<li><a href="#first-example:bbef13b3f36124915c5dbc798731f3dc">First example</a></li>
+<li><a href="#a-note-on-loading-javascript-code:bbef13b3f36124915c5dbc798731f3dc">A note on loading JavaScript code</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -351,23 +353,81 @@
 
 
 
-<p>This lab goes through the basics of client-side programming using jQuery.</p>
+<h2 id="document-tree-and-javascript-libraries:bbef13b3f36124915c5dbc798731f3dc">document tree and JavaScript libraries</h2>
 
-<p><a href="/chap3/p301.html">example</a></p>
+<p>When a web browser loads an HTML page from a web server, it converts the HTML code into a tree structured data structure known as <dfn>document tree</dfn>. All user interaction in the client-side of a web app is done through this DOM tree.</p>
 
-<h2 id="first-example:bbef13b3f36124915c5dbc798731f3dc">first example</h2>
+<p>The Document Object Model [(online ref)][moz-dom] standard defines a programming interface to access the document tree. Each HTML element is represented by a node in the tree. DOM defines the properties, methods and events for these nodes, and the nodes are accessible to JavaScript as objects. In summary, DOM defines how JavaScript code can access and manipulate nodes in a document tree, and all dynamic effects in web pages are realized through document tree manipulation. Demo:</p>
 
 <ul>
-<li>select nodes using <code>$(CSS selector)</code>  use ID only</li>
-<li><code>$().html()</code></li>
-<li><code>.attr()</code></li>
-<li><code>.on(event)</code></li>
-<li>how/when to load jQuery library</li>
-<li>put the code just before <code>&lt;/body&gt;</code></li>
-<li>how to put my code  (external js? or embed near the end of HTML?)</li>
+<li>document tree as tree of elements</li>
+<li>node as JavaScript objects: properties and methods</li>
 </ul>
 
-<p>TODO</p>
+<p>However, using DOM directly takes a lot of efforts. (DOM is complex and verbose.) Developers usually use some higher level JavaScript library to do client-side programming (e.g. <a href="https://facebook.github.io/react/">Facebook React</a>, <a href="https://angular.io/">Google AngularJS</a>)  In this chapter, we&rsquo;ll use a popular library called <a href="http://jquery.com/">jQuery</a>.</p>
+
+<p>A short description of the jQuery library from the <a href="http://jquery.com/">official site</a>:</p>
+
+<blockquote>
+<p>jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.</p>
+</blockquote>
+
+<h2 id="first-example:bbef13b3f36124915c5dbc798731f3dc">First example</h2>
+
+<p>This <a href="/chap3/p301.html">example</a> shows several features in client-side web app programming.
+In this app, the user enters two numbers in text input boxes, presses a button to calculate the sum, and displays the result in the web page.</p>
+
+<pre><code class="language-HTML">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;First example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;This example adds two numbers.&lt;/p&gt;
+  &lt;!-- define user interface with HTML --&gt;
+  &lt;p&gt;a: &lt;input type=&quot;text&quot; id=&quot;numA&quot; /&gt;&lt;/p&gt;
+  &lt;p&gt;b: &lt;input type=&quot;text&quot; id=&quot;numB&quot; /&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;button type='button' id=&quot;btnAdd&quot;&gt;Calculate!&lt;/button&gt;&lt;/p&gt;
+  &lt;p&gt;a+b = &lt;span id=&quot;ans&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;!-- load the jQuery library --&gt;
+  &lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    // register event handler for 'click' on the button
+    $('#btnAdd').on('click', e =&gt; {
+      // read value in input boxes and convert to number
+      var a = $('#numA').val();
+      a = parseInt(a);
+      var b = $('#numB').val();
+      b = parseInt(b);
+      // calculate sum and show answer in the &lt;span&gt; element
+      $('#ans').html(a+b);
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>As the example shows, there are several common steps in the client-side web app:</p>
+
+<ul>
+<li>select elements in DOM tree. jQuery provides the function <code>$(CSS selector)</code> to select elements with CSS selectors.</li>
+<li>read content of elements. The above example uses the method <code>$().val()</code> to read input in text box.</li>
+<li>change content of elements. The example uses the method <code>$().html()</code> to set the element content</li>
+<li>handle events. You can register event handlers for certain event with the method <code>.on(event, callback)</code></li>
+</ul>
+
+<h2 id="a-note-on-loading-javascript-code:bbef13b3f36124915c5dbc798731f3dc">A note on loading JavaScript code</h2>
+
+<p>In most of our examples, we put JavaScript code near the end of the HTML document. We typically put them before the end tag <code>&lt;/body&gt;</code>. This makes sure that the DOM tree is complete when the JavaScript code runs.</p>
+
+<p>We use the following HTML code to load jQuery library from our local web site (same location as the HTML code). In a more complicated web app, it is better to put JavaScript libraries in their own folder. You can also load the jQuery library from one of the public CDN.  Refer to these pages for detail: <a href="https://code.jquery.com/">jQuery CDN</a>, <a href="https://developers.google.com/speed/libraries/">Google Hosted Library</a> and <a href="https://cdnjs.com/libraries/jquery/">cdnjs</a>.</p>
+
+<pre><code class="language-HTML">&lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>After loading the jQuery library, we can load our own code. You can save the code in a separate <code>js</code> file and load with a syntax similar to above. Alternatively, you can <strong>embed</strong> the code within a <code>&lt;script&gt;</code> element, as in our example.</p>
+
+<p>We embed JavaScript code in many of our example for sake of simplicity. However, in production code, it is generally recommended to remove JavaScript code from HTML file and move them to external JavaScript file.</p>
 
 
       
