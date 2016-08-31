@@ -5,55 +5,59 @@
   <meta charset="utf-8" />
   <link rel="stylesheet" href="common.css"/>
   <style>
+  table#z { border-collapse: collapse; }
+  table#z td { padding: 4px 16px; border: 1px solid gray;}
+  table#z thead { background-color: gray; color: white; }
+  table#z img { width: 48px; height: 48px; }
 
-  table {
-    border-collapse: collapse;
-  }
-  table td, table th {
-    padding: 4px 8px;
+  .center {
+    position: fixed; top: 30%; left: 30%;
+    width: 300px !important; height: 300px !important;
+    background-color: lightblue; border: 1px solid gray;
+    border-radius: 30px; padding: 10px;
   }
 
-  div#bar {
-    width: 70px; height: 16px; border: 1px dashed gray;
+  .mystyle tr:nth-child(even) {
+    background-color: rgba(50,90,200,0.9);
   }
+  .mystyle tbody td:nth-child(1) { font-weight: bold; }
+  .mystyle td:nth-child(2) { width: 100px; }
+  .mystyle td { border: none !important; }
   </style>
 </head>
 
 <body>
-  <table>
-    <tr><th>Name:<td><span id='name'></span><td></tr>
-    <tr><th>Mark:<td><span id='mark'></span><td><div id='bar'></div></tr>
+  <h1>jQuery selectors and modifying elements</h1>
+
+  <table id='z'>
+    <thead>
+      <tr><td>year</td><td>zodiac</td><td>img</td></tr>
+    </thead>
+    <tbody>
+      <tr><td>2010</td><td>tiger</td><td><img src='ani/tiger.png'/></td></tr>
+      <tr><td>2011</td><td>rabbit</td><td><img src='ani/rabbit.png'/></td></tr>
+      <tr><td>2012</td><td>dragon</td><td><img src='ani/dragon.png'/></td></tr>
+      <tr><td>2013</td><td>snake</td><td><img src='ani/snake.png'/></td></tr>
+      <tr><td>2014</td><td>horse</td><td><img src='ani/horse.png'/></td></tr>
+    </tbody>
   </table>
 
-  <p>Test your function with the following</p>
+  <p>Try each of the following.</p>
+
+  <p>Reload this page before trying the following.</p>
   <ul>
-    <li><code>show('Ana', 98)</code>
-    <li><code>show('Joy', 67)</code>
-    <li><code>show('Zoe', 49)</code>
+    <li><code>$('img').eq(0).addClass('center')</code> - add a class to the element. This HTML code includes some style rules for the class <code>center</code></li>
+    <li><code>$('img').eq(0).removeClass('center')</code> - remove the class from the element</li>
   </ul>
+
+  <p>Next, define a style rule for the table and apply the rule to the table element in JavaScript. You may use the following sample.
+  </p>
 
   <script src="jquery.js"></script>
   <script>
-function show(name, mark) {
-  // display the name in span#name
-  // display the mark in span#mark
-  // set the width of div#bar to the 2 * mark pixel
-  // set its color to
-  //    'red' if mark<50,
-  //    'yellow' if it is between 50 and 80, and
-  //    'green' if it is over 80.
+$('table#z').addClass('mystyle');
 
-  // your work ...
-  $('#name').text(name);
-  $('#mark').text(mark);
-  var w = (mark * 2) + 'px';
-  var c = 'red';
-  if (mark>=50 && mark<=80) c = 'yellow';
-  if (mark>80) c = 'green';
-  $('#bar').css("width", w).css('background-color', c);
-}
-
-show('Peter', 98);
+// TODO: make animation!
 </script>
 </body>
 </html>

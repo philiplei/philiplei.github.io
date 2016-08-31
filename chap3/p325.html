@@ -10,11 +10,12 @@
   table#marks td { padding: 4px 10px; border: 1px solid gray;}
   table#marks thead { background-color: gray; color: white; }
   table#marks tbody tr:hover { background-color: lightblue; }
+  p#detail { color: green; }
   </style>
 </head>
 
 <body>
-  <p>This is a table with id <code>marks</code></p>
+  <p>Move cursor to a row to see detail of marks.</p>
   <table id='marks'>
     <caption></caption>
     <thead>
@@ -54,15 +55,16 @@ function populateMarkTable (marks) {
     $('<td>').text(course).appendTo($r);
     $('<td>').text(exam).appendTo($r);
     $('<td>').text(final).appendTo($r);
-    $r.on('mouseenter', { studIndex: k }, displayMarkDetail);
+    // pass a student record to the event handler
+    // when the mouse is over this row
+    $r.on('mouseenter', { stud: stud }, displayMarkDetail);
     $('#marks tbody').append($r);
   }
 }
 
 function displayMarkDetail (event) {
-  // event.data.studIndex is the index of the student selected
-  var i = event.data.studIndex;
-  var stud = marks.student[i];
+  // event.data.stud is the record of the student selected
+  var stud = event.data.stud;
   var s = `The student ${stud.name} has got ${stud.hw.join(',')} in assignments, `;
   s += `${stud.test.join(',')} in tests, and ${stud.exam} in exam.`;
   $('p#detail').text(s);

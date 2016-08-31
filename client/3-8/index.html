@@ -132,7 +132,7 @@
           
             <li class="dd-item " data-nav-id="/client/3-1/">
               <a href="/client/3-1/">
-                <span>3-1 First example     </i></span>
+                <span>3-1 Quick start     </i></span>
               </a>
             </li>
           
@@ -189,14 +189,6 @@
             <li class="dd-item active" data-nav-id="/client/3-8/">
               <a href="/client/3-8/">
                 <span>3-8 Page load and others     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/client/3-other/">
-              <a href="/client/3-other/">
-                <span>3-6 Advanced events     </i></span>
               </a>
             </li>
           
@@ -381,6 +373,21 @@
 <li>$().on( ) does not bind to new elements</li>
 <li>bubbling</li>
 <li>delegation. event.target, event.currentTarget</li>
+<li>handle in ancestor</li>
+
+<li><p>stop propagation</p></li>
+
+<li><p>register at an ancestor</p></li>
+
+<li><p>add selector in <code>$().on()</code></p></li>
+
+<li><p>works for newly added elements</p></li>
+
+<li><p>.. but cannot add instance specific data in <code>.on()</code></p></li>
+
+<li><p>.. solution: attach data to the instance with <code>$().data()</code></p></li>
+
+<li><p>make an example of dynamically added elements</p></li>
 </ul>
 
 <h2 id="basic-operation:60b38532c046fa4d9aed7d7df133b719">Basic operation</h2>
@@ -389,20 +396,6 @@
 
 <pre><code class="language-HTML">&lt;!-- a canvas where we'll draw a bar chart --&gt;
 &lt;canvas id=&quot;myChart&quot; width=&quot;400&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
-
-&lt;!-- load the Chart.js library --&gt;
-&lt;script src=&quot;Chart.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-// search for the canvas element, and
-// pass as 1st parameter to the constructor
-var canvas = $(&quot;#myChart&quot;);
-// the 2nd parameter is JSON data
-var myChart = new Chart(canvas, {
-    type: 'bar',
-    data: data,
-    options: options
-  });
-&lt;/script&gt;
 </code></pre>
 
 

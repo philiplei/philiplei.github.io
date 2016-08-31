@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <link rel="stylesheet" href="common.css"/>
   <style>
-    form { border: 1px solid lightgreen; padding: 1em; }
-    #F1 div { margin: 8px 0px; height: 1.5em; }
-    #F2 div { margin: 8px 0px; height: 1.5em; }
+    form div { margin: 8px 0px; height: 1.5em; }
     form label { float: left; width: 6em; }
-    form div.mesg { border: 1px dashed gray; color: black; background-color: lightblue; padding: 0.3em; }
   </style>
 </head>
 
 <body>
+  <p>Open console (Press F12 in Chrome) to see event log.</p>
   <form id='F1' action="#">
     <div><label>Email</label> <input type="text" name="email"/></div>
     <div><label>Password</label> <input type="password" name="password"/></div>
     <div><button type="button" name="login">login</button></div>
   </form>
+
+  <p>This form includes a validator for email address.</p>
 
 <script src="jquery.js"></script>
 <script>

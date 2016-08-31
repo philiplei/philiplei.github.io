@@ -132,7 +132,7 @@
           
             <li class="dd-item " data-nav-id="/client/3-1/">
               <a href="/client/3-1/">
-                <span>3-1 First example     </i></span>
+                <span>3-1 Quick start     </i></span>
               </a>
             </li>
           
@@ -189,14 +189,6 @@
             <li class="dd-item " data-nav-id="/client/3-8/">
               <a href="/client/3-8/">
                 <span>3-8 Page load and others     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/client/3-other/">
-              <a href="/client/3-other/">
-                <span>3-6 Advanced events     </i></span>
               </a>
             </li>
           
@@ -335,7 +327,7 @@
 <ul>
 <li><a href="#basic-operation:0acc7f683f17301d1361a2a9d40e010c">Basic operation</a></li>
 <li><a href="#loop:0acc7f683f17301d1361a2a9d40e010c">Loop</a></li>
-<li><a href="#conditions:0acc7f683f17301d1361a2a9d40e010c">Conditions</a></li>
+<li><a href="#condition:0acc7f683f17301d1361a2a9d40e010c">Condition</a></li>
 <li><a href="#advanced-example:0acc7f683f17301d1361a2a9d40e010c">Advanced example</a></li>
 </ul></li>
 </ul>
@@ -354,7 +346,7 @@
 
 
 
-<p>When you need to display complicated JSON data in HTML with some repetitive parts, it is often more convenient to use a template library. This lab demonstrate how to use a template library called Handlebars. <a href="http://handlebarsjs.com/">online reference</a></p>
+<p>When you need to display complicated JSON data in HTML with some repetitive parts, it is often more convenient to use a template library. This lab demonstrates how to use a template library called Handlebars. <a href="http://handlebarsjs.com/">online reference</a></p>
 
 <p><a href="/chap3/p361.html">p361.html</a></p>
 
@@ -370,7 +362,7 @@
 
 <h2 id="basic-operation:0acc7f683f17301d1361a2a9d40e010c">Basic operation</h2>
 
-<p>There are many HTML template systems. While their syntax can be quite different, the basic operation remain similar. First, a template defines the presentation of some data in some format. Handlebars uses HTML code directly in the template. In the template, there are some placeholders, to be replaced by some data later. In Handlebars, these placeholders use the expression <code>{{ }}</code>.</p>
+<p>There are many HTML template systems. While their syntax can be quite different, the basic operation remains similar. First, a template defines the presentation of some data in some format. Handlebars uses HTML code directly in the template. In the template, there are some placeholders, to be replaced by some data later. In Handlebars, these placeholders use the expression <code>{{ }}</code>.</p>
 
 <pre><code class="language-HTML">&lt;!-- a handlerbars template with two placeholders --&gt;
 &lt;div class=&quot;entry&quot;&gt;
@@ -386,9 +378,10 @@
 <pre><code class="language-JavaScript">var context = { title: 'My first post', body: &quot;This is my first post!&quot;};
 </code></pre>
 
-<p>Now, here is how to apply the template to display the data.</p>
+<p>Next, we need to fill in the placeholders in the template with the data in the context. <em>(template + context =&gt; html code)</em> The JavaScript code to do this is &hellip;</p>
 
-<pre><code class="language-JavaScript">var source = &quot;&lt;div&gt;...&lt;/div&gt;&quot;; // the template as string
+<pre><code class="language-JavaScript">// the template as string
+var source = &quot;&lt;div&gt;...&lt;/div&gt;&quot;;
 // compile the template string into a function
 // this function can be used multiple times
 var template = Handlebars.compile(source);
@@ -416,7 +409,7 @@ var html = template(context);
 
 <p>Handlebars provides the block helper <code>{{#each property}} ... {{/each}}</code> to
 repeat part of the template for each element in the named property, which is an array.
-For example, we have a array of color in this context object.</p>
+For example, we have an array of color in this context object in the example <a href="/chap3/p362.html">p362.html</a>.</p>
 
 <pre><code class="language-JavaScript">var palette = { color: [
   { name: 'purple',  hexrgb: '#800080', decrgb: [128,0,128]},
@@ -444,17 +437,17 @@ For example, we have a array of color in this context object.</p>
 &lt;/table&gt;
 </code></pre>
 
-<p>Inside the pair <code>{{#each color}}</code> and <code>{{/each}}</code>, the placeholders refer to each element in the array. Notice that we can also interpolate value in HTML attribute.  See <a href="/chap3/p362.html">p362.html</a> for how the example works.</p>
+<p>Inside the pair <code>{{#each color}}</code> and <code>{{/each}}</code>, the placeholders refer to each element in the array. Notice that we can also interpolate value in HTML attribute.</p>
 
-<h2 id="conditions:0acc7f683f17301d1361a2a9d40e010c">Conditions</h2>
+<h2 id="condition:0acc7f683f17301d1361a2a9d40e010c">Condition</h2>
 
-<p>Suppose you have some objects that represents email. You want to show different icons to distinguish read email from unread email.</p>
+<p>Suppose you have some objects that represent email. You want to show different icons to distinguish read email from unread email.</p>
 
 <pre><code class="language-JavaScript">var email1 = { read: true, sender: 'Peter', subject: '..' };
 var email2 = { read: false, sender: 'John', subject: '..' };
 </code></pre>
 
-<p>The block helper <code>{{#if}}</code> support simple conditional display of template content. In the following template, the first image is only shown when <code>read===true</code>. Otherwise, only the second image is shown. See <a href="/chap3/p363.html">p363.html</a> for the source code.</p>
+<p>The block helper <code>{{#if}}</code> supports simple conditional display of template content. In the following template, the first image is only shown when <code>read===true</code>. Otherwise, only the second image is shown. See <a href="/chap3/p363.html">p363.html</a> for the source code.</p>
 
 <pre><code class="language-HTML">&lt;p&gt;
   {{#if read}}
@@ -469,9 +462,9 @@ var email2 = { read: false, sender: 'John', subject: '..' };
 
 <h2 id="advanced-example:0acc7f683f17301d1361a2a9d40e010c">Advanced example</h2>
 
-<p>Time table example, template version.  Use both <code>{{#each}}</code> and <code>{{#if}}</code>.
-Also need to enrich the context object.  (no logic in template.)
-<a href="/chap3/p365.html">p365.html</a></p>
+<p>We end this lab with an advanced example <a href="/chap3/p364.html">p364.html</a>. This example uses
+template to show lecture time table. The template uses both <code>{{#each}}</code> and <code>{{#if}}</code>.
+Notice that you cannot include JavaScript code in the template. Therefore, you need to add properties to the context object in JavaScript before passing the context to the template.</p>
 
 
       

@@ -50,6 +50,22 @@
     <li>Write statement to select <code>li</code> 1 and 4</li>
   </ul>
 
+<hr>
+
+  <p>An example to iterate a collection</p>
+  <pre><code>// this example adds 1 mark to exam of everybody!
+// first, select all cells in the table body
+var $cells = $('table#marks tbody td:nth-child(3)');
+// for each HTML element in the jQuery collection ...
+for (var c of $cells) {
+  // use $() to make the DOM node into a jQuery collection
+  // then, we can use .text() to read content
+  var mark = $(c).text();
+  mark = parseInt(mark);
+  $(c).text(mark+1);
+}
+</code></pre>
+
   <script src="jquery.js"></script>
 </body>
 </html>

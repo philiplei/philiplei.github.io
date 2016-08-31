@@ -132,7 +132,7 @@
           
             <li class="dd-item " data-nav-id="/client/3-1/">
               <a href="/client/3-1/">
-                <span>3-1 First example     </i></span>
+                <span>3-1 Quick start     </i></span>
               </a>
             </li>
           
@@ -189,14 +189,6 @@
             <li class="dd-item " data-nav-id="/client/3-8/">
               <a href="/client/3-8/">
                 <span>3-8 Page load and others     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/client/3-other/">
-              <a href="/client/3-other/">
-                <span>3-6 Advanced events     </i></span>
               </a>
             </li>
           
@@ -334,7 +326,7 @@
 <li>
 <ul>
 <li><a href="#create-new-html-content:ea5c74532ea585d792ffc5ecba7767b0">Create new HTML content</a></li>
-<li><a href="#insert-content-to-dom-tree:ea5c74532ea585d792ffc5ecba7767b0">Insert content to DOM tree</a></li>
+<li><a href="#insert-content-to-document-tree:ea5c74532ea585d792ffc5ecba7767b0">Insert content to document tree</a></li>
 <li><a href="#exercise:ea5c74532ea585d792ffc5ecba7767b0">Exercise</a></li>
 </ul></li>
 </ul>
@@ -353,13 +345,11 @@
 
 
 
-<p>This lab covers how to create new content into the DOM tree using <code>$()</code> jQuery functions and methods.</p>
-
-<p><a href="/chap3/p311.html">p311.html</a></p>
+<p>This lab covers how to create new content into the document tree using <code>$()</code> jQuery functions and methods.</p>
 
 <h2 id="create-new-html-content:ea5c74532ea585d792ffc5ecba7767b0">Create new HTML content</h2>
 
-<p>You can create new HTML content by passing HTML code to the jQuery function <code>$(htmlCode)</code>.  The newly created elements are detached from the current DOM tree, and not displayed.  To show the content, you have to attach the elements to the DOM tree.</p>
+<p>You can create new HTML content by passing HTML code to the jQuery function <code>$(htmlCode)</code>.  The newly created elements are detached from the current document tree, and not displayed.  To show the content, you have to attach the elements to the document tree.  Run the following code in <a href="/chap3/p311.html">p311.html</a>.</p>
 
 <pre><code class="language-JavaScript">var p = $('&lt;p&gt;A new paragraph &lt;em&gt;created&lt;/em&gt; by jQuery&lt;/p&gt;');
 dir(p);
@@ -368,19 +358,29 @@ $('body').append(p);
 // now you can see it
 </code></pre>
 
-<p>When you supply html code to jQuery function, it returns a jQuery collection, just like the collection returned when you supply a CSS selector. Therefore, you can use the jQuery methods like <code>$().html()</code> or <code>$().attr()</code> to configure the newly created elements.</p>
+<p>When you supply HTML code to jQuery function, it returns a jQuery collection, just like the collection returned when you supply a CSS selector. Therefore, you can use the jQuery methods like <code>$().html()</code> or <code>$().attr()</code> to configure the newly created elements.</p>
 
-<pre><code class="language-JavaScript">var link = $('&lt;a&gt;').html('Macao Poly').attr('href', 'http://www.ipm.edu.mo');
+<pre><code class="language-JavaScript">var img = $('&lt;img&gt;').attr('src', 'ani/dragon.png');
+$('body').append(img);
+
+var link = $('&lt;a&gt;').html('Macao Poly').attr('href', 'http://www.ipm.edu.mo');
 // this is the same as $('&lt;a href=&quot;http://www.ipm.edu.mo&quot;&gt;Macao Poly&lt;/a&gt;');
 $('body').append(link);
-
-var img = $('&lt;img&gt;').attr('src', 'ani/dragon.png');
-$('body').append(img);
 </code></pre>
 
-<h2 id="insert-content-to-dom-tree:ea5c74532ea585d792ffc5ecba7767b0">Insert content to DOM tree</h2>
+<p>By the way, you can detach an element from the document tree with <code>$().detach()</code> or <code>$().remove</code>, and reinsert it later. To remove all content inside an element, use <code>$(selector).empty()</code>.</p>
 
-<p>There are several methods you can use to insert new / existing content into the current DOM tree.</p>
+<pre><code class="language-JavaScript">// move all images to the end of the document
+var img = $('img').detach();
+$('body').append(img);
+
+// make the document body empty
+$('body').empty();
+</code></pre>
+
+<h2 id="insert-content-to-document-tree:ea5c74532ea585d792ffc5ecba7767b0">Insert content to document tree</h2>
+
+<p>There are several methods you can use to insert new / existing content into the current document tree.</p>
 
 <ul>
 <li><code>$().append(content)</code> - adds the content at the end of each element in the collection</li>
@@ -389,16 +389,9 @@ $('body').append(img);
 <li><code>$().before(content)</code> - adds the content before each element in the collection</li>
 </ul>
 
-<p>If the source content is already attached to the current DOM, the content is removed first, and then attached at the target location.  If you want to keep the source content at the original position, clone the source content before inserting.</p>
+<p>If the source content is already attached to the current document, the content is removed first, and then attached at the target location.  If you want to keep the source content at the original position, clone the source content before inserting with <code>$().clone()</code>.</p>
 
-<pre><code class="language-JavaScript">// assume img#tiger is in the DOM
-// make a clone
-var c = $('img#tiger').clone();
-// and insert it after the ox image
-$('#ox').after(c);
-</code></pre>
-
-<p>You can also remove elements from the DOM temporarily with <code>var a = $(selector).remove()</code>, and later reinsert <code>a</code> back to the DOM.  To remove all content inside an element, use <code>$(selector).empty()</code>.</p>
+<p>Now, go through the examples in <a href="/chap3/p312.html">p312.html</a>.</p>
 
 <p>The four insertion methods have a counterpart version that reverse the order of source and target.  (<code>$().appendTo()</code>, <code>$().prependTo()</code>, <code>$().insertBefore()</code> and <code>$().insertAfter()</code>) They are useful if you want to chain other methods on the source.  See <a href="https://api.jquery.com/category/manipulation/dom-insertion-inside/">online reference</a> or more detail.</p>
 
@@ -407,7 +400,7 @@ $('#ox').after(c);
 $('#tiger').insertAfter($('#rooster'))
 </code></pre>
 
-<p>The following creates new rows and inserts into the table. See the demo <a href="/chap3/p312.html">p312.html</a></p>
+<p>The following creates new rows and inserts into the table. See the demo <a href="/chap3/p313.html">p313.html</a></p>
 
 <pre><code class="language-JavaScript">var $t = $('table tbody');
 // clear the table body
@@ -426,10 +419,7 @@ for (var k=16; k&lt;32; k++) {
 
 <h2 id="exercise:ea5c74532ea585d792ffc5ecba7767b0">Exercise</h2>
 
-<p>In this exercise, you have to populate an HTML table with JSON data.
-- exercise: populate html table with json data</p>
-
-<p>Solution done in <a href="/chap3/p313.html">p313.html</a></p>
+<p>In this exercise, you have to populate an HTML table with JSON data in <a href="/chap3/p314.html">p314.html</a>.  Refer to the <a href="/chap3/p314-done.html">sample answer</a> for the required output format.</p>
 
 
       

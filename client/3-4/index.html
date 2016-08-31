@@ -132,7 +132,7 @@
           
             <li class="dd-item " data-nav-id="/client/3-1/">
               <a href="/client/3-1/">
-                <span>3-1 First example     </i></span>
+                <span>3-1 Quick start     </i></span>
               </a>
             </li>
           
@@ -189,14 +189,6 @@
             <li class="dd-item " data-nav-id="/client/3-8/">
               <a href="/client/3-8/">
                 <span>3-8 Page load and others     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/client/3-other/">
-              <a href="/client/3-other/">
-                <span>3-6 Advanced events     </i></span>
               </a>
             </li>
           
@@ -358,7 +350,7 @@
 
 <h2 id="basic-event-handling:0daf9bef3eba6d32a1428afa07d01624">Basic event handling</h2>
 
-<p>The basic function to register event handler is <code>$().on(events, handler)</code> <a href="https://api.jquery.com/on/">(online reference)</a> This method attaches the event handler (a function) to handle the events (e.g &lsquo;click&rsquo;, &lsquo;mousemove&rsquo;) to each element in the jQuery collection. Different ways to attach event handlers are given in the following sample code.</p>
+<p>The basic function to register event handler is <code>$().on(events, handler)</code> <a href="https://api.jquery.com/on/">(online reference)</a> This method attaches the event handler (a function) to handle the events (e.g &lsquo;click&rsquo;, &lsquo;mousemove&rsquo;) to each element in the jQuery collection. There are different ways to attach event handlers, as shown below.</p>
 
 <pre><code class="language-JavaScript">$('button#btn1').on('click', function(event) {
   // do something when the button with id=btn1 is clicked
@@ -386,8 +378,8 @@ $('button#btn1').on('click', btn1_click);
 <h2 id="mouse-event-and-event-object:0daf9bef3eba6d32a1428afa07d01624">Mouse event and event object</h2>
 
 <p>The browser triggers several mouse-related events when the user interacts with the HTML elements using the mouse. Some common mouse events are: <code>click</code>, <code>mouseenter</code>, <code>mouseleave</code> and <code>mousemove</code>.
-The event handler is passed a <a href="http://api.jquery.com/category/events/event-object/">Event object</a> as the first parameter.
-This object includes several useful property and methods. One of them is the property <code>.target</code>, which is the HTML element that triggers the event. The event type is given in the property <code>.type</code>. The location of the mouse cursor is given in the properties <code>.pageX</code> and <code>.pageY</code>. The following code are from the demo <a href="/chap3/p321.html">p321.html</a>.</p>
+The first parameter of an event handler is an <a href="http://api.jquery.com/category/events/event-object/">Event object</a>.
+This object includes several useful properties and methods. One of them is the property <code>.target</code>, which is the HTML element that triggers the event. The event type is given in the property <code>.type</code>. The location of the mouse cursor is given in the properties <code>.pageX</code> and <code>.pageY</code>. The following code shows how to handle common mouse events. Check a live demo at <a href="/chap3/p321.html">p321.html</a>.</p>
 
 <pre><code class="language-JavaScript">// this event handler handles 'click'
 $('#box1').on('click', event =&gt; {
@@ -420,7 +412,7 @@ $('#zodiac img').on('click', event =&gt; {
 
 <h2 id="attach-data-to-dom-elements:0daf9bef3eba6d32a1428afa07d01624">Attach data to DOM elements</h2>
 
-<p>Although we can distinguish which element triggers an event with <code>event.target</code>, usually it is more convenient if we can pass some application specific information (e.g. record id) to the event handler.  There are several ways to do this.  The example <a href="/chap3/p323.html">p323.html</a> uses the jQuery method <code>$().data(name, value)</code> to attach any JavaScript data to a DOM element.</p>
+<p>Although we can distinguish which element triggers an event with <code>event.target</code>, usually it is more convenient if we can pass some application specific information (e.g. record id) to the event handler.  There are several ways to do this.  The code below are extracted from a simple Tic-tac-toe example <a href="/chap3/p323.html">p323.html</a> and uses the jQuery method <code>$().data(name, value)</code> to attach any JavaScript data to a DOM element.</p>
 
 <pre><code class="language-HTML">&lt;!-- the tic tac toe game board is a 3x3 table --&gt;
 &lt;table id='tic' class='gameboard'&gt;
@@ -430,7 +422,7 @@ $('#zodiac img').on('click', event =&gt; {
 &lt;/table&gt;
 
 &lt;script&gt;
-// attach pos=0, pos=1, .. etc to the 9 table cells
+// attach pos=0, pos=1, .., pos=8 to the 9 table cells
 for (var k=0; k&lt;$('#tic td').length; k++) {
   $('#tic td').eq(k).data('pos', k);
 }
@@ -444,6 +436,7 @@ for (var k=0; k&lt;$('#tic td').length; k++) {
 var current = 0;
 
 $('#tic td').on('click', (event)=&gt;{
+  // which position (0-8) is clicked?
   var pos = $(event.target).data('pos');
   // update the game board data structure
   board[pos] = current;
@@ -459,16 +452,7 @@ $('#tic td').on('click', (event)=&gt;{
 
 <p>Instead of attaching JavaScript data to DOM element, you can specify these JavaScript data when registering an event handler. When the event triggers, jQuery passes the specified data to the event handler as <code>event.data</code>.</p>
 
-<pre><code class="language-JavaScript">var detail = { title: 'Guia Lighthouse', place: 'macau' };
-// During registration, specify a JavaScript object to pass to the event handler
-$('img#abc').on('click', detail, (event) =&gt; {
-  // when the event triggers, jQuery invokes this event handler
-  // and makes the specified data available at event.data
-  console.log('Title is ', event.data.title);
-});
-</code></pre>
-
-<p>This example (<a href="/chap3/p324.html">p324.html</a>) specifies a row number while it registers an event handler for each row in the table.</p>
+<p>This example (<a href="/chap3/p324.html">p324.html</a>) specifies a row number while it registers an event handler for each row in an existing HTML table.</p>
 
 <pre><code class="language-JavaScript">var $rows = $('#marks tbody tr');
 for (var i=0; i&lt;$rows.length; i++) {
@@ -479,7 +463,35 @@ for (var i=0; i&lt;$rows.length; i++) {
 }
 </code></pre>
 
-<p>This example (<a href="/chap3/p325.html">p325.html</a>) populates the table with some data in runtime, and attach the event handler while attach a newly created table row to the table.</p>
+<p>The following code snippet comes from the example (<a href="/chap3/p325.html">p325.html</a>). This app populates an HTML table with some mark data for students in runtime, and attaches the event handler to a newly created table row for each student.</p>
+
+<pre><code class="language-JavaScript">function populateMarkTable (marks) {
+  $('#marks caption').text(`Marks for ${marks.courseCode}`);
+  $('#marks tbody').empty();
+  for (var k=0; k&lt;marks.student.length; k++) {
+    var stud=marks.student[k];
+    // calculate course, exam and final for this student
+    // ...
+    var $r = $('&lt;tr&gt;');
+    $('&lt;td&gt;').text(stud.name).appendTo($r);
+    $('&lt;td&gt;').text(course).appendTo($r);
+    $('&lt;td&gt;').text(exam).appendTo($r);
+    $('&lt;td&gt;').text(final).appendTo($r);
+    // pass a student record to the event handler
+    // when the mouse is over this row
+    $r.on('mouseenter', { stud: stud }, displayMarkDetail);
+    $('#marks tbody').append($r);
+  }
+}
+
+function displayMarkDetail (event) {
+  // event.data.stud is the record of the student selected
+  var stud = event.data.stud;
+  var s = `The student ${stud.name} has got ${stud.hw.join(',')} in assignments, `;
+  s += `${stud.test.join(',')} in tests, and ${stud.exam} in exam.`;
+  $('p#detail').text(s);
+}
+</code></pre>
 
 
       

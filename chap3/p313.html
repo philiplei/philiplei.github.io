@@ -1,65 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Example: create new content</title>
+  <title>Example: new content</title>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="common.css"/>
   <style>
-
+  div#sample { padding: 0.7em; margin: 12px 0px; border: 1px solid green; overflow: auto;}
+  table { border-collapse: collapse; }
+  table td { padding: 4px; border: 1px solid gray;}
+  table thead { background-color: gray; color: white; }
   </style>
 </head>
 
 <body>
-
-  <p>Lectures</p>
-
-  <ul id='lectures'>
-  </ul>
-
+  <p>Click the button to fill in content in the table</p>
+  <table>
+    <thead>
+    <tr><td>N<td>binary<td>hexadecimal</tr>
+    <tbody>
+    <tr><td><td><td></tr>
+  </table>
+  <p>
+  <button type="button">Cick to fill the table</button></p>
   <script src="jquery.js"></script>
   <script>
-  var timetab = {
-    acadYear: "2016/17",
-    semester: 1,
-    courses: [
-      {
-        code: 'comp211', title: 'Database design', year: 2,
-        lectures: [
-          { dow: 2, start: 1130, end: 1300, room: 'A203' },
-          { dow: 4, start: 1000, end: 1130, room: 'A318' }
-        ]
-      },
-      {
-        code: 'comp212', title: 'Programming II', year: 2,
-        lectures: [
-          { dow: 4, start: 1430, end: 1600, room: 'A317' },
-          { dow: 3, start: 1600, end: 1730, room: 'A210' }
-        ]
-      },
-      {
-        code: 'comp214', title: 'Computer networks', year: 2,
-        lectures: [
-          { dow: 5, start: 1000, end: 1300, room: 'A206' }
-        ]
-      }
-    ]
-  };
-
-  function showLectures() {
-    var dowName = [ '', 'Mon', 'Tue','Wed', 'Thu', 'Fri' ];
-    var $ul = $('ul#lectures');
-    for (var c of timetab.courses) {
-      var s = `${c.code} ${c.title}`;
-      var $list = $('<ul>');
-      for (var lec of c.lectures) {
-        $('<li>').text(`${dowName[lec.dow]} ${lec.start}-${lec.end}. Room: ${lec.room}`).appendTo($list);
-      }
-      var $li = $('<li>').text(s).append($list);
-      $ul.append($li);
-    }
+$('button').on('click', (event) => {
+  var $t = $('table tbody');
+  // clear the table body
+  $t.empty();
+  for (var k=16; k<32; k++) {
+    // create a new row
+    var $r = $('<tr>');
+    // and append three cells to the row
+    $('<td>').html(k).appendTo($r);
+    $('<td>').html(k.toString(2)).appendTo($r);
+    $('<td>').html(k.toString(16)).appendTo($r);
+    // append the row to the table body
+    $t.append($r);
   }
-
-  showLectures();
-  </script>
+});
+</script>
 </body>
 </html>
