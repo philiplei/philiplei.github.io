@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.16" />
+    <meta name="generator" content="Hugo 0.15" />
     <meta name="description" content="">
 
 
@@ -325,11 +325,11 @@
 <ul>
 <li>
 <ul>
-<li><a href="#array-as-class">Array as Class</a></li>
-<li><a href="#date">Date</a></li>
-<li><a href="#maps">Maps</a></li>
-<li><a href="#defining-class">Defining class</a></li>
-<li><a href="#exercise">Exercise</a></li>
+<li><a href="#array-as-class:7ca16074685f2bdef80cf45ba4944844">Array as Class</a></li>
+<li><a href="#date:7ca16074685f2bdef80cf45ba4944844">Date</a></li>
+<li><a href="#maps:7ca16074685f2bdef80cf45ba4944844">Maps</a></li>
+<li><a href="#defining-class:7ca16074685f2bdef80cf45ba4944844">Defining class</a></li>
+<li><a href="#exercise:7ca16074685f2bdef80cf45ba4944844">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -356,7 +356,7 @@ point.x;  // 2
 dir(point); // show structure, only avail in Chrome console
 </code></pre>
 
-<h2 id="array-as-class">Array as Class</h2>
+<h2 id="array-as-class:7ca16074685f2bdef80cf45ba4944844">Array as Class</h2>
 
 <p>JavaScript arrays are also objects, in the sense that an array has many methods, which we can invoke with the dot notation. In fact, each method is a property with a function as value. Refer to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Array_instances">online ref</a> for a list of methods of array objects.</p>
 
@@ -375,7 +375,7 @@ for (var x of b) {
 }
 </code></pre>
 
-<h2 id="date">Date</h2>
+<h2 id="date:7ca16074685f2bdef80cf45ba4944844">Date</h2>
 
 <p>Up to now, we have encountered several built-in classes in JavaScript. They include
 <code>Array</code> and <code>Map</code>. Before we discuss how to define our own class, let&rsquo;s examine the usage of another built-in class <code>Date</code>, which represents a single moment in time. <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date">(online reference)</a></p>
@@ -395,7 +395,7 @@ var dow = now.getDay(); // 0-6, where 0 means Sunday
 console.log(now.toLocaleString());
 </code></pre>
 
-<h2 id="maps">Maps</h2>
+<h2 id="maps:7ca16074685f2bdef80cf45ba4944844">Maps</h2>
 
 <p>ES6 defines a new kind of collections called <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>. A map stores key/value pairs.
 (In previous version of JavaScript, objects are often used as map.) You create a Map by submitting a list of key/value pairs to the constructor. Each pair is written as an array of two elements, namely key and value. You retrieve an element from a map using a key with the method <code>.get(key)</code>. You add / replace an element in the map with the method <code>.set(key,value)</code>. You can also delete an element from a map with <code>.delete(key)</code>, and check the number of elements with the property <code>.size</code>.</p>
@@ -419,7 +419,7 @@ for (var [k,v] of m) {
 }
 </code></pre>
 
-<h2 id="defining-class">Defining class</h2>
+<h2 id="defining-class:7ca16074685f2bdef80cf45ba4944844">Defining class</h2>
 
 <p>ES6 has a new syntax to define class. It is similar to the syntax in Java.</p>
 
@@ -479,7 +479,7 @@ console.log('c1 contains c2? ', contains(c1,c2) );
 console.log('c1 contains c3? ', contains(c1,c3) );
 </code></pre>
 
-<h2 id="exercise">Exercise</h2>
+<h2 id="exercise:7ca16074685f2bdef80cf45ba4944844">Exercise</h2>
 
 <ol>
 <li><p>Define a class Point that can be used in the following ways</p>

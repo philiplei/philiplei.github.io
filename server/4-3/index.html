@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.16" />
+    <meta name="generator" content="Hugo 0.15" />
     <meta name="description" content="">
 
 
@@ -325,11 +325,11 @@
 <ul>
 <li>
 <ul>
-<li><a href="#module-request">Module request</a></li>
-<li><a href="#get-an-url">GET an URL</a></li>
-<li><a href="#options-object-pattern">Options object pattern</a></li>
-<li><a href="#post-request">POST request</a></li>
-<li><a href="#exercise">Exercise</a></li>
+<li><a href="#module-request:e085f72ecf58de022c860d0c16b3db02">Module request</a></li>
+<li><a href="#get-an-url:e085f72ecf58de022c860d0c16b3db02">GET an URL</a></li>
+<li><a href="#options-object-pattern:e085f72ecf58de022c860d0c16b3db02">Options object pattern</a></li>
+<li><a href="#post-request:e085f72ecf58de022c860d0c16b3db02">POST request</a></li>
+<li><a href="#exercise:e085f72ecf58de022c860d0c16b3db02">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -349,13 +349,13 @@
 
 <p>This lab demonstrate how send HTTP requests using the <code>request</code> modules.</p>
 
-<h2 id="module-request">Module request</h2>
+<h2 id="module-request:e085f72ecf58de022c860d0c16b3db02">Module request</h2>
 
 <p>Node.js has a built-in module called <code>http</code> and <code>https</code> for making HTTP clients and servers. They are efficient implementation of the HTTP protocol. However, the modules are low-level and not convenient to use. Therefore, the Node community has developed several modules for writing HTTP clients and servers. This lab is about the client-side of HTTP.</p>
 
 <p>A popular choice for HTTP clients is the <code>request</code> module. <a href="https://www.npmjs.com/package/request">(online reference)</a>.  Before using the module the first time in a project, install it with <code>npm install request</code>.</p>
 
-<h2 id="get-an-url">GET an URL</h2>
+<h2 id="get-an-url:e085f72ecf58de022c860d0c16b3db02">GET an URL</h2>
 
 <p>The following example fetches the current weather report from <a href="http://rss.smg.gov.mo/e_ActualWeather_rss.xml">http://rss.smg.gov.mo/e_ActualWeather_rss.xml</a>.</p>
 
@@ -373,7 +373,7 @@ request.get(url, (err, res, body) =&gt; {
 
 <p>The callback for <code>request.get</code> takes three parameters. The first is the error object. The second is an object of class <code>http.IncomingMessage</code> <a href="https://nodejs.org/api/http.html#http_class_http_incomingmessage">(online reference)</a>. It represent the HTTP response message. You can use it to check HTTP status code and headers. The last parameter is the message body of the HTTP response.   The next example downloads an image from IPM website and saves it.</p>
 
-<h2 id="options-object-pattern">Options object pattern</h2>
+<h2 id="options-object-pattern:e085f72ecf58de022c860d0c16b3db02">Options object pattern</h2>
 
 <p>The JavaScript programming language does not support named parameters.  Some APIs make use of a pattern caled <strong>options object pattern</strong> to pass named parameters to a function. For example, if you need to give more information about the HTTP request in addition to URL, you can group these information in an option object and pass it as the first parameter of <code>reqeust.get()</code>. Refer to online reference for <a href="https://www.npmjs.com/package/request#requestoptions-callback">all available options</a>.</p>
 
@@ -404,7 +404,7 @@ request.get(options, (err, res, body) =&gt; {
 });
 </code></pre>
 
-<h2 id="post-request">POST request</h2>
+<h2 id="post-request:e085f72ecf58de022c860d0c16b3db02">POST request</h2>
 
 <p>In the next example, we want to download the class time table from the IPM web app at
 <a href="https://wapps.ipm.edu.mo/siweb/time_prog.asp">https://wapps.ipm.edu.mo/siweb/time_prog.asp</a>.
@@ -437,7 +437,7 @@ request.post(options, (err, res, body) =&gt; {
 });
 </code></pre>
 
-<h2 id="exercise">Exercise</h2>
+<h2 id="exercise:e085f72ecf58de022c860d0c16b3db02">Exercise</h2>
 
 <p>TODO TODO</p>
 

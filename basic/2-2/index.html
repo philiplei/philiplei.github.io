@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.16" />
+    <meta name="generator" content="Hugo 0.15" />
     <meta name="description" content="">
 
 
@@ -325,11 +325,11 @@
 <ul>
 <li>
 <ul>
-<li><a href="#array">Array</a></li>
-<li><a href="#basic-array-methods">Basic array methods</a></li>
-<li><a href="#functions">Functions</a></li>
-<li><a href="#a-note-on-variable-scope">A note on variable scope</a></li>
-<li><a href="#exercise">Exercise</a></li>
+<li><a href="#array:751e016222acc825af018628bf936c15">Array</a></li>
+<li><a href="#basic-array-methods:751e016222acc825af018628bf936c15">Basic array methods</a></li>
+<li><a href="#functions:751e016222acc825af018628bf936c15">Functions</a></li>
+<li><a href="#a-note-on-variable-scope:751e016222acc825af018628bf936c15">A note on variable scope</a></li>
+<li><a href="#exercise:751e016222acc825af018628bf936c15">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -349,7 +349,7 @@
 
 <p>This lab goes through the basics of the JavaScript arrays and functions.</p>
 
-<h2 id="array">Array</h2>
+<h2 id="array:751e016222acc825af018628bf936c15">Array</h2>
 
 <p>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> keep values in a sequence. Arrays can change size in run-time. You retrieve an element from an array by position. Use the operator <code>[]</code> to locate an element at the given index.</p>
 
@@ -393,7 +393,7 @@ for (var [idx, s] of num.entries()) {
 }
 </code></pre>
 
-<h2 id="basic-array-methods">Basic array methods</h2>
+<h2 id="basic-array-methods:751e016222acc825af018628bf936c15">Basic array methods</h2>
 
 <p>Arrays are objects in JavaScript and have some built-in methods. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">online reference</a> for a list of all methods.
 The following shows some common methods.</p>
@@ -425,7 +425,7 @@ for (var k=9; k&lt;200; k+=2) {
 console.log(P);
 </code></pre>
 
-<h2 id="functions">Functions</h2>
+<h2 id="functions:751e016222acc825af018628bf936c15">Functions</h2>
 
 <p>There are two ways to define functions: <code>function</code> keyword and arrow function. This lab covers the first. We use a function to group some statements that can be reused.</p>
 
@@ -481,7 +481,7 @@ function bigger3 (a,b) { return a&gt;b ? a : b; }
 max([2,3,5,8,7,1,4,6]); // return 8
 </code></pre>
 
-<h2 id="a-note-on-variable-scope">A note on variable scope</h2>
+<h2 id="a-note-on-variable-scope:751e016222acc825af018628bf936c15">A note on variable scope</h2>
 
 <p>In JavaScript, variables have function scope. That means that variables defined within a function are only visible inside the function. They are sometimes called <dfn>local variables</dfn>. Function parameters also work like local variables. A new copy of These variables is created when the function executes, and removed when no code has access to them anymore. For simple case like the above example, the local variables are removed when the function returns.</p>
 
@@ -503,7 +503,7 @@ function odd(n) {
 }
 -->
 
-<h2 id="exercise">Exercise</h2>
+<h2 id="exercise:751e016222acc825af018628bf936c15">Exercise</h2>
 
 <ol>
 <li><p>Write a <strong>function</strong> <code>sum(A)</code> to calculate the sum of elements in an array <code>A</code>.

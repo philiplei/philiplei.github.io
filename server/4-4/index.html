@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.16" />
+    <meta name="generator" content="Hugo 0.15" />
     <meta name="description" content="">
 
 
@@ -325,10 +325,10 @@
 <ul>
 <li>
 <ul>
-<li><a href="#node-app-and-package-json">Node app and package.json</a></li>
-<li><a href="#express-js">Express.js</a></li>
-<li><a href="#routes">Routes</a></li>
-<li><a href="#making-responses">Making responses</a></li>
+<li><a href="#node-app-and-package-json:03d977fa566deb9ec8c90ba8ba60e1d5">Node app and package.json</a></li>
+<li><a href="#express-js:03d977fa566deb9ec8c90ba8ba60e1d5">Express.js</a></li>
+<li><a href="#routes:03d977fa566deb9ec8c90ba8ba60e1d5">Routes</a></li>
+<li><a href="#making-responses:03d977fa566deb9ec8c90ba8ba60e1d5">Making responses</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -348,7 +348,7 @@
 
 <p>This lab first covers the concept of a Node app and dependency management in package.json. Next it starts the discussion on the web app framework Express.js.</p>
 
-<h2 id="node-app-and-package-json">Node app and package.json</h2>
+<h2 id="node-app-and-package-json:03d977fa566deb9ec8c90ba8ba60e1d5">Node app and package.json</h2>
 
 <p>In this lab, we&rsquo;ll use the Express.js framework and some other modules to build
 web app server. As an Node application makes use of more NPM modules, it becomes difficult to install the modules manually with the command <code>npm install module-name</code>. Instead, you can describe the dependencies of a Node app in a JSON txt file called <code>package.json</code>.</p>
@@ -375,7 +375,7 @@ web app server. As an Node application makes use of more NPM modules, it becomes
 
 <p>This command installs the latest version of specified module. In addition, it updates <code>package.json</code> and adds the module to the dependencies.  Try the command and check the change in <code>package.json</code>.</p>
 
-<h2 id="express-js">Express.js</h2>
+<h2 id="express-js:03d977fa566deb9ec8c90ba8ba60e1d5">Express.js</h2>
 
 <p>Express.js <a href="http://expressjs.com/">(website)</a> is a web framework to simplify development of Web applications.</p>
 
@@ -402,7 +402,7 @@ app.get('/', function(req, res) {
 app.listen(3000);
 </code></pre>
 
-<h2 id="routes">Routes</h2>
+<h2 id="routes:03d977fa566deb9ec8c90ba8ba60e1d5">Routes</h2>
 
 <p>When a web server receives an HTTP request, it has to decide how to handle the request, and return the result as an HTTP response.  Such decision usually depends on the HTTP method (either GET or POST in most cases) and the path in the URL (e.g. &ldquo;/about.html&rdquo;).   The combination of HTTP method and the URL path is usually referred to as an endpoint of the web service.</p>
 
@@ -437,7 +437,7 @@ app.get('/lecture/:code', (req, res) =&gt; {
 
 <p><strong>The order of routes is significant!</strong>  An Express app checks the routes in the order they are defined. When a route matches the HTTP methods and URL path, the Express app executes its callback function to handle the request.  The callback usually returns an HTTP response with <code>res.send()</code> or similar methods. When a response is returned, the Express app will <strong>stop</strong> checking the remaining routes.</p>
 
-<h2 id="making-responses">Making responses</h2>
+<h2 id="making-responses:03d977fa566deb9ec8c90ba8ba60e1d5">Making responses</h2>
 
 <p>You can use the <code>res</code> object in the route callback to build a response. <a href="http://expressjs.com/en/4x/api.html#res">(online reference)</a> The <code>res</code> object has several common methods:</p>
 
