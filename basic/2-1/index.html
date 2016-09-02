@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.15" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -325,13 +325,13 @@
 <ul>
 <li>
 <ul>
-<li><a href="#number:855bd0b6902ba912a5e7d4153423beed">Number</a></li>
-<li><a href="#string:855bd0b6902ba912a5e7d4153423beed">String</a></li>
-<li><a href="#conversion:855bd0b6902ba912a5e7d4153423beed">Conversion</a></li>
-<li><a href="#comparison:855bd0b6902ba912a5e7d4153423beed">Comparison</a></li>
-<li><a href="#control-structure:855bd0b6902ba912a5e7d4153423beed">Control structure</a></li>
-<li><a href="#a-note-on-loose-typing:855bd0b6902ba912a5e7d4153423beed">A note on loose typing</a></li>
-<li><a href="#exercise:855bd0b6902ba912a5e7d4153423beed">Exercise</a></li>
+<li><a href="#number">Number</a></li>
+<li><a href="#string">String</a></li>
+<li><a href="#conversion">Conversion</a></li>
+<li><a href="#comparison">Comparison</a></li>
+<li><a href="#control-structure">Control structure</a></li>
+<li><a href="#a-note-on-loose-typing">A note on loose typing</a></li>
+<li><a href="#exercise">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -351,13 +351,13 @@
 
 <p>This lab goes through the basic data types (Number and String) and control structures of the JavaScript programming language.</p>
 
-<h2 id="number:855bd0b6902ba912a5e7d4153423beed">Number</h2>
+<h2 id="number">Number</h2>
 
 <p>Two basic data types in JavaScript are <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> and String.
 There are no separate types for integers and doubles. (You define a variable <code>x</code> with <code>var x</code>. In ES6, you can also declare variables with <code>let x</code> and constants with <code>const x</code>.)</p>
 
-<pre><code>var a = 2;
-var b = 3e3;  /* 2 * (10*10*10) */
+<pre><code>var a = 1;
+var b = 2e3;  /* 2 * (10*10*10) */
 var c;  /* c is undefined */
 c = a * 1.5 + b;
 console.log(c);
@@ -379,7 +379,7 @@ var x = Math.sin(Math.PI/2)  // 1
 var y = Math.sqrt(-1) // NaN
 </code></pre>
 
-<h2 id="string:855bd0b6902ba912a5e7d4153423beed">String</h2>
+<h2 id="string">String</h2>
 
 <p>Strings can be delimited with single quote or double quote. Join two strings
 with <code>+</code>. Use the property <code>.length</code> to check number of characters in a string.</p>
@@ -412,7 +412,7 @@ var A = &quot;202.175.3.3&quot;.split('.');
 // an array ['202', '175', '3', '3']
 </code></pre>
 
-<h2 id="conversion:855bd0b6902ba912a5e7d4153423beed">Conversion</h2>
+<h2 id="conversion">Conversion</h2>
 
 <p>User input are usually returned as string. Before calculation, use <code>parseInt()</code> or <code>parseFloat()</code> to convert the string into an integer / floating point number.</p>
 
@@ -446,7 +446,7 @@ var r = parseFloat(s);
 console.log(`Area = ${Math.PI * r * r}`);
 </code></pre>
 
-<h2 id="comparison:855bd0b6902ba912a5e7d4153423beed">Comparison</h2>
+<h2 id="comparison">Comparison</h2>
 
 <p>You can compare numbers and strings using the operators <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>==</code> and <code>!=</code>.
 Comparison results are either <code>true</code> or <code>false</code>, which are the only two values in <code>boolean</code> data type.</p>
@@ -466,7 +466,7 @@ Comparison results are either <code>true</code> or <code>false</code>, which are
 
 <p>Similar to Java, you can use <code>&amp;&amp;</code> and <code>||</code> to combine comparison tests.</p>
 
-<h2 id="control-structure:855bd0b6902ba912a5e7d4153423beed">Control structure</h2>
+<h2 id="control-structure">Control structure</h2>
 
 <p>The control structure if, for and while are similar to those in Java. Please read the online reference of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else">if&hellip;else</a>,
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for">for</a>,
@@ -511,17 +511,17 @@ while (i*i&lt;100) {
 console.log(`The sum of squares &lt; 100 is ${sum}.`)
 </code></pre>
 
-<h2 id="a-note-on-loose-typing:855bd0b6902ba912a5e7d4153423beed">A note on loose typing</h2>
+<h2 id="a-note-on-loose-typing">A note on loose typing</h2>
 
 <p>You might have noticed that when you define a variable with <code>var x</code>, you don&rsquo;t need to specify a data type. A JavaScript variable is not tied to a specific data type in declaration, and can hold values of different data types.</p>
 
 <pre><code class="language-JavaScript">var x = 10;
 x++;  // x is a Number
 x = x.toString(2);  // binary representation
-console.log(x); // x is not a String
+console.log(x); // x is now a String
 </code></pre>
 
-<h2 id="exercise:855bd0b6902ba912a5e7d4153423beed">Exercise</h2>
+<h2 id="exercise">Exercise</h2>
 
 <ol>
 <li><p>Write a program to calculate the sum of even positive numbers up to 30.

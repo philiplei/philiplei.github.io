@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.15" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -325,9 +325,9 @@
 <ul>
 <li>
 <ul>
-<li><a href="#middlewares:8d567a234da7dfb8c63f015e90d88395">Middlewares</a></li>
-<li><a href="#serving-static-content:8d567a234da7dfb8c63f015e90d88395">Serving static content</a></li>
-<li><a href="#handling-form-submit:8d567a234da7dfb8c63f015e90d88395">Handling form submit</a></li>
+<li><a href="#middlewares">Middlewares</a></li>
+<li><a href="#serving-static-content">Serving static content</a></li>
+<li><a href="#handling-form-submit">Handling form submit</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -347,7 +347,7 @@
 
 <p>This lab demonstrate how to use middleware and how to handle form submit using GET and POST. We&rsquo;ll end this part with the implementation of a classic web app. (i.e. before AJAX).</p>
 
-<h2 id="middlewares:8d567a234da7dfb8c63f015e90d88395">Middlewares</h2>
+<h2 id="middlewares">Middlewares</h2>
 
 <p>In the previous lab, we saw that an Express app is essentially a sequence of routes.  When a request arrives at an Express app, the app tries to find a match of the path in the order of routes in the sequence.  If there is a match, the app assumes the callback of the route will generate a response, and skip any remaining routes.</p>
 
@@ -390,7 +390,7 @@ app.listen(3000);
 
 <p>Most middlewares should be registered <em>before routes</em>. If a middleware is registered after a route, and the route returns a response for a request, the middleware will NOT run for this request. As an experiment, move the middleware &lsquo;morgan&rsquo; between the two routes.</p>
 
-<h2 id="serving-static-content:8d567a234da7dfb8c63f015e90d88395">Serving static content</h2>
+<h2 id="serving-static-content">Serving static content</h2>
 
 <p>There is a special middleware bundled with Express. This middleware <code>express-session</code> serves static assets (typically HTML, CSS, images, and client-side library) to clients. The middleware tries to match the files in a folder against the URL path of the request. If there is a match, it returns the file, with a suitable MIME-type, in a response. This makes it simple to creates a simplistic HTTP server.</p>
 
@@ -407,7 +407,7 @@ app.listen(3000, () =&gt; {
 
 <p>In general, routes should be placed before the &lsquo;static&rsquo; middleware. Otherwise, a static file that matches the URL path will be handled by the &lsquo;static&rsquo; middleware and will not be handled by any routes after the middleware.  Try to move the specified route in <a href="/chap4-5/app4.js">app4.js</a> to experiment.</p>
 
-<h2 id="handling-form-submit:8d567a234da7dfb8c63f015e90d88395">Handling form submit</h2>
+<h2 id="handling-form-submit">Handling form submit</h2>
 
 <p>Data that are submitted using GET method are available in the object <code>req.query</code>. In the following example, the route GET &lsquo;/add&rsquo; obtains the two numbers <code>a</code> and <code>b</code> from a GET request, and returns the result of &lsquo;a+b&rsquo; in response.</p>
 
