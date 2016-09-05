@@ -1058,25 +1058,19 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
 
 &lt;p&gt;An &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array&#34;&gt;array&lt;/a&gt; keeps values in a sequence. Arrays can change size in run-time. You retrieve an element from an array by position. Use the operator &lt;code&gt;[]&lt;/code&gt; to locate an element at the given index.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1,3,5,7,9];
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [ 1, 3, 5, 7, 9 ];
 console.log(`The second odd number is ${a[1]}.`);
-&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The &lt;code&gt;length&lt;/code&gt; property refers to the number of elements inside the array.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var empty = [ ];
-var numbers = [ &#39;zero&#39;, &#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;four&#39; ] ;
+var empty = [ ];  // empty array
 empty[1] // undefined
-numbers[1] // &#39;one&#39;
-empty.length // 0
-numbers.length // 5
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;A common method to iterate an array is to use &lt;code&gt;for&lt;/code&gt; loop.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;length&lt;/code&gt; property refers to the number of elements inside the array.
+A common method to iterate an array is to use &lt;code&gt;for&lt;/code&gt; loop. You can read and write elements inside the loop using &lt;code&gt;[ ]&lt;/code&gt;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var P = [ 2,3,5,7,11 ] ;  // small primes
-for (var i=0; i&amp;lt;P.length; i++) {
-  console.log(P[i]);
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var p = [ 2, 3, 5, 7, 11 ] ;  // small primes
+for (var i=0; i&amp;lt;p.length; i++) {
+  console.log(p[i]);
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1084,8 +1078,8 @@ for (var i=0; i&amp;lt;P.length; i++) {
 You can use it to &lt;strong&gt;read&lt;/strong&gt; the entries of an array one by one.
 This control structure is convenient when you only need to access the content of an array, but not the position.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var P = [ 2,3,5,7,11 ] ;  // small primes
-for (var x of P) {
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var p = [ 2, 3, 5, 7, 11 ] ;  // small primes
+for (var x of p) {
   console.log(x);
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -1094,7 +1088,7 @@ for (var x of P) {
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var num = [ &#39;zero&#39;, &#39;um&#39;, &#39;dois&#39;, &#39;tres&#39; ];
 for (var [idx, s] of num.entries()) {
-  console.log(`In portuguese, ${s} means ${idx}.`)
+  console.log(`In Portuguese, ${s} means ${idx}.`)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1113,21 +1107,22 @@ var b = [202,175,3,3];
 var s = b.join(&#39;.&#39;); // &amp;quot;202.175.3.3&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Arrays are useful to keep some values in order. The following example generates prime numbers less than 200. Please refer to &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue&#34;&gt;online help&lt;/a&gt; for the detail usage of &lt;code&gt;break&lt;/code&gt; and &lt;code&gt;continue&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Arrays are useful to keep some values in order. The following example generates prime numbers less than 200. Is also demonstrates the usage of &lt;code&gt;continue&lt;/code&gt; and loop label to force the next iteration.
+Please refer to &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue&#34;&gt;online help&lt;/a&gt; for the detail usage of &lt;code&gt;break&lt;/code&gt; and &lt;code&gt;continue&lt;/code&gt;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var P = [2, 3, 5, 7];
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var p = [2, 3, 5, 7];
 // give a label to the first for loop
 loop1:
 for (var k=9; k&amp;lt;200; k+=2) {
   loop2:
-  for (var n of P) {
-    // if k is divisible by a prime in P, continue onto k+2
+  for (var n of p) {
+    // if k is divisible by a prime in p, continue onto k+2
     if (k % n == 0) continue loop1;
   }
   // after the above for loop, k is verified as prime
-  P.push(k);
+  p.push(k);
 }
-console.log(P);
+console.log(p);
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;functions:751e016222acc825af018628bf936c15&#34;&gt;Functions&lt;/h2&gt;

@@ -353,25 +353,19 @@
 
 <p>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> keeps values in a sequence. Arrays can change size in run-time. You retrieve an element from an array by position. Use the operator <code>[]</code> to locate an element at the given index.</p>
 
-<pre><code class="language-JavaScript">var a = [1,3,5,7,9];
+<pre><code class="language-JavaScript">var a = [ 1, 3, 5, 7, 9 ];
 console.log(`The second odd number is ${a[1]}.`);
-</code></pre>
 
-<p>The <code>length</code> property refers to the number of elements inside the array.</p>
-
-<pre><code class="language-JavaScript">var empty = [ ];
-var numbers = [ 'zero', 'one', 'two', 'three', 'four' ] ;
+var empty = [ ];  // empty array
 empty[1] // undefined
-numbers[1] // 'one'
-empty.length // 0
-numbers.length // 5
 </code></pre>
 
-<p>A common method to iterate an array is to use <code>for</code> loop.</p>
+<p>The <code>length</code> property refers to the number of elements inside the array.
+A common method to iterate an array is to use <code>for</code> loop. You can read and write elements inside the loop using <code>[ ]</code>.</p>
 
-<pre><code class="language-JavaScript">var P = [ 2,3,5,7,11 ] ;  // small primes
-for (var i=0; i&lt;P.length; i++) {
-  console.log(P[i]);
+<pre><code class="language-JavaScript">var p = [ 2, 3, 5, 7, 11 ] ;  // small primes
+for (var i=0; i&lt;p.length; i++) {
+  console.log(p[i]);
 }
 </code></pre>
 
@@ -379,8 +373,8 @@ for (var i=0; i&lt;P.length; i++) {
 You can use it to <strong>read</strong> the entries of an array one by one.
 This control structure is convenient when you only need to access the content of an array, but not the position.</p>
 
-<pre><code class="language-JavaScript">var P = [ 2,3,5,7,11 ] ;  // small primes
-for (var x of P) {
+<pre><code class="language-JavaScript">var p = [ 2, 3, 5, 7, 11 ] ;  // small primes
+for (var x of p) {
   console.log(x);
 }
 </code></pre>
@@ -389,7 +383,7 @@ for (var x of P) {
 
 <pre><code class="language-JavaScript">var num = [ 'zero', 'um', 'dois', 'tres' ];
 for (var [idx, s] of num.entries()) {
-  console.log(`In portuguese, ${s} means ${idx}.`)
+  console.log(`In Portuguese, ${s} means ${idx}.`)
 }
 </code></pre>
 
@@ -408,21 +402,22 @@ var b = [202,175,3,3];
 var s = b.join('.'); // &quot;202.175.3.3&quot;
 </code></pre>
 
-<p>Arrays are useful to keep some values in order. The following example generates prime numbers less than 200. Please refer to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue">online help</a> for the detail usage of <code>break</code> and <code>continue</code>.</p>
+<p>Arrays are useful to keep some values in order. The following example generates prime numbers less than 200. Is also demonstrates the usage of <code>continue</code> and loop label to force the next iteration.
+Please refer to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue">online help</a> for the detail usage of <code>break</code> and <code>continue</code>.</p>
 
-<pre><code class="language-JavaScript">var P = [2, 3, 5, 7];
+<pre><code class="language-JavaScript">var p = [2, 3, 5, 7];
 // give a label to the first for loop
 loop1:
 for (var k=9; k&lt;200; k+=2) {
   loop2:
-  for (var n of P) {
-    // if k is divisible by a prime in P, continue onto k+2
+  for (var n of p) {
+    // if k is divisible by a prime in p, continue onto k+2
     if (k % n == 0) continue loop1;
   }
   // after the above for loop, k is verified as prime
-  P.push(k);
+  p.push(k);
 }
-console.log(P);
+console.log(p);
 </code></pre>
 
 <h2 id="functions:751e016222acc825af018628bf936c15">Functions</h2>
