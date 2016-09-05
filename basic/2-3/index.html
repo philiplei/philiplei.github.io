@@ -350,7 +350,7 @@
 
 <h2 id="objects:51a54ca2b6504050813f27f36d3dbb0e">Objects</h2>
 
-<p>In JavaScript, objects are a collection of properties. Each property
+<p>In JavaScript, an <dfn>object</dfn> is a collection of properties. Each property
 is a pair of name and value. You can access each property with the dot notation.</p>
 
 <pre><code class="language-JavaScript">// define an object with 3 properties
@@ -423,6 +423,8 @@ console.log(
 
 <p>By mixing arrays and objects, you can use JavaScript data structure to represent some complicated data. This forms the basis of the JSON data format.</p>
 
+<p>In the following example, the object <code>timetab</code> represents the lecture timetable for <sup>2016</sup>&frasl;<sub>17</sub>, semester 1. The property <code>courses</code> has array value, and contains an object for each course.</p>
+
 <pre><code class="language-JavaScript">var timetab = {
   acadYear: &quot;2016/17&quot;,
   semester: 1,
@@ -460,7 +462,7 @@ console.log(
 person['age'] = 20;
 </code></pre>
 
-<p>The array notation is necessary is you only know the property names in run-time, or the property names contains non-ASCII characters.</p>
+<p>The array notation is necessary if you only know the property names in run-time, or the property names contains non-ASCII characters.</p>
 
 <pre><code class="language-JavaScript">var cn2en = {
   '春': 'spring', '夏': 'summer',
@@ -471,18 +473,18 @@ cn2en['春']  // 'spring'
 //cn2en.春
 </code></pre>
 
-<p>The JavaScript language also has a <code>for .. in ..</code> control structure to enumerate the properties of an object. We skip its discussion because it is tricky to use.</p>
+<p>The JavaScript language also has a <code>for .. in</code> control structure to enumerate the properties of an object. We skip its discussion because it is tricky to use.</p>
 
 <h2 id="exercise:51a54ca2b6504050813f27f36d3dbb0e">Exercise</h2>
 
-<p>Use the time table data structure above to complete this exercise.</p>
+<p>Use the time table data structure above to complete this exercise. Refer to the sample answers for sample output: <a href="/chap2/p201.js">p201.js</a>, <a href="/chap2/p202.js">p202.js</a> and <a href="/chap2/p203.js">p203.js</a>,</p>
 
 <ol>
-<li><p>Write a program to print the content of the time table.</p></li>
-
 <li><p>Write a program to show the number of lectures of each course. The output should include course code, course title, and number of lectures per week.</p></li>
 
-<li><p>Write a program to list the lectures on Thursday <code>dow==4</code>. The output should include course code, title, start and end time, and room.</p></li>
+<li><p>Write a program to print the content of the time table.</p></li>
+
+<li><p>Write a program to list the lectures on Thursday <code>dow==4</code>. The output should include course code, start and end time, and room.</p></li>
 </ol>
 
 

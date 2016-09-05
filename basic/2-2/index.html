@@ -422,7 +422,7 @@ console.log(p);
 
 <h2 id="functions:751e016222acc825af018628bf936c15">Functions</h2>
 
-<p>There are two ways to define functions: <code>function</code> keyword and arrow function. This lab covers the first. We use a function to group some statements that can be reused.</p>
+<p>There are two ways to define functions: the <code>function</code> keyword and arrow functions. This lab covers the first. We use a function to group some statements that can be reused.</p>
 
 <pre><code class="language-JavaScript">// draw a right angle triangle of height n
 function draw (n) {
@@ -462,13 +462,13 @@ function bigger2 (a,b) {
 function bigger3 (a,b) { return a&gt;b ? a : b; }
 </code></pre>
 
-<p>The next example defines a function that finds the largest numbers in an array, assuming that the array has at least 1 element.</p>
+<p>The next example defines a function that finds the largest number in an array, assuming that the array has at least 1 element.</p>
 
-<pre><code class="language-JavaScript">function max (A) {
-  var x = A[0]; // assume the 0th element is the largest
+<pre><code class="language-JavaScript">function max (num) {
+  var x = num[0]; // assume the 0th element is the largest
   // compare x with each remaining element
-  for (var k=1; k&lt;A.length; k++) {
-    if (A[k]&gt;x) x = A[k];
+  for (var k=1; k&lt;num.length; k++) {
+    if (num[k]&gt;x) x = num[k];
   }
   return x;
 }
@@ -478,7 +478,7 @@ max([2,3,5,8,7,1,4,6]); // return 8
 
 <h2 id="a-note-on-variable-scope:751e016222acc825af018628bf936c15">A note on variable scope</h2>
 
-<p>In JavaScript, variables have function scope. That means that variables defined within a function are only visible inside the function. They are sometimes called <dfn>local variables</dfn>. Function parameters also work like local variables. A new copy of These variables is created when the function executes, and removed when no code has access to them anymore. For simple case like the above example, the local variables are removed when the function returns.</p>
+<p>In JavaScript, variables have function scope. That means that variables defined within a function are only visible inside the function. They are sometimes called <dfn>local variables</dfn>. Function parameters also work like local variables. A new copy of these variables is created when the function executes, and removed when no code has access to them anymore. For simple case like the above example, the local variables are removed when the function returns.</p>
 
 <p>On the other hand, variables defined outside any functions are <dfn>global variables</dfn>, and are visible inside any functions. It is generally recommended to use global variables as little as possible.</p>
 
@@ -501,7 +501,7 @@ function odd(n) {
 <h2 id="exercise:751e016222acc825af018628bf936c15">Exercise</h2>
 
 <ol>
-<li><p>Write a <strong>function</strong> <code>sum(A)</code> to calculate the sum of elements in an array <code>A</code>.
+<li><p>Write a <strong>function</strong> <code>sum(num)</code> to calculate the sum of elements in an array <code>num</code>.
 Use the following code to test your function.</p>
 
 <pre><code class="language-JavaScript">var x = [1,2,3,4,5];
@@ -518,7 +518,7 @@ console.log(odd(9)); // should print [1,3,5,7,9]
 console.log(sum(odd(10*2-1))); // should print 100
 </code></pre></li>
 
-<li><p>Write a function <code>search(A, n)</code> to search for an number <code>n</code> in the array <code>A</code>. Return the   position of the element if it is found. If it is not found, return -1. Test your function with the following code.</p>
+<li><p>Write a function <code>search(num, n)</code> to search for an number <code>n</code> in the array <code>num</code>. Return the   position of the element if it is found. If it is not found, return -1. Test your function with the following code.</p>
 
 <pre><code class="language-JavaScript">var x = [6, 8, 3, -2];
 console.log(search(x, 3)); // should print 2;

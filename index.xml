@@ -1127,7 +1127,7 @@ console.log(p);
 
 &lt;h2 id=&#34;functions:751e016222acc825af018628bf936c15&#34;&gt;Functions&lt;/h2&gt;
 
-&lt;p&gt;There are two ways to define functions: &lt;code&gt;function&lt;/code&gt; keyword and arrow function. This lab covers the first. We use a function to group some statements that can be reused.&lt;/p&gt;
+&lt;p&gt;There are two ways to define functions: the &lt;code&gt;function&lt;/code&gt; keyword and arrow functions. This lab covers the first. We use a function to group some statements that can be reused.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// draw a right angle triangle of height n
 function draw (n) {
@@ -1167,13 +1167,13 @@ function bigger2 (a,b) {
 function bigger3 (a,b) { return a&amp;gt;b ? a : b; }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The next example defines a function that finds the largest numbers in an array, assuming that the array has at least 1 element.&lt;/p&gt;
+&lt;p&gt;The next example defines a function that finds the largest number in an array, assuming that the array has at least 1 element.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function max (A) {
-  var x = A[0]; // assume the 0th element is the largest
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function max (num) {
+  var x = num[0]; // assume the 0th element is the largest
   // compare x with each remaining element
-  for (var k=1; k&amp;lt;A.length; k++) {
-    if (A[k]&amp;gt;x) x = A[k];
+  for (var k=1; k&amp;lt;num.length; k++) {
+    if (num[k]&amp;gt;x) x = num[k];
   }
   return x;
 }
@@ -1183,7 +1183,7 @@ max([2,3,5,8,7,1,4,6]); // return 8
 
 &lt;h2 id=&#34;a-note-on-variable-scope:751e016222acc825af018628bf936c15&#34;&gt;A note on variable scope&lt;/h2&gt;
 
-&lt;p&gt;In JavaScript, variables have function scope. That means that variables defined within a function are only visible inside the function. They are sometimes called &lt;dfn&gt;local variables&lt;/dfn&gt;. Function parameters also work like local variables. A new copy of These variables is created when the function executes, and removed when no code has access to them anymore. For simple case like the above example, the local variables are removed when the function returns.&lt;/p&gt;
+&lt;p&gt;In JavaScript, variables have function scope. That means that variables defined within a function are only visible inside the function. They are sometimes called &lt;dfn&gt;local variables&lt;/dfn&gt;. Function parameters also work like local variables. A new copy of these variables is created when the function executes, and removed when no code has access to them anymore. For simple case like the above example, the local variables are removed when the function returns.&lt;/p&gt;
 
 &lt;p&gt;On the other hand, variables defined outside any functions are &lt;dfn&gt;global variables&lt;/dfn&gt;, and are visible inside any functions. It is generally recommended to use global variables as little as possible.&lt;/p&gt;
 
@@ -1206,7 +1206,7 @@ function odd(n) {
 &lt;h2 id=&#34;exercise:751e016222acc825af018628bf936c15&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Write a &lt;strong&gt;function&lt;/strong&gt; &lt;code&gt;sum(A)&lt;/code&gt; to calculate the sum of elements in an array &lt;code&gt;A&lt;/code&gt;.
+&lt;li&gt;&lt;p&gt;Write a &lt;strong&gt;function&lt;/strong&gt; &lt;code&gt;sum(num)&lt;/code&gt; to calculate the sum of elements in an array &lt;code&gt;num&lt;/code&gt;.
 Use the following code to test your function.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var x = [1,2,3,4,5];
@@ -1223,7 +1223,7 @@ console.log(odd(9)); // should print [1,3,5,7,9]
 console.log(sum(odd(10*2-1))); // should print 100
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;Write a function &lt;code&gt;search(A, n)&lt;/code&gt; to search for an number &lt;code&gt;n&lt;/code&gt; in the array &lt;code&gt;A&lt;/code&gt;. Return the   position of the element if it is found. If it is not found, return -1. Test your function with the following code.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Write a function &lt;code&gt;search(num, n)&lt;/code&gt; to search for an number &lt;code&gt;n&lt;/code&gt; in the array &lt;code&gt;num&lt;/code&gt;. Return the   position of the element if it is found. If it is not found, return -1. Test your function with the following code.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var x = [6, 8, 3, -2];
 console.log(search(x, 3)); // should print 2;
@@ -1435,7 +1435,7 @@ for (var k=16; k&amp;lt;32; k++) {
 
 &lt;h2 id=&#34;objects:51a54ca2b6504050813f27f36d3dbb0e&#34;&gt;Objects&lt;/h2&gt;
 
-&lt;p&gt;In JavaScript, objects are a collection of properties. Each property
+&lt;p&gt;In JavaScript, an &lt;dfn&gt;object&lt;/dfn&gt; is a collection of properties. Each property
 is a pair of name and value. You can access each property with the dot notation.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// define an object with 3 properties
@@ -1508,6 +1508,8 @@ console.log(
 
 &lt;p&gt;By mixing arrays and objects, you can use JavaScript data structure to represent some complicated data. This forms the basis of the JSON data format.&lt;/p&gt;
 
+&lt;p&gt;In the following example, the object &lt;code&gt;timetab&lt;/code&gt; represents the lecture timetable for &lt;sup&gt;2016&lt;/sup&gt;&amp;frasl;&lt;sub&gt;17&lt;/sub&gt;, semester 1. The property &lt;code&gt;courses&lt;/code&gt; has array value, and contains an object for each course.&lt;/p&gt;
+
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var timetab = {
   acadYear: &amp;quot;2016/17&amp;quot;,
   semester: 1,
@@ -1545,7 +1547,7 @@ console.log(
 person[&#39;age&#39;] = 20;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The array notation is necessary is you only know the property names in run-time, or the property names contains non-ASCII characters.&lt;/p&gt;
+&lt;p&gt;The array notation is necessary if you only know the property names in run-time, or the property names contains non-ASCII characters.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var cn2en = {
   &#39;春&#39;: &#39;spring&#39;, &#39;夏&#39;: &#39;summer&#39;,
@@ -1556,18 +1558,18 @@ cn2en[&#39;春&#39;]  // &#39;spring&#39;
 //cn2en.春
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The JavaScript language also has a &lt;code&gt;for .. in ..&lt;/code&gt; control structure to enumerate the properties of an object. We skip its discussion because it is tricky to use.&lt;/p&gt;
+&lt;p&gt;The JavaScript language also has a &lt;code&gt;for .. in&lt;/code&gt; control structure to enumerate the properties of an object. We skip its discussion because it is tricky to use.&lt;/p&gt;
 
 &lt;h2 id=&#34;exercise:51a54ca2b6504050813f27f36d3dbb0e&#34;&gt;Exercise&lt;/h2&gt;
 
-&lt;p&gt;Use the time table data structure above to complete this exercise.&lt;/p&gt;
+&lt;p&gt;Use the time table data structure above to complete this exercise. Refer to the sample answers for sample output: &lt;a href=&#34;http://comp312.ipm.mo/chap2/p201.js&#34;&gt;p201.js&lt;/a&gt;, &lt;a href=&#34;http://comp312.ipm.mo/chap2/p202.js&#34;&gt;p202.js&lt;/a&gt; and &lt;a href=&#34;http://comp312.ipm.mo/chap2/p203.js&#34;&gt;p203.js&lt;/a&gt;,&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Write a program to print the content of the time table.&lt;/p&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;p&gt;Write a program to show the number of lectures of each course. The output should include course code, course title, and number of lectures per week.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;Write a program to list the lectures on Thursday &lt;code&gt;dow==4&lt;/code&gt;. The output should include course code, title, start and end time, and room.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Write a program to print the content of the time table.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Write a program to list the lectures on Thursday &lt;code&gt;dow==4&lt;/code&gt;. The output should include course code, start and end time, and room.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
