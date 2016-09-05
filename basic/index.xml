@@ -280,7 +280,7 @@ console.log(sqr);
 
 &lt;h2 id=&#34;array:751e016222acc825af018628bf936c15&#34;&gt;Array&lt;/h2&gt;
 
-&lt;p&gt;An &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array&#34;&gt;array&lt;/a&gt; keep values in a sequence. Arrays can change size in run-time. You retrieve an element from an array by position. Use the operator &lt;code&gt;[]&lt;/code&gt; to locate an element at the given index.&lt;/p&gt;
+&lt;p&gt;An &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array&#34;&gt;array&lt;/a&gt; keeps values in a sequence. Arrays can change size in run-time. You retrieve an element from an array by position. Use the operator &lt;code&gt;[]&lt;/code&gt; to locate an element at the given index.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1,3,5,7,9];
 console.log(`The second odd number is ${a[1]}.`);
