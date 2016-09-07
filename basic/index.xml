@@ -912,8 +912,7 @@ for (var [k,v] of m) {
 
 &lt;h2 id=&#34;date&#34;&gt;Date&lt;/h2&gt;
 
-&lt;p&gt;Up to now, we have encountered several built-in classes in JavaScript. They include
-&lt;code&gt;Array&lt;/code&gt; and &lt;code&gt;Map&lt;/code&gt;. Before we discuss how to define our own class, let&amp;rsquo;s examine the usage of another built-in class &lt;code&gt;Date&lt;/code&gt;, which represents a single moment in time. &lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date&#34;&gt;(online reference)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Another common built-in class is &lt;code&gt;Date&lt;/code&gt;, which represents a single moment in time. &lt;a href=&#34;https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date&#34;&gt;(online reference)&lt;/a&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// call a constructor to create an object of the class
 // create a Date object for this moment
