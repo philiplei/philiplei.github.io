@@ -164,7 +164,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 #sidebar-toggle-span {
     display: none;
 }
-@media only all and (max-width: 47.938em) {
+@media only all /*and (max-width: 47.938em)*/ {
     #sidebar-toggle-span {
         display: inline;
     }
@@ -339,12 +339,12 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     border: 1px solid #ccc;
 }
 #body .padding {
-    padding: 3rem 2rem;
+    padding: 3rem 1rem;
 }
 @media only all and (max-width: 59.938em) {
     #body .padding {
         position: static;
-        padding: 15px 2rem;
+        padding: 15px 1rem;
     }
 }
 @media only all and (max-width: 47.938em) {
@@ -911,7 +911,7 @@ td {
 #body #breadcrumbs span {
     padding: 0 0.1rem;
 }
-@media only all and (max-width: 59.938em) {
+@media only screen and (max-width: 59.938em) {
     #sidebar {
         width: 230px;
     }
@@ -919,7 +919,7 @@ td {
         margin-left: 230px;
     }
 }
-@media only all and (max-width: 47.938em) {
+@media only screen and (max-width: 47.938em) {
     #sidebar {
         width: 230px;
         left: -230px;
@@ -1003,6 +1003,38 @@ pre .copy-to-clipboard:hover {
 #sidebar ul li.visited > a .read-icon {
     color: #00bdf3;
     display: inline;
+}
+
+@media print {
+    #top-bar { display: none; } /* remove top menu bar in print */
+    #sidebar {
+        width: 230px;
+        left: -230px;
+    }
+    #body {
+        margin-left: 0;
+        width: 100%;
+    }
+    .sidebar-hidden {
+        overflow: hidden;
+    }
+    .sidebar-hidden #sidebar {
+        left: 0;
+    }
+    .sidebar-hidden #body {
+        margin-left: 230px;
+        overflow: hidden;
+    }
+    .sidebar-hidden #overlay {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+    }
 }
 
 /*# sourceMappingURL=theme.css.map */

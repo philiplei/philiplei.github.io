@@ -1,35 +1,18 @@
-var timetab = {
-  acadYear: "2016/17",
-  semester: 1,
-  courses: [
-    {
-      code: 'comp211', title: 'Database design', year: 2,
-      lectures: [
-        { dow: 2, start: 1130, end: 1300, room: 'A203' },
-        { dow: 4, start: 1000, end: 1130, room: 'A318' }
-      ]
-    },
-    {
-      code: 'comp212', title: 'Programming II', year: 2,
-      lectures: [
-        { dow: 4, start: 1430, end: 1600, room: 'A317' },
-        { dow: 3, start: 1600, end: 1730, room: 'A210' }
-      ]
-    },
-    {
-      code: 'comp214', title: 'Computer networks', year: 2,
-      lectures: [
-        { dow: 5, start: 1000, end: 1300, room: 'A206' }
-      ]
-    }
-  ]
-};
-
-console.log('Lectures on Thu:')
-for (var c of timetab.courses) {
-  var code = c.code;
-  for (var lec of c.lectures) {
-    if (lec.dow!==4) continue;
-    console.log(`${c.code} ${lec.start}-${lec.end} in ${lec.room}.`);
+function search(num, n) {
+  for (var i=0; i<num.length; i++) {
+    if (num[i]===n) return i;
   }
+  return -1;
 }
+
+// another version
+function search2 (num, n) {
+  for ([idx, val] of num.entries()) {
+    if (val===n) return idx;
+  }
+  return -1;
+}
+
+var x = [6, 8, 3, -2];
+console.log(search(x, 3)); // should print 2;
+console.log(search(x, 1)); // should print -1;

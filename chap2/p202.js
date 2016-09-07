@@ -1,33 +1,12 @@
-var timetab = {
-  acadYear: "2016/17",
-  semester: 1,
-  courses: [
-    {
-      code: 'comp211', title: 'Database design', year: 2,
-      lectures: [
-        { dow: 2, start: 1130, end: 1300, room: 'A203' },
-        { dow: 4, start: 1000, end: 1130, room: 'A318' }
-      ]
-    },
-    {
-      code: 'comp212', title: 'Programming II', year: 2,
-      lectures: [
-        { dow: 4, start: 1430, end: 1600, room: 'A317' },
-        { dow: 3, start: 1600, end: 1730, room: 'A210' }
-      ]
-    },
-    {
-      code: 'comp214', title: 'Computer networks', year: 2,
-      lectures: [
-        { dow: 5, start: 1000, end: 1300, room: 'A206' }
-      ]
-    }
-  ]
-};
-
-for (var c of timetab.courses) {
-  console.log(`${c.code} ${c.title}:`);
-  for (var lec of c.lectures) {
-    console.log(`  dow:${lec.dow}\ttime:${lec.start}-${lec.end}\troom: ${lec.room}`)
+function odd(n) {
+  var ans = [];
+  for (var k=1; k<=n; k+=2) {
+    ans.push(k);
   }
+  return ans;
 }
+
+var a = odd(1);
+console.log(a); // should print [1]
+console.log(odd(9)); // should print [1,3,5,7,9]
+console.log(sum(odd(10*2-1))); // should print 100

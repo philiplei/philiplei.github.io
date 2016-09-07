@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.15" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -325,12 +325,12 @@
 <ul>
 <li>
 <ul>
-<li><a href="#functions-as-first-class-values:8f8679018181f9c68b8f50f2e680210f">Functions as first-class values</a></li>
-<li><a href="#map-and-filter:8f8679018181f9c68b8f50f2e680210f">Map and filter</a></li>
-<li><a href="#sorting:8f8679018181f9c68b8f50f2e680210f">Sorting</a></li>
-<li><a href="#timer:8f8679018181f9c68b8f50f2e680210f">Timer</a></li>
-<li><a href="#arrow-functions:8f8679018181f9c68b8f50f2e680210f">Arrow functions</a></li>
-<li><a href="#excersie:8f8679018181f9c68b8f50f2e680210f">Excersie</a></li>
+<li><a href="#functions-as-first-class-values">Functions as first-class values</a></li>
+<li><a href="#map-and-filter">Map and filter</a></li>
+<li><a href="#sorting">Sorting</a></li>
+<li><a href="#timer">Timer</a></li>
+<li><a href="#arrow-functions">Arrow functions</a></li>
+<li><a href="#excersie">Excersie</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -348,7 +348,7 @@
 
 
 
-<h2 id="functions-as-first-class-values:8f8679018181f9c68b8f50f2e680210f">Functions as first-class values</h2>
+<h2 id="functions-as-first-class-values">Functions as first-class values</h2>
 
 <p>Functions in JavaScript are often described as first-class values. (In fact, functions are objects, with their own properties and methods.) This means that, in many cases, if you can do something on numbers or strings, you can also do the same on functions. In particular,
 you can save a function in a variable, pass a function to another function, or return a function from a function.</p>
@@ -378,7 +378,7 @@ var mul = function(a,b) { return a*b; }
 reduce([6,7,8,9], mul); // returns 3024
 </code></pre>
 
-<h2 id="map-and-filter:8f8679018181f9c68b8f50f2e680210f">Map and filter</h2>
+<h2 id="map-and-filter">Map and filter</h2>
 
 <p>A common case in processing a large amount of data in arrays is to iterate the elements and perform some processing or filtering on each element.</p>
 
@@ -449,7 +449,7 @@ for (var s of e) {
 f = e.filter(function(s) { return (s.length&lt;5); });
 </code></pre>
 
-<h2 id="sorting:8f8679018181f9c68b8f50f2e680210f">Sorting</h2>
+<h2 id="sorting">Sorting</h2>
 
 <p>JavaScript arrays have a built-in <code>sort</code> method. It can sort numbers and strings, but it does not know how to sort other objects.</p>
 
@@ -481,7 +481,7 @@ function cmp (p1, p2) {
 p.sort(cmp);
 </code></pre>
 
-<h2 id="timer:8f8679018181f9c68b8f50f2e680210f">Timer</h2>
+<h2 id="timer">Timer</h2>
 
 <p>Both browsers and Node.js support timers. Timers allow schedule of execution of a function in the future. There are two kinds of timers: one time (<code>setTimeout()</code>), and periodic (<code>setInterval()</code>). In either case, you pass the function to execute as a callback. Refer to the <a href="https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers">online reference</a> for detail.</p>
 
@@ -505,7 +505,7 @@ function tick() {
 tick();
 </code></pre>
 
-<h2 id="arrow-functions:8f8679018181f9c68b8f50f2e680210f">Arrow functions</h2>
+<h2 id="arrow-functions">Arrow functions</h2>
 
 <p>Anonymous functions are very common in JavaScript programming because of the asynchronous nature of client-side or server-side programming. (E.g. register a callback to handle mouse click). Therefore, ES6 defines a new syntax called <dfn>arrow functions</dfn> to define anonymous function. Usually, arrow functions are defined and passed directly to another function.</p>
 
@@ -541,7 +541,7 @@ var e = ['joy', 'sadness', 'anger', 'disgust', 'fear'];
 f = e.filter(s =&gt; s.length&lt;5);
 </code></pre>
 
-<h2 id="excersie:8f8679018181f9c68b8f50f2e680210f">Excersie</h2>
+<h2 id="excersie">Excersie</h2>
 
 <ol>
 <li><p>Given an array <code>var N = [ 32, 53, 42, 25, 48, 10 ]</code>, write a program to do the following. You should use callback functions.</p>
