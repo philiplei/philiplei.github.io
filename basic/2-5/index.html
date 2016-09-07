@@ -326,8 +326,8 @@
 <li>
 <ul>
 <li><a href="#array-as-class">Array as Class</a></li>
-<li><a href="#date">Date</a></li>
 <li><a href="#maps">Maps</a></li>
+<li><a href="#date">Date</a></li>
 <li><a href="#defining-class">Defining class</a></li>
 <li><a href="#exercise">Exercise</a></li>
 </ul></li>
@@ -349,50 +349,33 @@
 
 <p>Before we discuss how to define our own class, let&rsquo;s first look at some sample classes in the JavaScript language.</p>
 
-<p>Many values in JavaScript are objects. In lab 2-3, we created an object as a group of properties. Each property has a name and a value. The following is an example of object literal, in which we list the properties in <code>{ }</code>.</p>
+<p>Many values in JavaScript are objects. In lab 2-3, we created an object as a group of properties. Each property has a name and a value. We list the properties in <code>{ }</code>.</p>
 
 <pre><code class="language-JavaScript">var point = { x: 2, y: 3 };  
-point.x;  // 2
-dir(point); // show structure, only avail in Chrome console
 </code></pre>
+
+<p>On the other hand, the JavaScript language defines several built-in class, each with its own <dfn>constructor function</dfn> to create objects of the class.  Objects thus created usually have built-in methods.</p>
+
+<p>In OOP sense, a <dfn>class</dfn> defines a template for similar objects, and provides (at least) one constructor object to build new objects belonging to the class.</p>
 
 <h2 id="array-as-class">Array as Class</h2>
 
-<p>JavaScript arrays are also objects, in the sense that an array has many methods, which we can invoke with the dot notation. In fact, each method is a property with a function as value. Refer to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Array_instances">online ref</a> for a list of methods of array objects.</p>
+<p>JavaScript arrays are JavaScript objects with many methods. We can invoke them with the dot notation. In fact, each method is a property with a function as value. Refer to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Array_instances">online ref</a> for a list of methods of array objects.</p>
 
-<pre><code class="language-JavaScript">var a = [2,3,4];
+<pre><code class="language-JavaScript">// array literal uses the constructor of Array class
+var a = [2,3,4];
 a.unshift(1);
 a.push(5);
 var b = a.map(x=&gt;x*2-1);
 console.log(b.join(','));
 </code></pre>
 
-<p>A main difference between the object <code>point</code> and array objects is that there is a <dfn>constructor function</dfn> to create array objects.  In OOP sense, a <dfn>class</dfn> defines a template for similar objects, and provides (at least) one constructor object to build new objects belonging to the class.  We have a special syntax <code>[1,2,3]</code> to create new array objects in JavaScript. But you can also use the general constructor function syntax.</p>
+<p>We have a special syntax <code>[1,2,3]</code> to create new array objects in JavaScript. But you can also use the general constructor function syntax.</p>
 
 <pre><code class="language-JavaScript">var b = new Array(2,4,6,8,10);
 for (var x of b) {
   console.log(x);
 }
-</code></pre>
-
-<h2 id="date">Date</h2>
-
-<p>Up to now, we have encountered several built-in classes in JavaScript. They include
-<code>Array</code> and <code>Map</code>. Before we discuss how to define our own class, let&rsquo;s examine the usage of another built-in class <code>Date</code>, which represents a single moment in time. <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date">(online reference)</a></p>
-
-<pre><code class="language-JavaScript">// call a constructor to create an object of the class
-// create a Date object for this moment
-var now = new Date();
-// create a Date object for the Macau SAR establishment day
-var sare = new Date(&quot;1999-12-20&quot;);
-// create a Date object for the coming X'mas
-var xmas = new Date(2016,11,25); // month: 0-11
-</code></pre>
-
-<pre><code class="language-JavaScript">// an object usually have some methods
-var now = new Date();
-var dow = now.getDay(); // 0-6, where 0 means Sunday
-console.log(now.toLocaleString());
 </code></pre>
 
 <h2 id="maps">Maps</h2>
@@ -417,6 +400,26 @@ console.log('No, so .get returns ', m.get('four'));  // undefined
 for (var [k,v] of m) {
   console.log(`k = ${k}  v = ${v}`);
 }
+</code></pre>
+
+<h2 id="date">Date</h2>
+
+<p>Up to now, we have encountered several built-in classes in JavaScript. They include
+<code>Array</code> and <code>Map</code>. Before we discuss how to define our own class, let&rsquo;s examine the usage of another built-in class <code>Date</code>, which represents a single moment in time. <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date">(online reference)</a></p>
+
+<pre><code class="language-JavaScript">// call a constructor to create an object of the class
+// create a Date object for this moment
+var now = new Date();
+// create a Date object for the Macau SAR establishment day
+var sare = new Date(&quot;1999-12-20&quot;);
+// create a Date object for the coming X'mas
+var xmas = new Date(2016,11,25); // month: 0-11
+</code></pre>
+
+<pre><code class="language-JavaScript">// an object usually have some methods
+var now = new Date();
+var dow = now.getDay(); // 0-6, where 0 means Sunday
+console.log(now.toLocaleString());
 </code></pre>
 
 <h2 id="defining-class">Defining class</h2>
