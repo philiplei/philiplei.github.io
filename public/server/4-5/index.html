@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.16" />
+    <meta name="description" content="">
+
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+
+    
+    <title>4-5 Middleware in web app</title>
+    <link href="/css/nucleus.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/hybrid.css" rel="stylesheet">
+    <link href="/css/featherlight.min.css" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/hugo-theme.css" rel="stylesheet">
+    <style type="text/css">:root #header + #content > #left > #rlblock_left
+    {display:none !important;}</style>
+    
+
+  </head>
+  <body class="" data-url="/server/4-5/">
+    <nav id="sidebar">
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="http://www.ipm.edu.mo/">
+<b>COMP312 Internet Programming II</b>
+</a>
+
+      
+    </div>
+</div>
+
+
+  <div class="highlightable">
+    <ul class="topics">
+      
+      
+      
+      
+
+      <li class="dd-item  " data-nav-id="/basic/">
+        <a href="/basic/">
+          <span>
+            
+              <b>2. </b>
+            
+             JavaScript basics
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-1/">
+              <a href="/basic/2-1/">
+                <span>2-1 Basic data types and control     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-2/">
+              <a href="/basic/2-2/">
+                <span>2-2 Arrays and functions     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-3/">
+              <a href="/basic/2-3/">
+                <span>2-3 Objects and JSON data     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-4/">
+              <a href="/basic/2-4/">
+                <span>2-4 Callbacks and arrow functions     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-5/">
+              <a href="/basic/2-5/">
+                <span>2-5 Defining class     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-6/">
+              <a href="/basic/2-6/">
+                <span>2-6 Reg expression     </i></span>
+              </a>
+            </li>
+          
+          
+        </ul>
+        
+      </li>
+      
+      
+      
+      
+
+      <li class="dd-item  " data-nav-id="/client/">
+        <a href="/client/">
+          <span>
+            
+              <b>3. </b>
+            
+             Client-side programming
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-1/">
+              <a href="/client/3-1/">
+                <span>3-1 Quick start     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-2/">
+              <a href="/client/3-2/">
+                <span>3-2 Select and change     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-3/">
+              <a href="/client/3-3/">
+                <span>3-3 Creating new content     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-4/">
+              <a href="/client/3-4/">
+                <span>3-4 Handling events     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-5/">
+              <a href="/client/3-5/">
+                <span>3-5 Form controls     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-6/">
+              <a href="/client/3-6/">
+                <span>3-6 Template     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-7/">
+              <a href="/client/3-7/">
+                <span>3-7 Charts     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-8/">
+              <a href="/client/3-8/">
+                <span>3-8 Page load and others     </i></span>
+              </a>
+            </li>
+          
+          
+        </ul>
+        
+      </li>
+      
+      
+      
+      
+
+      <li class="dd-item  parent" data-nav-id="/server/">
+        <a href="/server/">
+          <span>
+            
+              <b>4. </b>
+            
+             Server-side programming
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-1/">
+              <a href="/server/4-1/">
+                <span>4-1 Node.js primer     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-2/">
+              <a href="/server/4-2/">
+                <span>4-2 Events     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-3/">
+              <a href="/server/4-3/">
+                <span>4-3 Web client     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-4/">
+              <a href="/server/4-4/">
+                <span>4-4 Routing in web app     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item active" data-nav-id="/server/4-5/">
+              <a href="/server/4-5/">
+                <span>4-5 Middleware in web app     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-6/">
+              <a href="/server/4-6/">
+                <span>4-6 Template in web app     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-7/">
+              <a href="/server/4-7/">
+                <span>4-7 Database access     </i></span>
+              </a>
+            </li>
+          
+          
+        </ul>
+        
+      </li>
+      
+      
+    </ul>
+    <hr>
+      
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+    </section>
+  </div>
+</nav>
+
+        <section id="body">
+        <div id="overlay"></div>
+
+        <div class="padding highlightable">
+
+            <div id="top-bar">
+              
+              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                  <span id="sidebar-toggle-span">
+                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                        <i class="fa fa-bars"></i>
+                      </a>
+                  </span>
+                
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
+                
+                
+                
+                  
+                
+                  
+                
+                  
+                    
+                    
+                <a href="/server/" itemprop="url"><span itemprop="title">Server-side programming</span></a> <i class="fa fa-angle-right"></i>
+                    
+                  
+                
+                <span itemprop="title"> 4-5 Middleware in web app</span>
+              </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#middlewares">Middlewares</a></li>
+<li><a href="#serving-static-content">Serving static content</a></li>
+<li><a href="#handling-form-submit">Handling form submit</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+              
+
+            </div>
+            
+    	        <div id="body-inner">
+                
+                <h1>4-5 Middleware in web app</h1>
+                
+
+
+
+<p>This lab demonstrate how to use middleware and how to handle form submit using GET and POST. We&rsquo;ll end this part with the implementation of a classic web app. (i.e. before AJAX).</p>
+
+<h2 id="middlewares">Middlewares</h2>
+
+<p>In the previous lab, we saw that an Express app is essentially a sequence of routes.  When a request arrives at an Express app, the app tries to find a match of the path in the order of routes in the sequence.  If there is a match, the app assumes the callback of the route will generate a response, and skip any remaining routes.</p>
+
+<p>The above notion is simplification. An Express app is in fact a sequence of middlewares and routes. An incoming request will go through the middlewares and routes in sequential order until a response is generated.</p>
+
+<p>Middlewares are JavaScript functions in Express. Most middlewares are not included in Express module, and must be installed using <code>npm install</code> or <code>package.json</code>.  Install the middlewares and Express with <code>npm install</code> before running the example app3.js, which demonstrate the
+basic structure of an Express app with middlewares.</p>
+
+<pre><code class="language-JavaScript">// app3.js
+// middlewares
+
+var express = require('express');
+var app = express();
+
+// import a middleware, which logs the request
+var morgan = require('morgan');
+// install the middleware into the app
+app.use(morgan('short'));
+
+// import another middleware, which secures the app with HTTP headers
+var helmet = require('helmet');
+// install the middleware
+app.use(helmet());
+
+// routes ...
+
+app.get('/', (req, res) =&gt; {
+  res.send('Hello world');
+});
+
+app.get('*', (req, res) =&gt; {
+  res.status(404).send('No match');
+});
+
+// start listening at TCP port 3000
+app.listen(3000);
+</code></pre>
+
+<p>When the app receives an HTTP request, the first middleware &lsquo;morgan&rsquo; prints a log message in the console. Next, the middleware &lsquo;helmet&rsquo; adds some HTTP headers (e.g. <code>X-XSS-Protection</code>) to the response to secure the app. Afterwards, the request is checked against each route in sequence.</p>
+
+<p>Most middlewares should be registered <em>before routes</em>. If a middleware is registered after a route, and the route returns a response for a request, the middleware will NOT run for this request. As an experiment, move the middleware &lsquo;morgan&rsquo; between the two routes.</p>
+
+<h2 id="serving-static-content">Serving static content</h2>
+
+<p>There is a special middleware bundled with Express. This middleware <code>express-session</code> serves static assets (typically HTML, CSS, images, and client-side library) to clients. The middleware tries to match the files in a folder against the URL path of the request. If there is a match, it returns the file, with a suitable MIME-type, in a response. This makes it simple to creates a simplistic HTTP server.</p>
+
+<pre><code class="language-JavaScript">// excerpt from app4.js
+var express = require('express');
+var app = express();
+
+app.use(express.static(__dirname + '/public'));
+
+app.listen(3000, () =&gt; {
+  console.log('Server running at http://localhost:3000/');
+});
+</code></pre>
+
+<p>In general, routes should be placed before the &lsquo;static&rsquo; middleware. Otherwise, a static file that matches the URL path will be handled by the &lsquo;static&rsquo; middleware and will not be handled by any routes after the middleware.  Try to move the specified route in <a href="/chap4-5/app4.js">app4.js</a> to experiment.</p>
+
+<h2 id="handling-form-submit">Handling form submit</h2>
+
+<p>Data that are submitted using GET method are available in the object <code>req.query</code>. In the following example, the route GET &lsquo;/add&rsquo; obtains the two numbers <code>a</code> and <code>b</code> from a GET request, and returns the result of &lsquo;a+b&rsquo; in response.</p>
+
+<pre><code class="language-JavaScript">// app5.js
+
+var express = require('express');
+var app = express();
+
+app.get('/form1.html', (req, res) =&gt; {
+  res.send(`&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;p&gt;Enter 2 numbers to add:&lt;/p&gt;
+  &lt;form action='/add' method='GET'&gt;
+    &lt;p&gt;a: &lt;input name='a' type='text'/&gt;
+    &lt;p&gt;b: &lt;input name='b' type='text'/&gt;
+    &lt;p&gt;&lt;button type='submit'&gt;Calculate a+b&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;`);
+});
+
+app.get('/add', (req, res) =&gt; {
+  var a = parseFloat(req.query.a);
+  var b = parseFloat(req.query.b);
+  res.send(`${a} + ${b} = ${a+b}`);
+});
+</code></pre>
+
+<p>You&rsquo;ll need a middleware to extract data from the message body of a POST request. A popular choice is the middleware <code>body-parser</code>. This middleware parses the request message body (if any) and populate the object <code>req.body</code>. In the route in the sample code below (see full source at <a href="/chap4-5/app6.js">app6.js</a>), data submitted in POST request are accessible in <code>req.body.mesg</code>.</p>
+
+<pre><code class="language-JavaScript">// excerpt from app6.js
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended:false}));
+
+app.post('/append', (req, res) =&gt; {
+  var mesg = req.body.mesg;
+  fs.appendFile(__dirname+'/log.txt', mesg+'\n', 'utf8', (err)=&gt;{
+    if (err) throw err;
+    res.send(`Append successful.
+      You can &lt;a href=&quot;/getlog&quot;&gt;retrieve the log&lt;/a&gt; now.`);
+  })
+});
+</code></pre>
+
+
+      
+      </div>
+    </div>
+
+    <div id="navigation">
+        
+        
+    </div>
+
+    </section>
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/jquery-2.x.min.js"></script>
+    <script src="/js/clipboard.min.js"></script>
+    <script src="/js/perfect-scrollbar.min.js"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/js/jquery.sticky-kit.min.js"></script>
+    <script src="/js/featherlight.min.js"></script>
+    <script src="/js/html5shiv-printshiv.min.js"></script>
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom.71422.js"></script>
+    <script src="/js/learn.js"></script>
+    <script src="/js/hugo-learn.js"></script>
+    
+
+  </body>
+</html>
+

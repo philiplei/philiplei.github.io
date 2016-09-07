@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <title>Lecture list</title>
+  <meta charset="UTF-8" />
+  <link rel='stylesheet' href='/common.css'/>
+</head>
+
+<body>
+  <p>Here are the lectures for year {{year}} in semester {{semester}} of {{acadYear}}.</p>
+  <ul id='lectures'>
+    {{#each courses}}
+    <li>{{code}} {{title}}
+      <ul>
+        {{#each lectures}}
+        <li>{{dowName}} {{start}}-{{end}}. Room: {{room}}
+          {{#if lab}}
+          (lab)
+          {{/if}}
+        </li>
+        {{/each}}
+      </ul>
+    </li>
+    {{/each}}
+  </ul>
+</body>
+</html>

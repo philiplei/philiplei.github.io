@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Example: Chart</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+  </style>
+</head>
+
+<body>
+  <p>Grade distribution of comp312 last year</p>
+  <canvas id="myChart" width="400" height="400"></canvas>
+
+<script src="jquery.js"></script>
+<script src="Chart.js"></script>
+<script>
+var labels = [ 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'F' ];
+var data = [ 3, 3, 5, 6, 4, 4, 7, 4, 2, 5, 5 ];
+var canvas = $("#myChart");
+var chart = new Chart(canvas, {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+        label: '#students',
+        data: data,
+        backgroundColor: 'rgba(99, 200, 132, 0.8)',
+        borderColor: 'rgba(99, 200, 132, 1)',
+        borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: false,
+    scales: {
+      yAxes: [{
+        ticks: { beginAtZero:true }
+      }]
+    }
+  }
+});
+</script>
+</body>
+</html>

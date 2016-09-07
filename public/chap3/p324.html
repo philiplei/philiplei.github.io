@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Example: handling events</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+  div#sample { padding: 0.7em; margin: 12px 0px; border: 1px solid green; overflow: auto;}
+  table { border-collapse: collapse; }
+  table#marks td { padding: 4px 10px; border: 1px solid gray;}
+  table#marks thead { background-color: gray; color: white; }
+  table#marks tbody tr:hover { background-color: lightblue; }
+  </style>
+</head>
+
+<body>
+  <p>Check the console (Press F12 in Chrome) to see which row the user clicks.</p>
+  <table id='marks'>
+    <caption></caption>
+    <thead>
+      <tr><td>name</td><td>course</td><td>exam</td><td>final</td></tr>
+    </thead>
+    <tbody>
+      <tr><td>Peter</td><td>54</td><td>90</td><td>68.4</td></tr>
+      <tr><td>Mary</td><td>48.2</td><td>82</td><td>61.72</td></tr>
+      <tr><td>John</td><td>39</td><td>40</td><td>39.4</td></tr>
+      <tr><td>Elsa</td><td>54.6</td><td>95</td><td>70.76</td></tr>
+    </tbody>
+  </table>
+
+<script src="jquery.js"></script>
+<script>
+var $rows = $('#marks tbody tr');
+for (var i=0; i<$rows.length; i++) {
+  $rows.eq(i).on('click', { rowNum: i }, (event) => {
+    var n = event.data.rowNum;
+    console.log(`click row ${n}`);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.16" />
+    <meta name="description" content="">
+
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+
+    
+    <title>4-1 Node.js primer</title>
+    <link href="/css/nucleus.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/hybrid.css" rel="stylesheet">
+    <link href="/css/featherlight.min.css" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/hugo-theme.css" rel="stylesheet">
+    <style type="text/css">:root #header + #content > #left > #rlblock_left
+    {display:none !important;}</style>
+    
+
+  </head>
+  <body class="" data-url="/server/4-1/">
+    <nav id="sidebar">
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="http://www.ipm.edu.mo/">
+<b>COMP312 Internet Programming II</b>
+</a>
+
+      
+    </div>
+</div>
+
+
+  <div class="highlightable">
+    <ul class="topics">
+      
+      
+      
+      
+
+      <li class="dd-item  " data-nav-id="/basic/">
+        <a href="/basic/">
+          <span>
+            
+              <b>2. </b>
+            
+             JavaScript basics
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-1/">
+              <a href="/basic/2-1/">
+                <span>2-1 Basic data types and control     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-2/">
+              <a href="/basic/2-2/">
+                <span>2-2 Arrays and functions     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-3/">
+              <a href="/basic/2-3/">
+                <span>2-3 Objects and JSON data     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-4/">
+              <a href="/basic/2-4/">
+                <span>2-4 Callbacks and arrow functions     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-5/">
+              <a href="/basic/2-5/">
+                <span>2-5 Defining class     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/basic/2-6/">
+              <a href="/basic/2-6/">
+                <span>2-6 Reg expression     </i></span>
+              </a>
+            </li>
+          
+          
+        </ul>
+        
+      </li>
+      
+      
+      
+      
+
+      <li class="dd-item  " data-nav-id="/client/">
+        <a href="/client/">
+          <span>
+            
+              <b>3. </b>
+            
+             Client-side programming
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-1/">
+              <a href="/client/3-1/">
+                <span>3-1 Quick start     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-2/">
+              <a href="/client/3-2/">
+                <span>3-2 Select and change     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-3/">
+              <a href="/client/3-3/">
+                <span>3-3 Creating new content     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-4/">
+              <a href="/client/3-4/">
+                <span>3-4 Handling events     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-5/">
+              <a href="/client/3-5/">
+                <span>3-5 Form controls     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-6/">
+              <a href="/client/3-6/">
+                <span>3-6 Template     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-7/">
+              <a href="/client/3-7/">
+                <span>3-7 Charts     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/client/3-8/">
+              <a href="/client/3-8/">
+                <span>3-8 Page load and others     </i></span>
+              </a>
+            </li>
+          
+          
+        </ul>
+        
+      </li>
+      
+      
+      
+      
+
+      <li class="dd-item  parent" data-nav-id="/server/">
+        <a href="/server/">
+          <span>
+            
+              <b>4. </b>
+            
+             Server-side programming
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+          
+          
+          
+            <li class="dd-item active" data-nav-id="/server/4-1/">
+              <a href="/server/4-1/">
+                <span>4-1 Node.js primer     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-2/">
+              <a href="/server/4-2/">
+                <span>4-2 Events     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-3/">
+              <a href="/server/4-3/">
+                <span>4-3 Web client     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-4/">
+              <a href="/server/4-4/">
+                <span>4-4 Routing in web app     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-5/">
+              <a href="/server/4-5/">
+                <span>4-5 Middleware in web app     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-6/">
+              <a href="/server/4-6/">
+                <span>4-6 Template in web app     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/server/4-7/">
+              <a href="/server/4-7/">
+                <span>4-7 Database access     </i></span>
+              </a>
+            </li>
+          
+          
+        </ul>
+        
+      </li>
+      
+      
+    </ul>
+    <hr>
+      
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+    </section>
+  </div>
+</nav>
+
+        <section id="body">
+        <div id="overlay"></div>
+
+        <div class="padding highlightable">
+
+            <div id="top-bar">
+              
+              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                  <span id="sidebar-toggle-span">
+                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                        <i class="fa fa-bars"></i>
+                      </a>
+                  </span>
+                
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
+                
+                
+                
+                  
+                
+                  
+                
+                  
+                    
+                    
+                <a href="/server/" itemprop="url"><span itemprop="title">Server-side programming</span></a> <i class="fa fa-angle-right"></i>
+                    
+                  
+                
+                <span itemprop="title"> 4-1 Node.js primer</span>
+              </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#quick-start">Quick start</a></li>
+<li><a href="#event-loop-in-node">Event loop in Node</a></li>
+<li><a href="#modules">Modules</a></li>
+<li><a href="#evented-i-o">Evented I/O</a></li>
+<li><a href="#sequential-i-o-operations">Sequential I/O operations</a></li>
+<li><a href="#exercise">Exercise</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+              
+
+            </div>
+            
+    	        <div id="body-inner">
+                
+                <h1>4-1 Node.js primer</h1>
+                
+
+
+
+<p>This lab goes through the basics of the Node.js platform.</p>
+
+<h2 id="quick-start">Quick start</h2>
+
+<p>Node.js <a href="https://nodejs.org">(https://nodejs.org)</a> is a platform built on Chrome&rsquo;s JavaScript runtime for easily building fast, scalable network applications. Node.js supports the same basic JavaScript programming language as web browsers. Both Node.js and Google Chrome use the V8 JavaScript engine.</p>
+
+<p>First, let&rsquo;s run the following program in both browser and Node. (Follow instruction to install Node.)</p>
+
+<pre><code class="language-JavaScript">// p101.js
+
+// return the largest number in an array
+// assume at least 1 entry, and all entries are numbers
+function largest (A) {
+  var big=A[0];
+  for (var i=1; i&lt;A.length; i++) {
+    if (big&lt;A[i]) big=A[i];
+  }
+  return big;
+}
+
+var N = [ 3, 7, 6, 8, 2, 5 ];
+
+console.log('The largest is %d', largest(N));
+</code></pre>
+
+<p>The JavaScript engine provides some common features in both Node and browsers:</p>
+
+<ul>
+<li>JavaScript language features: control flow, variables, defining class, functions, regular expression, etc</li>
+<li>Some global objects and functions:
+
+<ul>
+<li><code>console.log()</code></li>
+<li>timers: <code>setInterval()</code>, <code>setTimeout()</code></li>
+<li>date: <code>var today = new Date()</code></li>
+<li>JSON processing: <code>JSON.parse()</code>, <code>JSON.stringify()</code></li>
+</ul></li>
+</ul>
+
+<p>But Node misses some features specific to the browser platform, e.g.</p>
+
+<ul>
+<li>DOM tree
+
+<ul>
+<li>usually we don&rsquo;t use jQuery&rsquo;s <code>$( )</code> in Node</li>
+<li>and no interface and mouse or keyboard events</li>
+</ul></li>
+<li>AJAX
+
+<ul>
+<li>but there are other objects for network operations</li>
+</ul></li>
+<li>and other APIs in the <a href="https://developer.mozilla.org/en-US/docs/Web/Reference/API">Web API</a></li>
+</ul>
+
+<h2 id="event-loop-in-node">Event loop in Node</h2>
+
+<p>Similar to JavaScript runtime in browser, Node includes an <strong>event loop</strong> that handles events.
+The event loop continues until all events are handled and there are no future events. Some common cases that trigger events are:</p>
+
+<ul>
+<li>timer: when time is up, call a functions</li>
+<li>file I/O, network I/O, etc: When some data is ready to read, or some I/O operations finish, trigger an event and call an event handler</li>
+<li>some objects can generate events</li>
+<li>system events, e.g. Ctrl-C interrupt</li>
+</ul>
+
+<p>Trace the execution of the following program.</p>
+
+<pre><code class="language-JavaScript">// p102.js
+
+var N = 10; // countdown from 10
+var timer;  // id of the timer
+
+function tick() {
+  if (N&lt;=0) {
+    console.log(&quot;Time's up!&quot;);
+    clearInterval(timer);
+  } else {
+    console.log(N); N--;
+  }
+}
+
+// this starts the timer
+timer = setInterval(tick, 1000);
+
+// event loop runs here ...
+</code></pre>
+
+<p>At any time, Node runs at most 1 event handler. If there are no pending events, the event loop blocks and wait for any future events.  If Node determines that there are no more future events, it quits.</p>
+
+<h2 id="modules">Modules</h2>
+
+<p>An important feature of Node is <strong>modules</strong>, which allows you to import new functionalities to the Node platform. The Node platform comes with some built-in modules (which are installed together with Node).  See the <a href="https://nodejs.org/en/docs/">online reference</a> for a list of the built-in modules.</p>
+
+<p>To use a module, import it with <code>require()</code>. This function returns an object that represent the module in your program. You can assign this to a variable of any convenient name.</p>
+
+<p>(You can use the REPL tool <a href="http://mancy-re.pl/">Mancy</a> for experiment in this part.)</p>
+
+<pre><code class="language-JavaScript">var url = require('url');
+var a = url.parse('http://example.com/path/file.js?a=2#hash1');
+</code></pre>
+
+<p>(You can also download modules from the Web and install in the Node platform. We&rsquo;ll come to that later in this chapter.)</p>
+
+<p>The following example demonstrates how to use another built-in module <code>os</code> and the built-in class <code>Date</code> to monitor the amount of free memory. <a href="https://nodejs.org/dist/latest-v6.x/docs/api/os.html#os_os_freemem">(online reference)</a></p>
+
+<pre><code class="language-JavaScript">// p103.js
+// show amount of free memory every second
+var os = require('os');
+
+function tick() {
+  var now = new Date();
+  var time = now.toTimeString().substring(0,8);
+  var fm = os.freemem() / 1024;
+  console.log(`${time} - ${fm}k`);
+}
+
+console.log('Start monitoring free memory. Ctrl-C to quit.')
+setInterval(tick, 1000);
+</code></pre>
+
+<h2 id="evented-i-o">Evented I/O</h2>
+
+<p>Node.js has only 1 thread to run JavaScript code. If this thread blocks to wait for I/O completion, the whole Node process is blocked and cannot process other events. Consider the following example.</p>
+
+<pre><code class="language-JavaScript">var fs = require('fs');
+// this function blocks.
+// if other event fires while Node is waiting
+// for the file read operation to finish,
+// the event loop CANNOT run the event handlers.
+var data = fs.readFileSync('intro.txt', 'utf8' );
+console.log('File content: ', data);
+</code></pre>
+
+<p><code>fs.readFileSync()</code> and <code>fs.writeFileSync()</code> are two of the few synchronous I/O functions in Node. They blocks the single thread of Node while waiting for the input / output to finish.</p>
+
+<p>In other platforms like Java, one usually needs to create multiple <strong>threads</strong> to handle several I/O operations at the same time (e.g. a web server handling multiple clients). Node uses <strong>evented I/O</strong> to allow more than one I/O at the same time.  At the time you start an I/O operation, you also need to provide a <strong>callback</strong> function.  After I/O is done, the event loop will call the callback function and pass either an error, or the result of the I/O.</p>
+
+<pre><code class="language-JavaScript">var fs = require('fs');
+
+fs.readFile('intro.txt', 'utf8', (err, data)=&gt;{
+  // if there is error, handle it, or throw it to quit
+  if (err) throw err;
+  // no error, the I/O result is 'data'
+  console.log('File content: ', data);
+} );
+
+// at this point, file read is still in progress
+// ...
+
+// event loop waits for I/O to finish
+</code></pre>
+
+<p>In the above example, the third parameter is the callback function. <code>fs.readFile</code> returns immediately without blocking. However, the I/O result is not available yet.  Here is a summary of simple asynchronous file I/O operations in the module <code>fs</code>. Refer to the <a href="https://nodejs.org/dist/latest-v6.x/docs/api/fs.html">online reference of module fs</a> for detail.</p>
+
+<ul>
+<li><code>fs.readFile(filename, options, callback)</code> - read content from the file</li>
+<li><code>fs.writeFile(filename, content, options, callback)</code> - write the given content to the file</li>
+<li><code>fs.appendFile(filename, content, options, callback)</code> - append the given content to the end of the file</li>
+</ul>
+
+<h2 id="sequential-i-o-operations">Sequential I/O operations</h2>
+
+<p>Consider the following longer example.  We&rsquo;d like to replace the word &lsquo;MPI&rsquo; by &lsquo;IPM&rsquo; in the input file &lsquo;intro.txt&rsquo;. The first version uses synchronous I/O. (Notice that this is just for illustration. In most Node application, you should use asynchronous I/O to allow better performance.) In this program, while Node is waiting for I/O completion, it <strong>cannot</strong> process any other events.</p>
+
+<pre><code class="language-JavaScript">// p104.js
+// synchronous version of read file, process and write file.
+var fs = require('fs');
+
+var data = fs.readFileSync('intro.txt', 'utf8' );
+var newdata = data.replace(/MPI/g, 'IPM');
+fs.writeFileSync('change.txt', newdata, 'utf8');
+</code></pre>
+
+<p>The preferred method to write the same program is to use asynchronous I/O. To ensure that <code>writeFile</code> is done <strong>after</strong> <code>readFile</code> returns data, call <code>writeFile</code> in the callback for <code>readFile</code>.</p>
+
+<pre><code class="language-JavaScript">// p105.js
+// asynchronous version of read file, process, and write file
+var fs = require('fs');
+
+fs.readFile('intro.txt', 'utf8', (err, data)=&gt;{
+  if (err) throw err;
+  // at this moment, file read is done
+  var newdata = data.replace(/MPI/g, 'IPM');
+  // we can start file write now
+  fs.writeFile('change.txt', newdata, 'utf8', (err)=&gt;{
+    if (err) throw err;
+  });
+});
+</code></pre>
+
+<p>In general, doing some I/O operations in sequence would involve nesting callback functions. The result is sometimes known as <strong>callback hell</strong> in the Node community.  You can sometimes reduce callback nesting by moving the callback to top level functions.  The following rewrite of the above program demonstrates this.</p>
+
+<pre><code class="language-JavaScript">// p105.js rewrite: move callback to top level functions
+var fs = require('fs');
+
+function writeDone (err) {
+  if (err) throw err;
+}
+
+function readDone (err, data) {
+  if (err) throw err;
+  var newdata = data.replace(/MPI/g, 'IPM');
+  fs.writeFile('change.txt', newdata, 'utf8', writeDone);
+}
+
+fs.readFile('intro.txt', 'utf8', readDone);
+</code></pre>
+
+<h2 id="exercise">Exercise</h2>
+
+<ol>
+<li><p>Write a program to combine two text file &lsquo;in1.txt&rsquo; and &lsquo;in2.txt&rsquo; to an output text file &lsquo;out.txt&rsquo;.
+Use asynchronous I/O functions <code>fs.readFile()</code> and <code>fs.writeFile()</code>. (solution: <a href="/chap4-1/p106.js">p106.js</a>)</p></li>
+
+<li><p>Write a program to monitor the amount of available memory to a log file &lsquo;freemem.txt&rsquo;. Hints: use <code>fs.appendFile()</code> to append log message to the txt file.</p></li>
+</ol>
+
+<p>example: read a json, do sth, write output</p>
+
+
+      
+      </div>
+    </div>
+
+    <div id="navigation">
+        
+        
+    </div>
+
+    </section>
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/jquery-2.x.min.js"></script>
+    <script src="/js/clipboard.min.js"></script>
+    <script src="/js/perfect-scrollbar.min.js"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/js/jquery.sticky-kit.min.js"></script>
+    <script src="/js/featherlight.min.js"></script>
+    <script src="/js/html5shiv-printshiv.min.js"></script>
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom.71422.js"></script>
+    <script src="/js/learn.js"></script>
+    <script src="/js/hugo-learn.js"></script>
+    
+
+  </body>
+</html>
+

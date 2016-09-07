@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Example: handling events</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+
+  .gameboard {
+    border-collapse: collapse;
+  }
+
+  .gameboard td {
+    width: 70px; height: 70px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    xxbackground-image: url(cross.png);
+  }
+  .gameboard td.active {
+    background-color: #ccffff;
+  }
+
+  .gameboard td:nth-child(2) {
+    border-left: 4px solid gray; border-right: 4px solid gray;
+  }
+  .gameboard tr:nth-child(2) td {
+    border-top: 4px solid gray; border-bottom: 4px solid gray;
+  }
+
+  .gameboard td { line-height: 1;  }
+  </style>
+</head>
+
+<body>
+  <p>Click one of the 9 positions in the 3x3 grid to place a circle or cross.</p>
+
+  <table id='tic' class='gameboard'>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+  </table>
+
+<script src="jquery.js"></script>
+<script>
+
+$('#tic td').on('mouseenter', (event)=>$(event.target).addClass('active'));
+$('#tic td').on('mouseleave', (event)=>$(event.target).removeClass('active'));
+
+for (var k=0; k<$('#tic td').length; k++) {
+  $('#tic td').eq(k).data('pos', k);
+}
+
+// board is an array with 9 elements. Each element is either 0,1,9.
+// 0 - circle
+// 1 - cross
+// 9 - empty
+var board = [9,9,9,9,9,9,9,9,9];
+// player 'circle' plays first
+var current = 0;
+
+// there is nothing inside td (or nothing displayed on top of td)
+// otherwise, the descendant may fire events, instead of td itself.
+$('#tic td').on('click', (event)=>{
+  var pos = $(event.target).data('pos');
+  // todo: sanity check for 0<=pos<=8, and board[pos]==9
+  console.log(`pos = ${pos}`);
+  // update the game board data structure
+  board[pos] = current;
+  // display a circle or cross
+  var image = (current==0) ? 'url(circle.png)' : 'url(cross.png)';
+  $(event.target).css('background-image', image);
+  // change player
+  current = (current==0) ? 1 : 0;
+});
+
+</script>
+</body>
+</html>

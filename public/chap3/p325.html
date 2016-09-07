@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Example: handling events</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+  div#sample { padding: 0.7em; margin: 12px 0px; border: 1px solid green; overflow: auto;}
+  table { border-collapse: collapse; }
+  table#marks td { padding: 4px 10px; border: 1px solid gray;}
+  table#marks thead { background-color: gray; color: white; }
+  table#marks tbody tr:hover { background-color: lightblue; }
+  p#detail { color: green; }
+  </style>
+</head>
+
+<body>
+  <p>Move cursor to a row to see detail of marks.</p>
+  <table id='marks'>
+    <caption></caption>
+    <thead>
+      <tr><td>name</td><td>course</td><td>exam</td><td>final</td></tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <p id='detail'></p>
+
+<script src="jquery.js"></script>
+<script>
+var marks = {
+  courseCode: 'comp312',
+  courseTitle: 'Internet Programming II',
+  weight: { hw: [0.2, 0.2], test: [0.2], exam: 0.4 },
+  student: [
+    { name: 'Peter', hw: [85, 90], test: [95], exam: 90 },
+    { name: 'Mary', hw: [70, 85], test: [86], exam: 82 },
+    { name: 'John', hw: [60, 70], test: [65], exam: 40 },
+    { name: 'Elsa', hw: [90, 95], test: [88], exam: 95 }
+  ]
+};
+
+function populateMarkTable (marks) {
+  $('#marks caption').text(`Marks for ${marks.courseCode}`);
+  $('#marks tbody').empty();
+  for (var k=0; k<marks.student.length; k++) {
+    var stud=marks.student[k];
+    // hardcode the weight for simpler demo code
+    var course = 0.2*stud.hw[0] + 0.2*stud.hw[1] + 0.2*stud.test[0];
+    var exam = stud.exam;
+    var final = 0.6*course + 0.4*exam;
+    final = Math.round(final * 100) / 100; // round up to 2 decimal places
+    var $r = $('<tr>');
+    $('<td>').text(stud.name).appendTo($r);
+    $('<td>').text(course).appendTo($r);
+    $('<td>').text(exam).appendTo($r);
+    $('<td>').text(final).appendTo($r);
+    // pass a student record to the event handler
+    // when the mouse is over this row
+    $r.on('mouseenter', { stud: stud }, displayMarkDetail);
+    $('#marks tbody').append($r);
+  }
+}
+
+function displayMarkDetail (event) {
+  // event.data.stud is the record of the student selected
+  var stud = event.data.stud;
+  var s = `The student ${stud.name} has got ${stud.hw.join(',')} in assignments, `;
+  s += `${stud.test.join(',')} in tests, and ${stud.exam} in exam.`;
+  $('p#detail').text(s);
+}
+
+populateMarkTable(marks);
+</script>
+</body>
+</html>

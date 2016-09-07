@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>jQuery selectors and modifying elements</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="common.css"/>
+  <style>
+  table#z { border-collapse: collapse; }
+  table#z td { padding: 4px 16px; border: 1px solid gray;}
+  table#z thead { background-color: gray; color: white; }
+  table#z img { width: 48px; height: 48px; }
+
+  .center {
+    position: fixed; top: 30%; left: 30%;
+    width: 300px !important; height: 300px !important;
+    background-color: lightblue; border: 1px solid gray;
+    border-radius: 30px; padding: 10px;
+  }
+
+  </style>
+</head>
+
+<body>
+  <h1>jQuery selectors and modifying elements</h1>
+
+  <table id='z'>
+    <thead>
+      <tr><td>year</td><td>zodiac</td><td>img</td></tr>
+    </thead>
+    <tbody>
+      <tr><td>2010</td><td>tiger</td><td><img src='ani/tiger.png'/></td></tr>
+      <tr><td>2011</td><td>rabbit</td><td><img src='ani/rabbit.png'/></td></tr>
+      <tr><td>2012</td><td>dragon</td><td><img src='ani/dragon.png'/></td></tr>
+      <tr><td>2013</td><td>snake</td><td><img src='ani/snake.png'/></td></tr>
+      <tr><td>2014</td><td>horse</td><td><img src='ani/horse.png'/></td></tr>
+    </tbody>
+  </table>
+
+  <p>Try each of the following.</p>
+  <ul>
+    <li><code>$('img').eq(0).addClass('center')</code> - add a class to the element. This HTML code includes some style rules for the class <code>center</code></li>
+    <li><code>$('img').eq(0).removeClass('center')</code> - remove the class from the element</li>
+  </ul>
+
+  <script src="jquery.js"></script>
+  <script>
+
+
+// TODO: make animation!
+</script>
+</body>
+</html>
