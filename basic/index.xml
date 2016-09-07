@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Basics on My New Hugo Site</title>
-    <link>http://comp312.ipm.mo/basic/</link>
-    <description>Recent content in Basics on My New Hugo Site</description>
+    <title>Basics on COMP312 labs</title>
+    <link>http://philiplei.github.io/basic/</link>
+    <description>Recent content in Basics on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 26 May 2016 10:14:43 +0800</lastBuildDate>
-    <atom:link href="http://comp312.ipm.mo/basic/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://philiplei.github.io/basic/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>JavaScript basics</title>
-      <link>http://comp312.ipm.mo/basic/</link>
+      <link>http://philiplei.github.io/basic/</link>
       <pubDate>Thu, 26 May 2016 10:14:43 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/</guid>
+      <guid>http://philiplei.github.io/basic/</guid>
       <description>
 
 &lt;h2 id=&#34;javascript-basics&#34;&gt;JavaScript Basics&lt;/h2&gt;
@@ -58,10 +58,10 @@
     
     <item>
       <title>2-1 Basic data types and control</title>
-      <link>http://comp312.ipm.mo/basic/2-1/</link>
+      <link>http://philiplei.github.io/basic/2-1/</link>
       <pubDate>Thu, 26 May 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/2-1/</guid>
+      <guid>http://philiplei.github.io/basic/2-1/</guid>
       <description>
 
 &lt;p&gt;This lab goes through the basic data types (Number and String) and control structures of the JavaScript programming language.&lt;/p&gt;
@@ -188,7 +188,7 @@ Comparison results are either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false
 &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while&#34;&gt;while&lt;/a&gt; and
 &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch&#34;&gt;switch&lt;/a&gt; for detail.&lt;/p&gt;
 
-&lt;p&gt;An example of &lt;code&gt;if&lt;/code&gt; to solve quadratic equations &lt;img src=&#34;http://comp312.ipm.mo/chap2/quadratic.png&#34; height=&#39;60&#39;&gt;&lt;/p&gt;
+&lt;p&gt;An example of &lt;code&gt;if&lt;/code&gt; to solve quadratic equations &lt;img src=&#34;http://philiplei.github.io/chap2/quadratic.png&#34; height=&#39;60&#39;&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = 1, b = -3, c = 2;  // roots are 1 and 2
 // var a = 1, b = 0, c = 1;  // roots are i and -i
@@ -270,10 +270,10 @@ console.log(sqr);
     
     <item>
       <title>2-2 Arrays and functions</title>
-      <link>http://comp312.ipm.mo/basic/2-2/</link>
+      <link>http://philiplei.github.io/basic/2-2/</link>
       <pubDate>Thu, 26 May 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/2-2/</guid>
+      <guid>http://philiplei.github.io/basic/2-2/</guid>
       <description>
 
 &lt;p&gt;This lab goes through the basics of the JavaScript arrays and functions.&lt;/p&gt;
@@ -455,16 +455,16 @@ console.log(search(x, 1)); // should print -1;
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The sample answers are available at &lt;a href=&#34;http://comp312.ipm.mo/chap2/p201.js&#34;&gt;p201.js&lt;/a&gt;, &lt;a href=&#34;http://comp312.ipm.mo/chap2/p202.js&#34;&gt;p202.js&lt;/a&gt; and &lt;a href=&#34;http://comp312.ipm.mo/chap2/p203.js&#34;&gt;p203.js&lt;/a&gt; respectively.&lt;/p&gt;
+&lt;p&gt;The sample answers are available at &lt;a href=&#34;http://philiplei.github.io/chap2/p201.js&#34;&gt;p201.js&lt;/a&gt;, &lt;a href=&#34;http://philiplei.github.io/chap2/p202.js&#34;&gt;p202.js&lt;/a&gt; and &lt;a href=&#34;http://philiplei.github.io/chap2/p203.js&#34;&gt;p203.js&lt;/a&gt; respectively.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>2-3 Objects and JSON data</title>
-      <link>http://comp312.ipm.mo/basic/2-3/</link>
+      <link>http://philiplei.github.io/basic/2-3/</link>
       <pubDate>Thu, 26 May 2016 19:13:37 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/2-3/</guid>
+      <guid>http://philiplei.github.io/basic/2-3/</guid>
       <description>
 
 &lt;p&gt;This lab covers the basics of objects (as data structure). It also covers part of JSON.&lt;/p&gt;
@@ -598,7 +598,7 @@ cn2en[&#39;春&#39;]  // &#39;spring&#39;
 
 &lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
 
-&lt;p&gt;Use the time table data structure above to complete this exercise. Refer to the sample answers for sample output: &lt;a href=&#34;http://comp312.ipm.mo/chap2/p204.js&#34;&gt;p204.js&lt;/a&gt;, &lt;a href=&#34;http://comp312.ipm.mo/chap2/p205.js&#34;&gt;p205.js&lt;/a&gt; and &lt;a href=&#34;http://comp312.ipm.mo/chap2/p206.js&#34;&gt;p206.js&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Use the time table data structure above to complete this exercise. Refer to the sample answers for sample output: &lt;a href=&#34;http://philiplei.github.io/chap2/p204.js&#34;&gt;p204.js&lt;/a&gt;, &lt;a href=&#34;http://philiplei.github.io/chap2/p205.js&#34;&gt;p205.js&lt;/a&gt; and &lt;a href=&#34;http://philiplei.github.io/chap2/p206.js&#34;&gt;p206.js&lt;/a&gt;.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Write a program to show the number of lectures of each course. The output should include course code, course title, and number of lectures per week.&lt;/p&gt;&lt;/li&gt;
@@ -612,10 +612,10 @@ cn2en[&#39;春&#39;]  // &#39;spring&#39;
     
     <item>
       <title>2-4 Callbacks and arrow functions</title>
-      <link>http://comp312.ipm.mo/basic/2-4/</link>
+      <link>http://philiplei.github.io/basic/2-4/</link>
       <pubDate>Thu, 26 May 2016 19:13:42 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/2-4/</guid>
+      <guid>http://philiplei.github.io/basic/2-4/</guid>
       <description>
 
 &lt;h2 id=&#34;functions-as-first-class-values&#34;&gt;Functions as first-class values&lt;/h2&gt;
@@ -626,26 +626,25 @@ you can save a function in a variable, pass a function to another function, or r
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function add (a,b) { return a+b; }
 var f = add;
 f(1,2); // returns 3;
-add(1,3); // same
+add(1,2); // same
 // dir(f)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Passing a function to another function is possible. This is an example of &lt;dfn&gt;callback&lt;/dfn&gt;, and can change the behavior of another function.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// use a function to combine values in the array
-function reduce (A, func) {
-  // assume the array has at least 2 elements
-  var x = A[0];
-  for (var i=1; i&amp;lt;A.length; i++) { x = func(x, A[i]); }
-  return x;  
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// use a function op(x,y) to combine 3 values
+function combine (op, a, b, c) {
+  var t = op(a,b);
+  var ans = op(t,c);
+  return ans;
 }
 
 // define an anonymous function, and save it in the variable &#39;add&#39;
 var add = function(a,b) { return a+b; }
-reduce([6,7,8,9], add); // returns 30
+combine(add, 6, 7, 8); // returns 21
 
 var mul = function(a,b) { return a*b; }
-reduce([6,7,8,9], mul); // returns 3024
+combine(mul, 6, 7, 8); // returns 336
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;map-and-filter&#34;&gt;Map and filter&lt;/h2&gt;
@@ -673,7 +672,7 @@ for (var k=0; k&amp;lt;c.length; k++) {
 // print c and d
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This has become quite common and an Array object provides built-in methods to iterate their content. One of the simplest is &lt;code&gt;.map()&lt;/code&gt;, which accepts a function as parameter. The function takes 1 input, perform some processing, and returns the result. &lt;code&gt;.map()&lt;/code&gt; collects these results in an output array.&lt;/p&gt;
+&lt;p&gt;This is a common scenario in programming. Therefore, the JavaScript Array objects provide built-in methods to iterate their content. One of the simplest is &lt;code&gt;.map()&lt;/code&gt;, which accepts a function as parameter. The function takes 1 input, perform some processing, and returns the result. &lt;code&gt;.map()&lt;/code&gt; collects these results into an output array.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function round2(n) { return Math.round(n*100) / 100; }
 
@@ -687,22 +686,24 @@ var b = a.map(round2);
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1/2, 1/3, 1/4, 1/5, 1/6];
 var b = a.map(function round2(n) {
-   return Math.round(n*100) / 100; });
+   return Math.round(n*100) / 100;
+});
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And you can even omit the function name. This defines an &lt;dfn&gt;anonymous function&lt;/dfn&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1/2, 1/3, 1/4, 1/5, 1/6];
 var b = a.map(function(n) {
-   return Math.round(n*100) / 100; });
+   return Math.round(n*100) / 100;
+});
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Another way to look at this is that a callback function can customize / modify the functionality of an existing function. For example, to calculate areas of rectangles in an array, we can write another callback function and pass it to &lt;code&gt;.map()&lt;/code&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// an array of objects, each one is a rectangle with given width and height
 var c = [ { w: 4, h: 5 }, { w: 2, h: 3 } ];
-var d = c.map(function (r1,r2) {
-  return r1.w * r2.h;
+var d = c.map(function (r) {
+  return r.w * r.h;
 });
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -777,7 +778,7 @@ tick();
 
 &lt;h2 id=&#34;arrow-functions&#34;&gt;Arrow functions&lt;/h2&gt;
 
-&lt;p&gt;Anonymous functions are very common in JavaScript programming because of the asynchronous nature of client-side or server-side programming. (E.g. register a callback to handle mouse click). Therefore, ES6 defines a new syntax called &lt;dfn&gt;arrow functions&lt;/dfn&gt; to define anonymous function. Usually, arrow functions are defined and passed directly to another function.&lt;/p&gt;
+&lt;p&gt;Anonymous functions are very common in JavaScript programming because of the asynchronous nature of client-side or server-side programming. (E.g. register a callback to handle mouse click). Therefore, ES6 defines a more concise syntax called &lt;dfn&gt;arrow functions&lt;/dfn&gt; to define anonymous function. Usually, arrow functions are defined and passed directly to another function.&lt;/p&gt;
 
 &lt;p&gt;Compare the two ways to write functions below.&lt;/p&gt;
 
@@ -814,29 +815,33 @@ f = e.filter(s =&amp;gt; s.length&amp;lt;5);
 &lt;h2 id=&#34;excersie&#34;&gt;Excersie&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Given an array &lt;code&gt;var N = [ 32, 53, 42, 25, 48, 10 ]&lt;/code&gt;, write a program to do the following. You should use callback functions.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Given an array &lt;code&gt;var N = [ 32, 53, 42, 25, 48, 10 ]&lt;/code&gt;, write a program to do the following. You should use callback functions. &lt;a href=&#34;http://philiplei.github.io/chap2/p211.js&#34;&gt;(sample answer)&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Obtain an array of hexadecimal representation of the numbers. (Hints: use &lt;code&gt;n.toString(16)&lt;/code&gt; to convert a number &lt;code&gt;n&lt;/code&gt; to hexadecimal)&lt;/li&gt;
-&lt;li&gt;Obtain an array of the numbers between 20 and 40&lt;/li&gt;
-&lt;li&gt;Count how many of the numbers are odd&lt;/li&gt;
-&lt;li&gt;Calculate the sum of the numbers. Try to use &lt;code&gt;.reduce()&lt;/code&gt; in Array. &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce&#34;&gt;(online reference)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Obtain an array of hexadecimal representation of the numbers in &lt;code&gt;N&lt;/code&gt;. (Hints: use &lt;code&gt;n.toString(16)&lt;/code&gt; to convert a number &lt;code&gt;n&lt;/code&gt; to hexadecimal)&lt;/li&gt;
+&lt;li&gt;Obtain an array of the numbers in &lt;code&gt;N&lt;/code&gt; between 20 and 40 inclusively&lt;/li&gt;
+&lt;li&gt;Count how many of the numbers  in &lt;code&gt;N&lt;/code&gt; are odd&lt;/li&gt;
+&lt;li&gt;Calculate the sum of the numbers in &lt;code&gt;N&lt;/code&gt;. Try to use &lt;code&gt;.reduce()&lt;/code&gt; in Array. &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce&#34;&gt;(online reference)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;The variable &lt;code&gt;comp312&lt;/code&gt; is an array that contains records of students and their marks in the comp312 class. Each student record has three fields: name, test and exam. Write programs to do the following. Use an Array iteration method at least once in each case.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;The variable &lt;code&gt;comp312&lt;/code&gt; is an array that contains records of student marks in the comp312 class. Each student record has three fields: name, test and exam. Write programs to do the following. Use an Array iteration method (i.e. &lt;code&gt;.map()&lt;/code&gt;, &lt;code&gt;.filter()&lt;/code&gt;, &lt;code&gt;.reduce()&lt;/code&gt;, etc) at least once in each case. &lt;a href=&#34;http://philiplei.github.io/chap2/p212.js&#34;&gt;(sample answer)&lt;/a&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;var comp312 = [ { name: &#39;Peter&#39;, test: 80, exam: 70 },
-{ name: &#39;John&#39;, test: 60, exam: 65 }, { name: &#39;Mary&#39;, test: 90, exam: 85 },
-{ name: &#39;Christine&#39;, test: 70, exam: 76 } ];
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var comp312 = [
+{ name: &#39;Peter&#39;, test: 80, exam: 70 },
+{ name: &#39;John&#39;, test: 60, exam: 65 },
+{ name: &#39;Mary&#39;, test: 90, exam: 85 },
+{ name: &#39;Christine&#39;, test: 70, exam: 76 }
+];
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Get a list of student names in the comp312 class&lt;/li&gt;
-&lt;li&gt;Get a list of student record with test mark &amp;gt;= 80&lt;/li&gt;
+&lt;li&gt;Get a list of student record with test mark &amp;gt;= 75&lt;/li&gt;
 &lt;li&gt;Get a list of student name whose test mark is greater than exam mark&lt;/li&gt;
 &lt;li&gt;Assume final mark = 0.6 * test + 0.4 * exam. Make an array with records showing the final mark and name for each student.&lt;/li&gt;
+&lt;li&gt;Sort the list in descending order of exam mark&lt;/li&gt;
 &lt;li&gt;Show the student record with the highest exam mark&lt;/li&gt;
-&lt;li&gt;Sort the list in descending order of exam mark g)Calculate the average test mark&lt;/li&gt;
+&lt;li&gt;Calculate the average test mark&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
@@ -844,10 +849,10 @@ f = e.filter(s =&amp;gt; s.length&amp;lt;5);
     
     <item>
       <title>2-5 Defining class</title>
-      <link>http://comp312.ipm.mo/basic/2-5/</link>
+      <link>http://philiplei.github.io/basic/2-5/</link>
       <pubDate>Fri, 27 May 2016 17:05:08 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/2-5/</guid>
+      <guid>http://philiplei.github.io/basic/2-5/</guid>
       <description>
 
 &lt;p&gt;Before we discuss how to define our own class, let&amp;rsquo;s first look at some samples classes in the JavaScript language.&lt;/p&gt;
@@ -1049,10 +1054,10 @@ for (var [k,v] of wordCount) {
     
     <item>
       <title>2-6 Reg expression</title>
-      <link>http://comp312.ipm.mo/basic/2-6/</link>
+      <link>http://philiplei.github.io/basic/2-6/</link>
       <pubDate>Fri, 27 May 2016 17:05:11 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/2-6/</guid>
+      <guid>http://philiplei.github.io/basic/2-6/</guid>
       <description>
 
 &lt;h2 id=&#34;defining-a-regular-expression&#34;&gt;defining a regular expression&lt;/h2&gt;

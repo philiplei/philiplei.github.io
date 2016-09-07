@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Servers on My New Hugo Site</title>
-    <link>http://comp312.ipm.mo/server/</link>
-    <description>Recent content in Servers on My New Hugo Site</description>
+    <title>Servers on COMP312 labs</title>
+    <link>http://philiplei.github.io/server/</link>
+    <description>Recent content in Servers on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jun 2016 10:14:43 +0800</lastBuildDate>
-    <atom:link href="http://comp312.ipm.mo/server/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://philiplei.github.io/server/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Server-side programming</title>
-      <link>http://comp312.ipm.mo/server/</link>
+      <link>http://philiplei.github.io/server/</link>
       <pubDate>Thu, 30 Jun 2016 10:14:43 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/</guid>
+      <guid>http://philiplei.github.io/server/</guid>
       <description>
 
 &lt;h2 id=&#34;server-side-programming&#34;&gt;Server-side programming&lt;/h2&gt;
@@ -106,10 +106,10 @@ res.send json, res.status code.&lt;/li&gt;
     
     <item>
       <title>4-1 Node.js primer</title>
-      <link>http://comp312.ipm.mo/server/4-1/</link>
+      <link>http://philiplei.github.io/server/4-1/</link>
       <pubDate>Thu, 30 Jun 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/4-1/</guid>
+      <guid>http://philiplei.github.io/server/4-1/</guid>
       <description>
 
 &lt;p&gt;This lab goes through the basics of the Node.js platform.&lt;/p&gt;
@@ -327,7 +327,7 @@ fs.readFile(&#39;intro.txt&#39;, &#39;utf8&#39;, readDone);
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Write a program to combine two text file &amp;lsquo;in1.txt&amp;rsquo; and &amp;lsquo;in2.txt&amp;rsquo; to an output text file &amp;lsquo;out.txt&amp;rsquo;.
-Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;code&gt;fs.writeFile()&lt;/code&gt;. (solution: &lt;a href=&#34;http://comp312.ipm.mo/chap4-1/p106.js&#34;&gt;p106.js&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;code&gt;fs.writeFile()&lt;/code&gt;. (solution: &lt;a href=&#34;http://philiplei.github.io/chap4-1/p106.js&#34;&gt;p106.js&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;Write a program to monitor the amount of available memory to a log file &amp;lsquo;freemem.txt&amp;rsquo;. Hints: use &lt;code&gt;fs.appendFile()&lt;/code&gt; to append log message to the txt file.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
@@ -338,10 +338,10 @@ Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;co
     
     <item>
       <title>4-2 Events</title>
-      <link>http://comp312.ipm.mo/server/4-2/</link>
+      <link>http://philiplei.github.io/server/4-2/</link>
       <pubDate>Fri, 22 Jul 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/4-2/</guid>
+      <guid>http://philiplei.github.io/server/4-2/</guid>
       <description>
 
 &lt;p&gt;This lab goes through events and event emitters in Node.js.&lt;/p&gt;
@@ -449,10 +449,10 @@ This special event reports error and demonstrates an important difference betwee
     
     <item>
       <title>4-3 Web client</title>
-      <link>http://comp312.ipm.mo/server/4-3/</link>
+      <link>http://philiplei.github.io/server/4-3/</link>
       <pubDate>Mon, 25 Jul 2016 10:05:01 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/4-3/</guid>
+      <guid>http://philiplei.github.io/server/4-3/</guid>
       <description>
 
 &lt;p&gt;This lab demonstrate how send HTTP requests using the &lt;code&gt;request&lt;/code&gt; modules.&lt;/p&gt;
@@ -553,10 +553,10 @@ request.post(options, (err, res, body) =&amp;gt; {
     
     <item>
       <title>4-4 Routing in web app</title>
-      <link>http://comp312.ipm.mo/server/4-4/</link>
+      <link>http://philiplei.github.io/server/4-4/</link>
       <pubDate>Wed, 27 Jul 2016 10:29:04 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/4-4/</guid>
+      <guid>http://philiplei.github.io/server/4-4/</guid>
       <description>
 
 &lt;p&gt;This lab first covers the concept of a Node app and dependency management in package.json. Next it starts the discussion on the web app framework Express.js.&lt;/p&gt;
@@ -633,7 +633,7 @@ app.get(&#39;/about.html&#39;, (req, res) =&amp;gt; {
 
 &lt;p&gt;Some web apps include parameters in the URL path. For example, the URL &lt;code&gt;https://www.google.com/maps/place/Macao+Polytechnic+Institute/&lt;/code&gt; refers to the place &amp;lsquo;Macao Polytechnic Institute&amp;rsquo; in the web app Google Maps.  You can easily extract these parameters in Express routes.&lt;/p&gt;
 
-&lt;p&gt;Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &amp;lsquo;/lecture/comp312&amp;rsquo;, it returns a response of its lecture hours. The parameters are available in the object &lt;code&gt;req.params&lt;/code&gt;. (The full source is &lt;a href=&#34;http://comp312.ipm.mo/chap4-4/app1.js&#34;&gt;app1.js&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &amp;lsquo;/lecture/comp312&amp;rsquo;, it returns a response of its lecture hours. The parameters are available in the object &lt;code&gt;req.params&lt;/code&gt;. (The full source is &lt;a href=&#34;http://philiplei.github.io/chap4-4/app1.js&#34;&gt;app1.js&lt;/a&gt;).&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// retrieve the lecture time
 app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
@@ -661,16 +661,16 @@ app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
 &lt;li&gt;&lt;code&gt;res.redirect(path)&lt;/code&gt; redirects to the given URL.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Check the source code of &lt;a href=&#34;http://comp312.ipm.mo/chap4-4/app2.js&#34;&gt;app2.js&lt;/a&gt; for demonstration of how to build responses with these methods.&lt;/p&gt;
+&lt;p&gt;Check the source code of &lt;a href=&#34;http://philiplei.github.io/chap4-4/app2.js&#34;&gt;app2.js&lt;/a&gt; for demonstration of how to build responses with these methods.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>4-5 Middleware in web app</title>
-      <link>http://comp312.ipm.mo/server/4-5/</link>
+      <link>http://philiplei.github.io/server/4-5/</link>
       <pubDate>Tue, 09 Aug 2016 15:10:00 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/4-5/</guid>
+      <guid>http://philiplei.github.io/server/4-5/</guid>
       <description>
 
 &lt;p&gt;This lab demonstrate how to use middleware and how to handle form submit using GET and POST. We&amp;rsquo;ll end this part with the implementation of a classic web app. (i.e. before AJAX).&lt;/p&gt;
@@ -733,7 +733,7 @@ app.listen(3000, () =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;In general, routes should be placed before the &amp;lsquo;static&amp;rsquo; middleware. Otherwise, a static file that matches the URL path will be handled by the &amp;lsquo;static&amp;rsquo; middleware and will not be handled by any routes after the middleware.  Try to move the specified route in &lt;a href=&#34;http://comp312.ipm.mo/chap4-5/app4.js&#34;&gt;app4.js&lt;/a&gt; to experiment.&lt;/p&gt;
+&lt;p&gt;In general, routes should be placed before the &amp;lsquo;static&amp;rsquo; middleware. Otherwise, a static file that matches the URL path will be handled by the &amp;lsquo;static&amp;rsquo; middleware and will not be handled by any routes after the middleware.  Try to move the specified route in &lt;a href=&#34;http://philiplei.github.io/chap4-5/app4.js&#34;&gt;app4.js&lt;/a&gt; to experiment.&lt;/p&gt;
 
 &lt;h2 id=&#34;handling-form-submit&#34;&gt;Handling form submit&lt;/h2&gt;
 
@@ -765,7 +765,7 @@ app.get(&#39;/add&#39;, (req, res) =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You&amp;rsquo;ll need a middleware to extract data from the message body of a POST request. A popular choice is the middleware &lt;code&gt;body-parser&lt;/code&gt;. This middleware parses the request message body (if any) and populate the object &lt;code&gt;req.body&lt;/code&gt;. In the route in the sample code below (see full source at &lt;a href=&#34;http://comp312.ipm.mo/chap4-5/app6.js&#34;&gt;app6.js&lt;/a&gt;), data submitted in POST request are accessible in &lt;code&gt;req.body.mesg&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll need a middleware to extract data from the message body of a POST request. A popular choice is the middleware &lt;code&gt;body-parser&lt;/code&gt;. This middleware parses the request message body (if any) and populate the object &lt;code&gt;req.body&lt;/code&gt;. In the route in the sample code below (see full source at &lt;a href=&#34;http://philiplei.github.io/chap4-5/app6.js&#34;&gt;app6.js&lt;/a&gt;), data submitted in POST request are accessible in &lt;code&gt;req.body.mesg&lt;/code&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// excerpt from app6.js
 
@@ -786,10 +786,10 @@ app.post(&#39;/append&#39;, (req, res) =&amp;gt; {
     
     <item>
       <title>4-6 Template in web app</title>
-      <link>http://comp312.ipm.mo/server/4-6/</link>
+      <link>http://philiplei.github.io/server/4-6/</link>
       <pubDate>Wed, 10 Aug 2016 16:21:00 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/4-6/</guid>
+      <guid>http://philiplei.github.io/server/4-6/</guid>
       <description>
 
 &lt;p&gt;This lab demonstrate how to use templates in Express app.&lt;/p&gt;
@@ -798,7 +798,7 @@ app.post(&#39;/append&#39;, (req, res) =&amp;gt; {
 
 &lt;p&gt;In previous lab, we embedded HTML template inside JavaScript code to render data. This approach becomes impractical when the HTML code or the data become more complicated.  A better approach is to use some template system to render data in the server side.&lt;/p&gt;
 
-&lt;p&gt;We studied how to use the Handlebars template system in &lt;a href=&#34;http://comp312.ipm.mo/client/3-6&#34;&gt;Lab 3-6&lt;/a&gt; for client-side. It is also possible to use the template system in an Express app with a suitable template engine. A popular module is &lt;code&gt;hbs&lt;/code&gt;.  Install in with the command &lt;code&gt;npm install hbs --save&lt;/code&gt;.  Then, in the Express app, add one line:&lt;/p&gt;
+&lt;p&gt;We studied how to use the Handlebars template system in &lt;a href=&#34;http://philiplei.github.io/client/3-6&#34;&gt;Lab 3-6&lt;/a&gt; for client-side. It is also possible to use the template system in an Express app with a suitable template engine. A popular module is &lt;code&gt;hbs&lt;/code&gt;.  Install in with the command &lt;code&gt;npm install hbs --save&lt;/code&gt;.  Then, in the Express app, add one line:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// set the template engine to handlebars
 app.set(&#39;view engine&#39;, &#39;hbs&#39;);
@@ -828,10 +828,10 @@ app.set(&#39;view engine&#39;, &#39;hbs&#39;);
     
     <item>
       <title>4-7 Database access</title>
-      <link>http://comp312.ipm.mo/server/4-7/</link>
+      <link>http://philiplei.github.io/server/4-7/</link>
       <pubDate>Wed, 10 Aug 2016 09:14:00 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/4-7/</guid>
+      <guid>http://philiplei.github.io/server/4-7/</guid>
       <description>
 
 &lt;p&gt;This lab demonstrate how to use a file-based database &lt;code&gt;sqlite&lt;/code&gt;.&lt;/p&gt;

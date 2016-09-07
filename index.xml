@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>http://comp312.ipm.mo/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>COMP312 labs</title>
+    <link>http://philiplei.github.io/</link>
+    <description>Recent content on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jun 2016 10:14:43 +0800</lastBuildDate>
-    <atom:link href="http://comp312.ipm.mo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://philiplei.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Server-side programming</title>
-      <link>http://comp312.ipm.mo/server/</link>
+      <link>http://philiplei.github.io/server/</link>
       <pubDate>Thu, 30 Jun 2016 10:14:43 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/</guid>
+      <guid>http://philiplei.github.io/server/</guid>
       <description>
 
 &lt;h2 id=&#34;server-side-programming&#34;&gt;Server-side programming&lt;/h2&gt;
@@ -106,10 +106,10 @@ res.send json, res.status code.&lt;/li&gt;
     
     <item>
       <title>Client-side programming</title>
-      <link>http://comp312.ipm.mo/client/</link>
+      <link>http://philiplei.github.io/client/</link>
       <pubDate>Mon, 30 May 2016 10:14:43 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/client/</guid>
+      <guid>http://philiplei.github.io/client/</guid>
       <description>
 
 &lt;h2 id=&#34;client-side-programming&#34;&gt;Client-side programming&lt;/h2&gt;
@@ -177,10 +177,10 @@ res.send json, res.status code.&lt;/li&gt;
     
     <item>
       <title>JavaScript basics</title>
-      <link>http://comp312.ipm.mo/basic/</link>
+      <link>http://philiplei.github.io/basic/</link>
       <pubDate>Thu, 26 May 2016 10:14:43 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/</guid>
+      <guid>http://philiplei.github.io/basic/</guid>
       <description>
 
 &lt;h2 id=&#34;javascript-basics&#34;&gt;JavaScript Basics&lt;/h2&gt;
@@ -224,10 +224,10 @@ res.send json, res.status code.&lt;/li&gt;
     
     <item>
       <title>4-1 Node.js primer</title>
-      <link>http://comp312.ipm.mo/server/4-1/</link>
+      <link>http://philiplei.github.io/server/4-1/</link>
       <pubDate>Thu, 30 Jun 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/4-1/</guid>
+      <guid>http://philiplei.github.io/server/4-1/</guid>
       <description>
 
 &lt;p&gt;This lab goes through the basics of the Node.js platform.&lt;/p&gt;
@@ -445,7 +445,7 @@ fs.readFile(&#39;intro.txt&#39;, &#39;utf8&#39;, readDone);
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Write a program to combine two text file &amp;lsquo;in1.txt&amp;rsquo; and &amp;lsquo;in2.txt&amp;rsquo; to an output text file &amp;lsquo;out.txt&amp;rsquo;.
-Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;code&gt;fs.writeFile()&lt;/code&gt;. (solution: &lt;a href=&#34;http://comp312.ipm.mo/chap4-1/p106.js&#34;&gt;p106.js&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;code&gt;fs.writeFile()&lt;/code&gt;. (solution: &lt;a href=&#34;http://philiplei.github.io/chap4-1/p106.js&#34;&gt;p106.js&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;Write a program to monitor the amount of available memory to a log file &amp;lsquo;freemem.txt&amp;rsquo;. Hints: use &lt;code&gt;fs.appendFile()&lt;/code&gt; to append log message to the txt file.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
@@ -456,10 +456,10 @@ Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;co
     
     <item>
       <title>3-1 Quick start</title>
-      <link>http://comp312.ipm.mo/client/3-1/</link>
+      <link>http://philiplei.github.io/client/3-1/</link>
       <pubDate>Mon, 30 May 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/client/3-1/</guid>
+      <guid>http://philiplei.github.io/client/3-1/</guid>
       <description>
 
 &lt;h2 id=&#34;document-tree-and-javascript-libraries&#34;&gt;document tree and JavaScript libraries&lt;/h2&gt;
@@ -483,7 +483,7 @@ Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;co
 
 &lt;h2 id=&#34;first-example&#34;&gt;First example&lt;/h2&gt;
 
-&lt;p&gt;This &lt;a href=&#34;http://comp312.ipm.mo/chap3/p301.html&#34;&gt;example&lt;/a&gt; shows several features in client-side web app programming.
+&lt;p&gt;This &lt;a href=&#34;http://philiplei.github.io/chap3/p301.html&#34;&gt;example&lt;/a&gt; shows several features in client-side web app programming.
 In this app, the user enters two numbers in text input boxes, presses a button to calculate the sum, and displays the result in the web page.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;!doctype html&amp;gt;
@@ -542,10 +542,10 @@ In this app, the user enters two numbers in text input boxes, presses a button t
     
     <item>
       <title>2-1 Basic data types and control</title>
-      <link>http://comp312.ipm.mo/basic/2-1/</link>
+      <link>http://philiplei.github.io/basic/2-1/</link>
       <pubDate>Thu, 26 May 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/2-1/</guid>
+      <guid>http://philiplei.github.io/basic/2-1/</guid>
       <description>
 
 &lt;p&gt;This lab goes through the basic data types (Number and String) and control structures of the JavaScript programming language.&lt;/p&gt;
@@ -672,7 +672,7 @@ Comparison results are either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false
 &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while&#34;&gt;while&lt;/a&gt; and
 &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch&#34;&gt;switch&lt;/a&gt; for detail.&lt;/p&gt;
 
-&lt;p&gt;An example of &lt;code&gt;if&lt;/code&gt; to solve quadratic equations &lt;img src=&#34;http://comp312.ipm.mo/chap2/quadratic.png&#34; height=&#39;60&#39;&gt;&lt;/p&gt;
+&lt;p&gt;An example of &lt;code&gt;if&lt;/code&gt; to solve quadratic equations &lt;img src=&#34;http://philiplei.github.io/chap2/quadratic.png&#34; height=&#39;60&#39;&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = 1, b = -3, c = 2;  // roots are 1 and 2
 // var a = 1, b = 0, c = 1;  // roots are i and -i
@@ -754,10 +754,10 @@ console.log(sqr);
     
     <item>
       <title>4-2 Events</title>
-      <link>http://comp312.ipm.mo/server/4-2/</link>
+      <link>http://philiplei.github.io/server/4-2/</link>
       <pubDate>Fri, 22 Jul 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/4-2/</guid>
+      <guid>http://philiplei.github.io/server/4-2/</guid>
       <description>
 
 &lt;p&gt;This lab goes through events and event emitters in Node.js.&lt;/p&gt;
@@ -865,17 +865,17 @@ This special event reports error and demonstrates an important difference betwee
     
     <item>
       <title>3-2 Select and change</title>
-      <link>http://comp312.ipm.mo/client/3-2/</link>
+      <link>http://philiplei.github.io/client/3-2/</link>
       <pubDate>Mon, 30 May 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/client/3-2/</guid>
+      <guid>http://philiplei.github.io/client/3-2/</guid>
       <description>
 
 &lt;p&gt;This lab shows how to select elements in the document tree using the &lt;code&gt;$()&lt;/code&gt; jQuery function. You may then invoke methods on the resultant collection of elements.&lt;/p&gt;
 
 &lt;h2 id=&#34;select-by-css-selectors&#34;&gt;Select by CSS selectors&lt;/h2&gt;
 
-&lt;p&gt;This part uses the example file &lt;a href=&#34;http://comp312.ipm.mo/chap3/p302.html&#34;&gt;p302.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This part uses the example file &lt;a href=&#34;http://philiplei.github.io/chap3/p302.html&#34;&gt;p302.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The jQuery library provides a powerful function to select elements from the document tree using CSS selectors. This function is sometimes known as the jQuery function &lt;code&gt;$()&lt;/code&gt;. When provided with a CSS selectors, it returns a collection of HTML elements that are matched by the CSS selector.&lt;/p&gt;
 
@@ -911,13 +911,13 @@ This special event reports error and demonstrates an important difference betwee
 
 &lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
 
-&lt;p&gt;Write a JavaScript program to display the Chinese birth sign for a given year birth. Start your work with &lt;a href=&#34;http://comp312.ipm.mo/chap3/p303.html&#34;&gt;p303.html&lt;/a&gt;. Refer to &lt;a href=&#34;http://comp312.ipm.mo/chap3/p303-done.html&#34;&gt;sample answer&lt;/a&gt; for a sample run.&lt;/p&gt;
+&lt;p&gt;Write a JavaScript program to display the Chinese birth sign for a given year birth. Start your work with &lt;a href=&#34;http://philiplei.github.io/chap3/p303.html&#34;&gt;p303.html&lt;/a&gt;. Refer to &lt;a href=&#34;http://philiplei.github.io/chap3/p303-done.html&#34;&gt;sample answer&lt;/a&gt; for a sample run.&lt;/p&gt;
 
 &lt;p&gt;To make the problem simpler, assume that the birth sign for a whole year is the same. For example, the birth sign for the year 2008 is rat. (In case you don&amp;rsquo;t know what birth sign is, please try &lt;a href=&#34;https://www.travelchinaguide.com/intro/social_customs/zodiac/&#34;&gt;this web site&lt;/a&gt;.)&lt;/p&gt;
 
 &lt;h2 id=&#34;select-by-structure&#34;&gt;Select by structure&lt;/h2&gt;
 
-&lt;p&gt;When the HTML elements you want to select are embedded in other elements, you can use descendant selector, child selector and pseudo-class like &lt;code&gt;:nth-child(n)&lt;/code&gt;. Test the following collection in the example file &lt;a href=&#34;http://comp312.ipm.mo/chap3/p304.html&#34;&gt;p304.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When the HTML elements you want to select are embedded in other elements, you can use descendant selector, child selector and pseudo-class like &lt;code&gt;:nth-child(n)&lt;/code&gt;. Test the following collection in the example file &lt;a href=&#34;http://philiplei.github.io/chap3/p304.html&#34;&gt;p304.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;$(&#39;table#marks td.fail&#39;)&lt;/code&gt; selects some table cells &lt;code&gt;&amp;lt;td&amp;gt;&lt;/code&gt; inside a &lt;code&gt;&amp;lt;table&amp;gt;&lt;/code&gt; with id = &amp;lsquo;marks&amp;rsquo;&lt;/li&gt;
@@ -926,7 +926,7 @@ This special event reports error and demonstrates an important difference betwee
 &lt;/ul&gt;
 
 &lt;p&gt;If you want to do your own processing on the elements in a jQuery collection, iterate the collection with a &lt;code&gt;for .. of&lt;/code&gt; loop.  Notice that each element retrieved by &lt;code&gt;for .. of&lt;/code&gt; loop is a DOM element object. To use jQuery methods, convert the object into a jQuery collection with &lt;code&gt;$()&lt;/code&gt;.
-Test the following in &lt;a href=&#34;http://comp312.ipm.mo/chap3/p304.html&#34;&gt;p304.html&lt;/a&gt;.&lt;/p&gt;
+Test the following in &lt;a href=&#34;http://philiplei.github.io/chap3/p304.html&#34;&gt;p304.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// this example adds 1 mark to exam of everybody!
 // first, select all cells in the table body
@@ -964,7 +964,7 @@ $cells.each( (idx, c) =&amp;gt; {
 &lt;li&gt;Similarly, you can find the parents &lt;code&gt;$().parent()&lt;/code&gt; or siblings &lt;code&gt;$().next()&lt;/code&gt;, &lt;code&gt;$().prev()&lt;/code&gt;, &lt;code&gt;$().siblings()&lt;/code&gt; of elements in a jQuery collection.   See &lt;a href=&#34;https://api.jquery.com/category/traversing/tree-traversal/&#34;&gt;online reference&lt;/a&gt; for detail.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Consider this example. We want to calculate the final mark for the students in &lt;code&gt;table#marks&lt;/code&gt;. Final mark = 40% x test mark + 60% x exam mark. Run this example in &lt;a href=&#34;http://comp312.ipm.mo/chap3/p304.html&#34;&gt;p304.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Consider this example. We want to calculate the final mark for the students in &lt;code&gt;table#marks&lt;/code&gt;. Final mark = 40% x test mark + 60% x exam mark. Run this example in &lt;a href=&#34;http://philiplei.github.io/chap3/p304.html&#34;&gt;p304.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// for each row in the table body
 for (var row of $(&#39;#marks tbody tr&#39;)) {
@@ -993,27 +993,27 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
 &lt;h2 id=&#34;exercise-1&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Add JavaScript code to &lt;a href=&#34;http://comp312.ipm.mo/chap3/p305.html&#34;&gt;p305.html&lt;/a&gt; to fill in the numbers in the multiplication table &lt;code&gt;table#multitable&lt;/code&gt; when the user clicks the button below the table. You can refer to the output of the &lt;a href=&#34;http://comp312.ipm.mo/chap3/p305-done.html&#34;&gt;sample answer&lt;/a&gt;. However, before attempting to solve the questions, don&amp;rsquo;t read the source code of the answer.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add JavaScript code to &lt;a href=&#34;http://philiplei.github.io/chap3/p305.html&#34;&gt;p305.html&lt;/a&gt; to fill in the numbers in the multiplication table &lt;code&gt;table#multitable&lt;/code&gt; when the user clicks the button below the table. You can refer to the output of the &lt;a href=&#34;http://philiplei.github.io/chap3/p305-done.html&#34;&gt;sample answer&lt;/a&gt;. However, before attempting to solve the questions, don&amp;rsquo;t read the source code of the answer.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;There is a tic tac toe game board in the file &lt;a href=&#34;http://comp312.ipm.mo/chap3/p306.html&#34;&gt;p306.html&lt;/a&gt;. Write a function &lt;code&gt;show(stones)&lt;/code&gt; to set the game board according to the parameter, which is an array of 9 elements. An element of 0 corresponds to a circle, an element of 1 corresponds to a cross, and an element of 9 corresponds to an empty cell. Refer to the &lt;a href=&#34;http://comp312.ipm.mo/chap3/p306-done.html&#34;&gt;sample answer&lt;/a&gt; for a sample run.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;There is a tic tac toe game board in the file &lt;a href=&#34;http://philiplei.github.io/chap3/p306.html&#34;&gt;p306.html&lt;/a&gt;. Write a function &lt;code&gt;show(stones)&lt;/code&gt; to set the game board according to the parameter, which is an array of 9 elements. An element of 0 corresponds to a circle, an element of 1 corresponds to a cross, and an element of 9 corresponds to an empty cell. Refer to the &lt;a href=&#34;http://philiplei.github.io/chap3/p306-done.html&#34;&gt;sample answer&lt;/a&gt; for a sample run.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&#34;change-css-styles&#34;&gt;Change CSS styles&lt;/h2&gt;
 
-&lt;p&gt;There are two ways to change the CSS styles of elements. The first method is to add inline style with &lt;code&gt;$().css()&lt;/code&gt;. Try the examples in &lt;a href=&#34;http://comp312.ipm.mo/chap3/p307.html&#34;&gt;p307.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There are two ways to change the CSS styles of elements. The first method is to add inline style with &lt;code&gt;$().css()&lt;/code&gt;. Try the examples in &lt;a href=&#34;http://philiplei.github.io/chap3/p307.html&#34;&gt;p307.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;$(selector).css(property, value)&lt;/code&gt; sets the CSS property to the specified value for all elements in the collection&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;When you need to set many CSS properties, a more organized method is to write the style change as style rules in CSS style sheet. Assign the style rules to a class, and add the class to the element in runtime. This approach also makes it easy to &amp;lsquo;undo&amp;rsquo; the style change by removing the class from the element. Try the examples in &lt;a href=&#34;http://comp312.ipm.mo/chap3/p308.html&#34;&gt;p308.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When you need to set many CSS properties, a more organized method is to write the style change as style rules in CSS style sheet. Assign the style rules to a class, and add the class to the element in runtime. This approach also makes it easy to &amp;lsquo;undo&amp;rsquo; the style change by removing the class from the element. Try the examples in &lt;a href=&#34;http://philiplei.github.io/chap3/p308.html&#34;&gt;p308.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;$(selector).addClass(className)&lt;/code&gt; adds the specified class to the elements in the collection&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;$(selector).removeClass(className)&lt;/code&gt; removes the specified class from the elements in the collection&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Next, define a style rule for the table content and apply the rule to the table element in JavaScript. You may use the following sample.  When you&amp;rsquo;re done, your answer should &lt;a href=&#34;http://comp312.ipm.mo/chap3/p308-done.html&#34;&gt;look like this&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Next, define a style rule for the table content and apply the rule to the table element in JavaScript. You may use the following sample.  When you&amp;rsquo;re done, your answer should &lt;a href=&#34;http://philiplei.github.io/chap3/p308-done.html&#34;&gt;look like this&lt;/a&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-CSS&#34;&gt;.mystyle tr:nth-child(even) {
   background-color: rgba(50,90,200,0.9);
@@ -1028,7 +1028,7 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
 
 &lt;h2 id=&#34;exercise-2&#34;&gt;Exercise&lt;/h2&gt;
 
-&lt;p&gt;Add JavaScript code to &lt;a href=&#34;http://comp312.ipm.mo/chap3/p309.html&#34;&gt;p309.html&lt;/a&gt; to show student&amp;rsquo;s name and mark. Complete the function &lt;code&gt;show()&lt;/code&gt; according to the comment. You can refer to the output of the &lt;a href=&#34;http://comp312.ipm.mo/chap3/p309-done.html&#34;&gt;sample answer&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Add JavaScript code to &lt;a href=&#34;http://philiplei.github.io/chap3/p309.html&#34;&gt;p309.html&lt;/a&gt; to show student&amp;rsquo;s name and mark. Complete the function &lt;code&gt;show()&lt;/code&gt; according to the comment. You can refer to the output of the &lt;a href=&#34;http://philiplei.github.io/chap3/p309-done.html&#34;&gt;sample answer&lt;/a&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function show(name, mark) {
   // display the name in span#name
@@ -1046,10 +1046,10 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
     
     <item>
       <title>2-2 Arrays and functions</title>
-      <link>http://comp312.ipm.mo/basic/2-2/</link>
+      <link>http://philiplei.github.io/basic/2-2/</link>
       <pubDate>Thu, 26 May 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/2-2/</guid>
+      <guid>http://philiplei.github.io/basic/2-2/</guid>
       <description>
 
 &lt;p&gt;This lab goes through the basics of the JavaScript arrays and functions.&lt;/p&gt;
@@ -1231,16 +1231,16 @@ console.log(search(x, 1)); // should print -1;
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The sample answers are available at &lt;a href=&#34;http://comp312.ipm.mo/chap2/p201.js&#34;&gt;p201.js&lt;/a&gt;, &lt;a href=&#34;http://comp312.ipm.mo/chap2/p202.js&#34;&gt;p202.js&lt;/a&gt; and &lt;a href=&#34;http://comp312.ipm.mo/chap2/p203.js&#34;&gt;p203.js&lt;/a&gt; respectively.&lt;/p&gt;
+&lt;p&gt;The sample answers are available at &lt;a href=&#34;http://philiplei.github.io/chap2/p201.js&#34;&gt;p201.js&lt;/a&gt;, &lt;a href=&#34;http://philiplei.github.io/chap2/p202.js&#34;&gt;p202.js&lt;/a&gt; and &lt;a href=&#34;http://philiplei.github.io/chap2/p203.js&#34;&gt;p203.js&lt;/a&gt; respectively.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>4-3 Web client</title>
-      <link>http://comp312.ipm.mo/server/4-3/</link>
+      <link>http://philiplei.github.io/server/4-3/</link>
       <pubDate>Mon, 25 Jul 2016 10:05:01 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/4-3/</guid>
+      <guid>http://philiplei.github.io/server/4-3/</guid>
       <description>
 
 &lt;p&gt;This lab demonstrate how send HTTP requests using the &lt;code&gt;request&lt;/code&gt; modules.&lt;/p&gt;
@@ -1341,17 +1341,17 @@ request.post(options, (err, res, body) =&amp;gt; {
     
     <item>
       <title>3-3 Creating new content</title>
-      <link>http://comp312.ipm.mo/client/3-3/</link>
+      <link>http://philiplei.github.io/client/3-3/</link>
       <pubDate>Tue, 31 May 2016 10:36:44 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/client/3-3/</guid>
+      <guid>http://philiplei.github.io/client/3-3/</guid>
       <description>
 
 &lt;p&gt;This lab covers how to create new content into the document tree using &lt;code&gt;$()&lt;/code&gt; jQuery functions and methods.&lt;/p&gt;
 
 &lt;h2 id=&#34;create-new-html-content&#34;&gt;Create new HTML content&lt;/h2&gt;
 
-&lt;p&gt;You can create new HTML content by passing HTML code to the jQuery function &lt;code&gt;$(htmlCode)&lt;/code&gt;.  The newly created elements are detached from the current document tree, and not displayed.  To show the content, you have to attach the elements to the document tree.  Run the following code in &lt;a href=&#34;http://comp312.ipm.mo/chap3/p311.html&#34;&gt;p311.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can create new HTML content by passing HTML code to the jQuery function &lt;code&gt;$(htmlCode)&lt;/code&gt;.  The newly created elements are detached from the current document tree, and not displayed.  To show the content, you have to attach the elements to the document tree.  Run the following code in &lt;a href=&#34;http://philiplei.github.io/chap3/p311.html&#34;&gt;p311.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var p = $(&#39;&amp;lt;p&amp;gt;A new paragraph &amp;lt;em&amp;gt;created&amp;lt;/em&amp;gt; by jQuery&amp;lt;/p&amp;gt;&#39;);
 dir(p);
@@ -1393,7 +1393,7 @@ $(&#39;body&#39;).empty();
 
 &lt;p&gt;If the source content is already attached to the current document, the content is removed first, and then attached at the target location.  If you want to keep the source content at the original position, clone the source content before inserting with &lt;code&gt;$().clone()&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Now, go through the examples in &lt;a href=&#34;http://comp312.ipm.mo/chap3/p312.html&#34;&gt;p312.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Now, go through the examples in &lt;a href=&#34;http://philiplei.github.io/chap3/p312.html&#34;&gt;p312.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The four insertion methods have a counterpart version that reverse the order of source and target.  (&lt;code&gt;$().appendTo()&lt;/code&gt;, &lt;code&gt;$().prependTo()&lt;/code&gt;, &lt;code&gt;$().insertBefore()&lt;/code&gt; and &lt;code&gt;$().insertAfter()&lt;/code&gt;) They are useful if you want to chain other methods on the source.  See &lt;a href=&#34;https://api.jquery.com/category/manipulation/dom-insertion-inside/&#34;&gt;online reference&lt;/a&gt; or more detail.&lt;/p&gt;
 
@@ -1402,7 +1402,7 @@ $(&#39;body&#39;).empty();
 $(&#39;#tiger&#39;).insertAfter($(&#39;#rooster&#39;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The following creates new rows and inserts into the table. See the demo &lt;a href=&#34;http://comp312.ipm.mo/chap3/p313.html&#34;&gt;p313.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The following creates new rows and inserts into the table. See the demo &lt;a href=&#34;http://philiplei.github.io/chap3/p313.html&#34;&gt;p313.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var $t = $(&#39;table tbody&#39;);
 // clear the table body
@@ -1421,16 +1421,16 @@ for (var k=16; k&amp;lt;32; k++) {
 
 &lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
 
-&lt;p&gt;In this exercise, you have to populate an HTML table with JSON data in &lt;a href=&#34;http://comp312.ipm.mo/chap3/p314.html&#34;&gt;p314.html&lt;/a&gt;.  Refer to the &lt;a href=&#34;http://comp312.ipm.mo/chap3/p314-done.html&#34;&gt;sample answer&lt;/a&gt; for the required output format.&lt;/p&gt;
+&lt;p&gt;In this exercise, you have to populate an HTML table with JSON data in &lt;a href=&#34;http://philiplei.github.io/chap3/p314.html&#34;&gt;p314.html&lt;/a&gt;.  Refer to the &lt;a href=&#34;http://philiplei.github.io/chap3/p314-done.html&#34;&gt;sample answer&lt;/a&gt; for the required output format.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>2-3 Objects and JSON data</title>
-      <link>http://comp312.ipm.mo/basic/2-3/</link>
+      <link>http://philiplei.github.io/basic/2-3/</link>
       <pubDate>Thu, 26 May 2016 19:13:37 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/2-3/</guid>
+      <guid>http://philiplei.github.io/basic/2-3/</guid>
       <description>
 
 &lt;p&gt;This lab covers the basics of objects (as data structure). It also covers part of JSON.&lt;/p&gt;
@@ -1564,7 +1564,7 @@ cn2en[&#39;春&#39;]  // &#39;spring&#39;
 
 &lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
 
-&lt;p&gt;Use the time table data structure above to complete this exercise. Refer to the sample answers for sample output: &lt;a href=&#34;http://comp312.ipm.mo/chap2/p204.js&#34;&gt;p204.js&lt;/a&gt;, &lt;a href=&#34;http://comp312.ipm.mo/chap2/p205.js&#34;&gt;p205.js&lt;/a&gt; and &lt;a href=&#34;http://comp312.ipm.mo/chap2/p206.js&#34;&gt;p206.js&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Use the time table data structure above to complete this exercise. Refer to the sample answers for sample output: &lt;a href=&#34;http://philiplei.github.io/chap2/p204.js&#34;&gt;p204.js&lt;/a&gt;, &lt;a href=&#34;http://philiplei.github.io/chap2/p205.js&#34;&gt;p205.js&lt;/a&gt; and &lt;a href=&#34;http://philiplei.github.io/chap2/p206.js&#34;&gt;p206.js&lt;/a&gt;.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Write a program to show the number of lectures of each course. The output should include course code, course title, and number of lectures per week.&lt;/p&gt;&lt;/li&gt;
@@ -1578,10 +1578,10 @@ cn2en[&#39;春&#39;]  // &#39;spring&#39;
     
     <item>
       <title>4-4 Routing in web app</title>
-      <link>http://comp312.ipm.mo/server/4-4/</link>
+      <link>http://philiplei.github.io/server/4-4/</link>
       <pubDate>Wed, 27 Jul 2016 10:29:04 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/server/4-4/</guid>
+      <guid>http://philiplei.github.io/server/4-4/</guid>
       <description>
 
 &lt;p&gt;This lab first covers the concept of a Node app and dependency management in package.json. Next it starts the discussion on the web app framework Express.js.&lt;/p&gt;
@@ -1658,7 +1658,7 @@ app.get(&#39;/about.html&#39;, (req, res) =&amp;gt; {
 
 &lt;p&gt;Some web apps include parameters in the URL path. For example, the URL &lt;code&gt;https://www.google.com/maps/place/Macao+Polytechnic+Institute/&lt;/code&gt; refers to the place &amp;lsquo;Macao Polytechnic Institute&amp;rsquo; in the web app Google Maps.  You can easily extract these parameters in Express routes.&lt;/p&gt;
 
-&lt;p&gt;Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &amp;lsquo;/lecture/comp312&amp;rsquo;, it returns a response of its lecture hours. The parameters are available in the object &lt;code&gt;req.params&lt;/code&gt;. (The full source is &lt;a href=&#34;http://comp312.ipm.mo/chap4-4/app1.js&#34;&gt;app1.js&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &amp;lsquo;/lecture/comp312&amp;rsquo;, it returns a response of its lecture hours. The parameters are available in the object &lt;code&gt;req.params&lt;/code&gt;. (The full source is &lt;a href=&#34;http://philiplei.github.io/chap4-4/app1.js&#34;&gt;app1.js&lt;/a&gt;).&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// retrieve the lecture time
 app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
@@ -1686,16 +1686,16 @@ app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
 &lt;li&gt;&lt;code&gt;res.redirect(path)&lt;/code&gt; redirects to the given URL.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Check the source code of &lt;a href=&#34;http://comp312.ipm.mo/chap4-4/app2.js&#34;&gt;app2.js&lt;/a&gt; for demonstration of how to build responses with these methods.&lt;/p&gt;
+&lt;p&gt;Check the source code of &lt;a href=&#34;http://philiplei.github.io/chap4-4/app2.js&#34;&gt;app2.js&lt;/a&gt; for demonstration of how to build responses with these methods.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>3-4 Handling events</title>
-      <link>http://comp312.ipm.mo/client/3-4/</link>
+      <link>http://philiplei.github.io/client/3-4/</link>
       <pubDate>Wed, 08 Jun 2016 15:46:00 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/client/3-4/</guid>
+      <guid>http://philiplei.github.io/client/3-4/</guid>
       <description>
 
 &lt;p&gt;This lab covers how to handle events with event handlers using the jQuery library.&lt;/p&gt;
@@ -1731,7 +1731,7 @@ $(&#39;button#btn1&#39;).on(&#39;click&#39;, btn1_click);
 
 &lt;p&gt;The browser triggers several mouse-related events when the user interacts with the HTML elements using the mouse. Some common mouse events are: &lt;code&gt;click&lt;/code&gt;, &lt;code&gt;mouseenter&lt;/code&gt;, &lt;code&gt;mouseleave&lt;/code&gt; and &lt;code&gt;mousemove&lt;/code&gt;.
 The first parameter of an event handler is an &lt;a href=&#34;http://api.jquery.com/category/events/event-object/&#34;&gt;Event object&lt;/a&gt;.
-This object includes several useful properties and methods. One of them is the property &lt;code&gt;.target&lt;/code&gt;, which is the HTML element that triggers the event. The event type is given in the property &lt;code&gt;.type&lt;/code&gt;. The location of the mouse cursor is given in the properties &lt;code&gt;.pageX&lt;/code&gt; and &lt;code&gt;.pageY&lt;/code&gt;. The following code shows how to handle common mouse events. Check a live demo at &lt;a href=&#34;http://comp312.ipm.mo/chap3/p321.html&#34;&gt;p321.html&lt;/a&gt;.&lt;/p&gt;
+This object includes several useful properties and methods. One of them is the property &lt;code&gt;.target&lt;/code&gt;, which is the HTML element that triggers the event. The event type is given in the property &lt;code&gt;.type&lt;/code&gt;. The location of the mouse cursor is given in the properties &lt;code&gt;.pageX&lt;/code&gt; and &lt;code&gt;.pageY&lt;/code&gt;. The following code shows how to handle common mouse events. Check a live demo at &lt;a href=&#34;http://philiplei.github.io/chap3/p321.html&#34;&gt;p321.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// this event handler handles &#39;click&#39;
 $(&#39;#box1&#39;).on(&#39;click&#39;, event =&amp;gt; {
@@ -1750,7 +1750,7 @@ $(&#39;#box1&#39;).on(&#39;mouseenter mouseleave&#39;, event =&amp;gt; {
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;In some cases, we need to handle the same event type triggered at many elements. For example,
-in &lt;a href=&#34;http://comp312.ipm.mo/chap3/p322.html&#34;&gt;p322.html&lt;/a&gt;, when the user clicks at one of the 12 images, it slowly fades out (to 0.1 opacity), and then slowly fades in (back to 1.0 opacity). (This example uses the jQuery method &lt;code&gt;$().fadeTo&lt;/code&gt; &lt;a href=&#34;http://api.jquery.com/fadeTo/&#34;&gt;(online reference)&lt;/a&gt; to do the animation.)
+in &lt;a href=&#34;http://philiplei.github.io/chap3/p322.html&#34;&gt;p322.html&lt;/a&gt;, when the user clicks at one of the 12 images, it slowly fades out (to 0.1 opacity), and then slowly fades in (back to 1.0 opacity). (This example uses the jQuery method &lt;code&gt;$().fadeTo&lt;/code&gt; &lt;a href=&#34;http://api.jquery.com/fadeTo/&#34;&gt;(online reference)&lt;/a&gt; to do the animation.)
 This animation is done with one event handler, which needs to find out which image is clicked via &lt;code&gt;event.target&lt;/code&gt;. Notice that in order to apply jQuery methods, we have to wrap the DOM element &lt;code&gt;event.target&lt;/code&gt; as a jQuery collection &lt;code&gt;$(event.target)&lt;/code&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// register the same event handler function to the 12 images
@@ -1764,7 +1764,7 @@ $(&#39;#zodiac img&#39;).on(&#39;click&#39;, event =&amp;gt; {
 
 &lt;h2 id=&#34;attach-data-to-dom-elements&#34;&gt;Attach data to DOM elements&lt;/h2&gt;
 
-&lt;p&gt;Although we can distinguish which element triggers an event with &lt;code&gt;event.target&lt;/code&gt;, usually it is more convenient if we can pass some application specific information (e.g. record id) to the event handler.  There are several ways to do this.  The code below are extracted from a simple Tic-tac-toe example &lt;a href=&#34;http://comp312.ipm.mo/chap3/p323.html&#34;&gt;p323.html&lt;/a&gt; and uses the jQuery method &lt;code&gt;$().data(name, value)&lt;/code&gt; to attach any JavaScript data to a DOM element.&lt;/p&gt;
+&lt;p&gt;Although we can distinguish which element triggers an event with &lt;code&gt;event.target&lt;/code&gt;, usually it is more convenient if we can pass some application specific information (e.g. record id) to the event handler.  There are several ways to do this.  The code below are extracted from a simple Tic-tac-toe example &lt;a href=&#34;http://philiplei.github.io/chap3/p323.html&#34;&gt;p323.html&lt;/a&gt; and uses the jQuery method &lt;code&gt;$().data(name, value)&lt;/code&gt; to attach any JavaScript data to a DOM element.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;!-- the tic tac toe game board is a 3x3 table --&amp;gt;
 &amp;lt;table id=&#39;tic&#39; class=&#39;gameboard&#39;&amp;gt;
@@ -1804,7 +1804,7 @@ $(&#39;#tic td&#39;).on(&#39;click&#39;, (event)=&amp;gt;{
 
 &lt;p&gt;Instead of attaching JavaScript data to DOM element, you can specify these JavaScript data when registering an event handler. When the event triggers, jQuery passes the specified data to the event handler as &lt;code&gt;event.data&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;This example (&lt;a href=&#34;http://comp312.ipm.mo/chap3/p324.html&#34;&gt;p324.html&lt;/a&gt;) specifies a row number while it registers an event handler for each row in an existing HTML table.&lt;/p&gt;
+&lt;p&gt;This example (&lt;a href=&#34;http://philiplei.github.io/chap3/p324.html&#34;&gt;p324.html&lt;/a&gt;) specifies a row number while it registers an event handler for each row in an existing HTML table.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var $rows = $(&#39;#marks tbody tr&#39;);
 for (var i=0; i&amp;lt;$rows.length; i++) {
@@ -1815,7 +1815,7 @@ for (var i=0; i&amp;lt;$rows.length; i++) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The following code snippet comes from the example (&lt;a href=&#34;http://comp312.ipm.mo/chap3/p325.html&#34;&gt;p325.html&lt;/a&gt;). This app populates an HTML table with some mark data for students in runtime, and attaches the event handler to a newly created table row for each student.&lt;/p&gt;
+&lt;p&gt;The following code snippet comes from the example (&lt;a href=&#34;http://philiplei.github.io/chap3/p325.html&#34;&gt;p325.html&lt;/a&gt;). This app populates an HTML table with some mark data for students in runtime, and attaches the event handler to a newly created table row for each student.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function populateMarkTable (marks) {
   $(&#39;#marks caption&#39;).text(`Marks for ${marks.courseCode}`);
@@ -1849,10 +1849,10 @@ function displayMarkDetail (event) {
     
     <item>
       <title>2-4 Callbacks and arrow functions</title>
-      <link>http://comp312.ipm.mo/basic/2-4/</link>
+      <link>http://philiplei.github.io/basic/2-4/</link>
       <pubDate>Thu, 26 May 2016 19:13:42 +0800</pubDate>
       
-      <guid>http://comp312.ipm.mo/basic/2-4/</guid>
+      <guid>http://philiplei.github.io/basic/2-4/</guid>
       <description>
 
 &lt;h2 id=&#34;functions-as-first-class-values&#34;&gt;Functions as first-class values&lt;/h2&gt;
@@ -1863,26 +1863,25 @@ you can save a function in a variable, pass a function to another function, or r
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function add (a,b) { return a+b; }
 var f = add;
 f(1,2); // returns 3;
-add(1,3); // same
+add(1,2); // same
 // dir(f)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Passing a function to another function is possible. This is an example of &lt;dfn&gt;callback&lt;/dfn&gt;, and can change the behavior of another function.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// use a function to combine values in the array
-function reduce (A, func) {
-  // assume the array has at least 2 elements
-  var x = A[0];
-  for (var i=1; i&amp;lt;A.length; i++) { x = func(x, A[i]); }
-  return x;  
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// use a function op(x,y) to combine 3 values
+function combine (op, a, b, c) {
+  var t = op(a,b);
+  var ans = op(t,c);
+  return ans;
 }
 
 // define an anonymous function, and save it in the variable &#39;add&#39;
 var add = function(a,b) { return a+b; }
-reduce([6,7,8,9], add); // returns 30
+combine(add, 6, 7, 8); // returns 21
 
 var mul = function(a,b) { return a*b; }
-reduce([6,7,8,9], mul); // returns 3024
+combine(mul, 6, 7, 8); // returns 336
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;map-and-filter&#34;&gt;Map and filter&lt;/h2&gt;
@@ -1910,7 +1909,7 @@ for (var k=0; k&amp;lt;c.length; k++) {
 // print c and d
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This has become quite common and an Array object provides built-in methods to iterate their content. One of the simplest is &lt;code&gt;.map()&lt;/code&gt;, which accepts a function as parameter. The function takes 1 input, perform some processing, and returns the result. &lt;code&gt;.map()&lt;/code&gt; collects these results in an output array.&lt;/p&gt;
+&lt;p&gt;This is a common scenario in programming. Therefore, the JavaScript Array objects provide built-in methods to iterate their content. One of the simplest is &lt;code&gt;.map()&lt;/code&gt;, which accepts a function as parameter. The function takes 1 input, perform some processing, and returns the result. &lt;code&gt;.map()&lt;/code&gt; collects these results into an output array.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function round2(n) { return Math.round(n*100) / 100; }
 
@@ -1924,22 +1923,24 @@ var b = a.map(round2);
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1/2, 1/3, 1/4, 1/5, 1/6];
 var b = a.map(function round2(n) {
-   return Math.round(n*100) / 100; });
+   return Math.round(n*100) / 100;
+});
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And you can even omit the function name. This defines an &lt;dfn&gt;anonymous function&lt;/dfn&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1/2, 1/3, 1/4, 1/5, 1/6];
 var b = a.map(function(n) {
-   return Math.round(n*100) / 100; });
+   return Math.round(n*100) / 100;
+});
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Another way to look at this is that a callback function can customize / modify the functionality of an existing function. For example, to calculate areas of rectangles in an array, we can write another callback function and pass it to &lt;code&gt;.map()&lt;/code&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// an array of objects, each one is a rectangle with given width and height
 var c = [ { w: 4, h: 5 }, { w: 2, h: 3 } ];
-var d = c.map(function (r1,r2) {
-  return r1.w * r2.h;
+var d = c.map(function (r) {
+  return r.w * r.h;
 });
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -2014,7 +2015,7 @@ tick();
 
 &lt;h2 id=&#34;arrow-functions&#34;&gt;Arrow functions&lt;/h2&gt;
 
-&lt;p&gt;Anonymous functions are very common in JavaScript programming because of the asynchronous nature of client-side or server-side programming. (E.g. register a callback to handle mouse click). Therefore, ES6 defines a new syntax called &lt;dfn&gt;arrow functions&lt;/dfn&gt; to define anonymous function. Usually, arrow functions are defined and passed directly to another function.&lt;/p&gt;
+&lt;p&gt;Anonymous functions are very common in JavaScript programming because of the asynchronous nature of client-side or server-side programming. (E.g. register a callback to handle mouse click). Therefore, ES6 defines a more concise syntax called &lt;dfn&gt;arrow functions&lt;/dfn&gt; to define anonymous function. Usually, arrow functions are defined and passed directly to another function.&lt;/p&gt;
 
 &lt;p&gt;Compare the two ways to write functions below.&lt;/p&gt;
 
@@ -2051,29 +2052,33 @@ f = e.filter(s =&amp;gt; s.length&amp;lt;5);
 &lt;h2 id=&#34;excersie&#34;&gt;Excersie&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Given an array &lt;code&gt;var N = [ 32, 53, 42, 25, 48, 10 ]&lt;/code&gt;, write a program to do the following. You should use callback functions.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Given an array &lt;code&gt;var N = [ 32, 53, 42, 25, 48, 10 ]&lt;/code&gt;, write a program to do the following. You should use callback functions. &lt;a href=&#34;http://philiplei.github.io/chap2/p211.js&#34;&gt;(sample answer)&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Obtain an array of hexadecimal representation of the numbers. (Hints: use &lt;code&gt;n.toString(16)&lt;/code&gt; to convert a number &lt;code&gt;n&lt;/code&gt; to hexadecimal)&lt;/li&gt;
-&lt;li&gt;Obtain an array of the numbers between 20 and 40&lt;/li&gt;
-&lt;li&gt;Count how many of the numbers are odd&lt;/li&gt;
-&lt;li&gt;Calculate the sum of the numbers. Try to use &lt;code&gt;.reduce()&lt;/code&gt; in Array. &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce&#34;&gt;(online reference)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Obtain an array of hexadecimal representation of the numbers in &lt;code&gt;N&lt;/code&gt;. (Hints: use &lt;code&gt;n.toString(16)&lt;/code&gt; to convert a number &lt;code&gt;n&lt;/code&gt; to hexadecimal)&lt;/li&gt;
+&lt;li&gt;Obtain an array of the numbers in &lt;code&gt;N&lt;/code&gt; between 20 and 40 inclusively&lt;/li&gt;
+&lt;li&gt;Count how many of the numbers  in &lt;code&gt;N&lt;/code&gt; are odd&lt;/li&gt;
+&lt;li&gt;Calculate the sum of the numbers in &lt;code&gt;N&lt;/code&gt;. Try to use &lt;code&gt;.reduce()&lt;/code&gt; in Array. &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce&#34;&gt;(online reference)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;The variable &lt;code&gt;comp312&lt;/code&gt; is an array that contains records of students and their marks in the comp312 class. Each student record has three fields: name, test and exam. Write programs to do the following. Use an Array iteration method at least once in each case.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;The variable &lt;code&gt;comp312&lt;/code&gt; is an array that contains records of student marks in the comp312 class. Each student record has three fields: name, test and exam. Write programs to do the following. Use an Array iteration method (i.e. &lt;code&gt;.map()&lt;/code&gt;, &lt;code&gt;.filter()&lt;/code&gt;, &lt;code&gt;.reduce()&lt;/code&gt;, etc) at least once in each case. &lt;a href=&#34;http://philiplei.github.io/chap2/p212.js&#34;&gt;(sample answer)&lt;/a&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;var comp312 = [ { name: &#39;Peter&#39;, test: 80, exam: 70 },
-{ name: &#39;John&#39;, test: 60, exam: 65 }, { name: &#39;Mary&#39;, test: 90, exam: 85 },
-{ name: &#39;Christine&#39;, test: 70, exam: 76 } ];
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var comp312 = [
+{ name: &#39;Peter&#39;, test: 80, exam: 70 },
+{ name: &#39;John&#39;, test: 60, exam: 65 },
+{ name: &#39;Mary&#39;, test: 90, exam: 85 },
+{ name: &#39;Christine&#39;, test: 70, exam: 76 }
+];
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Get a list of student names in the comp312 class&lt;/li&gt;
-&lt;li&gt;Get a list of student record with test mark &amp;gt;= 80&lt;/li&gt;
+&lt;li&gt;Get a list of student record with test mark &amp;gt;= 75&lt;/li&gt;
 &lt;li&gt;Get a list of student name whose test mark is greater than exam mark&lt;/li&gt;
 &lt;li&gt;Assume final mark = 0.6 * test + 0.4 * exam. Make an array with records showing the final mark and name for each student.&lt;/li&gt;
+&lt;li&gt;Sort the list in descending order of exam mark&lt;/li&gt;
 &lt;li&gt;Show the student record with the highest exam mark&lt;/li&gt;
-&lt;li&gt;Sort the list in descending order of exam mark g)Calculate the average test mark&lt;/li&gt;
+&lt;li&gt;Calculate the average test mark&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>

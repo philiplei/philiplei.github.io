@@ -356,26 +356,25 @@ you can save a function in a variable, pass a function to another function, or r
 <pre><code class="language-JavaScript">function add (a,b) { return a+b; }
 var f = add;
 f(1,2); // returns 3;
-add(1,3); // same
+add(1,2); // same
 // dir(f)
 </code></pre>
 
 <p>Passing a function to another function is possible. This is an example of <dfn>callback</dfn>, and can change the behavior of another function.</p>
 
-<pre><code class="language-JavaScript">// use a function to combine values in the array
-function reduce (A, func) {
-  // assume the array has at least 2 elements
-  var x = A[0];
-  for (var i=1; i&lt;A.length; i++) { x = func(x, A[i]); }
-  return x;  
+<pre><code class="language-JavaScript">// use a function op(x,y) to combine 3 values
+function combine (op, a, b, c) {
+  var t = op(a,b);
+  var ans = op(t,c);
+  return ans;
 }
 
 // define an anonymous function, and save it in the variable 'add'
 var add = function(a,b) { return a+b; }
-reduce([6,7,8,9], add); // returns 30
+combine(add, 6, 7, 8); // returns 21
 
 var mul = function(a,b) { return a*b; }
-reduce([6,7,8,9], mul); // returns 3024
+combine(mul, 6, 7, 8); // returns 336
 </code></pre>
 
 <h2 id="map-and-filter">Map and filter</h2>
@@ -403,7 +402,7 @@ for (var k=0; k&lt;c.length; k++) {
 // print c and d
 </code></pre>
 
-<p>This has become quite common and an Array object provides built-in methods to iterate their content. One of the simplest is <code>.map()</code>, which accepts a function as parameter. The function takes 1 input, perform some processing, and returns the result. <code>.map()</code> collects these results in an output array.</p>
+<p>This is a common scenario in programming. Therefore, the JavaScript Array objects provide built-in methods to iterate their content. One of the simplest is <code>.map()</code>, which accepts a function as parameter. The function takes 1 input, perform some processing, and returns the result. <code>.map()</code> collects these results into an output array.</p>
 
 <pre><code class="language-JavaScript">function round2(n) { return Math.round(n*100) / 100; }
 
@@ -417,22 +416,24 @@ var b = a.map(round2);
 
 <pre><code class="language-JavaScript">var a = [1/2, 1/3, 1/4, 1/5, 1/6];
 var b = a.map(function round2(n) {
-   return Math.round(n*100) / 100; });
+   return Math.round(n*100) / 100;
+});
 </code></pre>
 
 <p>And you can even omit the function name. This defines an <dfn>anonymous function</dfn>.</p>
 
 <pre><code class="language-JavaScript">var a = [1/2, 1/3, 1/4, 1/5, 1/6];
 var b = a.map(function(n) {
-   return Math.round(n*100) / 100; });
+   return Math.round(n*100) / 100;
+});
 </code></pre>
 
 <p>Another way to look at this is that a callback function can customize / modify the functionality of an existing function. For example, to calculate areas of rectangles in an array, we can write another callback function and pass it to <code>.map()</code>.</p>
 
 <pre><code class="language-JavaScript">// an array of objects, each one is a rectangle with given width and height
 var c = [ { w: 4, h: 5 }, { w: 2, h: 3 } ];
-var d = c.map(function (r1,r2) {
-  return r1.w * r2.h;
+var d = c.map(function (r) {
+  return r.w * r.h;
 });
 </code></pre>
 
@@ -507,7 +508,7 @@ tick();
 
 <h2 id="arrow-functions">Arrow functions</h2>
 
-<p>Anonymous functions are very common in JavaScript programming because of the asynchronous nature of client-side or server-side programming. (E.g. register a callback to handle mouse click). Therefore, ES6 defines a new syntax called <dfn>arrow functions</dfn> to define anonymous function. Usually, arrow functions are defined and passed directly to another function.</p>
+<p>Anonymous functions are very common in JavaScript programming because of the asynchronous nature of client-side or server-side programming. (E.g. register a callback to handle mouse click). Therefore, ES6 defines a more concise syntax called <dfn>arrow functions</dfn> to define anonymous function. Usually, arrow functions are defined and passed directly to another function.</p>
 
 <p>Compare the two ways to write functions below.</p>
 
@@ -544,29 +545,33 @@ f = e.filter(s =&gt; s.length&lt;5);
 <h2 id="excersie">Excersie</h2>
 
 <ol>
-<li><p>Given an array <code>var N = [ 32, 53, 42, 25, 48, 10 ]</code>, write a program to do the following. You should use callback functions.</p>
+<li><p>Given an array <code>var N = [ 32, 53, 42, 25, 48, 10 ]</code>, write a program to do the following. You should use callback functions. <a href="/chap2/p211.js">(sample answer)</a></p>
 
 <ul>
-<li>Obtain an array of hexadecimal representation of the numbers. (Hints: use <code>n.toString(16)</code> to convert a number <code>n</code> to hexadecimal)</li>
-<li>Obtain an array of the numbers between 20 and 40</li>
-<li>Count how many of the numbers are odd</li>
-<li>Calculate the sum of the numbers. Try to use <code>.reduce()</code> in Array. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">(online reference)</a></li>
+<li>Obtain an array of hexadecimal representation of the numbers in <code>N</code>. (Hints: use <code>n.toString(16)</code> to convert a number <code>n</code> to hexadecimal)</li>
+<li>Obtain an array of the numbers in <code>N</code> between 20 and 40 inclusively</li>
+<li>Count how many of the numbers  in <code>N</code> are odd</li>
+<li>Calculate the sum of the numbers in <code>N</code>. Try to use <code>.reduce()</code> in Array. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">(online reference)</a></li>
 </ul></li>
 
-<li><p>The variable <code>comp312</code> is an array that contains records of students and their marks in the comp312 class. Each student record has three fields: name, test and exam. Write programs to do the following. Use an Array iteration method at least once in each case.</p>
+<li><p>The variable <code>comp312</code> is an array that contains records of student marks in the comp312 class. Each student record has three fields: name, test and exam. Write programs to do the following. Use an Array iteration method (i.e. <code>.map()</code>, <code>.filter()</code>, <code>.reduce()</code>, etc) at least once in each case. <a href="/chap2/p212.js">(sample answer)</a></p>
 
-<pre><code>var comp312 = [ { name: 'Peter', test: 80, exam: 70 },
-{ name: 'John', test: 60, exam: 65 }, { name: 'Mary', test: 90, exam: 85 },
-{ name: 'Christine', test: 70, exam: 76 } ];
+<pre><code class="language-JavaScript">var comp312 = [
+{ name: 'Peter', test: 80, exam: 70 },
+{ name: 'John', test: 60, exam: 65 },
+{ name: 'Mary', test: 90, exam: 85 },
+{ name: 'Christine', test: 70, exam: 76 }
+];
 </code></pre>
 
 <ul>
 <li>Get a list of student names in the comp312 class</li>
-<li>Get a list of student record with test mark &gt;= 80</li>
+<li>Get a list of student record with test mark &gt;= 75</li>
 <li>Get a list of student name whose test mark is greater than exam mark</li>
 <li>Assume final mark = 0.6 * test + 0.4 * exam. Make an array with records showing the final mark and name for each student.</li>
+<li>Sort the list in descending order of exam mark</li>
 <li>Show the student record with the highest exam mark</li>
-<li>Sort the list in descending order of exam mark g)Calculate the average test mark</li>
+<li>Calculate the average test mark</li>
 </ul></li>
 </ol>
 
