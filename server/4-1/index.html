@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.15" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -325,12 +325,12 @@
 <ul>
 <li>
 <ul>
-<li><a href="#quick-start:a563211a927fab65b9eb4322c1dd380a">Quick start</a></li>
-<li><a href="#event-loop-in-node:a563211a927fab65b9eb4322c1dd380a">Event loop in Node</a></li>
-<li><a href="#modules:a563211a927fab65b9eb4322c1dd380a">Modules</a></li>
-<li><a href="#evented-i-o:a563211a927fab65b9eb4322c1dd380a">Evented I/O</a></li>
-<li><a href="#sequential-i-o-operations:a563211a927fab65b9eb4322c1dd380a">Sequential I/O operations</a></li>
-<li><a href="#exercise:a563211a927fab65b9eb4322c1dd380a">Exercise</a></li>
+<li><a href="#quick-start">Quick start</a></li>
+<li><a href="#event-loop-in-node">Event loop in Node</a></li>
+<li><a href="#modules">Modules</a></li>
+<li><a href="#evented-i-o">Evented I/O</a></li>
+<li><a href="#sequential-i-o-operations">Sequential I/O operations</a></li>
+<li><a href="#exercise">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -350,7 +350,7 @@
 
 <p>This lab goes through the basics of the Node.js platform.</p>
 
-<h2 id="quick-start:a563211a927fab65b9eb4322c1dd380a">Quick start</h2>
+<h2 id="quick-start">Quick start</h2>
 
 <p>Node.js <a href="https://nodejs.org">(https://nodejs.org)</a> is a platform built on Chrome&rsquo;s JavaScript runtime for easily building fast, scalable network applications. Node.js supports the same basic JavaScript programming language as web browsers. Both Node.js and Google Chrome use the V8 JavaScript engine.</p>
 
@@ -404,7 +404,7 @@ console.log('The largest is %d', largest(N));
 <li>and other APIs in the <a href="https://developer.mozilla.org/en-US/docs/Web/Reference/API">Web API</a></li>
 </ul>
 
-<h2 id="event-loop-in-node:a563211a927fab65b9eb4322c1dd380a">Event loop in Node</h2>
+<h2 id="event-loop-in-node">Event loop in Node</h2>
 
 <p>Similar to JavaScript runtime in browser, Node includes an <strong>event loop</strong> that handles events.
 The event loop continues until all events are handled and there are no future events. Some common cases that trigger events are:</p>
@@ -440,7 +440,7 @@ timer = setInterval(tick, 1000);
 
 <p>At any time, Node runs at most 1 event handler. If there are no pending events, the event loop blocks and wait for any future events.  If Node determines that there are no more future events, it quits.</p>
 
-<h2 id="modules:a563211a927fab65b9eb4322c1dd380a">Modules</h2>
+<h2 id="modules">Modules</h2>
 
 <p>An important feature of Node is <strong>modules</strong>, which allows you to import new functionalities to the Node platform. The Node platform comes with some built-in modules (which are installed together with Node).  See the <a href="https://nodejs.org/en/docs/">online reference</a> for a list of the built-in modules.</p>
 
@@ -471,7 +471,7 @@ console.log('Start monitoring free memory. Ctrl-C to quit.')
 setInterval(tick, 1000);
 </code></pre>
 
-<h2 id="evented-i-o:a563211a927fab65b9eb4322c1dd380a">Evented I/O</h2>
+<h2 id="evented-i-o">Evented I/O</h2>
 
 <p>Node.js has only 1 thread to run JavaScript code. If this thread blocks to wait for I/O completion, the whole Node process is blocked and cannot process other events. Consider the following example.</p>
 
@@ -511,7 +511,7 @@ fs.readFile('intro.txt', 'utf8', (err, data)=&gt;{
 <li><code>fs.appendFile(filename, content, options, callback)</code> - append the given content to the end of the file</li>
 </ul>
 
-<h2 id="sequential-i-o-operations:a563211a927fab65b9eb4322c1dd380a">Sequential I/O operations</h2>
+<h2 id="sequential-i-o-operations">Sequential I/O operations</h2>
 
 <p>Consider the following longer example.  We&rsquo;d like to replace the word &lsquo;MPI&rsquo; by &lsquo;IPM&rsquo; in the input file &lsquo;intro.txt&rsquo;. The first version uses synchronous I/O. (Notice that this is just for illustration. In most Node application, you should use asynchronous I/O to allow better performance.) In this program, while Node is waiting for I/O completion, it <strong>cannot</strong> process any other events.</p>
 
@@ -559,7 +559,7 @@ function readDone (err, data) {
 fs.readFile('intro.txt', 'utf8', readDone);
 </code></pre>
 
-<h2 id="exercise:a563211a927fab65b9eb4322c1dd380a">Exercise</h2>
+<h2 id="exercise">Exercise</h2>
 
 <ol>
 <li><p>Write a program to combine two text file &lsquo;in1.txt&rsquo; and &lsquo;in2.txt&rsquo; to an output text file &lsquo;out.txt&rsquo;.

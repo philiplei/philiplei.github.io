@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.15" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -325,11 +325,11 @@
 <ul>
 <li>
 <ul>
-<li><a href="#once-off-anonymous-events:8a6727bceb33d3720e22daed20320e77">Once-off anonymous events</a></li>
-<li><a href="#timer-events:8a6727bceb33d3720e22daed20320e77">Timer events</a></li>
-<li><a href="#event-emitters:8a6727bceb33d3720e22daed20320e77">Event emitters</a></li>
-<li><a href="#installing-modules:8a6727bceb33d3720e22daed20320e77">Installing modules</a></li>
-<li><a href="#exercise:8a6727bceb33d3720e22daed20320e77">Exercise</a></li>
+<li><a href="#once-off-anonymous-events">Once-off anonymous events</a></li>
+<li><a href="#timer-events">Timer events</a></li>
+<li><a href="#event-emitters">Event emitters</a></li>
+<li><a href="#installing-modules">Installing modules</a></li>
+<li><a href="#exercise">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -349,7 +349,7 @@
 
 <p>This lab goes through events and event emitters in Node.js.</p>
 
-<h2 id="once-off-anonymous-events:8a6727bceb33d3720e22daed20320e77">Once-off anonymous events</h2>
+<h2 id="once-off-anonymous-events">Once-off anonymous events</h2>
 
 <p>In Node, many asynchronous I/O operations has a callback parameter. These operations generate an once-off event when the I/O completes (with data or error). The event is appended to the event queue and the event loop periodically extracts the event in the front of queue and executes the registered event handler (the callback).</p>
 
@@ -364,7 +364,7 @@
 })
 </code></pre>
 
-<h2 id="timer-events:8a6727bceb33d3720e22daed20320e77">Timer events</h2>
+<h2 id="timer-events">Timer events</h2>
 
 <p>JavaScript timers <code>setTimeout()</code> and <code>setInterval()</code> also trigger anonymous events. <code>setTimeout()</code> generates an once-off event. On the other hand, <code>setInterval()</code> generates events repeatedly until you clear the timer by <code>clearInterval()</code>.  The Node process does not quit when there is an active timer that may trigger events in the future. (Advanced: <code>timer.unref()</code> affects this.)</p>
 
@@ -377,7 +377,7 @@ var timer = setInterval(
 );
 </code></pre>
 
-<h2 id="event-emitters:8a6727bceb33d3720e22daed20320e77">Event emitters</h2>
+<h2 id="event-emitters">Event emitters</h2>
 
 <p>Objects that inherit from the class <code>EventEmitter</code> <a href="https://nodejs.org/dist/latest-v6.x/docs/api/events.html">(online reference)</a> can also trigger events. An event emitter is similar to DOM node in browsers.</p>
 
@@ -407,7 +407,7 @@ server.listen(3000, () =&gt; {
 });
 </code></pre>
 
-<h2 id="installing-modules:8a6727bceb33d3720e22daed20320e77">Installing modules</h2>
+<h2 id="installing-modules">Installing modules</h2>
 
 <p>Next, we use an external module to demonstrate more features of EventEmitter.</p>
 
@@ -444,7 +444,7 @@ This special event reports error and demonstrates an important difference betwee
 
 <p>Now, try to generate an <code>error</code> event by changing the file name to an non-existing file.</p>
 
-<h2 id="exercise:8a6727bceb33d3720e22daed20320e77">Exercise</h2>
+<h2 id="exercise">Exercise</h2>
 
 <p>TODO TODO</p>
 

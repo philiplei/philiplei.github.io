@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.15" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -325,15 +325,15 @@
 <ul>
 <li>
 <ul>
-<li><a href="#object-literals:7ca16074685f2bdef80cf45ba4944844">Object literals</a></li>
-<li><a href="#some-built-in-class:7ca16074685f2bdef80cf45ba4944844">Some built-in class</a>
+<li><a href="#object-literals">Object literals</a></li>
+<li><a href="#some-built-in-class">Some built-in class</a>
 <ul>
-<li><a href="#array:7ca16074685f2bdef80cf45ba4944844">Array</a></li>
-<li><a href="#map:7ca16074685f2bdef80cf45ba4944844">Map</a></li>
-<li><a href="#date:7ca16074685f2bdef80cf45ba4944844">Date</a></li>
+<li><a href="#array">Array</a></li>
+<li><a href="#map">Map</a></li>
+<li><a href="#date">Date</a></li>
 </ul></li>
-<li><a href="#defining-class:7ca16074685f2bdef80cf45ba4944844">Defining class</a></li>
-<li><a href="#exercise:7ca16074685f2bdef80cf45ba4944844">Exercise</a></li>
+<li><a href="#defining-class">Defining class</a></li>
+<li><a href="#exercise">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -351,7 +351,7 @@
 
 
 
-<h2 id="object-literals:7ca16074685f2bdef80cf45ba4944844">Object literals</h2>
+<h2 id="object-literals">Object literals</h2>
 
 <p>Many values in JavaScript are objects. In lab 2-3, we created an object as a group of properties. Each property has a name and a value. We list the properties in <code>{ }</code>. Such objects have already some built-in methods. For example, <code>point.toString()</code> returns a string representation of the object, although the default implementation is not useful.</p>
 
@@ -369,13 +369,13 @@ console.log(point.toString());
 console.log(point.toString());
 </code></pre>
 
-<h2 id="some-built-in-class:7ca16074685f2bdef80cf45ba4944844">Some built-in class</h2>
+<h2 id="some-built-in-class">Some built-in class</h2>
 
 <p>On the other hand, the JavaScript language defines several built-in class, each with its own <dfn>constructor function</dfn> to create objects of the class.  Objects thus created usually have built-in methods as defined in the class.</p>
 
 <p>In OOP sense, a <dfn>class</dfn> defines a template for similar objects, and provides (at least) one constructor object to build new objects belonging to the class.</p>
 
-<h3 id="array:7ca16074685f2bdef80cf45ba4944844">Array</h3>
+<h3 id="array">Array</h3>
 
 <p>JavaScript arrays are JavaScript objects. Typically, you construct an array with the syntax <code>[1,2,3]</code>.
 The array object has many methods, and you can invoke them with the dot notation. Refer to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Array_instances">online ref</a> for a list of methods of array objects.</p>
@@ -397,7 +397,7 @@ for (var x of b) {
 }
 </code></pre>
 
-<h3 id="map:7ca16074685f2bdef80cf45ba4944844">Map</h3>
+<h3 id="map">Map</h3>
 
 <p>ES6 defines a new kind of collections called <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>. A map stores key/value pairs.
 (In previous version of JavaScript, objects are often used as map.) You create a Map by submitting a list of key/value pairs to the constructor. Each pair is written as an array of two elements, namely key and value. You retrieve an element from a map using a key with the method <code>.get(key)</code>. You add / replace an element in the map with the method <code>.set(key,value)</code>. You can also delete an element from a map with <code>.delete(key)</code>, and check the number of elements with the property <code>.size</code>.</p>
@@ -421,7 +421,7 @@ for (var [k,v] of m) {
 }
 </code></pre>
 
-<h3 id="date:7ca16074685f2bdef80cf45ba4944844">Date</h3>
+<h3 id="date">Date</h3>
 
 <p>Another common built-in class is <code>Date</code>, which represents a single moment in time. <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date">(online reference)</a></p>
 
@@ -440,7 +440,7 @@ var dow = now.getDay(); // 0-6, where 0 means Sunday
 console.log(now.toLocaleString());
 </code></pre>
 
-<h2 id="defining-class:7ca16074685f2bdef80cf45ba4944844">Defining class</h2>
+<h2 id="defining-class">Defining class</h2>
 
 <p>ES6 has a new syntax to define class. It is similar to the syntax in Java.
 A class is a template to create similar objects, with a constructor function (which builds new object of the class) and methods (which access properties of the object using <code>this</code>).</p>
@@ -491,7 +491,7 @@ function midpoint (p1, p2) {
 }
 </code></pre>
 
-<h2 id="exercise:7ca16074685f2bdef80cf45ba4944844">Exercise</h2>
+<h2 id="exercise">Exercise</h2>
 
 <ol>
 <li><p>Define a class <code>Circle</code> that can be used in the following ways. Hints: the class contains a constructor, a method <code>area</code> to calculate the area of the circle, a method <code>toString</code> to convert the object into string, and a method <code>move(x,y)</code> to move the center of the circle to the given location.</p>
