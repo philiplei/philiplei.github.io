@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.16" />
+    <meta name="generator" content="Hugo 0.15" />
     <meta name="description" content="">
 
 
@@ -325,10 +325,10 @@
 <ul>
 <li>
 <ul>
-<li><a href="#basic-operation">Basic operation</a></li>
-<li><a href="#loop">Loop</a></li>
-<li><a href="#condition">Condition</a></li>
-<li><a href="#advanced-example">Advanced example</a></li>
+<li><a href="#basic-operation:0acc7f683f17301d1361a2a9d40e010c">Basic operation</a></li>
+<li><a href="#loop:0acc7f683f17301d1361a2a9d40e010c">Loop</a></li>
+<li><a href="#condition:0acc7f683f17301d1361a2a9d40e010c">Condition</a></li>
+<li><a href="#advanced-example:0acc7f683f17301d1361a2a9d40e010c">Advanced example</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -360,7 +360,7 @@
 <li>{{#if}}</li>
 </ol>
 
-<h2 id="basic-operation">Basic operation</h2>
+<h2 id="basic-operation:0acc7f683f17301d1361a2a9d40e010c">Basic operation</h2>
 
 <p>There are many HTML template systems. While their syntax can be quite different, the basic operation remains similar. First, a template defines the presentation of some data in some format. Handlebars uses HTML code directly in the template. In the template, there are some placeholders, to be replaced by some data later. In Handlebars, these placeholders use the expression <code>{{ }}</code>.</p>
 
@@ -405,7 +405,7 @@ var html = template(context);
 
 <p>There are some technical detail to embed the template in the HTML file and load the Handlebars library. Please refer to source code of <a href="/chap3/p361.html">p361.html</a>.</p>
 
-<h2 id="loop">Loop</h2>
+<h2 id="loop:0acc7f683f17301d1361a2a9d40e010c">Loop</h2>
 
 <p>Handlebars provides the block helper <code>{{#each property}} ... {{/each}}</code> to
 repeat part of the template for each element in the named property, which is an array.
@@ -439,7 +439,7 @@ For example, we have an array of color in this context object in the example <a 
 
 <p>Inside the pair <code>{{#each color}}</code> and <code>{{/each}}</code>, the placeholders refer to each element in the array. Notice that we can also interpolate value in HTML attribute.</p>
 
-<h2 id="condition">Condition</h2>
+<h2 id="condition:0acc7f683f17301d1361a2a9d40e010c">Condition</h2>
 
 <p>Suppose you have some objects that represent email. You want to show different icons to distinguish read email from unread email.</p>
 
@@ -460,7 +460,7 @@ var email2 = { read: false, sender: 'John', subject: '..' };
 &lt;/p&gt;
 </code></pre>
 
-<h2 id="advanced-example">Advanced example</h2>
+<h2 id="advanced-example:0acc7f683f17301d1361a2a9d40e010c">Advanced example</h2>
 
 <p>We end this lab with an advanced example <a href="/chap3/p364.html">p364.html</a>. This example uses
 template to show lecture time table. The template uses both <code>{{#each}}</code> and <code>{{#if}}</code>.

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.16" />
+    <meta name="generator" content="Hugo 0.15" />
     <meta name="description" content="">
 
 
@@ -325,10 +325,10 @@
 <ul>
 <li>
 <ul>
-<li><a href="#sqlite">SQLite</a></li>
-<li><a href="#retrieve-data-with-select">Retrieve data with SELECT</a></li>
-<li><a href="#placeholders">Placeholders</a></li>
-<li><a href="#insert-update-and-delete">INSERT, UPDATE and DELETE</a></li>
+<li><a href="#sqlite:e2dd2df3957cc94d33ec8236ee414600">SQLite</a></li>
+<li><a href="#retrieve-data-with-select:e2dd2df3957cc94d33ec8236ee414600">Retrieve data with SELECT</a></li>
+<li><a href="#placeholders:e2dd2df3957cc94d33ec8236ee414600">Placeholders</a></li>
+<li><a href="#insert-update-and-delete:e2dd2df3957cc94d33ec8236ee414600">INSERT, UPDATE and DELETE</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -348,7 +348,7 @@
 
 <p>This lab demonstrate how to use a file-based database <code>sqlite</code>.</p>
 
-<h2 id="sqlite">SQLite</h2>
+<h2 id="sqlite:e2dd2df3957cc94d33ec8236ee414600">SQLite</h2>
 
 <p>SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine (from <a href="https://www.sqlite.org/">https://www.sqlite.org/</a>).
 The whole database is stored in a file, and an application can open this database directly without connecting to any server.</p>
@@ -372,7 +372,7 @@ INSERT INTO `task` (`due`, `what`, `category`, `done`) VALUES
   ('2016-10-31', 'COMP312 HW 2', 'study', 0);
 </code></pre>
 
-<h2 id="retrieve-data-with-select">Retrieve data with SELECT</h2>
+<h2 id="retrieve-data-with-select:e2dd2df3957cc94d33ec8236ee414600">Retrieve data with SELECT</h2>
 
 <p>SQLite supports both basic and advanced features of SELECT statement. The following demonstrates the steps to read data from a database.</p>
 
@@ -404,7 +404,7 @@ db.close();
 
 <p>You might notice that we use the <code>function</code> expression in callback. This is required because <code>sqlite3</code> uses the <code>this</code> keyword for result in UPDATE, DELETE and INSERT. For consistency, we&rsquo;ll use <code>function</code> expression instead of arrow functions in all callbacks for our SQLite examples.</p>
 
-<h2 id="placeholders">Placeholders</h2>
+<h2 id="placeholders:e2dd2df3957cc94d33ec8236ee414600">Placeholders</h2>
 
 <p>You can supply parameters to fill in placeholders in SQL statements in <code>sqlite3</code>. This is especially useful because the module will perform suitable quoting for string. Please refer to <a href="https://github.com/mapbox/node-sqlite3/wiki/API">online reference</a> for more ways to use placeholders.</p>
 
@@ -418,7 +418,7 @@ db.each(&quot;SELECT due, what FROM task WHERE done=? AND category=?&quot;,
 );
 </code></pre>
 
-<h2 id="insert-update-and-delete">INSERT, UPDATE and DELETE</h2>
+<h2 id="insert-update-and-delete:e2dd2df3957cc94d33ec8236ee414600">INSERT, UPDATE and DELETE</h2>
 
 <p>Use the method <code>db.run()</code> to execute INSERT, UPDATE and DELETE statements. In the callback to this method, the property <code>this.changes</code> indicates the number of rows affected by the query, and the property <code>this.lastID</code> contains the value of the last inserted row ID.  (That is the INTEGER PRIMARY KEY in our table. Refer to this for <a href="https://www.sqlite.org/autoinc.html">more info</a>.)</p>
 
