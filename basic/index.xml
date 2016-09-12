@@ -1073,14 +1073,14 @@ for (var [k,v] of wordCount) {
     <item>
       <title>2-6 Regular expression</title>
       <link>http://philiplei.github.io/basic/2-6/</link>
-      <pubDate>Fri, 27 May 2016 17:05:11 +0800</pubDate>
+      <pubDate>Mon, 12 Sep 2016 17:05:11 +0800</pubDate>
       
       <guid>http://philiplei.github.io/basic/2-6/</guid>
       <description>
 
 &lt;h2 id=&#34;regexp-object&#34;&gt;Regexp object&lt;/h2&gt;
 
-&lt;p&gt;A regular expression (regexp) defines pattern used to search, replace and extract information from strings. It is a small language and common programming languages have support for it.&lt;/p&gt;
+&lt;p&gt;A regular expression (regexp) defines pattern used to search, replace and extract information from strings. It is a small language that many common programming languages have support for it.&lt;/p&gt;
 
 &lt;p&gt;A common usage of regexp is to check whether user input is correct.  The following example checks whether the user input is an email address in IPM.&lt;/p&gt;
 
