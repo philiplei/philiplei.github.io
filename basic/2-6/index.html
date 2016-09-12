@@ -325,6 +325,7 @@
 <ul>
 <li>
 <ul>
+<li><a href="#choice-and-repetition">Choice and repetition</a></li>
 <li><a href="#using-a-regexp">using a regexp</a></li>
 </ul></li>
 </ul>
@@ -343,7 +344,7 @@
 
 
 
-<p>A regular expression (regexp) defines pattern used to search, replace and extract information from strings. It is a small language and common programming languages have support.</p>
+<p>A regular expression (regexp) defines pattern used to search, replace and extract information from strings. It is a small language and common programming languages have support for it.</p>
 
 <p>A common usage of regexp is to check whether user input is correct.  The following example checks whether the user input is an email address in IPM.</p>
 
@@ -355,6 +356,26 @@ if (re.test(s)) {
    alert(&quot;This is not an email addr in IPM.&quot;);
 }
 </code></pre>
+
+<h2 id="choice-and-repetition">Choice and repetition</h2>
+
+<p>A pattern written in regexp may contain parts with choice and repetition. There are several ways to represent choice.</p>
+
+<table>
+<thead>
+<tr>
+<th>Regexp</th>
+<th>matches &hellip;</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>`/apple</td>
+<td>orange/`</td>
+</tr>
+</tbody>
+</table>
 
 <h2 id="using-a-regexp">using a regexp</h2>
 

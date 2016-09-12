@@ -1078,7 +1078,7 @@ for (var [k,v] of wordCount) {
       <guid>http://philiplei.github.io/basic/2-6/</guid>
       <description>
 
-&lt;p&gt;A regular expression (regexp) defines pattern used to search, replace and extract information from strings. It is a small language and common programming languages have support.&lt;/p&gt;
+&lt;p&gt;A regular expression (regexp) defines pattern used to search, replace and extract information from strings. It is a small language and common programming languages have support for it.&lt;/p&gt;
 
 &lt;p&gt;A common usage of regexp is to check whether user input is correct.  The following example checks whether the user input is an email address in IPM.&lt;/p&gt;
 
@@ -1090,6 +1090,26 @@ if (re.test(s)) {
    alert(&amp;quot;This is not an email addr in IPM.&amp;quot;);
 }
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;choice-and-repetition&#34;&gt;Choice and repetition&lt;/h2&gt;
+
+&lt;p&gt;A pattern written in regexp may contain parts with choice and repetition. There are several ways to represent choice.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Regexp&lt;/th&gt;
+&lt;th&gt;matches &amp;hellip;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;`/apple&lt;/td&gt;
+&lt;td&gt;orange/`&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h2 id=&#34;using-a-regexp&#34;&gt;using a regexp&lt;/h2&gt;
 
