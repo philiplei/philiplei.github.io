@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
     
-    <title>2-6 Reg expression</title>
+    <title>2-6 Regular expression</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/hybrid.css" rel="stylesheet">
@@ -101,7 +101,7 @@
           
             <li class="dd-item active" data-nav-id="/basic/2-6/">
               <a href="/basic/2-6/">
-                <span>2-6 Reg expression     </i></span>
+                <span>2-6 Regular expression     </i></span>
               </a>
             </li>
           
@@ -316,7 +316,7 @@
                 
                   
                 
-                <span itemprop="title"> 2-6 Reg expression</span>
+                <span itemprop="title"> 2-6 Regular expression</span>
               </div>
               
                   <div class="progress">
@@ -325,8 +325,12 @@
 <ul>
 <li>
 <ul>
-<li><a href="#choice-and-repetition">Choice and repetition</a></li>
-<li><a href="#using-a-regexp">using a regexp</a></li>
+<li><a href="#regexp-object">Regexp object</a></li>
+<li><a href="#choice">Choice</a></li>
+<li><a href="#repetition">Repetition</a></li>
+<li><a href="#position-matching">Position matching</a></li>
+<li><a href="#other-regexp-methods">Other regexp methods</a></li>
+<li><a href="#exercise">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -339,10 +343,12 @@
             
     	        <div id="body-inner">
                 
-                <h1>2-6 Reg expression</h1>
+                <h1>2-6 Regular expression</h1>
                 
 
 
+
+<h2 id="regexp-object">Regexp object</h2>
 
 <p>A regular expression (regexp) defines pattern used to search, replace and extract information from strings. It is a small language and common programming languages have support for it.</p>
 
@@ -357,9 +363,13 @@ if (re.test(s)) {
 }
 </code></pre>
 
-<h2 id="choice-and-repetition">Choice and repetition</h2>
+<p>Regexps are JavaScript objects (with methods). The method <code>regexp.test(string)</code> checks whether a substring of the given string matches the regular expression.  A simple way to create a regular expression is with the regexp literal <code>/ /</code>.  Regexps are usually referred to as patterns.</p>
 
-<p>A pattern written in regexp may contain parts with choice and repetition. There are several ways to represent choice.</p>
+<p>Letters and digits in patterns match themselves. Regexps may contain parts with choice and repetition.</p>
+
+<h2 id="choice">Choice</h2>
+
+<p>A basic to represent choices is to use <code>|</code>.</p>
 
 <table>
 <thead>
@@ -371,15 +381,18 @@ if (re.test(s)) {
 
 <tbody>
 <tr>
-<td>`/apple</td>
-<td>orange/`</td>
+<td>/apple|orange|banana/</td>
+<td>&ldquo;apple&rdquo;, &ldquo;orange&rdquo;, &ldquo;banana&rdquo;</td>
+</tr>
+
+<tr>
+<td>/(Mr|Ms) Chan/</td>
+<td>&ldquo;Mr Chan&rdquo;, &ldquo;Ms Chan&rdquo;</td>
 </tr>
 </tbody>
 </table>
 
-<h2 id="using-a-regexp">using a regexp</h2>
-
-<p>Use the method <code>regexp.test(string)</code> to check whether the given string matches a regular expression. The following example checks whether the input consists of exactly 8 digits only.</p>
+<p>A choice of 1 character (e.g. <code>/T|F/</code>) can be written in the character class format: write the possible characters between a pair of square parenthesis (e.g. <code>/[TF]</code>). You can also use a range (e.g. <code>/[1-5]/</code>) to match one character within the range. Or you start a character class with <code>^</code> to mean the any character except the listed characters is a match.  Some examples follow.</p>
 
 <table>
 <thead>
@@ -392,33 +405,59 @@ if (re.test(s)) {
 
 <tbody>
 <tr>
-<td>[123456]</td>
-<td>&ldquo;1&rdquo;, &ldquo;2&rdquo;, &ldquo;3&rdquo;, &ldquo;4&rdquo;, &ldquo;5&rdquo;, &ldquo;6&rdquo;</td>
-<td>match 1 of the character listed in []</td>
+<td>[13579]</td>
+<td>&ldquo;1&rdquo;, &ldquo;3&rdquo;, &ldquo;5&rdquo;, &ldquo;7&rdquo;, &ldquo;9&rdquo;</td>
+<td><em>same as</em> /1|3|5|7|9/</td>
 </tr>
 
 <tr>
 <td>[1-6]</td>
-<td><em>same as above</em></td>
-<td></td>
+<td>&ldquo;1&rdquo;, &ldquo;2&rdquo;, &ldquo;3&rdquo;, &ldquo;4&rdquo;, &ldquo;5&rdquo;, &ldquo;6&rdquo;</td>
+<td><em>same as</em> /1|2|3|4|5|6/ <em>or</em> /4651-3/</td>
 </tr>
 
 <tr>
+<td>[a-zA-Z]</td>
+<td>&ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo; &hellip; &ldquo;Z&rdquo;, &ldquo;a&rdquo;, &ldquo;b&rdquo;, &hellip; &ldquo;z&rdquo;</td>
+<td>letters, <em>same as</em> /A-Za-z/</td>
+</tr>
+
+<tr>
+<td>[^0-9]</td>
+<td>&ldquo;x&rdquo;, &ldquo;%&rdquo;, &ldquo;Z&rdquo;, &hellip;</td>
+<td>any characters except digits</td>
+</tr>
+</tbody>
+</table>
+
+<p>There are also some predefined character classes for common cases:</p>
+
+<table>
+<thead>
+<tr>
+<th>character class</th>
+<th>matches &hellip;</th>
+<th>note</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
 <td>\d</td>
 <td>&ldquo;1&rdquo;, &ldquo;2&rdquo;, &hellip; , &ldquo;9&rdquo;</td>
-<td>_same as [0-9]</td>
+<td><em>same as</em> [0-9]</td>
 </tr>
 
 <tr>
 <td>\w</td>
 <td>&ldquo;a&rdquo;, &ldquo;B&rdquo;, &ldquo;1&rdquo;, &ldquo;9&rdquo;, &ldquo;_&rdquo;</td>
-<td><em>same as [a-zA-Z0-9</em>]</td>
+<td><em>same as</em> [a-zA-Z0-9_]</td>
 </tr>
 
 <tr>
 <td>\s</td>
 <td>&rdquo; &ldquo;, <em>tab</em>, <em>new line</em></td>
-<td><em>same as [ \t\r\n\v\f]</em></td>
+<td><em>same as</em> [ \t\r\n\v\f]</td>
 </tr>
 
 <tr>
@@ -426,20 +465,10 @@ if (re.test(s)) {
 <td>&ldquo;a&rdquo;, &ldquo;z&rdquo;, &ldquo;X&rdquo;, &ldquo;5&rdquo;, &ldquo;?&rdquo;&hellip;</td>
 <td>any character except newline</td>
 </tr>
-
-<tr>
-<td>[^A-Za-z]</td>
-<td>&ldquo;5&rdquo;, &ldquo;%&rdquo;, &ldquo; &ldquo;, &hellip;</td>
-<td>any character except letters</td>
-</tr>
-
-<tr>
-<td>[A-Ca-cX-Zx-z]</td>
-<td>&ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;c&rdquo;, &ldquo;x&rdquo;, &ldquo;Y&rdquo;, &hellip;</td>
-<td>A,B,C,X,Y,Z and their lower case</td>
-</tr>
 </tbody>
 </table>
+
+<p>Note: to match the period, you have to escape it (<code>\.</code>).</p>
 
 <p>Some sample regexp to match strings:</p>
 
@@ -454,15 +483,9 @@ if (re.test(s)) {
 
 <tbody>
 <tr>
-<td>/abc123/</td>
-<td>&ldquo;abc123&rdquo;</td>
-<td>letters and digits match themselves</td>
-</tr>
-
-<tr>
 <td>/iP[ao]d/</td>
 <td>&ldquo;iPad&rdquo;, &ldquo;iPod&rdquo;</td>
-<td><em>but not &ldquo;iPxd&rdquo; or &ldquo;iPaod&rdquo;</em></td>
+<td><em>but not</em> &ldquo;iPxd&rdquo; or &ldquo;iPaod&rdquo;</td>
 </tr>
 
 <tr>
@@ -478,6 +501,8 @@ if (re.test(s)) {
 </tr>
 </tbody>
 </table>
+
+<h2 id="repetition">Repetition</h2>
 
 <p>There are several ways to repeat a character or a group. <code>{n}</code> repeats a group exactly <code>n</code> times.
 <code>{a,}</code> repeats a group at least <code>a</code> times. <code>{a,b}</code> repeats a group at least <code>a</code> times, but at most <code>b</code> times.  <code>?</code> is the same as <code>{0,1}</code> and means the group is optional.
@@ -502,7 +527,7 @@ if (re.test(s)) {
 
 <tr>
 <td>/[1-9]\d*/</td>
-<td>&ldquo;1&rdquo;, &ldquo;2&rdquo;, &ldquo;3&rdquo;, &hellip; &ldquo;10&rdquo;, &ldquo;11&rdquo;, &hellip;, _but not &ldquo;0&rdquo;, &ldquo;004&rdquo;, &ldquo;010&rdquo;</td>
+<td>&ldquo;1&rdquo;, &ldquo;2&rdquo;, &ldquo;3&rdquo;, &hellip; &ldquo;10&rdquo;, &ldquo;11&rdquo;, &hellip;, <em>but not</em> &ldquo;0&rdquo;, &ldquo;004&rdquo;, &ldquo;010&rdquo;</td>
 <td>positive integer with no leading zero</td>
 </tr>
 
@@ -519,31 +544,11 @@ if (re.test(s)) {
 </tr>
 
 <tr>
-<td>/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/</td>
-<td>&ldquo;202.175.3.3&rdquo;, &ldquo;1.0.0.1&rdquo;, ..</td>
-<td>IP address. Note that we need to escape the dot <code>\.</code></td>
-</tr>
-
-<tr>
 <td>/apples?/</td>
 <td>&ldquo;apple&rdquo;, &ldquo;apples&rdquo;</td>
 <td></td>
 </tr>
-</tbody>
-</table>
 
-<p>Use <code>()</code> to group several characters in the pattern. You may then repeat the group with *, +, ?, {m,n}</p>
-
-<table>
-<thead>
-<tr>
-<th>regexp</th>
-<th>matches &hellip;</th>
-<th>note</th>
-</tr>
-</thead>
-
-<tbody>
 <tr>
 <td>/peach(es)?/</td>
 <td>&ldquo;peach&rdquo;, &ldquo;peaches&rdquo;</td>
@@ -557,28 +562,20 @@ if (re.test(s)) {
 </tr>
 
 <tr>
-<td>/\d+([+-*/]\d+)+/</td>
+<td>/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/</td>
+<td>&ldquo;202.175.3.3&rdquo;, &ldquo;1.0.0.1&rdquo;, ..</td>
+<td>IP address. Note that we need to escape the dot <code>\.</code></td>
+</tr>
+
+<tr>
+<td>/\d+([+\-*/]\d+)+/</td>
 <td>&ldquo;1+2*3&rdquo;, &ldquo;10-<sup>2</sup>&frasl;<sub>3</sub>+68&rdquo;, &ldquo;8*8&rdquo;, &hellip;</td>
 <td>arith expression</td>
 </tr>
-</tbody>
-</table>
 
-<p>Character class allows a selection of 1 character from a set. On the other hand, use <code>|</code> to indicate a selection of 1 pattern from several.</p>
-
-<table>
-<thead>
 <tr>
-<th>regexp</th>
-<th>matches &hellip;</th>
-<th>note</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>/apple|orange/</td>
-<td>&ldquo;apple&rdquo;, &ldquo;orange&rdquo;</td>
+<td>/\d\d?:\d\d(am|pm)/</td>
+<td>&ldquo;8:00am&rdquo;, &ldquo;5:30pm&rdquo;, &ldquo;11:30pm&rdquo;, …</td>
 <td></td>
 </tr>
 
@@ -587,30 +584,35 @@ if (re.test(s)) {
 <td>&ldquo;Mr Chan&rdquo;, &ldquo;Mrs Cheong&rdquo;, &ldquo;Ms Lam&rdquo;</td>
 <td>Mr, Mrs or Ms</td>
 </tr>
-
-<tr>
-<td>/\d\d?:\d\d(am|pm)/</td>
-<td>&ldquo;8:00am&rdquo;, &ldquo;5:30pm&rdquo;, &ldquo;11:30pm&rdquo;, …</td>
-<td></td>
-</tr>
 </tbody>
 </table>
 
-<p>Position matching</p>
+<h2 id="position-matching">Position matching</h2>
 
-<p><code>^</code>, <code>$</code>, <code>\b</code></p>
+<p>Recall that the method <code>regexp.text(string)</code> tests whether <em>a substring</em> of the given string matches the regexp. To make sure that the whole string matches the pattern, you can anchor the pattern at the start with <code>^</code> and the end with <code>$</code>.  &lsquo;^&rsquo; matches the start of a string or a line. &lsquo;$&rsquo; matches the end of a string or a line.</p>
 
-<pre><code class="language-JavaScript">var s = prompt (&quot;Your tel please&quot;);
-// a pattern to match Macau tel numbers (8 digits)
-var re = /^\d{8}$/;
-if (re.test(s)) {
-   alert(&quot;Thanks.&quot;);
-} else {
-   alert(&quot;This is not a tel no.&quot;);
-}
+<pre><code class="language-JavaScript">// a pattern to match Macau tel numbers (8 digits)
+var re = /\d{8}/;
+re.test('66778899'); // return true
+re.test('141'); // return false
+// however
+re.test('ABC 59961234 XYZ'); // return true
+re.test('1234567890'); // return true
+
+// use position matching
+var re2 = /^\d{8}$/;
+re2.test(' 12345678 '); // return false
+re2.test('1234567890'); // return false
+re2.test('66778899'); // return true
 </code></pre>
 
-<p>The match method returns substrings in the string that match the regexp. If the regexp has the global flag (g), the method returns an array of all matches. Otherwise, it only returns the first match.</p>
+<p>Another common position matching case is word boundary <code>\b</code>. This works similar to &ldquo;match whole words&rdquo; in Microsoft word.</p>
+
+<h2 id="other-regexp-methods">Other regexp methods</h2>
+
+<p>The string objects also have a few methods that support regular expression. We&rsquo;ll give two examples here.</p>
+
+<p>The <code>string.match(regexp)</code> method returns substrings in the string that match the regexp. If the regexp has the global flag (g), the method returns an array of all matches. Otherwise, it only returns the first match.</p>
 
 <pre><code class="language-JavaScript">// find all prices in the string
 var s = &quot;$60 + $70 = $130&quot;;
@@ -624,6 +626,21 @@ var A = s.match(/\$\d+/g);
 var nums = s.split(/[+\-*/]/);
 // nums is [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;]
 </code></pre>
+
+<h2 id="exercise">Exercise</h2>
+
+<p>Write a regular expression to match the strings in the following cases.</p>
+
+<ol>
+<li>An integer between 0 and 9999 inclusively (i.e. including 0 and 9999). Leading zero is accepted.</li>
+<li>A name that begins with a capital letter, e.g. ‘Ana’, ‘Ben’, but not ‘eric’, ‘McDonald’</li>
+<li>A name that begins with a capital letter and contains another capital letter, e.g. ‘McDonald’, ‘MaBelle’, but not ‘Mary’, ‘AbCdE’</li>
+<li>a date in the form dd-mm-yyyy, e.g. ‘01-01-2011’, ’31-12-2011’. Set capturing groups for the day, month and year.</li>
+<li>a file name of Microsoft Word and Powerpoint documents, e.g. ‘note.doc’, ‘hw1.docx’, ‘chap1.ppt’, ‘final.PPTX’, but not ‘a.txt’, ‘ppt.txt’</li>
+<li>A string of alternating ‘a’ and ‘b’, e.g. ‘aba’, ‘ababa’, ‘ab’, ‘ba’, ‘a’, ‘b’, ‘babab’, ‘baba’. Your pattern should not match ‘aa’, ‘abaaa’, ‘abcba’, etc..</li>
+<li>An IP address, e.g. ‘192.168.1.1’, ‘202.175.6.8’. It is acceptable if your pattern accepts some octet greater than 255, e.g. ‘300.400.500.600’.</li>
+<li>a JavaScript object literal which has numbers as all property values. E.g. ‘{ a: 1, b: 2, cc: 33 }’, ‘{  }’, ‘{ longproperty   :  1000 }’. You can assume that the property names are not quoted. Allow space characters within the object literal.</li>
+</ol>
 
 
       
