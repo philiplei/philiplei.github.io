@@ -325,7 +325,6 @@
 <ul>
 <li>
 <ul>
-<li><a href="#defining-a-regular-expression">defining a regular expression</a></li>
 <li><a href="#using-a-regexp">using a regexp</a></li>
 </ul></li>
 </ul>
@@ -344,13 +343,241 @@
 
 
 
-<h2 id="defining-a-regular-expression">defining a regular expression</h2>
+<p>A regular expression (regexp) defines pattern used to search, replace and extract information from strings. It is a small language and common programming languages have support.</p>
 
-<p>First, please go through the slides for the syntax of regular expression.</p>
+<p>A common usage of regexp is to check whether user input is correct.  The following example checks whether the user input is an email address in IPM.</p>
+
+<pre><code class="language-JavaScript">var s = prompt (&quot;Your IPM student email address please&quot;);
+var re = /p\d{7}@ipm\.edu\.mo/;
+if (re.test(s)) {
+   alert(`Thanks. Your email is ${s}`);
+} else {
+   alert(&quot;This is not an email addr in IPM.&quot;);
+}
+</code></pre>
 
 <h2 id="using-a-regexp">using a regexp</h2>
 
 <p>Use the method <code>regexp.test(string)</code> to check whether the given string matches a regular expression. The following example checks whether the input consists of exactly 8 digits only.</p>
+
+<table>
+<thead>
+<tr>
+<th>character class</th>
+<th>matches &hellip;</th>
+<th>note</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>[123456]</td>
+<td>&ldquo;1&rdquo;, &ldquo;2&rdquo;, &ldquo;3&rdquo;, &ldquo;4&rdquo;, &ldquo;5&rdquo;, &ldquo;6&rdquo;</td>
+<td>match 1 of the character listed in []</td>
+</tr>
+
+<tr>
+<td>[1-6]</td>
+<td><em>same as above</em></td>
+<td></td>
+</tr>
+
+<tr>
+<td>\d</td>
+<td>&ldquo;1&rdquo;, &ldquo;2&rdquo;, &hellip; , &ldquo;9&rdquo;</td>
+<td>_same as [0-9]</td>
+</tr>
+
+<tr>
+<td>\w</td>
+<td>&ldquo;a&rdquo;, &ldquo;B&rdquo;, &ldquo;1&rdquo;, &ldquo;9&rdquo;, &ldquo;_&rdquo;</td>
+<td><em>same as [a-zA-Z0-9</em>]</td>
+</tr>
+
+<tr>
+<td>\s</td>
+<td>&rdquo; &ldquo;, <em>tab</em>, <em>new line</em></td>
+<td><em>same as [ \t\r\n\v\f]</em></td>
+</tr>
+
+<tr>
+<td>.</td>
+<td>&ldquo;a&rdquo;, &ldquo;z&rdquo;, &ldquo;X&rdquo;, &ldquo;5&rdquo;, &ldquo;?&rdquo;&hellip;</td>
+<td>any character except newline</td>
+</tr>
+
+<tr>
+<td>[^A-Za-z]</td>
+<td>&ldquo;5&rdquo;, &ldquo;%&rdquo;, &ldquo; &ldquo;, &hellip;</td>
+<td>any character except letters</td>
+</tr>
+
+<tr>
+<td>[A-Ca-cX-Zx-z]</td>
+<td>&ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;c&rdquo;, &ldquo;x&rdquo;, &ldquo;Y&rdquo;, &hellip;</td>
+<td>A,B,C,X,Y,Z and their lower case</td>
+</tr>
+</tbody>
+</table>
+
+<p>Some sample regexp to match strings:</p>
+
+<table>
+<thead>
+<tr>
+<th>regexp</th>
+<th>matches &hellip;</th>
+<th>note</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/abc123/</td>
+<td>&ldquo;abc123&rdquo;</td>
+<td>letters and digits match themselves</td>
+</tr>
+
+<tr>
+<td>/iP[ao]d/</td>
+<td>&ldquo;iPad&rdquo;, &ldquo;iPod&rdquo;</td>
+<td><em>but not &ldquo;iPxd&rdquo; or &ldquo;iPaod&rdquo;</em></td>
+</tr>
+
+<tr>
+<td>/p-\d\d-\d\d\d\d-\d/</td>
+<td>&ldquo;p-13-2233-6&rdquo;, ..</td>
+<td>student id in MPI</td>
+</tr>
+
+<tr>
+<td>/M[A-Z]-\d\d\d\d/</td>
+<td>&ldquo;MD-8866&rdquo;, &ldquo;MW-0246&rdquo;</td>
+<td>but not &ldquo;M-2325&rdquo;</td>
+</tr>
+</tbody>
+</table>
+
+<p>There are several ways to repeat a character or a group. <code>{n}</code> repeats a group exactly <code>n</code> times.
+<code>{a,}</code> repeats a group at least <code>a</code> times. <code>{a,b}</code> repeats a group at least <code>a</code> times, but at most <code>b</code> times.  <code>?</code> is the same as <code>{0,1}</code> and means the group is optional.
+<code>+</code> is the same as <code>{1,}</code> and means the group can be repeated any number of times.
+<code>*</code> is the same as <code>{0,}</code> and means that the group can be repeated, but is also optional.</p>
+
+<table>
+<thead>
+<tr>
+<th>regexp</th>
+<th>matches &hellip;</th>
+<th>note</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/\d+/</td>
+<td>&ldquo;0&rdquo;, &ldquo;1&rdquo;, &ldquo;23&rdquo;, &ldquo;400&rdquo;, &ldquo;9999&rdquo;, &hellip;, and also &ldquo;0003000&rdquo;</td>
+<td>positive integer, possibly with leading zero</td>
+</tr>
+
+<tr>
+<td>/[1-9]\d*/</td>
+<td>&ldquo;1&rdquo;, &ldquo;2&rdquo;, &ldquo;3&rdquo;, &hellip; &ldquo;10&rdquo;, &ldquo;11&rdquo;, &hellip;, _but not &ldquo;0&rdquo;, &ldquo;004&rdquo;, &ldquo;010&rdquo;</td>
+<td>positive integer with no leading zero</td>
+</tr>
+
+<tr>
+<td>/[256]\d{7}/</td>
+<td>&ldquo;28334455&rdquo;, &ldquo;59963356&rdquo;, &ldquo;66778899&rdquo;, ..</td>
+<td>macau tel numbers</td>
+</tr>
+
+<tr>
+<td>/s[a-z]+s/</td>
+<td>&ldquo;sos&rdquo;, &ldquo;smiles&rdquo;, &hellip;</td>
+<td>words that start and end with &rsquo;s&rsquo;</td>
+</tr>
+
+<tr>
+<td>/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/</td>
+<td>&ldquo;202.175.3.3&rdquo;, &ldquo;1.0.0.1&rdquo;, ..</td>
+<td>IP address. Note that we need to escape the dot <code>\.</code></td>
+</tr>
+
+<tr>
+<td>/apples?/</td>
+<td>&ldquo;apple&rdquo;, &ldquo;apples&rdquo;</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>Use <code>()</code> to group several characters in the pattern. You may then repeat the group with *, +, ?, {m,n}</p>
+
+<table>
+<thead>
+<tr>
+<th>regexp</th>
+<th>matches &hellip;</th>
+<th>note</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/peach(es)?/</td>
+<td>&ldquo;peach&rdquo;, &ldquo;peaches&rdquo;</td>
+<td></td>
+</tr>
+
+<tr>
+<td>/\d+(\.\d+)?/</td>
+<td>&ldquo;12&rdquo;, &ldquo;0.5&rdquo;, &ldquo;12.34&rdquo;</td>
+<td>decimal number</td>
+</tr>
+
+<tr>
+<td>/\d+([+-*/]\d+)+/</td>
+<td>&ldquo;1+2*3&rdquo;, &ldquo;10-<sup>2</sup>&frasl;<sub>3</sub>+68&rdquo;, &ldquo;8*8&rdquo;, &hellip;</td>
+<td>arith expression</td>
+</tr>
+</tbody>
+</table>
+
+<p>Character class allows a selection of 1 character from a set. On the other hand, use <code>|</code> to indicate a selection of 1 pattern from several.</p>
+
+<table>
+<thead>
+<tr>
+<th>regexp</th>
+<th>matches &hellip;</th>
+<th>note</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/apple|orange/</td>
+<td>&ldquo;apple&rdquo;, &ldquo;orange&rdquo;</td>
+<td></td>
+</tr>
+
+<tr>
+<td>/(Mr|Mrs|Ms) \w+/</td>
+<td>&ldquo;Mr Chan&rdquo;, &ldquo;Mrs Cheong&rdquo;, &ldquo;Ms Lam&rdquo;</td>
+<td>Mr, Mrs or Ms</td>
+</tr>
+
+<tr>
+<td>/\d\d?:\d\d(am|pm)/</td>
+<td>&ldquo;8:00am&rdquo;, &ldquo;5:30pm&rdquo;, &ldquo;11:30pm&rdquo;, …</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>Position matching</p>
+
+<p><code>^</code>, <code>$</code>, <code>\b</code></p>
 
 <pre><code class="language-JavaScript">var s = prompt (&quot;Your tel please&quot;);
 // a pattern to match Macau tel numbers (8 digits)
