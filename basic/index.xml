@@ -1154,13 +1154,13 @@ if (re.test(s)) {
 &lt;tr&gt;
 &lt;td&gt;[1-6]&lt;/td&gt;
 &lt;td&gt;&amp;ldquo;1&amp;rdquo;, &amp;ldquo;2&amp;rdquo;, &amp;ldquo;3&amp;rdquo;, &amp;ldquo;4&amp;rdquo;, &amp;ldquo;5&amp;rdquo;, &amp;ldquo;6&amp;rdquo;&lt;/td&gt;
-&lt;td&gt;&lt;em&gt;same as&lt;/em&gt; /1|2|3|4|5|6/ &lt;em&gt;or&lt;/em&gt; /4651-3/&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;same as&lt;/em&gt; /1|2|3|4|5|6/ &lt;em&gt;or&lt;/em&gt; /[4651-3]/&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;[a-zA-Z]&lt;/td&gt;
 &lt;td&gt;&amp;ldquo;A&amp;rdquo;, &amp;ldquo;B&amp;rdquo;, &amp;ldquo;C&amp;rdquo; &amp;hellip; &amp;ldquo;Z&amp;rdquo;, &amp;ldquo;a&amp;rdquo;, &amp;ldquo;b&amp;rdquo;, &amp;hellip; &amp;ldquo;z&amp;rdquo;&lt;/td&gt;
-&lt;td&gt;letters, &lt;em&gt;same as&lt;/em&gt; /A-Za-z/&lt;/td&gt;
+&lt;td&gt;letters, &lt;em&gt;same as&lt;/em&gt; /[A-Za-z]/&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -1237,7 +1237,7 @@ if (re.test(s)) {
 
 &lt;tr&gt;
 &lt;td&gt;/M[A-Z]-\d\d\d\d/&lt;/td&gt;
-&lt;td&gt;&amp;ldquo;MD-8866&amp;rdquo;, &amp;ldquo;MW-0246&amp;rdquo;&lt;/td&gt;
+&lt;td&gt;&amp;ldquo;MD-8866&amp;rdquo;, &amp;ldquo;MW-0246&amp;rdquo;, ..&lt;/td&gt;
 &lt;td&gt;but not &amp;ldquo;M-2325&amp;rdquo;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
@@ -1273,7 +1273,7 @@ if (re.test(s)) {
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;/[256]\d{7}/&lt;/td&gt;
+&lt;td&gt;/[2568]\d{7}/&lt;/td&gt;
 &lt;td&gt;&amp;ldquo;28334455&amp;rdquo;, &amp;ldquo;59963356&amp;rdquo;, &amp;ldquo;66778899&amp;rdquo;, ..&lt;/td&gt;
 &lt;td&gt;Macau tel numbers (but still misses some cases)&lt;/td&gt;
 &lt;/tr&gt;
@@ -1298,13 +1298,13 @@ if (re.test(s)) {
 
 &lt;tr&gt;
 &lt;td&gt;/\d+(\.\d+)?/&lt;/td&gt;
-&lt;td&gt;&amp;ldquo;12&amp;rdquo;, &amp;ldquo;0.5&amp;rdquo;, &amp;ldquo;12.34&amp;rdquo;&lt;/td&gt;
+&lt;td&gt;&amp;ldquo;12&amp;rdquo;, &amp;ldquo;0.5&amp;rdquo;, &amp;ldquo;12.34&amp;rdquo;, ..&lt;/td&gt;
 &lt;td&gt;decimal number&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/ &lt;em&gt;or&lt;/em&gt; /\d{1,3}(\.\d{1,3}){3}/&lt;/td&gt;
-&lt;td&gt;&amp;ldquo;202.175.3.3&amp;rdquo;, &amp;ldquo;1.0.0.1&amp;rdquo;, ..&lt;/td&gt;
+&lt;td&gt;&amp;ldquo;202.175.3.28&amp;rdquo;, &amp;ldquo;1.0.0.1&amp;rdquo;, ..&lt;/td&gt;
 &lt;td&gt;IP address. Note that we need to escape the dot &lt;code&gt;\.&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
@@ -1322,7 +1322,7 @@ if (re.test(s)) {
 
 &lt;tr&gt;
 &lt;td&gt;/(Mr|Mrs|Ms) \w+/&lt;/td&gt;
-&lt;td&gt;&amp;ldquo;Mr Chan&amp;rdquo;, &amp;ldquo;Mrs Cheong&amp;rdquo;, &amp;ldquo;Ms Lam&amp;rdquo;&lt;/td&gt;
+&lt;td&gt;&amp;ldquo;Mr Chan&amp;rdquo;, &amp;ldquo;Mrs Cheong&amp;rdquo;, &amp;ldquo;Ms Lam&amp;rdquo;, &amp;hellip;&lt;/td&gt;
 &lt;td&gt;Mr, Mrs or Ms&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
@@ -1376,11 +1376,13 @@ var nums = s.split(/[+\-*/]/);
 &lt;li&gt;An integer between 0 and 9999 inclusively (i.e. including 0 and 9999). Leading zero is accepted.&lt;/li&gt;
 &lt;li&gt;A name that begins with a capital letter, e.g. ‘Ana’, ‘Ben’, but not ‘eric’, ‘McDonald’&lt;/li&gt;
 &lt;li&gt;A name that begins with a capital letter and contains another capital letter, e.g. ‘McDonald’, ‘MaBelle’, but not ‘Mary’, ‘AbCdE’&lt;/li&gt;
-&lt;li&gt;a date in the form dd-mm-yyyy, e.g. ‘01-01-2011’, ’31-12-2011’. Set capturing groups for the day, month and year.&lt;/li&gt;
-&lt;li&gt;a file name of Microsoft Word and Powerpoint documents, e.g. ‘note.doc’, ‘hw1.docx’, ‘chap1.ppt’, ‘final.PPTX’, but not ‘a.txt’, ‘ppt.txt’&lt;/li&gt;
+&lt;li&gt;a date in the form dd-mm-yyyy, e.g. ‘01-01-2011’, ’31-12-2011’.&lt;/li&gt;
+&lt;li&gt;a file name of Microsoft Word and Powerpoint documents, e.g. ‘note.doc’, ‘hw1.docx’, ‘chap1.ppt’, ‘final.pptx’, but not ‘a.txt’, ‘ppt.txt’&lt;/li&gt;
 &lt;li&gt;A string of alternating ‘a’ and ‘b’, e.g. ‘aba’, ‘ababa’, ‘ab’, ‘ba’, ‘a’, ‘b’, ‘babab’, ‘baba’. Your pattern should not match ‘aa’, ‘abaaa’, ‘abcba’, etc..&lt;/li&gt;
 &lt;li&gt;a JavaScript object literal which has numbers as all property values. E.g. ‘{ a: 1, b: 2, cc: 33 }’, ‘{  }’, ‘{ longproperty   :  1000 }’. You can assume that the property names are not quoted. Allow space characters within the object literal.&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;p&gt;You may find the &lt;a href=&#34;http://philiplei.github.io/chap2/p301.js&#34;&gt;sample answer&lt;/a&gt; here.&lt;/p&gt;
 </description>
     </item>
     

@@ -416,13 +416,13 @@ if (re.test(s)) {
 <tr>
 <td>[1-6]</td>
 <td>&ldquo;1&rdquo;, &ldquo;2&rdquo;, &ldquo;3&rdquo;, &ldquo;4&rdquo;, &ldquo;5&rdquo;, &ldquo;6&rdquo;</td>
-<td><em>same as</em> /1|2|3|4|5|6/ <em>or</em> /4651-3/</td>
+<td><em>same as</em> /1|2|3|4|5|6/ <em>or</em> /[4651-3]/</td>
 </tr>
 
 <tr>
 <td>[a-zA-Z]</td>
 <td>&ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo; &hellip; &ldquo;Z&rdquo;, &ldquo;a&rdquo;, &ldquo;b&rdquo;, &hellip; &ldquo;z&rdquo;</td>
-<td>letters, <em>same as</em> /A-Za-z/</td>
+<td>letters, <em>same as</em> /[A-Za-z]/</td>
 </tr>
 
 <tr>
@@ -499,7 +499,7 @@ if (re.test(s)) {
 
 <tr>
 <td>/M[A-Z]-\d\d\d\d/</td>
-<td>&ldquo;MD-8866&rdquo;, &ldquo;MW-0246&rdquo;</td>
+<td>&ldquo;MD-8866&rdquo;, &ldquo;MW-0246&rdquo;, ..</td>
 <td>but not &ldquo;M-2325&rdquo;</td>
 </tr>
 </tbody>
@@ -535,7 +535,7 @@ if (re.test(s)) {
 </tr>
 
 <tr>
-<td>/[256]\d{7}/</td>
+<td>/[2568]\d{7}/</td>
 <td>&ldquo;28334455&rdquo;, &ldquo;59963356&rdquo;, &ldquo;66778899&rdquo;, ..</td>
 <td>Macau tel numbers (but still misses some cases)</td>
 </tr>
@@ -560,13 +560,13 @@ if (re.test(s)) {
 
 <tr>
 <td>/\d+(\.\d+)?/</td>
-<td>&ldquo;12&rdquo;, &ldquo;0.5&rdquo;, &ldquo;12.34&rdquo;</td>
+<td>&ldquo;12&rdquo;, &ldquo;0.5&rdquo;, &ldquo;12.34&rdquo;, ..</td>
 <td>decimal number</td>
 </tr>
 
 <tr>
 <td>/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/ <em>or</em> /\d{1,3}(\.\d{1,3}){3}/</td>
-<td>&ldquo;202.175.3.3&rdquo;, &ldquo;1.0.0.1&rdquo;, ..</td>
+<td>&ldquo;202.175.3.28&rdquo;, &ldquo;1.0.0.1&rdquo;, ..</td>
 <td>IP address. Note that we need to escape the dot <code>\.</code></td>
 </tr>
 
@@ -584,7 +584,7 @@ if (re.test(s)) {
 
 <tr>
 <td>/(Mr|Mrs|Ms) \w+/</td>
-<td>&ldquo;Mr Chan&rdquo;, &ldquo;Mrs Cheong&rdquo;, &ldquo;Ms Lam&rdquo;</td>
+<td>&ldquo;Mr Chan&rdquo;, &ldquo;Mrs Cheong&rdquo;, &ldquo;Ms Lam&rdquo;, &hellip;</td>
 <td>Mr, Mrs or Ms</td>
 </tr>
 </tbody>
@@ -638,11 +638,13 @@ var nums = s.split(/[+\-*/]/);
 <li>An integer between 0 and 9999 inclusively (i.e. including 0 and 9999). Leading zero is accepted.</li>
 <li>A name that begins with a capital letter, e.g. ‘Ana’, ‘Ben’, but not ‘eric’, ‘McDonald’</li>
 <li>A name that begins with a capital letter and contains another capital letter, e.g. ‘McDonald’, ‘MaBelle’, but not ‘Mary’, ‘AbCdE’</li>
-<li>a date in the form dd-mm-yyyy, e.g. ‘01-01-2011’, ’31-12-2011’. Set capturing groups for the day, month and year.</li>
-<li>a file name of Microsoft Word and Powerpoint documents, e.g. ‘note.doc’, ‘hw1.docx’, ‘chap1.ppt’, ‘final.PPTX’, but not ‘a.txt’, ‘ppt.txt’</li>
+<li>a date in the form dd-mm-yyyy, e.g. ‘01-01-2011’, ’31-12-2011’.</li>
+<li>a file name of Microsoft Word and Powerpoint documents, e.g. ‘note.doc’, ‘hw1.docx’, ‘chap1.ppt’, ‘final.pptx’, but not ‘a.txt’, ‘ppt.txt’</li>
 <li>A string of alternating ‘a’ and ‘b’, e.g. ‘aba’, ‘ababa’, ‘ab’, ‘ba’, ‘a’, ‘b’, ‘babab’, ‘baba’. Your pattern should not match ‘aa’, ‘abaaa’, ‘abcba’, etc..</li>
 <li>a JavaScript object literal which has numbers as all property values. E.g. ‘{ a: 1, b: 2, cc: 33 }’, ‘{  }’, ‘{ longproperty   :  1000 }’. You can assume that the property names are not quoted. Allow space characters within the object literal.</li>
 </ol>
+
+<p>You may find the <a href="/chap2/p301.js">sample answer</a> here.</p>
 
 
       
