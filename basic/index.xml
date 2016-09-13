@@ -19,7 +19,7 @@
 
 &lt;h2 id=&#34;javascript-basics&#34;&gt;JavaScript Basics&lt;/h2&gt;
 
-&lt;p&gt;This &lt;strong&gt;lab&lt;/strong&gt; goes through the basics of the JavaScript programming language.&lt;/p&gt;
+&lt;p&gt;This chapter goes through the basics of the JavaScript programming language.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;2-1. Basic data types and control structures
@@ -49,10 +49,15 @@
 &lt;li&gt;built-in classes: Array, Date, Map&lt;/li&gt;
 &lt;li&gt;define class&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;2-6. Regular expression&lt;/li&gt;
+&lt;li&gt;2-6. Regular expression
+
+&lt;ul&gt;
+&lt;li&gt;writing regular expression&lt;/li&gt;
+&lt;li&gt;regexp.test(string), string.match(regexp)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Others: exception, JSON, promise, closure&lt;/p&gt;
+&lt;!-- Others: exception, closure --&gt;
 </description>
     </item>
     
@@ -877,12 +882,12 @@ console.log(point.toString());
 
 &lt;p&gt;On the other hand, the JavaScript language defines several built-in class, each with its own &lt;dfn&gt;constructor function&lt;/dfn&gt; to create objects of the class.  Objects thus created usually have built-in methods as defined in the class.&lt;/p&gt;
 
-&lt;p&gt;In OOP sense, a &lt;dfn&gt;class&lt;/dfn&gt; defines a template for similar objects, and provides (at least) one constructor object to build new objects belonging to the class.&lt;/p&gt;
+&lt;p&gt;In OOP sense, a &lt;dfn&gt;class&lt;/dfn&gt; defines a template for similar objects, and provides (at least) one constructor function to build new objects belonging to the class.&lt;/p&gt;
 
 &lt;h3 id=&#34;array&#34;&gt;Array&lt;/h3&gt;
 
 &lt;p&gt;JavaScript arrays are JavaScript objects. Typically, you construct an array with the syntax &lt;code&gt;[1,2,3]&lt;/code&gt;.
-The array object has many methods, and you can invoke them with the dot notation. Refer to &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Array_instances&#34;&gt;online ref&lt;/a&gt; for a list of methods of array objects.&lt;/p&gt;
+An array object has many methods, and you can invoke them with the dot notation. Refer to &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Array_instances&#34;&gt;online ref&lt;/a&gt; for a list of methods of array objects.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// array literal uses the constructor of Array class
 var a = [2,3,4];
@@ -917,7 +922,7 @@ console.log(&amp;quot;Does the map contains the key &#39;four&#39;? &amp;quot;, 
 console.log(&#39;No, so .get returns &#39;, m.get(&#39;four&#39;));  // undefined
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;A map is iterable, and the &lt;code&gt;for ...of&lt;/code&gt; loop returns a key/value pair in each step.&lt;/p&gt;
+&lt;p&gt;A map is iterable, and the &lt;code&gt;for .. of&lt;/code&gt; loop returns a key/value pair in each step.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var m = new Map([ [&#39;one&#39;, 1], [&#39;two&#39;, 2], [&#39;three&#39;, 3] ]);
 for (var [k,v] of m) {
@@ -949,9 +954,9 @@ console.log(now.toLocaleString());
 &lt;p&gt;ES6 has a new syntax to define class. It is similar to the syntax in Java.
 A class is a template to create similar objects, with a constructor function (which builds new object of the class) and methods (which access properties of the object using &lt;code&gt;this&lt;/code&gt;).&lt;/p&gt;
 
-&lt;p&gt;In the constructor, &lt;code&gt;this&lt;/code&gt; refers to the new object being created. You should initialize all properties inside the constructor.  Notice that in JavaScript, you don&amp;rsquo;t need to define the properties (as you define attributes in a Java class).&lt;/p&gt;
+&lt;p&gt;You typically call the constructor function with &lt;code&gt;new&lt;/code&gt;. In the constructor, &lt;code&gt;this&lt;/code&gt; refers to the new object being created. You should initialize all properties inside the constructor.  Notice that in JavaScript, you don&amp;rsquo;t need to define the properties (as you define attributes in a Java class).&lt;/p&gt;
 
-&lt;p&gt;In a method, &lt;code&gt;this&lt;/code&gt; refers to the object that invokes the method.&lt;/p&gt;
+&lt;p&gt;In a method, &lt;code&gt;this&lt;/code&gt; refers to the object that invokes the method. Methods defined in a class are available for all objects created using the constructor function.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;class Point {
   // create a Point object with the given x-, y- coordinates
@@ -968,16 +973,18 @@ A class is a template to create similar objects, with a constructor function (wh
 
 var p1 = new Point(3,4);
 console.log(&#39;p1 is &#39;, p1.toString());
-// as as below. JavaScript calls the method toString when needed
+// same as below. JavaScript calls the method toString when needed
 // console.log(&#39;p1 is &#39;, p1);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The object created by a constructor is similar to object literal in common usage. (But there are some difference about &lt;code&gt;prototype&lt;/code&gt; in implementation detail we&amp;rsquo;ll not cover.)
+&lt;p&gt;The object created by a constructor is similar to object literal in common usage. (But there are some difference about &lt;code&gt;prototype&lt;/code&gt; in implementation detail that we&amp;rsquo;ll not cover.)
 Use a class when you need to create many objects using a common template.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// assume you&#39;ve run the code listing above
+// examine the structure of the object created with constructor
 dir(p1);
 
+// and here is an object literal
 var p2 = { x: 2, y: 5 };
 p2.toString = function() { return `(${this.x},${this.y})` }
 dir(p2);
@@ -988,6 +995,7 @@ dir(p2);
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function distanceBetween (p1,p2) {
   return Math.hypot(p1.x-p2.x, p1.y-p2.y);
 }
+
 function midpoint (p1, p2) {
   var midx = (p1.x+p2.x)/2;
   var midy = (p1.y+p2.y)/2;
@@ -1085,6 +1093,7 @@ for (var [k,v] of wordCount) {
 &lt;p&gt;A common usage of regexp is to check whether user input is correct.  The following example checks whether the user input is an email address in IPM.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var s = prompt (&amp;quot;Your IPM student email address please&amp;quot;);
+// define a regular expression
 var re = /p\d{7}@ipm\.edu\.mo/;
 if (re.test(s)) {
    alert(`Thanks. Your email is ${s}`);
@@ -1093,13 +1102,15 @@ if (re.test(s)) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Regexps are JavaScript objects (with methods). The method &lt;code&gt;regexp.test(string)&lt;/code&gt; checks whether a substring of the given string matches the regular expression.  A simple way to create a regular expression is with the regexp literal &lt;code&gt;/ /&lt;/code&gt;.  Regexps are usually referred to as patterns.&lt;/p&gt;
+&lt;p&gt;Regexps are JavaScript objects (with methods). A simple way to create a regular expression is with the regexp literal &lt;code&gt;/ /&lt;/code&gt;.  Regexps are usually referred to as patterns. The method &lt;code&gt;regexp.test(string)&lt;/code&gt; checks whether a substring of the given string matches the regular expression.&lt;/p&gt;
 
 &lt;p&gt;Letters and digits in patterns match themselves. Regexps may contain parts with choice and repetition.&lt;/p&gt;
 
 &lt;h2 id=&#34;choice&#34;&gt;Choice&lt;/h2&gt;
 
-&lt;p&gt;A basic to represent choices is to use &lt;code&gt;|&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There are several ways to represent choices in regular expressions. You can use &lt;code&gt;|&lt;/code&gt; to separate strings / sub-patterns in a choice.&lt;/p&gt;
+
+&lt;p&gt;Use the web site &lt;a href=&#34;https://regex101.com/#javascript&#34;&gt;regex101.com&lt;/a&gt; to test the regexp below.&lt;/p&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
@@ -1116,13 +1127,13 @@ if (re.test(s)) {
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;/(Mr|Ms) Chan/&lt;/td&gt;
-&lt;td&gt;&amp;ldquo;Mr Chan&amp;rdquo;, &amp;ldquo;Ms Chan&amp;rdquo;&lt;/td&gt;
+&lt;td&gt;/(Mr|Ms) (Chan|Lam)/&lt;/td&gt;
+&lt;td&gt;&amp;ldquo;Mr Chan&amp;rdquo;, &amp;ldquo;Ms Chan&amp;rdquo;, &amp;ldquo;Mr Lam&amp;rdquo;, &amp;ldquo;Ms Lam&amp;rdquo;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;A choice of 1 character (e.g. &lt;code&gt;/T|F/&lt;/code&gt;) can be written in the character class format: write the possible characters between a pair of square parenthesis (e.g. &lt;code&gt;/[TF]&lt;/code&gt;). You can also use a range (e.g. &lt;code&gt;/[1-5]/&lt;/code&gt;) to match one character within the range. Or you start a character class with &lt;code&gt;^&lt;/code&gt; to mean the any character except the listed characters is a match.  Some examples follow.&lt;/p&gt;
+&lt;p&gt;A choice of 1 character (e.g. &lt;code&gt;/T|F/&lt;/code&gt;) can be written in the character class format: write the possible characters between a pair of square parenthesis (e.g. &lt;code&gt;/[TF]/&lt;/code&gt;). You can also use a range (e.g. &lt;code&gt;/[1-5]/&lt;/code&gt;) to match one character within the range. Or you start a character class with &lt;code&gt;^&lt;/code&gt; to match  any character except the listed characters.  Some examples follow.&lt;/p&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
@@ -1155,7 +1166,7 @@ if (re.test(s)) {
 &lt;tr&gt;
 &lt;td&gt;[^0-9]&lt;/td&gt;
 &lt;td&gt;&amp;ldquo;x&amp;rdquo;, &amp;ldquo;%&amp;rdquo;, &amp;ldquo;Z&amp;rdquo;, &amp;hellip;&lt;/td&gt;
-&lt;td&gt;any characters except digits&lt;/td&gt;
+&lt;td&gt;any character except digits&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1174,13 +1185,13 @@ if (re.test(s)) {
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;\d&lt;/td&gt;
-&lt;td&gt;&amp;ldquo;1&amp;rdquo;, &amp;ldquo;2&amp;rdquo;, &amp;hellip; , &amp;ldquo;9&amp;rdquo;&lt;/td&gt;
+&lt;td&gt;&amp;ldquo;0&amp;rdquo;, &amp;ldquo;1&amp;rdquo;, &amp;ldquo;2&amp;rdquo;, &amp;hellip; , &amp;ldquo;9&amp;rdquo;&lt;/td&gt;
 &lt;td&gt;&lt;em&gt;same as&lt;/em&gt; [0-9]&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;\w&lt;/td&gt;
-&lt;td&gt;&amp;ldquo;a&amp;rdquo;, &amp;ldquo;B&amp;rdquo;, &amp;ldquo;1&amp;rdquo;, &amp;ldquo;9&amp;rdquo;, &amp;ldquo;_&amp;rdquo;&lt;/td&gt;
+&lt;td&gt;&amp;ldquo;a&amp;rdquo;, &amp;ldquo;B&amp;rdquo;, &amp;ldquo;1&amp;rdquo;, &amp;ldquo;9&amp;rdquo;, &amp;ldquo;_&amp;ldquo;, &amp;hellip;&lt;/td&gt;
 &lt;td&gt;&lt;em&gt;same as&lt;/em&gt; [a-zA-Z0-9_]&lt;/td&gt;
 &lt;/tr&gt;
 
@@ -1264,7 +1275,7 @@ if (re.test(s)) {
 &lt;tr&gt;
 &lt;td&gt;/[256]\d{7}/&lt;/td&gt;
 &lt;td&gt;&amp;ldquo;28334455&amp;rdquo;, &amp;ldquo;59963356&amp;rdquo;, &amp;ldquo;66778899&amp;rdquo;, ..&lt;/td&gt;
-&lt;td&gt;macau tel numbers&lt;/td&gt;
+&lt;td&gt;Macau tel numbers (but still misses some cases)&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -1292,7 +1303,7 @@ if (re.test(s)) {
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/&lt;/td&gt;
+&lt;td&gt;/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/ &lt;em&gt;or&lt;/em&gt; /\d{1,3}(\.\d{1,3}){3}/&lt;/td&gt;
 &lt;td&gt;&amp;ldquo;202.175.3.3&amp;rdquo;, &amp;ldquo;1.0.0.1&amp;rdquo;, ..&lt;/td&gt;
 &lt;td&gt;IP address. Note that we need to escape the dot &lt;code&gt;\.&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
@@ -1336,11 +1347,11 @@ re2.test(&#39;1234567890&#39;); // return false
 re2.test(&#39;66778899&#39;); // return true
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Another common position matching case is word boundary &lt;code&gt;\b&lt;/code&gt;. This works similar to &amp;ldquo;match whole words&amp;rdquo; in Microsoft word.&lt;/p&gt;
+&lt;p&gt;Another common position matching case is word boundary &lt;code&gt;\b&lt;/code&gt;. This works similar to &amp;ldquo;match whole words&amp;rdquo; in Microsoft Word.&lt;/p&gt;
 
 &lt;h2 id=&#34;other-regexp-methods&#34;&gt;Other regexp methods&lt;/h2&gt;
 
-&lt;p&gt;The string objects also have a few methods that support regular expression. We&amp;rsquo;ll give two examples here.&lt;/p&gt;
+&lt;p&gt;The string objects also have a few methods &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String&#34;&gt;online ref&lt;/a&gt; that support regular expression. We&amp;rsquo;ll give two examples here.&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;string.match(regexp)&lt;/code&gt; method returns substrings in the string that match the regexp. If the regexp has the global flag (g), the method returns an array of all matches. Otherwise, it only returns the first match.&lt;/p&gt;
 
@@ -1368,7 +1379,6 @@ var nums = s.split(/[+\-*/]/);
 &lt;li&gt;a date in the form dd-mm-yyyy, e.g. ‘01-01-2011’, ’31-12-2011’. Set capturing groups for the day, month and year.&lt;/li&gt;
 &lt;li&gt;a file name of Microsoft Word and Powerpoint documents, e.g. ‘note.doc’, ‘hw1.docx’, ‘chap1.ppt’, ‘final.PPTX’, but not ‘a.txt’, ‘ppt.txt’&lt;/li&gt;
 &lt;li&gt;A string of alternating ‘a’ and ‘b’, e.g. ‘aba’, ‘ababa’, ‘ab’, ‘ba’, ‘a’, ‘b’, ‘babab’, ‘baba’. Your pattern should not match ‘aa’, ‘abaaa’, ‘abcba’, etc..&lt;/li&gt;
-&lt;li&gt;An IP address, e.g. ‘192.168.1.1’, ‘202.175.6.8’. It is acceptable if your pattern accepts some octet greater than 255, e.g. ‘300.400.500.600’.&lt;/li&gt;
 &lt;li&gt;a JavaScript object literal which has numbers as all property values. E.g. ‘{ a: 1, b: 2, cc: 33 }’, ‘{  }’, ‘{ longproperty   :  1000 }’. You can assume that the property names are not quoted. Allow space characters within the object literal.&lt;/li&gt;
 &lt;/ol&gt;
 </description>

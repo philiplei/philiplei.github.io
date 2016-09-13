@@ -373,12 +373,12 @@ console.log(point.toString());
 
 <p>On the other hand, the JavaScript language defines several built-in class, each with its own <dfn>constructor function</dfn> to create objects of the class.  Objects thus created usually have built-in methods as defined in the class.</p>
 
-<p>In OOP sense, a <dfn>class</dfn> defines a template for similar objects, and provides (at least) one constructor object to build new objects belonging to the class.</p>
+<p>In OOP sense, a <dfn>class</dfn> defines a template for similar objects, and provides (at least) one constructor function to build new objects belonging to the class.</p>
 
 <h3 id="array">Array</h3>
 
 <p>JavaScript arrays are JavaScript objects. Typically, you construct an array with the syntax <code>[1,2,3]</code>.
-The array object has many methods, and you can invoke them with the dot notation. Refer to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Array_instances">online ref</a> for a list of methods of array objects.</p>
+An array object has many methods, and you can invoke them with the dot notation. Refer to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Array_instances">online ref</a> for a list of methods of array objects.</p>
 
 <pre><code class="language-JavaScript">// array literal uses the constructor of Array class
 var a = [2,3,4];
@@ -413,7 +413,7 @@ console.log(&quot;Does the map contains the key 'four'? &quot;, m.has('four'));
 console.log('No, so .get returns ', m.get('four'));  // undefined
 </code></pre>
 
-<p>A map is iterable, and the <code>for ...of</code> loop returns a key/value pair in each step.</p>
+<p>A map is iterable, and the <code>for .. of</code> loop returns a key/value pair in each step.</p>
 
 <pre><code class="language-JavaScript">var m = new Map([ ['one', 1], ['two', 2], ['three', 3] ]);
 for (var [k,v] of m) {
@@ -445,9 +445,9 @@ console.log(now.toLocaleString());
 <p>ES6 has a new syntax to define class. It is similar to the syntax in Java.
 A class is a template to create similar objects, with a constructor function (which builds new object of the class) and methods (which access properties of the object using <code>this</code>).</p>
 
-<p>In the constructor, <code>this</code> refers to the new object being created. You should initialize all properties inside the constructor.  Notice that in JavaScript, you don&rsquo;t need to define the properties (as you define attributes in a Java class).</p>
+<p>You typically call the constructor function with <code>new</code>. In the constructor, <code>this</code> refers to the new object being created. You should initialize all properties inside the constructor.  Notice that in JavaScript, you don&rsquo;t need to define the properties (as you define attributes in a Java class).</p>
 
-<p>In a method, <code>this</code> refers to the object that invokes the method.</p>
+<p>In a method, <code>this</code> refers to the object that invokes the method. Methods defined in a class are available for all objects created using the constructor function.</p>
 
 <pre><code class="language-JavaScript">class Point {
   // create a Point object with the given x-, y- coordinates
@@ -464,16 +464,18 @@ A class is a template to create similar objects, with a constructor function (wh
 
 var p1 = new Point(3,4);
 console.log('p1 is ', p1.toString());
-// as as below. JavaScript calls the method toString when needed
+// same as below. JavaScript calls the method toString when needed
 // console.log('p1 is ', p1);
 </code></pre>
 
-<p>The object created by a constructor is similar to object literal in common usage. (But there are some difference about <code>prototype</code> in implementation detail we&rsquo;ll not cover.)
+<p>The object created by a constructor is similar to object literal in common usage. (But there are some difference about <code>prototype</code> in implementation detail that we&rsquo;ll not cover.)
 Use a class when you need to create many objects using a common template.</p>
 
 <pre><code class="language-JavaScript">// assume you've run the code listing above
+// examine the structure of the object created with constructor
 dir(p1);
 
+// and here is an object literal
 var p2 = { x: 2, y: 5 };
 p2.toString = function() { return `(${this.x},${this.y})` }
 dir(p2);
@@ -484,6 +486,7 @@ dir(p2);
 <pre><code class="language-JavaScript">function distanceBetween (p1,p2) {
   return Math.hypot(p1.x-p2.x, p1.y-p2.y);
 }
+
 function midpoint (p1, p2) {
   var midx = (p1.x+p2.x)/2;
   var midy = (p1.y+p2.y)/2;

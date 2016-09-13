@@ -355,6 +355,7 @@
 <p>A common usage of regexp is to check whether user input is correct.  The following example checks whether the user input is an email address in IPM.</p>
 
 <pre><code class="language-JavaScript">var s = prompt (&quot;Your IPM student email address please&quot;);
+// define a regular expression
 var re = /p\d{7}@ipm\.edu\.mo/;
 if (re.test(s)) {
    alert(`Thanks. Your email is ${s}`);
@@ -363,13 +364,15 @@ if (re.test(s)) {
 }
 </code></pre>
 
-<p>Regexps are JavaScript objects (with methods). The method <code>regexp.test(string)</code> checks whether a substring of the given string matches the regular expression.  A simple way to create a regular expression is with the regexp literal <code>/ /</code>.  Regexps are usually referred to as patterns.</p>
+<p>Regexps are JavaScript objects (with methods). A simple way to create a regular expression is with the regexp literal <code>/ /</code>.  Regexps are usually referred to as patterns. The method <code>regexp.test(string)</code> checks whether a substring of the given string matches the regular expression.</p>
 
 <p>Letters and digits in patterns match themselves. Regexps may contain parts with choice and repetition.</p>
 
 <h2 id="choice">Choice</h2>
 
-<p>A basic to represent choices is to use <code>|</code>.</p>
+<p>There are several ways to represent choices in regular expressions. You can use <code>|</code> to separate strings / sub-patterns in a choice.</p>
+
+<p>Use the web site <a href="https://regex101.com/#javascript">regex101.com</a> to test the regexp below.</p>
 
 <table>
 <thead>
@@ -386,13 +389,13 @@ if (re.test(s)) {
 </tr>
 
 <tr>
-<td>/(Mr|Ms) Chan/</td>
-<td>&ldquo;Mr Chan&rdquo;, &ldquo;Ms Chan&rdquo;</td>
+<td>/(Mr|Ms) (Chan|Lam)/</td>
+<td>&ldquo;Mr Chan&rdquo;, &ldquo;Ms Chan&rdquo;, &ldquo;Mr Lam&rdquo;, &ldquo;Ms Lam&rdquo;</td>
 </tr>
 </tbody>
 </table>
 
-<p>A choice of 1 character (e.g. <code>/T|F/</code>) can be written in the character class format: write the possible characters between a pair of square parenthesis (e.g. <code>/[TF]</code>). You can also use a range (e.g. <code>/[1-5]/</code>) to match one character within the range. Or you start a character class with <code>^</code> to mean the any character except the listed characters is a match.  Some examples follow.</p>
+<p>A choice of 1 character (e.g. <code>/T|F/</code>) can be written in the character class format: write the possible characters between a pair of square parenthesis (e.g. <code>/[TF]/</code>). You can also use a range (e.g. <code>/[1-5]/</code>) to match one character within the range. Or you start a character class with <code>^</code> to match  any character except the listed characters.  Some examples follow.</p>
 
 <table>
 <thead>
@@ -425,7 +428,7 @@ if (re.test(s)) {
 <tr>
 <td>[^0-9]</td>
 <td>&ldquo;x&rdquo;, &ldquo;%&rdquo;, &ldquo;Z&rdquo;, &hellip;</td>
-<td>any characters except digits</td>
+<td>any character except digits</td>
 </tr>
 </tbody>
 </table>
@@ -444,13 +447,13 @@ if (re.test(s)) {
 <tbody>
 <tr>
 <td>\d</td>
-<td>&ldquo;1&rdquo;, &ldquo;2&rdquo;, &hellip; , &ldquo;9&rdquo;</td>
+<td>&ldquo;0&rdquo;, &ldquo;1&rdquo;, &ldquo;2&rdquo;, &hellip; , &ldquo;9&rdquo;</td>
 <td><em>same as</em> [0-9]</td>
 </tr>
 
 <tr>
 <td>\w</td>
-<td>&ldquo;a&rdquo;, &ldquo;B&rdquo;, &ldquo;1&rdquo;, &ldquo;9&rdquo;, &ldquo;_&rdquo;</td>
+<td>&ldquo;a&rdquo;, &ldquo;B&rdquo;, &ldquo;1&rdquo;, &ldquo;9&rdquo;, &ldquo;_&ldquo;, &hellip;</td>
 <td><em>same as</em> [a-zA-Z0-9_]</td>
 </tr>
 
@@ -534,7 +537,7 @@ if (re.test(s)) {
 <tr>
 <td>/[256]\d{7}/</td>
 <td>&ldquo;28334455&rdquo;, &ldquo;59963356&rdquo;, &ldquo;66778899&rdquo;, ..</td>
-<td>macau tel numbers</td>
+<td>Macau tel numbers (but still misses some cases)</td>
 </tr>
 
 <tr>
@@ -562,7 +565,7 @@ if (re.test(s)) {
 </tr>
 
 <tr>
-<td>/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/</td>
+<td>/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/ <em>or</em> /\d{1,3}(\.\d{1,3}){3}/</td>
 <td>&ldquo;202.175.3.3&rdquo;, &ldquo;1.0.0.1&rdquo;, ..</td>
 <td>IP address. Note that we need to escape the dot <code>\.</code></td>
 </tr>
@@ -606,11 +609,11 @@ re2.test('1234567890'); // return false
 re2.test('66778899'); // return true
 </code></pre>
 
-<p>Another common position matching case is word boundary <code>\b</code>. This works similar to &ldquo;match whole words&rdquo; in Microsoft word.</p>
+<p>Another common position matching case is word boundary <code>\b</code>. This works similar to &ldquo;match whole words&rdquo; in Microsoft Word.</p>
 
 <h2 id="other-regexp-methods">Other regexp methods</h2>
 
-<p>The string objects also have a few methods that support regular expression. We&rsquo;ll give two examples here.</p>
+<p>The string objects also have a few methods <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">online ref</a> that support regular expression. We&rsquo;ll give two examples here.</p>
 
 <p>The <code>string.match(regexp)</code> method returns substrings in the string that match the regexp. If the regexp has the global flag (g), the method returns an array of all matches. Otherwise, it only returns the first match.</p>
 
@@ -638,7 +641,6 @@ var nums = s.split(/[+\-*/]/);
 <li>a date in the form dd-mm-yyyy, e.g. ‘01-01-2011’, ’31-12-2011’. Set capturing groups for the day, month and year.</li>
 <li>a file name of Microsoft Word and Powerpoint documents, e.g. ‘note.doc’, ‘hw1.docx’, ‘chap1.ppt’, ‘final.PPTX’, but not ‘a.txt’, ‘ppt.txt’</li>
 <li>A string of alternating ‘a’ and ‘b’, e.g. ‘aba’, ‘ababa’, ‘ab’, ‘ba’, ‘a’, ‘b’, ‘babab’, ‘baba’. Your pattern should not match ‘aa’, ‘abaaa’, ‘abcba’, etc..</li>
-<li>An IP address, e.g. ‘192.168.1.1’, ‘202.175.6.8’. It is acceptable if your pattern accepts some octet greater than 255, e.g. ‘300.400.500.600’.</li>
 <li>a JavaScript object literal which has numbers as all property values. E.g. ‘{ a: 1, b: 2, cc: 33 }’, ‘{  }’, ‘{ longproperty   :  1000 }’. You can assume that the property names are not quoted. Allow space characters within the object literal.</li>
 </ol>
 
