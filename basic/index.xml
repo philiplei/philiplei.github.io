@@ -1376,10 +1376,10 @@ var nums = s.split(/[+\-*/]/);
 &lt;li&gt;An integer between 0 and 9999 inclusively (i.e. including 0 and 9999). Leading zero is accepted.&lt;/li&gt;
 &lt;li&gt;A name that begins with a capital letter, e.g. ‘Ana’, ‘Ben’, but not ‘eric’, ‘McDonald’&lt;/li&gt;
 &lt;li&gt;A name that begins with a capital letter and contains another capital letter, e.g. ‘McDonald’, ‘MaBelle’, but not ‘Mary’, ‘AbCdE’&lt;/li&gt;
-&lt;li&gt;a date in the form dd-mm-yyyy, e.g. ‘01-01-2011’, ’31-12-2011’.&lt;/li&gt;
-&lt;li&gt;a file name of Microsoft Word and Powerpoint documents, e.g. ‘note.doc’, ‘hw1.docx’, ‘chap1.ppt’, ‘final.pptx’, but not ‘a.txt’, ‘ppt.txt’&lt;/li&gt;
+&lt;li&gt;A date in the form dd-mm-yyyy, e.g. ‘01-01-2011’, ’31-12-2011’.&lt;/li&gt;
+&lt;li&gt;A file name of Microsoft Word and Powerpoint documents, e.g. ‘note.doc’, ‘hw1.docx’, ‘chap1.ppt’, ‘final.pptx’, but not ‘a.txt’, ‘ppt.txt’&lt;/li&gt;
 &lt;li&gt;A string of alternating ‘a’ and ‘b’, e.g. ‘aba’, ‘ababa’, ‘ab’, ‘ba’, ‘a’, ‘b’, ‘babab’, ‘baba’. Your pattern should not match ‘aa’, ‘abaaa’, ‘abcba’, etc..&lt;/li&gt;
-&lt;li&gt;a JavaScript object literal which has numbers as all property values. E.g. ‘{ a: 1, b: 2, cc: 33 }’, ‘{  }’, ‘{ longproperty   :  1000 }’. You can assume that the property names are not quoted. Allow space characters within the object literal.&lt;/li&gt;
+&lt;li&gt;A JavaScript object literal which has numbers as all property values. E.g. ‘{ a: 1, b: 2, cc: 33 }’, ‘{  }’, ‘{ longproperty   :  1000 }’. You can assume that the property names are not quoted. Allow space characters within the object literal.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;You may find the &lt;a href=&#34;http://philiplei.github.io/chap2/p301.js&#34;&gt;sample answer&lt;/a&gt; here.&lt;/p&gt;
