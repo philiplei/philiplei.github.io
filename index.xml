@@ -117,7 +117,7 @@ res.send json, res.status code.&lt;/li&gt;
 &lt;p&gt;This chapter goes through the basics of the JavaScript programming inside the Web browser environment.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;3-1 quick start
+&lt;li&gt;3-1 Quick start
 
 &lt;ul&gt;
 &lt;li&gt;document tree, first jQuery example&lt;/li&gt;
@@ -469,16 +469,19 @@ Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;co
 
 &lt;h2 id=&#34;document-tree-and-javascript-libraries&#34;&gt;document tree and JavaScript libraries&lt;/h2&gt;
 
-&lt;p&gt;When a web browser loads an HTML page from a web server, it converts the HTML code into a tree structured data structure known as &lt;dfn&gt;document tree&lt;/dfn&gt;. All user interaction in the client-side of a web app is done through this DOM tree.&lt;/p&gt;
+&lt;p&gt;When a web browser loads an HTML page from a web server, it converts the HTML code into a tree formed data structure known as &lt;dfn&gt;document tree&lt;/dfn&gt;. All user interactions in the client-side of a web app are done through this DOM tree.&lt;/p&gt;
 
-&lt;p&gt;The Document Object Model [(online ref)][moz-dom] standard defines a programming interface to access the document tree. Each HTML element is represented by a node in the tree. DOM defines the properties, methods and events for these nodes, and the nodes are accessible to JavaScript as objects. In summary, DOM defines how JavaScript code can access and manipulate nodes in a document tree, and all dynamic effects in web pages are realized through document tree manipulation. Demo:&lt;/p&gt;
+&lt;p&gt;The Document Object Model standard &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model&#34;&gt;(online ref)&lt;/a&gt;  defines a programming interface to access the document tree. Each HTML element is represented by a node in the tree. DOM defines the properties, methods and events for these nodes, and the nodes are accessible to JavaScript as objects. In summary, DOM defines how JavaScript code can access and manipulate nodes in a document tree.&lt;/p&gt;
+
+&lt;p&gt;Demo === &lt;span id=&#34;mesg&#34; style=&#34;background-color: lightblue&#34;&gt;demo text&lt;/span&gt; ===:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;document tree as tree of elements&lt;/li&gt;
-&lt;li&gt;node as JavaScript objects: properties and methods&lt;/li&gt;
+&lt;li&gt;document tree in JavaScript: &lt;code&gt;document&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;search a node, and node as an object (with properties and methods): &lt;code&gt;var a = document.getElementById(&#39;mesg&#39;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;change a property of the node object: &lt;code&gt;a.innerText = &#39;new content&#39;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;However, using DOM directly takes a lot of efforts. (DOM is complex and verbose.) Developers usually use some higher level JavaScript library to do client-side programming (e.g. &lt;a href=&#34;https://facebook.github.io/react/&#34;&gt;Facebook React&lt;/a&gt;, &lt;a href=&#34;https://angular.io/&#34;&gt;Google AngularJS&lt;/a&gt;)  In this chapter, we&amp;rsquo;ll use a popular library called &lt;a href=&#34;http://jquery.com/&#34;&gt;jQuery&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;However, using DOM directly takes a lot of efforts. (DOM is complex and verbose.) Developers usually prefer some higher level JavaScript library to do client-side programming (e.g. &lt;a href=&#34;https://facebook.github.io/react/&#34;&gt;Facebook React&lt;/a&gt;, &lt;a href=&#34;https://angular.io/&#34;&gt;Google AngularJS&lt;/a&gt;)  In this chapter, we&amp;rsquo;ll use a popular library called &lt;a href=&#34;http://jquery.com/&#34;&gt;jQuery&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;A short description of the jQuery library from the &lt;a href=&#34;http://jquery.com/&#34;&gt;official site&lt;/a&gt;:&lt;/p&gt;
 
@@ -489,7 +492,7 @@ Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;co
 &lt;h2 id=&#34;first-example&#34;&gt;First example&lt;/h2&gt;
 
 &lt;p&gt;This &lt;a href=&#34;http://philiplei.github.io/chap3/p301.html&#34;&gt;example&lt;/a&gt; shows several features in client-side web app programming.
-In this app, the user enters two numbers in text input boxes, presses a button to calculate the sum, and displays the result in the web page.&lt;/p&gt;
+In this app, the user enters two numbers in text input boxes, presses a button to calculate the sum, and displays the result inside the web page.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;!doctype html&amp;gt;
 &amp;lt;html&amp;gt;
@@ -532,7 +535,7 @@ In this app, the user enters two numbers in text input boxes, presses a button t
 
 &lt;h2 id=&#34;a-note-on-loading-javascript-code&#34;&gt;A note on loading JavaScript code&lt;/h2&gt;
 
-&lt;p&gt;In most of our examples, we put JavaScript code near the end of the HTML document. We typically put them before the end tag &lt;code&gt;&amp;lt;/body&amp;gt;&lt;/code&gt;. This makes sure that the DOM tree is complete when the JavaScript code runs.&lt;/p&gt;
+&lt;p&gt;In most of our examples, we put JavaScript code near the end of the HTML document. We typically put them just before the end tag &lt;code&gt;&amp;lt;/body&amp;gt;&lt;/code&gt;. This makes sure that the DOM tree is complete when the JavaScript code runs.&lt;/p&gt;
 
 &lt;p&gt;We use the following HTML code to load jQuery library from our local web site (same location as the HTML code). In a more complicated web app, it is better to put JavaScript libraries in their own folder. You can also load the jQuery library from one of the public CDN.  Refer to these pages for detail: &lt;a href=&#34;https://code.jquery.com/&#34;&gt;jQuery CDN&lt;/a&gt;, &lt;a href=&#34;https://developers.google.com/speed/libraries/&#34;&gt;Google Hosted Library&lt;/a&gt; and &lt;a href=&#34;https://cdnjs.com/libraries/jquery/&#34;&gt;cdnjs&lt;/a&gt;.&lt;/p&gt;
 

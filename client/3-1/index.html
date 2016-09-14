@@ -347,16 +347,19 @@
 
 <h2 id="document-tree-and-javascript-libraries">document tree and JavaScript libraries</h2>
 
-<p>When a web browser loads an HTML page from a web server, it converts the HTML code into a tree structured data structure known as <dfn>document tree</dfn>. All user interaction in the client-side of a web app is done through this DOM tree.</p>
+<p>When a web browser loads an HTML page from a web server, it converts the HTML code into a tree formed data structure known as <dfn>document tree</dfn>. All user interactions in the client-side of a web app are done through this DOM tree.</p>
 
-<p>The Document Object Model [(online ref)][moz-dom] standard defines a programming interface to access the document tree. Each HTML element is represented by a node in the tree. DOM defines the properties, methods and events for these nodes, and the nodes are accessible to JavaScript as objects. In summary, DOM defines how JavaScript code can access and manipulate nodes in a document tree, and all dynamic effects in web pages are realized through document tree manipulation. Demo:</p>
+<p>The Document Object Model standard <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model">(online ref)</a>  defines a programming interface to access the document tree. Each HTML element is represented by a node in the tree. DOM defines the properties, methods and events for these nodes, and the nodes are accessible to JavaScript as objects. In summary, DOM defines how JavaScript code can access and manipulate nodes in a document tree.</p>
+
+<p>Demo === <span id="mesg" style="background-color: lightblue">demo text</span> ===:</p>
 
 <ul>
-<li>document tree as tree of elements</li>
-<li>node as JavaScript objects: properties and methods</li>
+<li>document tree in JavaScript: <code>document</code></li>
+<li>search a node, and node as an object (with properties and methods): <code>var a = document.getElementById('mesg')</code></li>
+<li>change a property of the node object: <code>a.innerText = 'new content'</code></li>
 </ul>
 
-<p>However, using DOM directly takes a lot of efforts. (DOM is complex and verbose.) Developers usually use some higher level JavaScript library to do client-side programming (e.g. <a href="https://facebook.github.io/react/">Facebook React</a>, <a href="https://angular.io/">Google AngularJS</a>)  In this chapter, we&rsquo;ll use a popular library called <a href="http://jquery.com/">jQuery</a>.</p>
+<p>However, using DOM directly takes a lot of efforts. (DOM is complex and verbose.) Developers usually prefer some higher level JavaScript library to do client-side programming (e.g. <a href="https://facebook.github.io/react/">Facebook React</a>, <a href="https://angular.io/">Google AngularJS</a>)  In this chapter, we&rsquo;ll use a popular library called <a href="http://jquery.com/">jQuery</a>.</p>
 
 <p>A short description of the jQuery library from the <a href="http://jquery.com/">official site</a>:</p>
 
@@ -367,7 +370,7 @@
 <h2 id="first-example">First example</h2>
 
 <p>This <a href="/chap3/p301.html">example</a> shows several features in client-side web app programming.
-In this app, the user enters two numbers in text input boxes, presses a button to calculate the sum, and displays the result in the web page.</p>
+In this app, the user enters two numbers in text input boxes, presses a button to calculate the sum, and displays the result inside the web page.</p>
 
 <pre><code class="language-HTML">&lt;!doctype html&gt;
 &lt;html&gt;
@@ -410,7 +413,7 @@ In this app, the user enters two numbers in text input boxes, presses a button t
 
 <h2 id="a-note-on-loading-javascript-code">A note on loading JavaScript code</h2>
 
-<p>In most of our examples, we put JavaScript code near the end of the HTML document. We typically put them before the end tag <code>&lt;/body&gt;</code>. This makes sure that the DOM tree is complete when the JavaScript code runs.</p>
+<p>In most of our examples, we put JavaScript code near the end of the HTML document. We typically put them just before the end tag <code>&lt;/body&gt;</code>. This makes sure that the DOM tree is complete when the JavaScript code runs.</p>
 
 <p>We use the following HTML code to load jQuery library from our local web site (same location as the HTML code). In a more complicated web app, it is better to put JavaScript libraries in their own folder. You can also load the jQuery library from one of the public CDN.  Refer to these pages for detail: <a href="https://code.jquery.com/">jQuery CDN</a>, <a href="https://developers.google.com/speed/libraries/">Google Hosted Library</a> and <a href="https://cdnjs.com/libraries/jquery/">cdnjs</a>.</p>
 
