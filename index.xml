@@ -1031,10 +1031,7 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
 &lt;li&gt;&lt;code&gt;$(selector).removeClass(className)&lt;/code&gt; removes the specified class from the elements in the collection&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Next, define a style rule for the table content and apply the rule to the table element in JavaScript. You may use the following sample.  When you&amp;rsquo;re done, your answer should &lt;a href=&#34;http://philiplei.github.io/chap3/p308-done.html&#34;&gt;look like this&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;$(&#39;table#z&#39;).addClass(&#39;mystyle&#39;)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That example also defines a style rule for the table content and apply the rule to the table element in JavaScript. Read the source code for detail.&lt;/p&gt;
 
 &lt;h2 id=&#34;exercise-2&#34;&gt;Exercise&lt;/h2&gt;
 
