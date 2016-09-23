@@ -1014,7 +1014,17 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
 &lt;li&gt;&lt;code&gt;$(selector).css(property, value)&lt;/code&gt; sets the CSS property to the specified value for all elements in the collection&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;When you need to set many CSS properties, a more organized method is to write the style change as style rules in CSS style sheet. Assign the style rules to a class, and add the class to the element in runtime. This approach also makes it easy to &amp;lsquo;undo&amp;rsquo; the style change by removing the class from the element. Try the examples in &lt;a href=&#34;http://philiplei.github.io/chap3/p308.html&#34;&gt;p308.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When you need to set many CSS properties, a more organized method is to write the style change as style rules in CSS style sheet. Assign the style rules to a class.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-CSS&#34;&gt;.center {
+  position: fixed; top: 30%; left: 30%;
+  width: 300px !important; height: 300px !important;
+  background-color: lightblue; border: 1px solid gray;
+  border-radius: 30px; padding: 10px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, in JavaScript, you can add the class to the element in runtime with &lt;code&gt;$().addClass()&lt;/code&gt;. This approach also makes it easy to &amp;lsquo;undo&amp;rsquo; the style change by removing the class from the element with &lt;code&gt;$().removeClass()&lt;/code&gt;. Try the examples in &lt;a href=&#34;http://philiplei.github.io/chap3/p308.html&#34;&gt;p308.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;$(selector).addClass(className)&lt;/code&gt; adds the specified class to the elements in the collection&lt;/li&gt;
@@ -1022,14 +1032,6 @@ for (var row of $(&#39;#marks tbody tr&#39;)) {
 &lt;/ul&gt;
 
 &lt;p&gt;Next, define a style rule for the table content and apply the rule to the table element in JavaScript. You may use the following sample.  When you&amp;rsquo;re done, your answer should &lt;a href=&#34;http://philiplei.github.io/chap3/p308-done.html&#34;&gt;look like this&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-CSS&#34;&gt;.mystyle tr:nth-child(even) {
-  background-color: rgba(50,90,200,0.9);
-}
-.mystyle tbody td:nth-child(1) { font-weight: bold; }
-.mystyle td:nth-child(2) { width: 100px; }
-.mystyle td { border: none !important; }
-&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;$(&#39;table#z&#39;).addClass(&#39;mystyle&#39;)
 &lt;/code&gt;&lt;/pre&gt;

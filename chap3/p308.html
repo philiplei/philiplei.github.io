@@ -17,6 +17,12 @@
     border-radius: 30px; padding: 10px;
   }
 
+  .mystyle tr:nth-child(even) {
+    background-color: rgba(50,90,200,0.9);
+  }
+  .mystyle tbody td:nth-child(1) { font-weight: bold; }
+  .mystyle td:nth-child(2) { width: 100px; }
+  .mystyle td { border: none !important; }
   </style>
 </head>
 
@@ -38,15 +44,21 @@
 
   <p>Try each of the following.</p>
   <ul>
-    <li><code>$('img').eq(0).addClass('center')</code> - add a class to the element. This HTML code includes some style rules for the class <code>center</code></li>
-    <li><code>$('img').eq(0).removeClass('center')</code> - remove the class from the element</li>
+    <li><button id='btn1'>run</button> <code>$('img').eq(0).addClass('center')</code>  <br>
+      add a class to the element. This HTML code includes some style rules for the class <code>center</code></li>
+    <li><button id='btn2'>run</button> <code>$('img').eq(0).removeClass('center')</code>  <br>
+      remove the class from the element</li>
+    <li><button id='btn3'>run</button> <code>$('table#z').addClass('mystyle')</code>
+    <li><button id='btn4'>run</button> <code>$('table#z').removeClass('mystyle')</code>
   </ul>
 
   <script src="jquery.js"></script>
   <script>
+$('#btn1').on('click', (e)=>{ $('img').eq(0).addClass('center') })
+$('#btn2').on('click', (e)=>{ $('img').eq(0).removeClass('center') })
+$('#btn3').on('click', (e)=>{ $('table#z').addClass('mystyle') })
+$('#btn4').on('click', (e)=>{ $('table#z').removeClass('mystyle') })
 
-
-// TODO: make animation!
 </script>
 </body>
 </html>

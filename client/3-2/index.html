@@ -485,7 +485,17 @@ for (var row of $('#marks tbody tr')) {
 <li><code>$(selector).css(property, value)</code> sets the CSS property to the specified value for all elements in the collection</li>
 </ul>
 
-<p>When you need to set many CSS properties, a more organized method is to write the style change as style rules in CSS style sheet. Assign the style rules to a class, and add the class to the element in runtime. This approach also makes it easy to &lsquo;undo&rsquo; the style change by removing the class from the element. Try the examples in <a href="/chap3/p308.html">p308.html</a>.</p>
+<p>When you need to set many CSS properties, a more organized method is to write the style change as style rules in CSS style sheet. Assign the style rules to a class.</p>
+
+<pre><code class="language-CSS">.center {
+  position: fixed; top: 30%; left: 30%;
+  width: 300px !important; height: 300px !important;
+  background-color: lightblue; border: 1px solid gray;
+  border-radius: 30px; padding: 10px;
+}
+</code></pre>
+
+<p>Then, in JavaScript, you can add the class to the element in runtime with <code>$().addClass()</code>. This approach also makes it easy to &lsquo;undo&rsquo; the style change by removing the class from the element with <code>$().removeClass()</code>. Try the examples in <a href="/chap3/p308.html">p308.html</a>.</p>
 
 <ul>
 <li><code>$(selector).addClass(className)</code> adds the specified class to the elements in the collection</li>
@@ -493,14 +503,6 @@ for (var row of $('#marks tbody tr')) {
 </ul>
 
 <p>Next, define a style rule for the table content and apply the rule to the table element in JavaScript. You may use the following sample.  When you&rsquo;re done, your answer should <a href="/chap3/p308-done.html">look like this</a>.</p>
-
-<pre><code class="language-CSS">.mystyle tr:nth-child(even) {
-  background-color: rgba(50,90,200,0.9);
-}
-.mystyle tbody td:nth-child(1) { font-weight: bold; }
-.mystyle td:nth-child(2) { width: 100px; }
-.mystyle td { border: none !important; }
-</code></pre>
 
 <pre><code class="language-JavaScript">$('table#z').addClass('mystyle')
 </code></pre>
