@@ -719,30 +719,20 @@ event. default action
     </item>
     
     <item>
-      <title>3-6 Template</title>
+      <title>3-6 Templates</title>
       <link>http://philiplei.github.io/client/3-6/</link>
       <pubDate>Fri, 10 Jun 2016 12:40:00 +0800</pubDate>
       
       <guid>http://philiplei.github.io/client/3-6/</guid>
       <description>
 
-&lt;p&gt;When you need to display complicated JSON data in HTML with some repetitive parts, it is often more convenient to use a template library. This lab demonstrates how to use a template library called Handlebars. &lt;a href=&#34;http://handlebarsjs.com/&#34;&gt;online reference&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://philiplei.github.io/chap3/p361.html&#34;&gt;p361.html&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Writing plan:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;template + context (data object) =&amp;gt; html code&lt;/li&gt;
-&lt;li&gt;setup: load handlebars.js, embed template in &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;, functions call&lt;/li&gt;
-&lt;li&gt;{{}} handlebars expression&lt;/li&gt;
-&lt;li&gt;{{#each array}}&lt;/li&gt;
-&lt;li&gt;{{#if}}&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;When you need to display complicated JSON data in HTML with some repetitive parts, it is often more convenient to use a template library. This lab demonstrates how to use a template library called Handlebars &lt;a href=&#34;http://handlebarsjs.com/&#34;&gt;(online reference)&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;basic-operation&#34;&gt;Basic operation&lt;/h2&gt;
 
-&lt;p&gt;There are many HTML template systems. While their syntax can be quite different, the basic operation remains similar. First, a template defines the presentation of some data in some format. Handlebars uses HTML code directly in the template. In the template, there are some placeholders, to be replaced by some data later. In Handlebars, these placeholders use the expression &lt;code&gt;{{ }}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There are many HTML template systems. While their syntax can be quite different, the basic operation remains similar. It can be described as &amp;ldquo;template + context (data object) =&amp;gt; html code&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;First, a template defines the presentation of some data in some format. Handlebars uses HTML code directly in the template. In the template, there are some placeholders, to be replaced by some data later. In Handlebars, these placeholders use the expression &lt;code&gt;{{ }}&lt;/code&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;!-- a handlerbars template with two placeholders --&amp;gt;
 &amp;lt;div class=&amp;quot;entry&amp;quot;&amp;gt;
@@ -783,13 +773,19 @@ var html = template(context);
 &amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;There are some technical detail to embed the template in the HTML file and load the Handlebars library. Please refer to source code of &lt;a href=&#34;http://philiplei.github.io/chap3/p361.html&#34;&gt;p361.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The full source code for this first example is available at &lt;a href=&#34;http://philiplei.github.io/chap3/p361.html&#34;&gt;p361.html&lt;/a&gt;.
+Refer to the source code for methods to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;embed the template in &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; in the HTML file&lt;/li&gt;
+&lt;li&gt;load the Handlebars library&lt;/li&gt;
+&lt;li&gt;render the template with context&lt;/li&gt;
+&lt;li&gt;display the HTML output by attaching it to the document tree&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;loop&#34;&gt;Loop&lt;/h2&gt;
 
-&lt;p&gt;Handlebars provides the block helper &lt;code&gt;{{#each property}} ... {{/each}}&lt;/code&gt; to
-repeat part of the template for each element in the named property, which is an array.
-For example, we have an array of color in this context object in the example &lt;a href=&#34;http://philiplei.github.io/chap3/p362.html&#34;&gt;p362.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When the context object contains some items in an array, we often need to repeat a part of the template to render the data. For example, we have an array of color in this context object in the example &lt;a href=&#34;http://philiplei.github.io/chap3/p362.html&#34;&gt;p362.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var palette = { color: [
   { name: &#39;purple&#39;,  hexrgb: &#39;#800080&#39;, decrgb: [128,0,128]},
@@ -801,7 +797,9 @@ For example, we have an array of color in this context object in the example &lt
 ]};
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;We use the following template to display the context object. The template generates one row for each element in the array &lt;code&gt;color&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Handlebars provides the block helper &lt;code&gt;{{#each property}} ... {{/each}}&lt;/code&gt; to
+repeat part of the template for each element in the named property, which is an array.
+The following template in &lt;a href=&#34;http://philiplei.github.io/chap3/p362.html&#34;&gt;p362.html&lt;/a&gt; is used to display &lt;code&gt;color&lt;/code&gt; in the context object. The template generates one row for each element in the array &lt;code&gt;color&lt;/code&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;table class=&amp;quot;color-table&amp;quot;&amp;gt;
 &amp;lt;thead&amp;gt;
@@ -827,7 +825,7 @@ For example, we have an array of color in this context object in the example &lt
 var email2 = { read: false, sender: &#39;John&#39;, subject: &#39;..&#39; };
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The block helper &lt;code&gt;{{#if}}&lt;/code&gt; supports simple conditional display of template content. In the following template, the first image is only shown when &lt;code&gt;read===true&lt;/code&gt;. Otherwise, only the second image is shown. See &lt;a href=&#34;http://philiplei.github.io/chap3/p363.html&#34;&gt;p363.html&lt;/a&gt; for the source code.&lt;/p&gt;
+&lt;p&gt;The block helper &lt;code&gt;{{#if}}&lt;/code&gt; supports simple conditional display of template content. In the following template, the first image is only shown when &lt;code&gt;read===true&lt;/code&gt;. Otherwise, only the second image is shown. See &lt;a href=&#34;http://philiplei.github.io/chap3/p363.html&#34;&gt;p363.html&lt;/a&gt; for the full source code.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;p&amp;gt;
   {{#if read}}
@@ -856,11 +854,11 @@ Notice that you cannot include JavaScript code in the template. Therefore, you n
       <guid>http://philiplei.github.io/client/3-7/</guid>
       <description>
 
-&lt;p&gt;This lab is about a JavaScript charting library called &lt;a href=&#34;http://www.chartjs.org/&#34;&gt;Chart.js&lt;/a&gt;. You can use charts to visualize complicated data. In addition, this library also demonstrate a common design in JavaScript API: using JSON data to provide complex options.&lt;/p&gt;
+&lt;p&gt;This lab is about a JavaScript charting library called &lt;a href=&#34;http://www.chartjs.org/&#34;&gt;Chart.js&lt;/a&gt;. You can use charts to visualize complicated data. In addition, this library also demonstrates a common design pattern in JavaScript: using JSON data to provide complex options.&lt;/p&gt;
 
 &lt;h2 id=&#34;basic-operation&#34;&gt;Basic operation&lt;/h2&gt;
 
-&lt;p&gt;We call the constructor of class &lt;code&gt;Chart&lt;/code&gt; to create a chart. The constructor accepts two parameters: the first is a canvas element, and the second is a JSON data object (a JavaScript object) which has at least three properties: chart type, data to be plotted, and options. Try the demo &lt;a href=&#34;http://philiplei.github.io/chap3/p371.html&#34;&gt;p371.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We call the constructor of class &lt;code&gt;Chart&lt;/code&gt; to create a chart. The constructor accepts two parameters: the first is a &lt;code&gt;&amp;lt;canvas&amp;gt;&lt;/code&gt; element, and the second is a JSON data object (a JavaScript object) which has at least three properties: chart type, data to be plotted, and options. Try the demo &lt;a href=&#34;http://philiplei.github.io/chap3/p371.html&#34;&gt;p371.html&lt;/a&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;!-- a canvas where we&#39;ll draw a bar chart --&amp;gt;
 &amp;lt;canvas id=&amp;quot;myChart&amp;quot; width=&amp;quot;400&amp;quot; height=&amp;quot;400&amp;quot;&amp;gt;&amp;lt;/canvas&amp;gt;
@@ -872,7 +870,7 @@ Notice that you cannot include JavaScript code in the template. Therefore, you n
 // pass as 1st parameter to the constructor
 var canvas = $(&amp;quot;#myChart&amp;quot;);
 // the 2nd parameter is JSON data
-var myChart = new Chart(canvas, {
+var chart = new Chart(canvas, {
     type: &#39;bar&#39;,
     data: data,
     options: options
@@ -904,12 +902,13 @@ can get quite complicated. So let&amp;rsquo;s start with a simpler version. Belo
 });
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;Now, check the &lt;a href=&#34;http://www.chartjs.org/docs/&#34;&gt;online reference&lt;/a&gt; for how &lt;a href=&#34;http://philiplei.github.io/chap3/p371.html&#34;&gt;p371.html&lt;/a&gt; specifies the color of the plot.&lt;/p&gt;
+
 &lt;h2 id=&#34;more-datasets-and-options&#34;&gt;More datasets and options&lt;/h2&gt;
 
-&lt;p&gt;Notice that the property &lt;code&gt;datasets&lt;/code&gt; has array value, because the chart can display more than one dataset. See &lt;a href=&#34;http://philiplei.github.io/chap3/p372.html&#34;&gt;p372.html&lt;/a&gt; for an example of two datasets. This example also shows how the options object groups various settings. Please refer to &lt;a href=&#34;http://www.chartjs.org/docs/&#34;&gt;Chart.js online reference&lt;/a&gt; for detail.&lt;/p&gt;
+&lt;p&gt;Notice that the property &lt;code&gt;datasets&lt;/code&gt; has array value, because the chart can display more than one dataset. See &lt;a href=&#34;http://philiplei.github.io/chap3/p372.html&#34;&gt;p372.html&lt;/a&gt; for an example of two datasets. This example also shows how the options object groups various settings. Please refer to &lt;a href=&#34;http://www.chartjs.org/docs/&#34;&gt;online reference&lt;/a&gt; for detail.&lt;/p&gt;
 
-&lt;p&gt;We end this lab with an example of line chart with 4 datasets. See
-&lt;a href=&#34;http://philiplei.github.io/chap3/p373.html&#34;&gt;p373.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We end this lab with an example &lt;a href=&#34;http://philiplei.github.io/chap3/p373.html&#34;&gt;p373.html&lt;/a&gt; of line chart with 4 datasets.&lt;/p&gt;
 </description>
     </item>
     
