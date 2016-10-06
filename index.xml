@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>COMP312 labs</title>
-    <link>http://philiplei.github.io/</link>
+    <link>http://philiplei.github.io/index.xml</link>
     <description>Recent content on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -1637,7 +1637,7 @@ web app server. As an Node application makes use of more NPM modules, it becomes
 var app = express();
 
 // a route in the app, which handles GET request for the path &#39;/&#39;
-app.get(&#39;/&#39;, function(req, res) {
+app.get(&#39;/&#39;, (req, res) =&amp;gt; {
   res.send(&#39;hello world&#39;);
 });
 
