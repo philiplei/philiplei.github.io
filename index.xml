@@ -161,17 +161,23 @@ res.send json, res.status code.&lt;/li&gt;
 &lt;ul&gt;
 &lt;li&gt;charts.js&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;3-8 advanced concepts
+&lt;li&gt;3-8 Script execution in browsers
 
 &lt;ul&gt;
-&lt;li&gt;event loop&lt;/li&gt;
-&lt;li&gt;page loading&lt;/li&gt;
-&lt;li&gt;js closure&lt;/li&gt;
-&lt;li&gt;bubbling&lt;/li&gt;
-&lt;li&gt;default action&lt;/li&gt;
-&lt;li&gt;event delegation&lt;/li&gt;
+&lt;li&gt;page load, single-threaded
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;!--
+- 3-8 advanced concepts
+  - event loop
+  - page loading
+  - js closure
+  - bubbling
+  - default action
+  - event delegation
+--&gt;
 </description>
     </item>
     

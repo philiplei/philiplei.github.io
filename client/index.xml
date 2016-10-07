@@ -66,17 +66,23 @@
 &lt;ul&gt;
 &lt;li&gt;charts.js&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;3-8 advanced concepts
+&lt;li&gt;3-8 Script execution in browsers
 
 &lt;ul&gt;
-&lt;li&gt;event loop&lt;/li&gt;
-&lt;li&gt;page loading&lt;/li&gt;
-&lt;li&gt;js closure&lt;/li&gt;
-&lt;li&gt;bubbling&lt;/li&gt;
-&lt;li&gt;default action&lt;/li&gt;
-&lt;li&gt;event delegation&lt;/li&gt;
+&lt;li&gt;page load, single-threaded
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;!--
+- 3-8 advanced concepts
+  - event loop
+  - page loading
+  - js closure
+  - bubbling
+  - default action
+  - event delegation
+--&gt;
 </description>
     </item>
     
@@ -913,67 +919,112 @@ can get quite complicated. So let&amp;rsquo;s start with a simpler version. Belo
     </item>
     
     <item>
-      <title>3-8 Page load and others</title>
+      <title>3-8 Script execution in browsers</title>
       <link>http://philiplei.github.io/client/3-8/</link>
       <pubDate>Fri, 24 Jun 2016 12:40:00 +0800</pubDate>
       
       <guid>http://philiplei.github.io/client/3-8/</guid>
       <description>
 
-&lt;p&gt;Writing plan:&lt;/p&gt;
+&lt;p&gt;In all previous example in this chapter, we put &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; elements near the end of an HTML document. The reason is that the document tree is (almost) complete when these &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; executes. Now, we&amp;rsquo;ll explain the rationale for this scheme and discuss the JavaScript execution in browsers.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;page load: two events: DOM ready, page load done.&lt;/li&gt;
-&lt;li&gt;most resources are loaded in parallel to DOM building&lt;/li&gt;
-&lt;li&gt;exception: &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;error in the middle of script element&lt;/li&gt;
-&lt;li&gt;long load time of &lt;code&gt;&amp;lt;script src=..&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;DOM tree is incomplete when the browser is blocked by &lt;code&gt;script&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;so &amp;hellip; defer loading of script at the end of body&lt;/li&gt;
-&lt;li&gt;or &amp;hellip; $(function() { &amp;hellip; })&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Asynchronous programming&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;callback, 2 kinds: synchronous and asynchronous.&lt;/li&gt;
-&lt;li&gt;.. [].map(x=&amp;gt;x+1) vs. $().on(&amp;lsquo;click&amp;rsquo;, (e)=&amp;gt;{ }) or setTimeOut()&lt;/li&gt;
-&lt;li&gt;JS is single threaded&lt;/li&gt;
-&lt;li&gt;event loop runs while DOM is loading? i believe NO&lt;/li&gt;
-&lt;li&gt;experiment: setTimeOut(), then alert() to block the thread&lt;/li&gt;
-&lt;li&gt;dispatch event handler 1 by 1&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Event delegation&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$().on( ) does not bind to new elements&lt;/li&gt;
-&lt;li&gt;bubbling&lt;/li&gt;
-&lt;li&gt;delegation. event.target, event.currentTarget&lt;/li&gt;
-&lt;li&gt;handle in ancestor&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;stop propagation&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;register at an ancestor&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;add selector in &lt;code&gt;$().on()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;works for newly added elements&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;.. but cannot add instance specific data in &lt;code&gt;.on()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;.. solution: attach data to the instance with &lt;code&gt;$().data()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;make an example of dynamically added elements&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;basic-operation&#34;&gt;Basic operation&lt;/h2&gt;
-
-&lt;p&gt;We call the constructor of class &lt;code&gt;Chart&lt;/code&gt; to create a chart. The constructor accepts two parameters: the first is a canvas element, and the second is a JSON data object (a JavaScript object) which has at least three properties: chart type, data to be plotted, and options. Try the demo &lt;a href=&#34;http://philiplei.github.io/chap3/p371.html&#34;&gt;p371.html&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;!-- a canvas where we&#39;ll draw a bar chart --&amp;gt;
-&amp;lt;canvas id=&amp;quot;myChart&amp;quot; width=&amp;quot;400&amp;quot; height=&amp;quot;400&amp;quot;&amp;gt;&amp;lt;/canvas&amp;gt;
+&lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;!doctype html&amp;gt;
+...
+&amp;lt;body&amp;gt;
+  &amp;lt;p&amp;gt;content for building document tree&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;...&amp;lt;/p&amp;gt;
+  &amp;lt;!-- load external script library --&amp;gt;
+  &amp;lt;script src=&amp;quot;...&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script&amp;gt;
+    // embedded script
+  &amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;page-load&#34;&gt;Page load&lt;/h2&gt;
+
+&lt;p&gt;&lt;defn&gt;Page loading&lt;/dfn&gt; refers to the steps that a browser performs to load the various components of a web page.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;usually starts with the URL of an HTML page&lt;/li&gt;
+&lt;li&gt;the browser downloads the HTML document&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;while&lt;/em&gt; downloading the HTML document,
+
+&lt;ul&gt;
+&lt;li&gt;the parser builds the document tree (DOM tree) incrementally&lt;/li&gt;
+&lt;li&gt;it discovers links to other resources&lt;/li&gt;
+&lt;li&gt;when the parser encounters &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; elements, it executes the script &lt;em&gt;immediately&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;parsing pauses until &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; execution finishes or aborts because of errors&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;the browser downloads discovered resources in parallel&lt;/li&gt;
+&lt;li&gt;when the document tree is complete, and all resources discovered have been downloaded and processed, page load finishes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Parsing is the algorithm to convert an HTML document (text file) into a document tree (tree-formed data structure). The parser is a part of the browser that performs parsing.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now check out the following experiments:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;check the two events &lt;code&gt;DOMContentLoaded&lt;/code&gt; and &lt;code&gt;Loaded&lt;/code&gt; in Chrome Developer Tools. Also read the &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded&#34;&gt;mozilla reference page&lt;/a&gt; of the events.&lt;/li&gt;
+&lt;li&gt;The example &lt;a href=&#34;http://philiplei.github.io/chap3/p381.html&#34;&gt;p381.html&lt;/a&gt; illustrates the sequential execution of &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; elements in page loading. It also shows that run-time errors abort execution of the remaining of the &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; element.&lt;/li&gt;
+&lt;li&gt;The example &lt;a href=&#34;http://philiplei.github.io/chap3/p382.html&#34;&gt;p382.html&lt;/a&gt; demonstrates that script execution pauses page loading&lt;/li&gt;
+&lt;li&gt;The example &lt;a href=&#34;http://philiplei.github.io/chap3/p383.html&#34;&gt;p383.html&lt;/a&gt; shows that the document tree is incomplete if the browser executes a &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; in the middle of the HTML document..&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;event-driven-programming&#34;&gt;Event-driven programming&lt;/h2&gt;
+
+&lt;p&gt;After page load, JavaScript code only runs as callbacks. The main situation is event handlers.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;button id=btn3&amp;gt;Go&amp;lt;/button&amp;gt;
+&amp;lt;script&amp;gt;
+  function btn_click (e) {
+    // do something when the button is clicked
+  }
+
+  $(&#39;#btn3&#39;).on(&#39;click&#39;, btn_click);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Page loading will run the &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; element to &lt;em&gt;define&lt;/em&gt; the function and register the event handler. After page load, when the click event occurs at the button, the browser calls the event handler.&lt;/p&gt;
+
+&lt;p&gt;The other situation is a callback registered to handle I/O completion.  When we discuss AJAX in Chap 5, you&amp;rsquo;ll see how to register a callback to handle response that a web server returns for an AJAX call.&lt;/p&gt;
+
+&lt;p&gt;An important thing to remember is that there is &lt;em&gt;only 1 single thread to run JavaScript code&lt;/em&gt; in a browser pane (i.e. the window for an HTML document). This is sometimes described as &amp;lsquo;JavaScript is single-threaded&amp;rsquo;. This ensures that only 1 thread can make change to the document tree (no concurrency issues in document tree updates). When there are multiple events happening, the browser will run the relevant event handlers &lt;em&gt;one by one&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;So in general, you should write event handlers that return quickly. Avoid long running event handlers, and don&amp;rsquo;t do long computation in event handlers. Refer to
+example &lt;a href=&#34;http://philiplei.github.io/chap3/p384.html&#34;&gt;p384.html&lt;/a&gt; for the effect of a long running event handler.&lt;/p&gt;
+
+&lt;!--
+Writing plan:
+
+- long load time of `&lt;script src=..&gt;`
+- so ... defer loading of script at the end of body
+-    or ... $(function() { ... })
+
+Asynchronous programming
+
+- callback, 2 kinds: synchronous and asynchronous.
+- .. [].map(x=&gt;x+1) vs. $().on(&#39;click&#39;, (e)=&gt;{ }) or setTimeOut()
+- experiment: setTimeOut(), then alert() to block the thread
+--&gt;
+
+&lt;!--
+Event delegation
+
+- $().on( ) does not bind to new elements
+- bubbling
+- delegation. event.target, event.currentTarget
+- handle in ancestor
+- stop propagation
+
+- register at an ancestor
+- add selector in `$().on()`
+- works for newly added elements
+- .. but cannot add instance specific data in `.on()`
+- .. solution: attach data to the instance with `$().data()`
+- make an example of dynamically added elements
+--&gt;
 </description>
     </item>
     

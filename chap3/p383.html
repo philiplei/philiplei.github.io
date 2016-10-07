@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+  <title>Undefined element</title>
+</head>
+<body>
+  <p>The event handler registration is done before the button is created in the document tree. This does not work.</p>
+  <script src="jquery.js"></script>
+  <script>
+    $('#btn').on('click', e => {
+       alert('button is clicked!')
+    });
+  </script>
+  <p><button type='button' id="btn">Go!</button></p>
+</body>
+</html>

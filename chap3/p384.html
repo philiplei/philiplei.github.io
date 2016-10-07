@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page load and script execution</title>
+  <script>
+    function sum (n) {
+      var sum=0;
+      for (var i=1; i<=n; i++) sum+= i;
+      return sum;
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Page load and script execution</h1>
+  <p>This page demonstrates that a long running event handler will prohibit execution of other event handlers.</p>
+
+  <button id='btn1'>Run sum(10)</button>
+  <script>
+     document.getElementById('btn1').onclick =
+     function () { var s = sum(10); alert('Sum is '+s); }
+  </script>
+
+  <button id='btn2'>Run a infinite loop</button>
+  <script>
+     document.getElementById('btn2').onclick =
+     function () { while (1) {} }
+  </script>
+
+  <p>When the parser arrives here, we've defined event handlers for the two buttons. But the event handlers run only when the buttons are clicked.</p>
+
+</body>
+</html>

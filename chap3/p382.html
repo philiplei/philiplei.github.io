@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <title>Page load and script execution</title>
+  <script>
+    function sum (n) {
+      var sum=0;
+      for (var i=1; i<=n; i++) sum+= i;
+      return sum;
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Page load and script execution</h1>
+  <p>This page demonstrates that when the browser encounters a
+  <code>&lt;script&gt;</code> element, it must finish processing the script
+  before it continues loading the page.</p>
+
+  <p>The <code>&lt;script&gt;</code> below asks the user for a number n and
+  calculates the sum 1+2+..+n.</p>
+
+  <script>
+    var s = prompt("Enter a number", "10");
+    var n = parseInt(s, 10);
+    var ans = sum(n);
+    alert("1+2+...+" + n + " = " + ans);
+  </script>
+  <p>HTML content after the <code>&lt;script&gt;</code> are processed
+  <strong>after</strong> the script finishes.</p>
+  <p>Reload this page to run the program again.</p>
+</body>
+</html>
