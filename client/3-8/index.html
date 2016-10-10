@@ -392,7 +392,7 @@
 
 <h2 id="event-driven-programming">Event-driven programming</h2>
 
-<p>After page load, JavaScript code only runs as callbacks. The main situation is event handlers.</p>
+<p>After page load, JavaScript code only runs as callbacks. There is an <em>event loop</em> that waits for events (mainly UI events from the document tree). When a UI event happens, the event loop runs any registered event handlers.</p>
 
 <pre><code class="language-HTML">&lt;button id=btn3&gt;Go&lt;/button&gt;
 &lt;script&gt;

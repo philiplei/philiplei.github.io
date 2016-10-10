@@ -245,9 +245,7 @@ res.send json, res.status code.&lt;/li&gt;
 
 &lt;h2 id=&#34;quick-start&#34;&gt;Quick start&lt;/h2&gt;
 
-&lt;p&gt;Node.js &lt;a href=&#34;https://nodejs.org&#34;&gt;(https://nodejs.org)&lt;/a&gt; is a platform built on Chrome&amp;rsquo;s JavaScript runtime for easily building fast, scalable network applications. Node.js supports the same basic JavaScript programming language as web browsers. Both Node.js and Google Chrome use the V8 JavaScript engine.&lt;/p&gt;
-
-&lt;p&gt;First, let&amp;rsquo;s run the following program in both browser and Node. (Follow instruction to install Node.)&lt;/p&gt;
+&lt;p&gt;Node.js &lt;a href=&#34;https://nodejs.org&#34;&gt;(https://nodejs.org)&lt;/a&gt; is a platform built on Chrome&amp;rsquo;s JavaScript runtime V8 for easily building fast, scalable network applications. Node.js supports the same basic JavaScript programming language as web browsers. As the first example, let&amp;rsquo;s run the following program &lt;a href=&#34;http://philiplei.github.io/chap4-1/p101.js&#34;&gt;p101.js&lt;/a&gt; in both browser and Node. (Follow instruction to install Node.)&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p101.js
 
@@ -269,13 +267,13 @@ console.log(&#39;The largest is %d&#39;, largest(N));
 &lt;p&gt;The JavaScript engine provides some common features in both Node and browsers:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;JavaScript language features: control flow, variables, defining class, functions, regular expression, etc&lt;/li&gt;
+&lt;li&gt;JavaScript language features: control flow, variables, data structure, defining class, functions, regular expression, etc&lt;/li&gt;
 &lt;li&gt;Some global objects and functions:
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;console.log()&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;timers: &lt;code&gt;setInterval()&lt;/code&gt;, &lt;code&gt;setTimeout()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;date: &lt;code&gt;var today = new Date()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Date class: &lt;code&gt;var now = new Date()&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;JSON processing: &lt;code&gt;JSON.parse()&lt;/code&gt;, &lt;code&gt;JSON.stringify()&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -283,11 +281,12 @@ console.log(&#39;The largest is %d&#39;, largest(N));
 &lt;p&gt;But Node misses some features specific to the browser platform, e.g.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;DOM tree
+&lt;li&gt;document tree (i.e. DOM tree)
 
 &lt;ul&gt;
+&lt;li&gt;a Node program generally does not involve an HTML document&lt;/li&gt;
+&lt;li&gt;no interface and mouse or keyboard events&lt;/li&gt;
 &lt;li&gt;usually we don&amp;rsquo;t use jQuery&amp;rsquo;s &lt;code&gt;$( )&lt;/code&gt; in Node&lt;/li&gt;
-&lt;li&gt;and no interface and mouse or keyboard events&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;AJAX
 
@@ -304,7 +303,7 @@ The event loop continues until all events are handled and there are no future ev
 
 &lt;ul&gt;
 &lt;li&gt;timer: when time is up, call a functions&lt;/li&gt;
-&lt;li&gt;file I/O, network I/O, etc: When some data is ready to read, or some I/O operations finish, trigger an event and call an event handler&lt;/li&gt;
+&lt;li&gt;file I/O, network I/O, etc: When some data is ready to read, or some I/O operations finish, the Node runtime triggers an event and call an event handler&lt;/li&gt;
 &lt;li&gt;some objects can generate events&lt;/li&gt;
 &lt;li&gt;system events, e.g. Ctrl-C interrupt&lt;/li&gt;
 &lt;/ul&gt;
@@ -331,13 +330,13 @@ timer = setInterval(tick, 1000);
 // event loop runs here ...
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;At any time, Node runs at most 1 event handler. If there are no pending events, the event loop blocks and wait for any future events.  If Node determines that there are no more future events, it quits.&lt;/p&gt;
+&lt;p&gt;At any time, Node runs at most 1 event handler. If there are no pending events, the event loop blocks and waits for any future events.  If Node determines that there are no more future events, it quits.&lt;/p&gt;
 
 &lt;h2 id=&#34;modules&#34;&gt;Modules&lt;/h2&gt;
 
 &lt;p&gt;An important feature of Node is &lt;strong&gt;modules&lt;/strong&gt;, which allows you to import new functionalities to the Node platform. The Node platform comes with some built-in modules (which are installed together with Node).  See the &lt;a href=&#34;https://nodejs.org/en/docs/&#34;&gt;online reference&lt;/a&gt; for a list of the built-in modules.&lt;/p&gt;
 
-&lt;p&gt;To use a module, import it with &lt;code&gt;require()&lt;/code&gt;. This function returns an object that represent the module in your program. You can assign this to a variable of any convenient name.&lt;/p&gt;
+&lt;p&gt;To use a module, import it with &lt;code&gt;require()&lt;/code&gt;. This function returns an object that represents the module in your program. You can assign this to a variable of any convenient name.&lt;/p&gt;
 
 &lt;p&gt;(You can use the REPL tool &lt;a href=&#34;http://mancy-re.pl/&#34;&gt;Mancy&lt;/a&gt; for experiment in this part.)&lt;/p&gt;
 
@@ -452,7 +451,7 @@ function readDone (err, data) {
 fs.readFile(&#39;intro.txt&#39;, &#39;utf8&#39;, readDone);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+&lt;h2 id=&#34;exercises&#34;&gt;Exercises&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Write a program to combine two text file &amp;lsquo;in1.txt&amp;rsquo; and &amp;lsquo;in2.txt&amp;rsquo; to an output text file &amp;lsquo;out.txt&amp;rsquo;.
@@ -461,7 +460,7 @@ Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;co
 &lt;li&gt;&lt;p&gt;Write a program to monitor the amount of available memory to a log file &amp;lsquo;freemem.txt&amp;rsquo;. Hints: use &lt;code&gt;fs.appendFile()&lt;/code&gt; to append log message to the txt file.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;example: read a json, do sth, write output&lt;/p&gt;
+&lt;!-- example: read a json, do sth, write output  --&gt;
 </description>
     </item>
     
@@ -778,7 +777,7 @@ console.log(sqr);
 
 &lt;h2 id=&#34;once-off-anonymous-events&#34;&gt;Once-off anonymous events&lt;/h2&gt;
 
-&lt;p&gt;In Node, many asynchronous I/O operations has a callback parameter. These operations generate an once-off event when the I/O completes (with data or error). The event is appended to the event queue and the event loop periodically extracts the event in the front of queue and executes the registered event handler (the callback).&lt;/p&gt;
+&lt;p&gt;In Node, many asynchronous I/O operations have a callback parameter. These operations generate an once-off event when the I/O completes (with data or error). The event is appended to the event queue and the event loop periodically extracts the event in the front of queue and executes the registered event handler (the callback).&lt;/p&gt;
 
 &lt;p&gt;You can register 1 and only 1 callback for these once-off events.&lt;/p&gt;
 
@@ -806,7 +805,7 @@ var timer = setInterval(
 
 &lt;h2 id=&#34;event-emitters&#34;&gt;Event emitters&lt;/h2&gt;
 
-&lt;p&gt;Objects that inherit from the class &lt;code&gt;EventEmitter&lt;/code&gt; &lt;a href=&#34;https://nodejs.org/dist/latest-v6.x/docs/api/events.html&#34;&gt;(online reference)&lt;/a&gt; can also trigger events. An event emitter is similar to DOM node in browsers.&lt;/p&gt;
+&lt;p&gt;Objects that inherit from the class &lt;code&gt;EventEmitter&lt;/code&gt; &lt;a href=&#34;https://nodejs.org/dist/latest-v6.x/docs/api/events.html&#34;&gt;(online reference)&lt;/a&gt; can also trigger events. An event emitter is similar to DOM node in document tree in browsers.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;an object may generate several kinds of events, each identified with a name, e.g. &amp;lsquo;data&amp;rsquo;, &amp;lsquo;error&amp;rsquo;&lt;/li&gt;
@@ -814,8 +813,8 @@ var timer = setInterval(
 &lt;li&gt;you can register more than 1 event handler for an event. When the object triggers the event, the event loop will runs the event handler one by one.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;A common example of event emitters is a basic HTTP server written in Node. (See code below)
-When the http server receives an HTTP request from web browsers, it triggers an event &lt;code&gt;request&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;A common example of event emitters is a basic HTTP server written in Node. (See code below.)
+When the HTTP server receives an HTTP request from web browsers, it triggers an event &lt;code&gt;request&lt;/code&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p201.js
 var http = require(&#39;http&#39;);
@@ -842,7 +841,7 @@ server.listen(3000, () =&amp;gt; {
 
 &lt;p&gt;Before using the module, install it in command line with &lt;code&gt;npm install&lt;/code&gt;. Put your JavaScript program in a folder, and while in that folder, run the command &lt;code&gt;npm install linereader&lt;/code&gt;.  You&amp;rsquo;ll see that the command &lt;code&gt;npm&lt;/code&gt; installs the module in a local folder called &lt;code&gt;node_modules&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;After installation, you can use the module with &lt;code&gt;require(&#39;linereader&#39;)&lt;/code&gt;.  The source code of p201.js is listed below. The module exports a &lt;code&gt;class&lt;/code&gt;, which provides a constructor to create an object that reads a given file line-by-line.&lt;/p&gt;
+&lt;p&gt;After installation, you can use the module with &lt;code&gt;require(&#39;linereader&#39;)&lt;/code&gt;.  The source code of p203.js is listed below. The module exports a &lt;code&gt;class&lt;/code&gt;, which provides a constructor to create an object that reads a given file line-by-line.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p203.js
 // read a text file line by line

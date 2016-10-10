@@ -330,7 +330,7 @@
 <li><a href="#modules">Modules</a></li>
 <li><a href="#evented-i-o">Evented I/O</a></li>
 <li><a href="#sequential-i-o-operations">Sequential I/O operations</a></li>
-<li><a href="#exercise">Exercise</a></li>
+<li><a href="#exercises">Exercises</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -352,9 +352,7 @@
 
 <h2 id="quick-start">Quick start</h2>
 
-<p>Node.js <a href="https://nodejs.org">(https://nodejs.org)</a> is a platform built on Chrome&rsquo;s JavaScript runtime for easily building fast, scalable network applications. Node.js supports the same basic JavaScript programming language as web browsers. Both Node.js and Google Chrome use the V8 JavaScript engine.</p>
-
-<p>First, let&rsquo;s run the following program in both browser and Node. (Follow instruction to install Node.)</p>
+<p>Node.js <a href="https://nodejs.org">(https://nodejs.org)</a> is a platform built on Chrome&rsquo;s JavaScript runtime V8 for easily building fast, scalable network applications. Node.js supports the same basic JavaScript programming language as web browsers. As the first example, let&rsquo;s run the following program <a href="/chap4-1/p101.js">p101.js</a> in both browser and Node. (Follow instruction to install Node.)</p>
 
 <pre><code class="language-JavaScript">// p101.js
 
@@ -376,13 +374,13 @@ console.log('The largest is %d', largest(N));
 <p>The JavaScript engine provides some common features in both Node and browsers:</p>
 
 <ul>
-<li>JavaScript language features: control flow, variables, defining class, functions, regular expression, etc</li>
+<li>JavaScript language features: control flow, variables, data structure, defining class, functions, regular expression, etc</li>
 <li>Some global objects and functions:
 
 <ul>
 <li><code>console.log()</code></li>
 <li>timers: <code>setInterval()</code>, <code>setTimeout()</code></li>
-<li>date: <code>var today = new Date()</code></li>
+<li>Date class: <code>var now = new Date()</code></li>
 <li>JSON processing: <code>JSON.parse()</code>, <code>JSON.stringify()</code></li>
 </ul></li>
 </ul>
@@ -390,11 +388,12 @@ console.log('The largest is %d', largest(N));
 <p>But Node misses some features specific to the browser platform, e.g.</p>
 
 <ul>
-<li>DOM tree
+<li>document tree (i.e. DOM tree)
 
 <ul>
+<li>a Node program generally does not involve an HTML document</li>
+<li>no interface and mouse or keyboard events</li>
 <li>usually we don&rsquo;t use jQuery&rsquo;s <code>$( )</code> in Node</li>
-<li>and no interface and mouse or keyboard events</li>
 </ul></li>
 <li>AJAX
 
@@ -411,7 +410,7 @@ The event loop continues until all events are handled and there are no future ev
 
 <ul>
 <li>timer: when time is up, call a functions</li>
-<li>file I/O, network I/O, etc: When some data is ready to read, or some I/O operations finish, trigger an event and call an event handler</li>
+<li>file I/O, network I/O, etc: When some data is ready to read, or some I/O operations finish, the Node runtime triggers an event and call an event handler</li>
 <li>some objects can generate events</li>
 <li>system events, e.g. Ctrl-C interrupt</li>
 </ul>
@@ -438,13 +437,13 @@ timer = setInterval(tick, 1000);
 // event loop runs here ...
 </code></pre>
 
-<p>At any time, Node runs at most 1 event handler. If there are no pending events, the event loop blocks and wait for any future events.  If Node determines that there are no more future events, it quits.</p>
+<p>At any time, Node runs at most 1 event handler. If there are no pending events, the event loop blocks and waits for any future events.  If Node determines that there are no more future events, it quits.</p>
 
 <h2 id="modules">Modules</h2>
 
 <p>An important feature of Node is <strong>modules</strong>, which allows you to import new functionalities to the Node platform. The Node platform comes with some built-in modules (which are installed together with Node).  See the <a href="https://nodejs.org/en/docs/">online reference</a> for a list of the built-in modules.</p>
 
-<p>To use a module, import it with <code>require()</code>. This function returns an object that represent the module in your program. You can assign this to a variable of any convenient name.</p>
+<p>To use a module, import it with <code>require()</code>. This function returns an object that represents the module in your program. You can assign this to a variable of any convenient name.</p>
 
 <p>(You can use the REPL tool <a href="http://mancy-re.pl/">Mancy</a> for experiment in this part.)</p>
 
@@ -559,7 +558,7 @@ function readDone (err, data) {
 fs.readFile('intro.txt', 'utf8', readDone);
 </code></pre>
 
-<h2 id="exercise">Exercise</h2>
+<h2 id="exercises">Exercises</h2>
 
 <ol>
 <li><p>Write a program to combine two text file &lsquo;in1.txt&rsquo; and &lsquo;in2.txt&rsquo; to an output text file &lsquo;out.txt&rsquo;.
@@ -568,7 +567,7 @@ Use asynchronous I/O functions <code>fs.readFile()</code> and <code>fs.writeFile
 <li><p>Write a program to monitor the amount of available memory to a log file &lsquo;freemem.txt&rsquo;. Hints: use <code>fs.appendFile()</code> to append log message to the txt file.</p></li>
 </ol>
 
-<p>example: read a json, do sth, write output</p>
+<!-- example: read a json, do sth, write output  -->
 
 
       

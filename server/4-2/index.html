@@ -351,7 +351,7 @@
 
 <h2 id="once-off-anonymous-events">Once-off anonymous events</h2>
 
-<p>In Node, many asynchronous I/O operations has a callback parameter. These operations generate an once-off event when the I/O completes (with data or error). The event is appended to the event queue and the event loop periodically extracts the event in the front of queue and executes the registered event handler (the callback).</p>
+<p>In Node, many asynchronous I/O operations have a callback parameter. These operations generate an once-off event when the I/O completes (with data or error). The event is appended to the event queue and the event loop periodically extracts the event in the front of queue and executes the registered event handler (the callback).</p>
 
 <p>You can register 1 and only 1 callback for these once-off events.</p>
 
@@ -379,7 +379,7 @@ var timer = setInterval(
 
 <h2 id="event-emitters">Event emitters</h2>
 
-<p>Objects that inherit from the class <code>EventEmitter</code> <a href="https://nodejs.org/dist/latest-v6.x/docs/api/events.html">(online reference)</a> can also trigger events. An event emitter is similar to DOM node in browsers.</p>
+<p>Objects that inherit from the class <code>EventEmitter</code> <a href="https://nodejs.org/dist/latest-v6.x/docs/api/events.html">(online reference)</a> can also trigger events. An event emitter is similar to DOM node in document tree in browsers.</p>
 
 <ul>
 <li>an object may generate several kinds of events, each identified with a name, e.g. &lsquo;data&rsquo;, &lsquo;error&rsquo;</li>
@@ -387,8 +387,8 @@ var timer = setInterval(
 <li>you can register more than 1 event handler for an event. When the object triggers the event, the event loop will runs the event handler one by one.</li>
 </ul>
 
-<p>A common example of event emitters is a basic HTTP server written in Node. (See code below)
-When the http server receives an HTTP request from web browsers, it triggers an event <code>request</code>.</p>
+<p>A common example of event emitters is a basic HTTP server written in Node. (See code below.)
+When the HTTP server receives an HTTP request from web browsers, it triggers an event <code>request</code>.</p>
 
 <pre><code class="language-JavaScript">// p201.js
 var http = require('http');
@@ -415,7 +415,7 @@ server.listen(3000, () =&gt; {
 
 <p>Before using the module, install it in command line with <code>npm install</code>. Put your JavaScript program in a folder, and while in that folder, run the command <code>npm install linereader</code>.  You&rsquo;ll see that the command <code>npm</code> installs the module in a local folder called <code>node_modules</code>.</p>
 
-<p>After installation, you can use the module with <code>require('linereader')</code>.  The source code of p201.js is listed below. The module exports a <code>class</code>, which provides a constructor to create an object that reads a given file line-by-line.</p>
+<p>After installation, you can use the module with <code>require('linereader')</code>.  The source code of p203.js is listed below. The module exports a <code>class</code>, which provides a constructor to create an object that reads a given file line-by-line.</p>
 
 <pre><code class="language-JavaScript">// p203.js
 // read a text file line by line

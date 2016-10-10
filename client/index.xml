@@ -974,7 +974,7 @@ can get quite complicated. So let&amp;rsquo;s start with a simpler version. Belo
 
 &lt;h2 id=&#34;event-driven-programming&#34;&gt;Event-driven programming&lt;/h2&gt;
 
-&lt;p&gt;After page load, JavaScript code only runs as callbacks. The main situation is event handlers.&lt;/p&gt;
+&lt;p&gt;After page load, JavaScript code only runs as callbacks. There is an &lt;em&gt;event loop&lt;/em&gt; that waits for events (mainly UI events from the document tree). When a UI event happens, the event loop runs any registered event handlers.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;button id=btn3&amp;gt;Go&amp;lt;/button&amp;gt;
 &amp;lt;script&amp;gt;
