@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.17-DEV" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -227,7 +227,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-2/">
               <a href="/server/4-2/">
-                <span>4-2 Events     </i></span>
+                <span>4-2 NPM modules     </i></span>
               </a>
             </li>
           
@@ -235,7 +235,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-3/">
               <a href="/server/4-3/">
-                <span>4-3 Web client     </i></span>
+                <span>4-3 Routing in web app     </i></span>
               </a>
             </li>
           
@@ -243,7 +243,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-4/">
               <a href="/server/4-4/">
-                <span>4-4 Routing in web app     </i></span>
+                <span>4-4 Middleware in web app     </i></span>
               </a>
             </li>
           
@@ -251,7 +251,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-5/">
               <a href="/server/4-5/">
-                <span>4-5 Middleware in web app     </i></span>
+                <span>4-5 Template in web app     </i></span>
               </a>
             </li>
           
@@ -259,15 +259,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-6/">
               <a href="/server/4-6/">
-                <span>4-6 Template in web app     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/server/4-7/">
-              <a href="/server/4-7/">
-                <span>4-7 Database access     </i></span>
+                <span>4-6 Database access     </i></span>
               </a>
             </li>
           
@@ -502,7 +494,9 @@ fs.readFile('intro.txt', 'utf8', (err, data)=&gt;{
 // event loop waits for I/O to finish
 </code></pre>
 
-<p>In the above example, the third parameter is the callback function. <code>fs.readFile</code> returns immediately without blocking. However, the I/O result is not available yet.  Here is a summary of simple asynchronous file I/O operations in the module <code>fs</code>. Refer to the <a href="https://nodejs.org/dist/latest-v6.x/docs/api/fs.html">online reference of module fs</a> for detail.</p>
+<p>In the above example, the third parameter is the callback function. <code>fs.readFile</code> returns immediately without blocking. However, the I/O result is not available yet.</p>
+
+<p>Here is a summary of simple asynchronous file I/O operations in the module <code>fs</code>. Refer to the <a href="https://nodejs.org/dist/latest-v6.x/docs/api/fs.html">online reference of module fs</a> for detail.</p>
 
 <ul>
 <li><code>fs.readFile(filename, options, callback)</code> - read content from the file</li>
@@ -510,20 +504,28 @@ fs.readFile('intro.txt', 'utf8', (err, data)=&gt;{
 <li><code>fs.appendFile(filename, content, options, callback)</code> - append the given content to the end of the file</li>
 </ul>
 
+<p>In Node, many asynchronous I/O operations have a callback parameter. These operations generate an once-off event when the I/O completes (with data or error).
+Usually, the first parameter of the callback is an error object. Since the callback is run by the event loop (and not by any other functions), throwing an error inside the callback will quit the process.</p>
+
 <h2 id="sequential-i-o-operations">Sequential I/O operations</h2>
 
-<p>Consider the following longer example.  We&rsquo;d like to replace the word &lsquo;MPI&rsquo; by &lsquo;IPM&rsquo; in the input file &lsquo;intro.txt&rsquo;. The first version uses synchronous I/O. (Notice that this is just for illustration. In most Node application, you should use asynchronous I/O to allow better performance.) In this program, while Node is waiting for I/O completion, it <strong>cannot</strong> process any other events.</p>
+<p>Consider the following longer example.  We&rsquo;d like to replace the word &lsquo;MPI&rsquo; by &lsquo;IPM&rsquo; in the input file &lsquo;intro.txt&rsquo;. To ensure that <code>writeFile</code> is done <strong>after</strong> <code>readFile</code> returns data, call <code>writeFile</code> in the callback for <code>readFile</code>.</p>
 
-<pre><code class="language-JavaScript">// p104.js
+<!--
+The first version uses synchronous I/O. (Notice that this is just for illustration. In most Node application, you should use asynchronous I/O to allow better performance.) In this program, while Node is waiting for I/O completion, it **cannot** process any other events.
+
+```JavaScript
+// p104.js
 // synchronous version of read file, process and write file.
 var fs = require('fs');
 
 var data = fs.readFileSync('intro.txt', 'utf8' );
 var newdata = data.replace(/MPI/g, 'IPM');
 fs.writeFileSync('change.txt', newdata, 'utf8');
-</code></pre>
+```
 
-<p>The preferred method to write the same program is to use asynchronous I/O. To ensure that <code>writeFile</code> is done <strong>after</strong> <code>readFile</code> returns data, call <code>writeFile</code> in the callback for <code>readFile</code>.</p>
+The preferred method to write the same program is to use asynchronous I/O.
+-->
 
 <pre><code class="language-JavaScript">// p105.js
 // asynchronous version of read file, process, and write file

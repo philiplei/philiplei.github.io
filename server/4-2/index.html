@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.17-DEV" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
     
-    <title>4-2 Events</title>
+    <title>4-2 NPM modules</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/hybrid.css" rel="stylesheet">
@@ -227,7 +227,7 @@
           
             <li class="dd-item active" data-nav-id="/server/4-2/">
               <a href="/server/4-2/">
-                <span>4-2 Events     </i></span>
+                <span>4-2 NPM modules     </i></span>
               </a>
             </li>
           
@@ -235,7 +235,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-3/">
               <a href="/server/4-3/">
-                <span>4-3 Web client     </i></span>
+                <span>4-3 Routing in web app     </i></span>
               </a>
             </li>
           
@@ -243,7 +243,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-4/">
               <a href="/server/4-4/">
-                <span>4-4 Routing in web app     </i></span>
+                <span>4-4 Middleware in web app     </i></span>
               </a>
             </li>
           
@@ -251,7 +251,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-5/">
               <a href="/server/4-5/">
-                <span>4-5 Middleware in web app     </i></span>
+                <span>4-5 Template in web app     </i></span>
               </a>
             </li>
           
@@ -259,15 +259,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-6/">
               <a href="/server/4-6/">
-                <span>4-6 Template in web app     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/server/4-7/">
-              <a href="/server/4-7/">
-                <span>4-7 Database access     </i></span>
+                <span>4-6 Database access     </i></span>
               </a>
             </li>
           
@@ -316,7 +308,7 @@
                     
                   
                 
-                <span itemprop="title"> 4-2 Events</span>
+                <span itemprop="title"> 4-2 NPM modules</span>
               </div>
               
                   <div class="progress">
@@ -325,11 +317,11 @@
 <ul>
 <li>
 <ul>
-<li><a href="#once-off-anonymous-events">Once-off anonymous events</a></li>
-<li><a href="#timer-events">Timer events</a></li>
-<li><a href="#event-emitters">Event emitters</a></li>
-<li><a href="#installing-modules">Installing modules</a></li>
-<li><a href="#exercise">Exercise</a></li>
+<li><a href="#installing-modules">Installing Modules</a></li>
+<li><a href="#get-an-url">GET an URL</a></li>
+<li><a href="#options-object-pattern">Options object pattern</a></li>
+<li><a href="#post-request">POST request</a></li>
+<li><a href="#node-app-and-package-json">Node app and package.json</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -342,111 +334,132 @@
             
     	        <div id="body-inner">
                 
-                <h1>4-2 Events</h1>
+                <h1>4-2 NPM modules</h1>
                 
 
 
 
-<p>This lab goes through events and event emitters in Node.js.</p>
+<p>This lab
+- install module with <code>npm install</code>
+- demonstrate how send HTTP requests using the <code>request</code> modules.
+- covers the concept of a Node app and dependency management in package.json</p>
 
-<h2 id="once-off-anonymous-events">Once-off anonymous events</h2>
+<h2 id="installing-modules">Installing Modules</h2>
 
-<p>In Node, many asynchronous I/O operations have a callback parameter. These operations generate an once-off event when the I/O completes (with data or error). The event is appended to the event queue and the event loop periodically extracts the event in the front of queue and executes the registered event handler (the callback).</p>
+<p>Node.js has a built-in module called <code>http</code> and <code>https</code> for making HTTP clients and servers. They are efficient implementation of the HTTP protocol. However, the modules are low-level and not convenient to use. Therefore, the Node community has developed several modules for writing HTTP clients and servers.
+Fortunately, the Node community has ready-to-use solution for this problem, published as <strong>modules</strong> in <a href="https://www.npmjs.com/">https://www.npmjs.com/</a>.</p>
 
-<p>You can register 1 and only 1 callback for these once-off events.</p>
+<p>A popular choice for HTTP clients is the <code>request</code> module. <a href="https://www.npmjs.com/package/request">(online reference)</a>.  Put your JavaScript program in a project folder. Change the current directory to the project folder, then install the module with the command <code>npm install request</code>. (Note: the installation is also done once.) You&rsquo;ll see that the command <code>npm</code> installs the module in a local folder called <code>node_modules</code>.</p>
 
-<p>Usually, the first parameter of the callback is an error object. Since the callback is run by the event loop (and not by any other functions), throwing an error inside the callback will quit the process.</p>
+<h2 id="get-an-url">GET an URL</h2>
 
-<pre><code class="language-JavaScript">fs.readFile('in.txt', 'utf8', (error, data) =&gt; {
-  if (error) throw error;
-  // no error, can process the result data of the I/O operation
-  // ...
-})
-</code></pre>
+<p>The following example fetches the current weather report from <a href="http://rss.smg.gov.mo/e_ActualWeather_rss.xml">http://rss.smg.gov.mo/e_ActualWeather_rss.xml</a>.</p>
 
-<h2 id="timer-events">Timer events</h2>
+<pre><code class="language-JavaScript">// p301.js
+var request = require('request');
 
-<p>JavaScript timers <code>setTimeout()</code> and <code>setInterval()</code> also trigger anonymous events. <code>setTimeout()</code> generates an once-off event. On the other hand, <code>setInterval()</code> generates events repeatedly until you clear the timer by <code>clearInterval()</code>.  The Node process does not quit when there is an active timer that may trigger events in the future. (Advanced: <code>timer.unref()</code> affects this.)</p>
-
-<pre><code class="language-JavaScript">var n = 1;
-var timer = setInterval(
-  ()=&gt;{
-    console.log(`tick ${n++}`);
-  },
-  1000
-);
-</code></pre>
-
-<h2 id="event-emitters">Event emitters</h2>
-
-<p>Objects that inherit from the class <code>EventEmitter</code> <a href="https://nodejs.org/dist/latest-v6.x/docs/api/events.html">(online reference)</a> can also trigger events. An event emitter is similar to DOM node in document tree in browsers.</p>
-
-<ul>
-<li>an object may generate several kinds of events, each identified with a name, e.g. &lsquo;data&rsquo;, &lsquo;error&rsquo;</li>
-<li>you can register a event handler with <code>obj.on(event, callback)</code></li>
-<li>you can register more than 1 event handler for an event. When the object triggers the event, the event loop will runs the event handler one by one.</li>
-</ul>
-
-<p>A common example of event emitters is a basic HTTP server written in Node. (See code below.)
-When the HTTP server receives an HTTP request from web browsers, it triggers an event <code>request</code>.</p>
-
-<pre><code class="language-JavaScript">// p201.js
-var http = require('http');
-var server = http.createServer();
-
-server.on('request', (req, resp) =&gt; {
-  console.log(`request: url=${req.url}`);
-  resp.writeHead(200, {'Content-Type': 'text/plain'});
-  resp.write('Hello World \n');
-  // you can resp.write() more ...
-  resp.end();
-});
-
-server.listen(3000, () =&gt; {
-  console.log('Server running at http://localhost:3000/');
+var url = 'http://rss.smg.gov.mo/e_ActualWeather_rss.xml';
+request.get(url, (err, res, body) =&gt; {
+  console.log('STATUS: ' + res.statusCode);
+  console.log('HEADERS: ');
+  console.dir(res.headers);
+  console.log(body);
 });
 </code></pre>
 
-<h2 id="installing-modules">Installing modules</h2>
+<p>The callback for <code>request.get</code> takes three parameters. The first is the error object. The second is an object of class <code>http.IncomingMessage</code> <a href="https://nodejs.org/api/http.html#http_class_http_incomingmessage">(online reference)</a>. It represents the HTTP response message. You can use it to check HTTP status code and headers. The last parameter is the message body of the HTTP response.</p>
 
-<p>Next, we use an external module to demonstrate more features of EventEmitter.</p>
+<h2 id="options-object-pattern">Options object pattern</h2>
 
-<p>Suppose we have a large text file that we want to process line by line. We don&rsquo;t want to read the text file completely into memory buffer using a call to <code>fs.readFile()</code>.  The built-in object <code>ReadableStream</code> returned by <code>fs.createReadStream</code> can stream the file content, but we still need to detect line breaks. Fortunately, the Node.js community has ready-to-use solution for this problem, published as <strong>modules</strong> in <a href="https://www.npmjs.com/">https://www.npmjs.com/</a>.  For example, you can use the module <a href="https://www.npmjs.com/package/linereader">linereader</a> to easily read a text file line-by-line.</p>
+<p>The next example downloads an image from IPM website and saves it.</p>
 
-<p>Before using the module, install it in command line with <code>npm install</code>. Put your JavaScript program in a folder, and while in that folder, run the command <code>npm install linereader</code>.  You&rsquo;ll see that the command <code>npm</code> installs the module in a local folder called <code>node_modules</code>.</p>
+<p>The JavaScript programming language does not support named parameters.  Some APIs make use of a pattern caled <strong>options object pattern</strong> to pass named parameters to a function. For example, if you need to give more information about the HTTP request in addition to URL, you can group these information in an option object and pass it as the first parameter of <code>reqeust.get()</code>. Refer to online reference for <a href="https://www.npmjs.com/package/request#requestoptions-callback">all available options</a>.</p>
 
-<p>After installation, you can use the module with <code>require('linereader')</code>.  The source code of p203.js is listed below. The module exports a <code>class</code>, which provides a constructor to create an object that reads a given file line-by-line.</p>
+<pre><code class="language-JavaScript">// p302.js
+// - Download and save an image file from www.ipm.edu.mo
 
-<pre><code class="language-JavaScript">// p203.js
-// read a text file line by line
-var LineReader = require('linereader');
+var fs = require('fs');
+var request = require('request');
 
-var lr = new LineReader('./intro.txt');
+// options object pattern
+// use a JS object to group named parameters
+// encoding = null is required to get binary data
+var options = {
+  url: 'http://www.ipm.edu.mo/cntfiles/upload/images/common/campus/campusmap_btn_chi_un_img.jpg',
+  encoding: null
+};
 
-lr.on('error', (err) =&gt; {
-  console.log(err);
-  lr.close();
-});
-
-lr.on('line', (lineno, line) =&gt; {
-  console.log(`${lineno}  ${line}`);
-});
-
-lr.on('end', () =&gt; {
-  console.log(&quot;== end ==&quot;);
+request.get(options, (err, res, body) =&gt; {
+  if (err) throw err;
+  if (res.statusCode!==200) {
+    console.log('HTTP status not ok. code = ', res.statusCode);
+    return;
+  }
+  console.log('HTTP request is successful. Saving file...');
+  fs.writeFile('campus.jpg', body, (err) =&gt; {
+    if (err) throw err;
+  });
 });
 </code></pre>
 
-<p>The object is an <code>EventEmitter</code>. It generates three kinds of events.  For each line read, it generates a <code>line</code> event. The event handler for this event has two parameters: line number, and the line content. At file end, the object generates the <code>end</code> event.</p>
+<h2 id="post-request">POST request</h2>
 
-<p>The last kind of events generated by the line reader object is <code>error</code>.
-This special event reports error and demonstrates an important difference between event emitters and once-off events. The object triggers the <code>error</code> event when its operation hits an error. If there is no event handler registered for <code>error</code>, the object will throw an exception and the Node process quits.</p>
+<p>In the next example, we want to download the class time table from the IPM web app at
+<a href="https://wapps.ipm.edu.mo/siweb/time_prog.asp">https://wapps.ipm.edu.mo/siweb/time_prog.asp</a>.
+The web app uses HTTPS (instead of plain HTTP) and the POST method to send query to the server.
+The query data can be sent using the <code>form</code> property in the <code>options</code> object in <code>request.post</code>.</p>
 
-<p>Now, try to generate an <code>error</code> event by changing the file name to an non-existing file.</p>
+<pre><code class="language-JavaScript">// p303.js
+// - saves the response of a POST request to the file timetab.html
 
-<h2 id="exercise">Exercise</h2>
+var request = require('request');
+var fs = require('fs');
 
-<p>TODO TODO</p>
+var form = {
+  p_escl_cod: 5, /* ... */
+  p_year_sem: '2015/2016-1',
+  p_sp_year: 3,
+  p_class_code: '31121'
+};
+
+var options = {
+  url: 'https://wapps.ipm.edu.mo/siweb/time_prog.asp',
+  form: form
+};
+
+request.post(options, (err, res, body) =&gt; {
+  if (err) throw err;
+  console.log('HTTP status: ' + res.statusCode);
+  // write the HTML response body to an HTML file
+  fs.writeFile('timetab.html', body, 'utf8', (err)=&gt; {} );
+});
+</code></pre>
+
+<h2 id="node-app-and-package-json">Node app and package.json</h2>
+
+<p>As an Node application makes use of more NPM modules, it becomes difficult to install the modules manually with the command <code>npm install module-name</code>. Instead, you can describe the dependencies of a Node app in a JSON txt file called <code>package.json</code>.</p>
+
+<p>A Node app contains 1 or more JavaScript file (<code>*.js</code>) together with modules and other assets (e.g. HTML files, images). All these file are put in a folder. A special file <code>package.json</code> describes the app. It defines the <code>name</code> and <code>version</code>, which identifies the app in the <a href="https://www.npmjs.com/">www.npmjs.com</a>.</p>
+
+<pre><code class="language-JSON">{
+  &quot;name&quot;: &quot;comp312-examples&quot;,
+  &quot;description&quot;: &quot;Examples of web client&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;private&quot;: true,
+  &quot;dependencies&quot;: {
+    &quot;express&quot;: &quot;^2.30&quot;
+  }
+}
+</code></pre>
+
+<p>The config file above indicates that our app depends on the &lsquo;request&rsquo; module. It requires a version <em>compatible</em> with 2.30.  For more detail about the version specification, refer to the <a href="https://docs.npmjs.com/misc/semver">online document for Semver</a>.</p>
+
+<p>After listing all the required modules for the current app in <code>package.json</code>, you can install all the dependencies with the command <code>npm install</code>. If later, you need to add a dependency (e.g. <code>cheerio</code> module), run the following command.</p>
+
+<pre><code>npm install cheerio --save
+</code></pre>
+
+<p>This command installs the latest version of specified module. In addition, it updates <code>package.json</code> and adds the module to the dependencies.  Try the command and check the change in <code>package.json</code>.</p>
 
 
       

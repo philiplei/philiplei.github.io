@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.17-DEV" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
     
-    <title>4-3 Web client</title>
+    <title>4-3 Routing in web app</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/hybrid.css" rel="stylesheet">
@@ -227,7 +227,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-2/">
               <a href="/server/4-2/">
-                <span>4-2 Events     </i></span>
+                <span>4-2 NPM modules     </i></span>
               </a>
             </li>
           
@@ -235,7 +235,7 @@
           
             <li class="dd-item active" data-nav-id="/server/4-3/">
               <a href="/server/4-3/">
-                <span>4-3 Web client     </i></span>
+                <span>4-3 Routing in web app     </i></span>
               </a>
             </li>
           
@@ -243,7 +243,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-4/">
               <a href="/server/4-4/">
-                <span>4-4 Routing in web app     </i></span>
+                <span>4-4 Middleware in web app     </i></span>
               </a>
             </li>
           
@@ -251,7 +251,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-5/">
               <a href="/server/4-5/">
-                <span>4-5 Middleware in web app     </i></span>
+                <span>4-5 Template in web app     </i></span>
               </a>
             </li>
           
@@ -259,15 +259,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-6/">
               <a href="/server/4-6/">
-                <span>4-6 Template in web app     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/server/4-7/">
-              <a href="/server/4-7/">
-                <span>4-7 Database access     </i></span>
+                <span>4-6 Database access     </i></span>
               </a>
             </li>
           
@@ -316,7 +308,7 @@
                     
                   
                 
-                <span itemprop="title"> 4-3 Web client</span>
+                <span itemprop="title"> 4-3 Routing in web app</span>
               </div>
               
                   <div class="progress">
@@ -325,11 +317,9 @@
 <ul>
 <li>
 <ul>
-<li><a href="#module-request">Module request</a></li>
-<li><a href="#get-an-url">GET an URL</a></li>
-<li><a href="#options-object-pattern">Options object pattern</a></li>
-<li><a href="#post-request">POST request</a></li>
-<li><a href="#exercise">Exercise</a></li>
+<li><a href="#express-js">Express.js</a></li>
+<li><a href="#routes">Routes</a></li>
+<li><a href="#making-responses">Making responses</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -342,104 +332,88 @@
             
     	        <div id="body-inner">
                 
-                <h1>4-3 Web client</h1>
+                <h1>4-3 Routing in web app</h1>
                 
 
 
 
-<p>This lab demonstrate how send HTTP requests using the <code>request</code> modules.</p>
+<p>In this lab, we&rsquo;ll use the Express.js framework and some other modules to build
+web app server.</p>
 
-<h2 id="module-request">Module request</h2>
+<h2 id="express-js">Express.js</h2>
 
-<p>Node.js has a built-in module called <code>http</code> and <code>https</code> for making HTTP clients and servers. They are efficient implementation of the HTTP protocol. However, the modules are low-level and not convenient to use. Therefore, the Node community has developed several modules for writing HTTP clients and servers. This lab is about the client-side of HTTP.</p>
+<p>Express.js <a href="http://expressjs.com/">(website)</a> is a web framework to simplify development of Web applications.</p>
 
-<p>A popular choice for HTTP clients is the <code>request</code> module. <a href="https://www.npmjs.com/package/request">(online reference)</a>.  Before using the module the first time in a project, install it with <code>npm install request</code>.</p>
+<ul>
+<li>Middleware – chainable processing of requests and responses</li>
+<li>Routing – different request processing based on URL patterns</li>
+<li>Template – generate HTML output from variables</li>
+</ul>
 
-<h2 id="get-an-url">GET an URL</h2>
+<p>Basic structure of an express app.</p>
 
-<p>The following example fetches the current weather report from <a href="http://rss.smg.gov.mo/e_ActualWeather_rss.xml">http://rss.smg.gov.mo/e_ActualWeather_rss.xml</a>.</p>
+<pre><code class="language-JavaScript">var express = require('express');
+// create an Express application, which will handle HTTP requests
+var app = express();
 
-<pre><code class="language-JavaScript">// p301.js
-var request = require('request');
+// a route in the app, which handles GET request for the path '/'
+app.get('/', (req, res) =&gt; {
+  res.send('hello world');
+});
 
-var url = 'http://rss.smg.gov.mo/e_ActualWeather_rss.xml';
-request.get(url, (err, res, body) =&gt; {
-  console.log('STATUS: ' + res.statusCode);
-  console.log('HEADERS: ');
-  console.dir(res.headers);
-  console.log(body);
+// more routes ...
+
+// start listening at TCP port 3000
+app.listen(3000);
+</code></pre>
+
+<h2 id="routes">Routes</h2>
+
+<p>When a web server receives an HTTP request, it has to decide how to handle the request, and return the result as an HTTP response.  Such decision usually depends on the HTTP method (either GET or POST in most cases) and the path in the URL (e.g. &ldquo;/about.html&rdquo;).   The combination of HTTP method and the URL path is usually referred to as an endpoint of the web service.</p>
+
+<p>In an Express app, we define a <strong>route</strong> to describe how to process HTTP requests at an endpoint.
+The general syntax is <code>app.get(path, callback)</code> and <code>app.post(path, callback)</code>. The callback can take 2 or more parameters.  Often, we only use the first two parameters called <code>req</code> and <code>res</code>. <code>req</code> refers to the incoming HTTP request, and <code>res</code> can be used to build the HTTP response.</p>
+
+<pre><code class="language-JavaScript">// app is an Express app
+
+app.get('/about.html', (req, res) =&gt; {
+  // When the Express app receives a GET request
+  // for the path '/about.html', it returns a text response
+  res.send('This is a simple example of route')
 });
 </code></pre>
 
-<p>The callback for <code>request.get</code> takes three parameters. The first is the error object. The second is an object of class <code>http.IncomingMessage</code> <a href="https://nodejs.org/api/http.html#http_class_http_incomingmessage">(online reference)</a>. It represent the HTTP response message. You can use it to check HTTP status code and headers. The last parameter is the message body of the HTTP response.   The next example downloads an image from IPM website and saves it.</p>
+<p>Some web apps include parameters in the URL path. For example, the URL <code>https://www.google.com/maps/place/Macao+Polytechnic+Institute/</code> refers to the place &lsquo;Macao Polytechnic Institute&rsquo; in the web app Google Maps.  You can easily extract these parameters in Express routes.</p>
 
-<h2 id="options-object-pattern">Options object pattern</h2>
+<p>Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &lsquo;/lecture/comp312&rsquo;, it returns a response of its lecture hours. The parameters are available in the object <code>req.params</code>. (The full source is <a href="/chap4-4/app1.js">app1.js</a>).</p>
 
-<p>The JavaScript programming language does not support named parameters.  Some APIs make use of a pattern caled <strong>options object pattern</strong> to pass named parameters to a function. For example, if you need to give more information about the HTTP request in addition to URL, you can group these information in an option object and pass it as the first parameter of <code>reqeust.get()</code>. Refer to online reference for <a href="https://www.npmjs.com/package/request#requestoptions-callback">all available options</a>.</p>
-
-<pre><code class="language-JavaScript">// p302.js
-// - Download and save an image file from www.ipm.edu.mo
-
-var fs = require('fs');
-var request = require('request');
-
-// options object pattern
-// use a JS object to group named parameters
-// encoding = null is required to get binary data
-var options = {
-  url: 'http://www.ipm.edu.mo/cntfiles/upload/images/common/campus/campusmap_btn_chi_un_img.jpg',
-  encoding: null
-};
-
-request.get(options, (err, res, body) =&gt; {
-  if (err) throw err;
-  if (res.statusCode!==200) {
-    console.log('HTTP status not ok. code = ', res.statusCode);
-    return;
+<pre><code class="language-JavaScript">// retrieve the lecture time
+app.get('/lecture/:code', (req, res) =&gt; {
+  // in a real app, we'd query a database ...
+  if (req.params.code=='comp312') {
+    res.send('Tue, Thu: 10:00-11:30am')
+  } else if (req.params.code=='comp311') {
+    // ...
   }
-  console.log('HTTP request is successful. Saving file...');
-  fs.writeFile('campus.jpg', body, (err) =&gt; {
-    if (err) throw err;
-  });
-});
+})
 </code></pre>
 
-<h2 id="post-request">POST request</h2>
+<p>The above only describes the basics of routing in Express. Refer to the <a href="http://expressjs.com/en/guide/routing.html">online guide</a> for more possibilities.</p>
 
-<p>In the next example, we want to download the class time table from the IPM web app at
-<a href="https://wapps.ipm.edu.mo/siweb/time_prog.asp">https://wapps.ipm.edu.mo/siweb/time_prog.asp</a>.
-The web app uses HTTPS (instead of plain HTTP) and the POST method to send query to the server.
-The query data can be sent using the <code>form</code> property in the <code>options</code> object in <code>request.post</code>.</p>
+<p><strong>The order of routes is significant!</strong>  An Express app checks the routes in the order they are defined. When a route matches the HTTP methods and URL path, the Express app executes its callback function to handle the request.  The callback usually returns an HTTP response with <code>res.send()</code> or similar methods. When a response is returned, the Express app will <strong>stop</strong> checking the remaining routes.</p>
 
-<pre><code class="language-JavaScript">// p303.js
-// - saves the response of a POST request to the file timetab.html
+<h2 id="making-responses">Making responses</h2>
 
-var request = require('request');
-var fs = require('fs');
+<p>You can use the <code>res</code> object in the route callback to build a response. <a href="http://expressjs.com/en/4x/api.html#res">(online reference)</a> The <code>res</code> object has several common methods:</p>
 
-var form = {
-  p_escl_cod: 5, /* ... */
-  p_year_sem: '2015/2016-1',
-  p_sp_year: 3,
-  p_class_code: '31121'
-};
+<ul>
+<li><code>res.send(body)</code> sends a response with the specified body. The body is usually a string, but it can also be JavaScript objects or others.  The method determines the suitable MIME type.</li>
+<li><code>res.sendFile(path)</code> returns a file as response.</li>
+<li><code>res.status(code)</code> sets the HTTP response code. This function is chainable.</li>
+<li><code>res.redirect(path)</code> redirects to the given URL.</li>
+</ul>
 
-var options = {
-  url: 'https://wapps.ipm.edu.mo/siweb/time_prog.asp',
-  form: form
-};
-
-request.post(options, (err, res, body) =&gt; {
-  if (err) throw err;
-  console.log('HTTP status: ' + res.statusCode);
-  // write the HTML response body to an HTML file
-  fs.writeFile('timetab.html', body, 'utf8', (err)=&gt; {} );
-});
-</code></pre>
-
-<h2 id="exercise">Exercise</h2>
-
-<p>TODO TODO</p>
+<p>Check the source code of <a href="/chap4-4/app2.js">app2.js</a> for demonstration of how to build responses with these methods.</p>
 
 
       

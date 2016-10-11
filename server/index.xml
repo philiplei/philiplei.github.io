@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Server-rsses on COMP312 labs</title>
-    <link>http://philiplei.github.io/server/index.xml</link>
-    <description>Recent content in Server-rsses on COMP312 labs</description>
+    <title>Servers on COMP312 labs</title>
+    <link>http://philiplei.github.io/server/</link>
+    <description>Recent content in Servers on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jun 2016 10:14:43 +0800</lastBuildDate>
@@ -266,7 +266,9 @@ fs.readFile(&#39;intro.txt&#39;, &#39;utf8&#39;, (err, data)=&amp;gt;{
 // event loop waits for I/O to finish
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;In the above example, the third parameter is the callback function. &lt;code&gt;fs.readFile&lt;/code&gt; returns immediately without blocking. However, the I/O result is not available yet.  Here is a summary of simple asynchronous file I/O operations in the module &lt;code&gt;fs&lt;/code&gt;. Refer to the &lt;a href=&#34;https://nodejs.org/dist/latest-v6.x/docs/api/fs.html&#34;&gt;online reference of module fs&lt;/a&gt; for detail.&lt;/p&gt;
+&lt;p&gt;In the above example, the third parameter is the callback function. &lt;code&gt;fs.readFile&lt;/code&gt; returns immediately without blocking. However, the I/O result is not available yet.&lt;/p&gt;
+
+&lt;p&gt;Here is a summary of simple asynchronous file I/O operations in the module &lt;code&gt;fs&lt;/code&gt;. Refer to the &lt;a href=&#34;https://nodejs.org/dist/latest-v6.x/docs/api/fs.html&#34;&gt;online reference of module fs&lt;/a&gt; for detail.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;fs.readFile(filename, options, callback)&lt;/code&gt; - read content from the file&lt;/li&gt;
@@ -274,20 +276,28 @@ fs.readFile(&#39;intro.txt&#39;, &#39;utf8&#39;, (err, data)=&amp;gt;{
 &lt;li&gt;&lt;code&gt;fs.appendFile(filename, content, options, callback)&lt;/code&gt; - append the given content to the end of the file&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;In Node, many asynchronous I/O operations have a callback parameter. These operations generate an once-off event when the I/O completes (with data or error).
+Usually, the first parameter of the callback is an error object. Since the callback is run by the event loop (and not by any other functions), throwing an error inside the callback will quit the process.&lt;/p&gt;
+
 &lt;h2 id=&#34;sequential-i-o-operations&#34;&gt;Sequential I/O operations&lt;/h2&gt;
 
-&lt;p&gt;Consider the following longer example.  We&amp;rsquo;d like to replace the word &amp;lsquo;MPI&amp;rsquo; by &amp;lsquo;IPM&amp;rsquo; in the input file &amp;lsquo;intro.txt&amp;rsquo;. The first version uses synchronous I/O. (Notice that this is just for illustration. In most Node application, you should use asynchronous I/O to allow better performance.) In this program, while Node is waiting for I/O completion, it &lt;strong&gt;cannot&lt;/strong&gt; process any other events.&lt;/p&gt;
+&lt;p&gt;Consider the following longer example.  We&amp;rsquo;d like to replace the word &amp;lsquo;MPI&amp;rsquo; by &amp;lsquo;IPM&amp;rsquo; in the input file &amp;lsquo;intro.txt&amp;rsquo;. To ensure that &lt;code&gt;writeFile&lt;/code&gt; is done &lt;strong&gt;after&lt;/strong&gt; &lt;code&gt;readFile&lt;/code&gt; returns data, call &lt;code&gt;writeFile&lt;/code&gt; in the callback for &lt;code&gt;readFile&lt;/code&gt;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p104.js
+&lt;!--
+The first version uses synchronous I/O. (Notice that this is just for illustration. In most Node application, you should use asynchronous I/O to allow better performance.) In this program, while Node is waiting for I/O completion, it **cannot** process any other events.
+
+```JavaScript
+// p104.js
 // synchronous version of read file, process and write file.
 var fs = require(&#39;fs&#39;);
 
 var data = fs.readFileSync(&#39;intro.txt&#39;, &#39;utf8&#39; );
 var newdata = data.replace(/MPI/g, &#39;IPM&#39;);
 fs.writeFileSync(&#39;change.txt&#39;, newdata, &#39;utf8&#39;);
-&lt;/code&gt;&lt;/pre&gt;
+```
 
-&lt;p&gt;The preferred method to write the same program is to use asynchronous I/O. To ensure that &lt;code&gt;writeFile&lt;/code&gt; is done &lt;strong&gt;after&lt;/strong&gt; &lt;code&gt;readFile&lt;/code&gt; returns data, call &lt;code&gt;writeFile&lt;/code&gt; in the callback for &lt;code&gt;readFile&lt;/code&gt;.&lt;/p&gt;
+The preferred method to write the same program is to use asynchronous I/O.
+--&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p105.js
 // asynchronous version of read file, process, and write file
@@ -336,131 +346,24 @@ Use asynchronous I/O functions &lt;code&gt;fs.readFile()&lt;/code&gt; and &lt;co
     </item>
     
     <item>
-      <title>4-2 Events</title>
+      <title>4-2 NPM modules</title>
       <link>http://philiplei.github.io/server/4-2/</link>
-      <pubDate>Fri, 22 Jul 2016 10:36:44 +0800</pubDate>
+      <pubDate>Mon, 25 Jul 2016 10:05:01 +0800</pubDate>
       
       <guid>http://philiplei.github.io/server/4-2/</guid>
       <description>
 
-&lt;p&gt;This lab goes through events and event emitters in Node.js.&lt;/p&gt;
+&lt;p&gt;This lab
+- install module with &lt;code&gt;npm install&lt;/code&gt;
+- demonstrate how send HTTP requests using the &lt;code&gt;request&lt;/code&gt; modules.
+- covers the concept of a Node app and dependency management in package.json&lt;/p&gt;
 
-&lt;h2 id=&#34;once-off-anonymous-events&#34;&gt;Once-off anonymous events&lt;/h2&gt;
+&lt;h2 id=&#34;installing-modules&#34;&gt;Installing Modules&lt;/h2&gt;
 
-&lt;p&gt;In Node, many asynchronous I/O operations have a callback parameter. These operations generate an once-off event when the I/O completes (with data or error). The event is appended to the event queue and the event loop periodically extracts the event in the front of queue and executes the registered event handler (the callback).&lt;/p&gt;
+&lt;p&gt;Node.js has a built-in module called &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt; for making HTTP clients and servers. They are efficient implementation of the HTTP protocol. However, the modules are low-level and not convenient to use. Therefore, the Node community has developed several modules for writing HTTP clients and servers.
+Fortunately, the Node community has ready-to-use solution for this problem, published as &lt;strong&gt;modules&lt;/strong&gt; in &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;https://www.npmjs.com/&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;You can register 1 and only 1 callback for these once-off events.&lt;/p&gt;
-
-&lt;p&gt;Usually, the first parameter of the callback is an error object. Since the callback is run by the event loop (and not by any other functions), throwing an error inside the callback will quit the process.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;fs.readFile(&#39;in.txt&#39;, &#39;utf8&#39;, (error, data) =&amp;gt; {
-  if (error) throw error;
-  // no error, can process the result data of the I/O operation
-  // ...
-})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;timer-events&#34;&gt;Timer events&lt;/h2&gt;
-
-&lt;p&gt;JavaScript timers &lt;code&gt;setTimeout()&lt;/code&gt; and &lt;code&gt;setInterval()&lt;/code&gt; also trigger anonymous events. &lt;code&gt;setTimeout()&lt;/code&gt; generates an once-off event. On the other hand, &lt;code&gt;setInterval()&lt;/code&gt; generates events repeatedly until you clear the timer by &lt;code&gt;clearInterval()&lt;/code&gt;.  The Node process does not quit when there is an active timer that may trigger events in the future. (Advanced: &lt;code&gt;timer.unref()&lt;/code&gt; affects this.)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var n = 1;
-var timer = setInterval(
-  ()=&amp;gt;{
-    console.log(`tick ${n++}`);
-  },
-  1000
-);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;event-emitters&#34;&gt;Event emitters&lt;/h2&gt;
-
-&lt;p&gt;Objects that inherit from the class &lt;code&gt;EventEmitter&lt;/code&gt; &lt;a href=&#34;https://nodejs.org/dist/latest-v6.x/docs/api/events.html&#34;&gt;(online reference)&lt;/a&gt; can also trigger events. An event emitter is similar to DOM node in document tree in browsers.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;an object may generate several kinds of events, each identified with a name, e.g. &amp;lsquo;data&amp;rsquo;, &amp;lsquo;error&amp;rsquo;&lt;/li&gt;
-&lt;li&gt;you can register a event handler with &lt;code&gt;obj.on(event, callback)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;you can register more than 1 event handler for an event. When the object triggers the event, the event loop will runs the event handler one by one.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;A common example of event emitters is a basic HTTP server written in Node. (See code below.)
-When the HTTP server receives an HTTP request from web browsers, it triggers an event &lt;code&gt;request&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p201.js
-var http = require(&#39;http&#39;);
-var server = http.createServer();
-
-server.on(&#39;request&#39;, (req, resp) =&amp;gt; {
-  console.log(`request: url=${req.url}`);
-  resp.writeHead(200, {&#39;Content-Type&#39;: &#39;text/plain&#39;});
-  resp.write(&#39;Hello World \n&#39;);
-  // you can resp.write() more ...
-  resp.end();
-});
-
-server.listen(3000, () =&amp;gt; {
-  console.log(&#39;Server running at http://localhost:3000/&#39;);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;installing-modules&#34;&gt;Installing modules&lt;/h2&gt;
-
-&lt;p&gt;Next, we use an external module to demonstrate more features of EventEmitter.&lt;/p&gt;
-
-&lt;p&gt;Suppose we have a large text file that we want to process line by line. We don&amp;rsquo;t want to read the text file completely into memory buffer using a call to &lt;code&gt;fs.readFile()&lt;/code&gt;.  The built-in object &lt;code&gt;ReadableStream&lt;/code&gt; returned by &lt;code&gt;fs.createReadStream&lt;/code&gt; can stream the file content, but we still need to detect line breaks. Fortunately, the Node.js community has ready-to-use solution for this problem, published as &lt;strong&gt;modules&lt;/strong&gt; in &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;https://www.npmjs.com/&lt;/a&gt;.  For example, you can use the module &lt;a href=&#34;https://www.npmjs.com/package/linereader&#34;&gt;linereader&lt;/a&gt; to easily read a text file line-by-line.&lt;/p&gt;
-
-&lt;p&gt;Before using the module, install it in command line with &lt;code&gt;npm install&lt;/code&gt;. Put your JavaScript program in a folder, and while in that folder, run the command &lt;code&gt;npm install linereader&lt;/code&gt;.  You&amp;rsquo;ll see that the command &lt;code&gt;npm&lt;/code&gt; installs the module in a local folder called &lt;code&gt;node_modules&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;After installation, you can use the module with &lt;code&gt;require(&#39;linereader&#39;)&lt;/code&gt;.  The source code of p203.js is listed below. The module exports a &lt;code&gt;class&lt;/code&gt;, which provides a constructor to create an object that reads a given file line-by-line.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p203.js
-// read a text file line by line
-var LineReader = require(&#39;linereader&#39;);
-
-var lr = new LineReader(&#39;./intro.txt&#39;);
-
-lr.on(&#39;error&#39;, (err) =&amp;gt; {
-  console.log(err);
-  lr.close();
-});
-
-lr.on(&#39;line&#39;, (lineno, line) =&amp;gt; {
-  console.log(`${lineno}  ${line}`);
-});
-
-lr.on(&#39;end&#39;, () =&amp;gt; {
-  console.log(&amp;quot;== end ==&amp;quot;);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The object is an &lt;code&gt;EventEmitter&lt;/code&gt;. It generates three kinds of events.  For each line read, it generates a &lt;code&gt;line&lt;/code&gt; event. The event handler for this event has two parameters: line number, and the line content. At file end, the object generates the &lt;code&gt;end&lt;/code&gt; event.&lt;/p&gt;
-
-&lt;p&gt;The last kind of events generated by the line reader object is &lt;code&gt;error&lt;/code&gt;.
-This special event reports error and demonstrates an important difference between event emitters and once-off events. The object triggers the &lt;code&gt;error&lt;/code&gt; event when its operation hits an error. If there is no event handler registered for &lt;code&gt;error&lt;/code&gt;, the object will throw an exception and the Node process quits.&lt;/p&gt;
-
-&lt;p&gt;Now, try to generate an &lt;code&gt;error&lt;/code&gt; event by changing the file name to an non-existing file.&lt;/p&gt;
-
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
-
-&lt;p&gt;TODO TODO&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>4-3 Web client</title>
-      <link>http://philiplei.github.io/server/4-3/</link>
-      <pubDate>Mon, 25 Jul 2016 10:05:01 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/server/4-3/</guid>
-      <description>
-
-&lt;p&gt;This lab demonstrate how send HTTP requests using the &lt;code&gt;request&lt;/code&gt; modules.&lt;/p&gt;
-
-&lt;h2 id=&#34;module-request&#34;&gt;Module request&lt;/h2&gt;
-
-&lt;p&gt;Node.js has a built-in module called &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt; for making HTTP clients and servers. They are efficient implementation of the HTTP protocol. However, the modules are low-level and not convenient to use. Therefore, the Node community has developed several modules for writing HTTP clients and servers. This lab is about the client-side of HTTP.&lt;/p&gt;
-
-&lt;p&gt;A popular choice for HTTP clients is the &lt;code&gt;request&lt;/code&gt; module. &lt;a href=&#34;https://www.npmjs.com/package/request&#34;&gt;(online reference)&lt;/a&gt;.  Before using the module the first time in a project, install it with &lt;code&gt;npm install request&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;A popular choice for HTTP clients is the &lt;code&gt;request&lt;/code&gt; module. &lt;a href=&#34;https://www.npmjs.com/package/request&#34;&gt;(online reference)&lt;/a&gt;.  Put your JavaScript program in a project folder. Change the current directory to the project folder, then install the module with the command &lt;code&gt;npm install request&lt;/code&gt;. (Note: the installation is also done once.) You&amp;rsquo;ll see that the command &lt;code&gt;npm&lt;/code&gt; installs the module in a local folder called &lt;code&gt;node_modules&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;get-an-url&#34;&gt;GET an URL&lt;/h2&gt;
 
@@ -478,9 +381,11 @@ request.get(url, (err, res, body) =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The callback for &lt;code&gt;request.get&lt;/code&gt; takes three parameters. The first is the error object. The second is an object of class &lt;code&gt;http.IncomingMessage&lt;/code&gt; &lt;a href=&#34;https://nodejs.org/api/http.html#http_class_http_incomingmessage&#34;&gt;(online reference)&lt;/a&gt;. It represent the HTTP response message. You can use it to check HTTP status code and headers. The last parameter is the message body of the HTTP response.   The next example downloads an image from IPM website and saves it.&lt;/p&gt;
+&lt;p&gt;The callback for &lt;code&gt;request.get&lt;/code&gt; takes three parameters. The first is the error object. The second is an object of class &lt;code&gt;http.IncomingMessage&lt;/code&gt; &lt;a href=&#34;https://nodejs.org/api/http.html#http_class_http_incomingmessage&#34;&gt;(online reference)&lt;/a&gt;. It represents the HTTP response message. You can use it to check HTTP status code and headers. The last parameter is the message body of the HTTP response.&lt;/p&gt;
 
 &lt;h2 id=&#34;options-object-pattern&#34;&gt;Options object pattern&lt;/h2&gt;
+
+&lt;p&gt;The next example downloads an image from IPM website and saves it.&lt;/p&gt;
 
 &lt;p&gt;The JavaScript programming language does not support named parameters.  Some APIs make use of a pattern caled &lt;strong&gt;options object pattern&lt;/strong&gt; to pass named parameters to a function. For example, if you need to give more information about the HTTP request in addition to URL, you can group these information in an option object and pass it as the first parameter of &lt;code&gt;reqeust.get()&lt;/code&gt;. Refer to online reference for &lt;a href=&#34;https://www.npmjs.com/package/request#requestoptions-callback&#34;&gt;all available options&lt;/a&gt;.&lt;/p&gt;
 
@@ -544,48 +449,44 @@ request.post(options, (err, res, body) =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
-
-&lt;p&gt;TODO TODO&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>4-4 Routing in web app</title>
-      <link>http://philiplei.github.io/server/4-4/</link>
-      <pubDate>Wed, 27 Jul 2016 10:29:04 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/server/4-4/</guid>
-      <description>
-
-&lt;p&gt;This lab first covers the concept of a Node app and dependency management in package.json. Next it starts the discussion on the web app framework Express.js.&lt;/p&gt;
-
 &lt;h2 id=&#34;node-app-and-package-json&#34;&gt;Node app and package.json&lt;/h2&gt;
 
-&lt;p&gt;In this lab, we&amp;rsquo;ll use the Express.js framework and some other modules to build
-web app server. As an Node application makes use of more NPM modules, it becomes difficult to install the modules manually with the command &lt;code&gt;npm install module-name&lt;/code&gt;. Instead, you can describe the dependencies of a Node app in a JSON txt file called &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;As an Node application makes use of more NPM modules, it becomes difficult to install the modules manually with the command &lt;code&gt;npm install module-name&lt;/code&gt;. Instead, you can describe the dependencies of a Node app in a JSON txt file called &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;A Node app contains 1 or more JavaScript file (&lt;code&gt;*.js&lt;/code&gt;) together with modules and other assets (e.g. HTML files, images). All these file are put in a folder. A special file &lt;code&gt;package.json&lt;/code&gt; describes the app. It defines the &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt;, which identifies the app in the &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;www.npmjs.com&lt;/a&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JSON&#34;&gt;{
   &amp;quot;name&amp;quot;: &amp;quot;comp312-examples&amp;quot;,
-  &amp;quot;description&amp;quot;: &amp;quot;Examples for Express.js in comp312&amp;quot;,
+  &amp;quot;description&amp;quot;: &amp;quot;Examples of web client&amp;quot;,
   &amp;quot;version&amp;quot;: &amp;quot;0.0.1&amp;quot;,
   &amp;quot;private&amp;quot;: true,
   &amp;quot;dependencies&amp;quot;: {
-    &amp;quot;express&amp;quot;: &amp;quot;^4.10&amp;quot;
+    &amp;quot;express&amp;quot;: &amp;quot;^2.30&amp;quot;
   }
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The config file above indicates that our app depends on the &amp;lsquo;express&amp;rsquo; module. It requires a version &lt;em&gt;compatible&lt;/em&gt; with 4.10.  For more detail about the version specification, refer to the &lt;a href=&#34;https://docs.npmjs.com/misc/semver&#34;&gt;online document for Semvar&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The config file above indicates that our app depends on the &amp;lsquo;request&amp;rsquo; module. It requires a version &lt;em&gt;compatible&lt;/em&gt; with 2.30.  For more detail about the version specification, refer to the &lt;a href=&#34;https://docs.npmjs.com/misc/semver&#34;&gt;online document for Semver&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;After listing all the required modules for the current app in &lt;code&gt;package.json&lt;/code&gt;, you can install all the dependencies with the command &lt;code&gt;npm install&lt;/code&gt;. If later, you need to add a dependency (e.g. &lt;code&gt;request&lt;/code&gt; module), run the following command.&lt;/p&gt;
+&lt;p&gt;After listing all the required modules for the current app in &lt;code&gt;package.json&lt;/code&gt;, you can install all the dependencies with the command &lt;code&gt;npm install&lt;/code&gt;. If later, you need to add a dependency (e.g. &lt;code&gt;cheerio&lt;/code&gt; module), run the following command.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;npm install request --save
+&lt;pre&gt;&lt;code&gt;npm install cheerio --save
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This command installs the latest version of specified module. In addition, it updates &lt;code&gt;package.json&lt;/code&gt; and adds the module to the dependencies.  Try the command and check the change in &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>4-3 Routing in web app</title>
+      <link>http://philiplei.github.io/server/4-3/</link>
+      <pubDate>Wed, 27 Jul 2016 10:29:04 +0800</pubDate>
+      
+      <guid>http://philiplei.github.io/server/4-3/</guid>
+      <description>
+
+&lt;p&gt;In this lab, we&amp;rsquo;ll use the Express.js framework and some other modules to build
+web app server.&lt;/p&gt;
 
 &lt;h2 id=&#34;express-js&#34;&gt;Express.js&lt;/h2&gt;
 
@@ -665,11 +566,11 @@ app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
     </item>
     
     <item>
-      <title>4-5 Middleware in web app</title>
-      <link>http://philiplei.github.io/server/4-5/</link>
+      <title>4-4 Middleware in web app</title>
+      <link>http://philiplei.github.io/server/4-4/</link>
       <pubDate>Tue, 09 Aug 2016 15:10:00 +0800</pubDate>
       
-      <guid>http://philiplei.github.io/server/4-5/</guid>
+      <guid>http://philiplei.github.io/server/4-4/</guid>
       <description>
 
 &lt;p&gt;This lab demonstrate how to use middleware and how to handle form submit using GET and POST. We&amp;rsquo;ll end this part with the implementation of a classic web app. (i.e. before AJAX).&lt;/p&gt;
@@ -784,14 +685,14 @@ app.post(&#39;/append&#39;, (req, res) =&amp;gt; {
     </item>
     
     <item>
-      <title>4-6 Template in web app</title>
-      <link>http://philiplei.github.io/server/4-6/</link>
+      <title>4-5 Template in web app</title>
+      <link>http://philiplei.github.io/server/4-5/</link>
       <pubDate>Wed, 10 Aug 2016 16:21:00 +0800</pubDate>
       
-      <guid>http://philiplei.github.io/server/4-6/</guid>
+      <guid>http://philiplei.github.io/server/4-5/</guid>
       <description>
 
-&lt;p&gt;This lab demonstrate how to use templates in Express app.&lt;/p&gt;
+&lt;p&gt;This lab demonstrates how to use templates in Express app.&lt;/p&gt;
 
 &lt;h2 id=&#34;template-engine&#34;&gt;Template engine&lt;/h2&gt;
 
@@ -826,14 +727,14 @@ app.set(&#39;view engine&#39;, &#39;hbs&#39;);
     </item>
     
     <item>
-      <title>4-7 Database access</title>
-      <link>http://philiplei.github.io/server/4-7/</link>
+      <title>4-6 Database access</title>
+      <link>http://philiplei.github.io/server/4-6/</link>
       <pubDate>Wed, 10 Aug 2016 09:14:00 +0800</pubDate>
       
-      <guid>http://philiplei.github.io/server/4-7/</guid>
+      <guid>http://philiplei.github.io/server/4-6/</guid>
       <description>
 
-&lt;p&gt;This lab demonstrate how to use a file-based database &lt;code&gt;sqlite&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This lab demonstrates how to use a file-based database &lt;code&gt;sqlite&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;sqlite&#34;&gt;SQLite&lt;/h2&gt;
 
