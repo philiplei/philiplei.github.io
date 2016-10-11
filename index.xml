@@ -19,7 +19,7 @@
 
 &lt;h2 id=&#34;server-side-programming&#34;&gt;Server-side programming&lt;/h2&gt;
 
-&lt;p&gt;This &lt;strong&gt;lab&lt;/strong&gt; goes through the basics of the JavaScript programming on the server side using Node.js.&lt;/p&gt;
+&lt;p&gt;This chapter goes through the basics of the JavaScript programming on the server side using Node.js.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;4-1. Node primer
@@ -33,74 +33,66 @@
 &lt;li&gt;file I/O. fs.readFile, fs.writeFile. callback: (err, result) =&amp;gt; { }&lt;/li&gt;
 &lt;li&gt;how to manage control flow. sequential.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;4-2. Events
+&lt;li&gt;4-2. NPM modules
 
 &lt;ul&gt;
-&lt;li&gt;once-off event. timer.&lt;/li&gt;
-&lt;li&gt;event emitter. server.on(event, handler).&lt;/li&gt;
-&lt;li&gt;npm install. line-reader. obj.on(&amp;lsquo;error&amp;rsquo;, cb)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;4-3. Web client
-
-&lt;ul&gt;
+&lt;li&gt;npm install&lt;/li&gt;
 &lt;li&gt;module request&lt;/li&gt;
 &lt;li&gt;sending GET and POST.&lt;/li&gt;
 &lt;li&gt;options object pattern&lt;/li&gt;
+&lt;li&gt;Node app. package.json. npm install. npm install module &amp;ndash;save&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;4-4. Routing in web app
+&lt;li&gt;4-3. Routing in web app
 
 &lt;ul&gt;
-&lt;li&gt;Node app. package.json. npm install. npm install module &amp;ndash;save&lt;/li&gt;
 &lt;li&gt;defining routes, generating response&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;4-5. Middleware in web app
+&lt;li&gt;4-4. Middleware in web app
 
 &lt;ul&gt;
 &lt;li&gt;middlewares&lt;/li&gt;
 &lt;li&gt;serving static web assets&lt;/li&gt;
 &lt;li&gt;process form submit with GET and POST&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;4-6. Template in web app
+&lt;li&gt;4-5. Template in web app
 
 &lt;ul&gt;
 &lt;li&gt;handlebars&lt;/li&gt;
 &lt;li&gt;template files&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;4-7. Database access
+&lt;li&gt;4-6. Database access
 
 &lt;ul&gt;
 &lt;li&gt;sqlite. SELECT, INSERT, UPDATE, DELETE&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;4-8. classic web app&lt;/li&gt;
-&lt;li&gt;4-8. async: flow control?&lt;/li&gt;
-&lt;li&gt;advanced
-
-&lt;ul&gt;
-&lt;li&gt;promise?&lt;/li&gt;
-&lt;li&gt;stream?&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;4-7. classic web app&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;plan:&lt;/p&gt;
+&lt;!--
 
-&lt;ul&gt;
-&lt;li&gt;app example with several routes, res.sendFile, &lt;code&gt;res.send(\&lt;/code&gt;&lt;html&gt;multiline&lt;/html&gt;`)`,
-res.send json, res.status code.&lt;/li&gt;
-&lt;li&gt;Middleware&lt;/li&gt;
-&lt;li&gt;app example to check req.url, method, route.method. headers? query, post body&lt;/li&gt;
-&lt;li&gt;template. use timetable JSON data&lt;/li&gt;
-&lt;li&gt;mysql&lt;/li&gt;
-&lt;/ul&gt;
+- 4-8. async: flow control?
+- advanced
+  - promise?
+  - stream?
 
-&lt;p&gt;A condensed view of this chap&lt;/p&gt;
+plan:
 
-&lt;ul&gt;
-&lt;li&gt;execution model on Node: asynchronous, event loop&lt;/li&gt;
-&lt;li&gt;module. NPM community. (writing module)&lt;/li&gt;
-&lt;li&gt;writing web client&lt;/li&gt;
-&lt;li&gt;writing web app: express, route, middleware, template, req -&amp;gt; res&lt;/li&gt;
-&lt;li&gt;milestone: classic web app&lt;/li&gt;
-&lt;/ul&gt;
+- app example with several routes, res.sendFile, `res.send(\`&lt;html&gt;multiline&lt;/html&gt;\`)`,
+  res.send json, res.status code.
+- Middleware
+- app example to check req.url, method, route.method. headers? query, post body
+- template. use timetable JSON data
+- mysql
+
+A condensed view of this chap
+
+- execution model on Node: asynchronous, event loop
+- module. NPM community. (writing module)
+- writing web client
+- writing web app: express, route, middleware, template, req -&gt; res
+- milestone: classic web app
+
+--&gt;
 </description>
     </item>
     

@@ -319,7 +319,7 @@
 
 <h2 id="server-side-programming">Server-side programming</h2>
 
-<p>This <strong>lab</strong> goes through the basics of the JavaScript programming on the server side using Node.js.</p>
+<p>This chapter goes through the basics of the JavaScript programming on the server side using Node.js.</p>
 
 <ul>
 <li>4-1. Node primer
@@ -333,74 +333,66 @@
 <li>file I/O. fs.readFile, fs.writeFile. callback: (err, result) =&gt; { }</li>
 <li>how to manage control flow. sequential.</li>
 </ul></li>
-<li>4-2. Events
+<li>4-2. NPM modules
 
 <ul>
-<li>once-off event. timer.</li>
-<li>event emitter. server.on(event, handler).</li>
-<li>npm install. line-reader. obj.on(&lsquo;error&rsquo;, cb)</li>
-</ul></li>
-<li>4-3. Web client
-
-<ul>
+<li>npm install</li>
 <li>module request</li>
 <li>sending GET and POST.</li>
 <li>options object pattern</li>
+<li>Node app. package.json. npm install. npm install module &ndash;save</li>
 </ul></li>
-<li>4-4. Routing in web app
+<li>4-3. Routing in web app
 
 <ul>
-<li>Node app. package.json. npm install. npm install module &ndash;save</li>
 <li>defining routes, generating response</li>
 </ul></li>
-<li>4-5. Middleware in web app
+<li>4-4. Middleware in web app
 
 <ul>
 <li>middlewares</li>
 <li>serving static web assets</li>
 <li>process form submit with GET and POST</li>
 </ul></li>
-<li>4-6. Template in web app
+<li>4-5. Template in web app
 
 <ul>
 <li>handlebars</li>
 <li>template files</li>
 </ul></li>
-<li>4-7. Database access
+<li>4-6. Database access
 
 <ul>
 <li>sqlite. SELECT, INSERT, UPDATE, DELETE</li>
 </ul></li>
-<li>4-8. classic web app</li>
-<li>4-8. async: flow control?</li>
-<li>advanced
-
-<ul>
-<li>promise?</li>
-<li>stream?</li>
-</ul></li>
+<li>4-7. classic web app</li>
 </ul>
 
-<p>plan:</p>
+<!--
 
-<ul>
-<li>app example with several routes, res.sendFile, <code>res.send(\</code><html>multiline</html>`)`,
-res.send json, res.status code.</li>
-<li>Middleware</li>
-<li>app example to check req.url, method, route.method. headers? query, post body</li>
-<li>template. use timetable JSON data</li>
-<li>mysql</li>
-</ul>
+- 4-8. async: flow control?
+- advanced
+  - promise?
+  - stream?
 
-<p>A condensed view of this chap</p>
+plan:
 
-<ul>
-<li>execution model on Node: asynchronous, event loop</li>
-<li>module. NPM community. (writing module)</li>
-<li>writing web client</li>
-<li>writing web app: express, route, middleware, template, req -&gt; res</li>
-<li>milestone: classic web app</li>
-</ul>
+- app example with several routes, res.sendFile, `res.send(\`<html>multiline</html>\`)`,
+  res.send json, res.status code.
+- Middleware
+- app example to check req.url, method, route.method. headers? query, post body
+- template. use timetable JSON data
+- mysql
+
+A condensed view of this chap
+
+- execution model on Node: asynchronous, event loop
+- module. NPM community. (writing module)
+- writing web client
+- writing web app: express, route, middleware, template, req -> res
+- milestone: classic web app
+
+-->
 
 
       
