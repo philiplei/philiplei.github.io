@@ -1146,19 +1146,19 @@ console.log(search(x, 1)); // should print -1;
       <guid>http://philiplei.github.io/server/4-2/</guid>
       <description>
 
-&lt;p&gt;This lab
-- install module with &lt;code&gt;npm install&lt;/code&gt;
-- demonstrate how send HTTP requests using the &lt;code&gt;request&lt;/code&gt; modules.
-- covers the concept of a Node app and dependency management in package.json&lt;/p&gt;
+&lt;p&gt;In this lab, we will&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;install module with &lt;code&gt;npm install&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;demonstrate how send HTTP requests using the &lt;code&gt;request&lt;/code&gt; modules.&lt;/li&gt;
+&lt;li&gt;cover the concept of a Node app and dependency management in package.json&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;installing-modules&#34;&gt;Installing Modules&lt;/h2&gt;
 
-&lt;p&gt;Node.js has a built-in module called &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt; for making HTTP clients and servers. They are efficient implementation of the HTTP protocol. However, the modules are low-level and not convenient to use. Therefore, the Node community has developed several modules for writing HTTP clients and servers.
-Fortunately, the Node community has ready-to-use solution for this problem, published as &lt;strong&gt;modules&lt;/strong&gt; in &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;https://www.npmjs.com/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Node.js has a built-in module called &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt; for making HTTP clients and servers. They are efficient implementation of the HTTP protocol. However, the modules are low-level and not convenient to use. Therefore, the Node community has developed several modules for writing HTTP clients and servers. These modules are published in &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;https://www.npmjs.com/&lt;/a&gt;. A popular choice for HTTP clients is the &lt;code&gt;request&lt;/code&gt; module. &lt;a href=&#34;https://www.npmjs.com/package/request&#34;&gt;(online reference)&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;A popular choice for HTTP clients is the &lt;code&gt;request&lt;/code&gt; module. &lt;a href=&#34;https://www.npmjs.com/package/request&#34;&gt;(online reference)&lt;/a&gt;.  Put your JavaScript program in a project folder. Change the current directory to the project folder, then install the module with the command &lt;code&gt;npm install request&lt;/code&gt;. (Note: the installation is also done once.) You&amp;rsquo;ll see that the command &lt;code&gt;npm&lt;/code&gt; installs the module in a local folder called &lt;code&gt;node_modules&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;get-an-url&#34;&gt;GET an URL&lt;/h2&gt;
+&lt;h2 id=&#34;using-request-to-get-an-url&#34;&gt;Using Request to GET an URL&lt;/h2&gt;
 
 &lt;p&gt;The following example fetches the current weather report from &lt;a href=&#34;http://rss.smg.gov.mo/e_ActualWeather_rss.xml&#34;&gt;http://rss.smg.gov.mo/e_ActualWeather_rss.xml&lt;/a&gt;.&lt;/p&gt;
 
@@ -1172,6 +1172,11 @@ request.get(url, (err, res, body) =&amp;gt; {
   console.dir(res.headers);
   console.log(body);
 });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In order to run this program, you have to put the program in a project folder. Change the current directory to the project folder, then install the module with the command &lt;code&gt;npm install request&lt;/code&gt;. (Note: the installation is also done once.) You&amp;rsquo;ll see that the command &lt;code&gt;npm&lt;/code&gt; installs the module in a local folder called &lt;code&gt;node_modules&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install request
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The callback for &lt;code&gt;request.get&lt;/code&gt; takes three parameters. The first is the error object. The second is an object of class &lt;code&gt;http.IncomingMessage&lt;/code&gt; &lt;a href=&#34;https://nodejs.org/api/http.html#http_class_http_incomingmessage&#34;&gt;(online reference)&lt;/a&gt;. It represents the HTTP response message. You can use it to check HTTP status code and headers. The last parameter is the message body of the HTTP response.&lt;/p&gt;
@@ -1209,7 +1214,7 @@ request.get(options, (err, res, body) =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;post-request&#34;&gt;POST request&lt;/h2&gt;
+&lt;h2 id=&#34;making-post-request&#34;&gt;Making POST request&lt;/h2&gt;
 
 &lt;p&gt;In the next example, we want to download the class time table from the IPM web app at
 &lt;a href=&#34;https://wapps.ipm.edu.mo/siweb/time_prog.asp&#34;&gt;https://wapps.ipm.edu.mo/siweb/time_prog.asp&lt;/a&gt;.
@@ -1246,6 +1251,11 @@ request.post(options, (err, res, body) =&amp;gt; {
 
 &lt;p&gt;As an Node application makes use of more NPM modules, it becomes difficult to install the modules manually with the command &lt;code&gt;npm install module-name&lt;/code&gt;. Instead, you can describe the dependencies of a Node app in a JSON txt file called &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
 
+&lt;p&gt;You can create a &lt;code&gt;package.json&lt;/code&gt; file for a Node app by running this command in the project folder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm init
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;A Node app contains 1 or more JavaScript file (&lt;code&gt;*.js&lt;/code&gt;) together with modules and other assets (e.g. HTML files, images). All these file are put in a folder. A special file &lt;code&gt;package.json&lt;/code&gt; describes the app. It defines the &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt;, which identifies the app in the &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;www.npmjs.com&lt;/a&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JSON&#34;&gt;{
@@ -1254,12 +1264,12 @@ request.post(options, (err, res, body) =&amp;gt; {
   &amp;quot;version&amp;quot;: &amp;quot;0.0.1&amp;quot;,
   &amp;quot;private&amp;quot;: true,
   &amp;quot;dependencies&amp;quot;: {
-    &amp;quot;express&amp;quot;: &amp;quot;^2.30&amp;quot;
+    &amp;quot;request&amp;quot;: &amp;quot;^2.75&amp;quot;
   }
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The config file above indicates that our app depends on the &amp;lsquo;request&amp;rsquo; module. It requires a version &lt;em&gt;compatible&lt;/em&gt; with 2.30.  For more detail about the version specification, refer to the &lt;a href=&#34;https://docs.npmjs.com/misc/semver&#34;&gt;online document for Semver&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The config file above indicates that our app depends on the &amp;lsquo;request&amp;rsquo; module. It requires a version &lt;em&gt;compatible&lt;/em&gt; with 2.75.  For more detail about the version specification, refer to the &lt;a href=&#34;https://docs.npmjs.com/getting-started/semantic-versioning&#34;&gt;online document for Semver&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;After listing all the required modules for the current app in &lt;code&gt;package.json&lt;/code&gt;, you can install all the dependencies with the command &lt;code&gt;npm install&lt;/code&gt;. If later, you need to add a dependency (e.g. &lt;code&gt;cheerio&lt;/code&gt; module), run the following command.&lt;/p&gt;
 
