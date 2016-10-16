@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.16" />
+    <meta name="generator" content="Hugo 0.17-DEV" />
     <meta name="description" content="">
 
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
     
-    <title>4-3 Routing in web app</title>
+    <title>4-3 Routing in web apps</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/hybrid.css" rel="stylesheet">
@@ -235,7 +235,7 @@
           
             <li class="dd-item active" data-nav-id="/server/4-3/">
               <a href="/server/4-3/">
-                <span>4-3 Routing in web app     </i></span>
+                <span>4-3 Routing in web apps     </i></span>
               </a>
             </li>
           
@@ -243,7 +243,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-4/">
               <a href="/server/4-4/">
-                <span>4-4 Middleware in web app     </i></span>
+                <span>4-4 Middleware in web apps     </i></span>
               </a>
             </li>
           
@@ -308,7 +308,7 @@
                     
                   
                 
-                <span itemprop="title"> 4-3 Routing in web app</span>
+                <span itemprop="title"> 4-3 Routing in web apps</span>
               </div>
               
                   <div class="progress">
@@ -317,7 +317,6 @@
 <ul>
 <li>
 <ul>
-<li><a href="#express-js">Express.js</a></li>
 <li><a href="#routes">Routes</a></li>
 <li><a href="#making-responses">Making responses</a></li>
 </ul></li>
@@ -332,7 +331,7 @@
             
     	        <div id="body-inner">
                 
-                <h1>4-3 Routing in web app</h1>
+                <h1>4-3 Routing in web apps</h1>
                 
 
 
@@ -340,17 +339,17 @@
 <p>In this lab, we&rsquo;ll use the Express.js framework and some other modules to build
 web app server.</p>
 
-<h2 id="express-js">Express.js</h2>
-
-<p>Express.js <a href="http://expressjs.com/">(website)</a> is a web framework to simplify development of Web applications.</p>
+<p>Express.js <a href="http://expressjs.com/">(website)</a> is a web framework to simplify development of Web applications. It supports:</p>
 
 <ul>
-<li>Middleware – chainable processing of requests and responses</li>
 <li>Routing – different request processing based on URL patterns</li>
+<li>Middleware – chainable processing of requests and responses</li>
 <li>Template – generate HTML output from variables</li>
 </ul>
 
-<p>Basic structure of an express app.</p>
+<h2 id="routes">Routes</h2>
+
+<p>This example shows the basic structure of an Express app.</p>
 
 <pre><code class="language-JavaScript">var express = require('express');
 // create an Express application, which will handle HTTP requests
@@ -367,12 +366,10 @@ app.get('/', (req, res) =&gt; {
 app.listen(3000);
 </code></pre>
 
-<h2 id="routes">Routes</h2>
-
-<p>When a web server receives an HTTP request, it has to decide how to handle the request, and return the result as an HTTP response.  Such decision usually depends on the HTTP method (either GET or POST in most cases) and the path in the URL (e.g. &ldquo;/about.html&rdquo;).   The combination of HTTP method and the URL path is usually referred to as an endpoint of the web service.</p>
+<p>When a web app receives an HTTP request, it has to decide how to handle the request, and return the result as an HTTP response.  Such decision usually depends on the HTTP method (either GET or POST in most cases) and the path in the URL (e.g. &ldquo;/about.html&rdquo;).   The combination of HTTP method and the URL path is usually referred to as an endpoint of the web app or web service.</p>
 
 <p>In an Express app, we define a <strong>route</strong> to describe how to process HTTP requests at an endpoint.
-The general syntax is <code>app.get(path, callback)</code> and <code>app.post(path, callback)</code>. The callback can take 2 or more parameters.  Often, we only use the first two parameters called <code>req</code> and <code>res</code>. <code>req</code> refers to the incoming HTTP request, and <code>res</code> can be used to build the HTTP response.</p>
+The general syntax is <code>app.get(path, callback)</code> and <code>app.post(path, callback)</code>. The callback can take 2 or more parameters.  Often, we only use the first two parameters called <code>req</code> and <code>res</code>: <code>req</code> refers to the incoming HTTP request, and <code>res</code> is an object that is used to build the HTTP response. The following is a route for GET request at URL &lsquo;/about.html&rsquo;. The route returns a text response.</p>
 
 <pre><code class="language-JavaScript">// app is an Express app
 
@@ -383,9 +380,9 @@ app.get('/about.html', (req, res) =&gt; {
 });
 </code></pre>
 
-<p>Some web apps include parameters in the URL path. For example, the URL <code>https://www.google.com/maps/place/Macao+Polytechnic+Institute/</code> refers to the place &lsquo;Macao Polytechnic Institute&rsquo; in the web app Google Maps.  You can easily extract these parameters in Express routes.</p>
+<p>Some web apps include parameters in the URL path. For example, the URL <code>https://www.google.com/maps/place/Macao+Polytechnic+Institute/</code> refers to the place &lsquo;Macao Polytechnic Institute&rsquo; in the Google Maps web app.  You can easily extract these parameters in Express routes.</p>
 
-<p>Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &lsquo;/lecture/comp312&rsquo;, it returns a response of its lecture hours. The parameters are available in the object <code>req.params</code>. (The full source is <a href="/chap4-4/app1.js">app1.js</a>).</p>
+<p>Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &lsquo;/lecture/comp312&rsquo;, it returns a response of its lecture hours. The parameters are available in the object <code>req.params</code>. (The full source is <a href="/chap4-3/app1.js">app1.js</a>).</p>
 
 <pre><code class="language-JavaScript">// retrieve the lecture time
 app.get('/lecture/:code', (req, res) =&gt; {
@@ -413,7 +410,7 @@ app.get('/lecture/:code', (req, res) =&gt; {
 <li><code>res.redirect(path)</code> redirects to the given URL.</li>
 </ul>
 
-<p>Check the source code of <a href="/chap4-4/app2.js">app2.js</a> for demonstration of how to build responses with these methods.</p>
+<p>Check the source code of <a href="/chap4-3/app2.js">app2.js</a> for demonstration of how to build responses with these methods.</p>
 
 
       

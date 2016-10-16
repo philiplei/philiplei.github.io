@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Servers on COMP312 labs</title>
-    <link>http://philiplei.github.io/server/</link>
-    <description>Recent content in Servers on COMP312 labs</description>
+    <title>Server-rsses on COMP312 labs</title>
+    <link>http://philiplei.github.io/server/index.xml</link>
+    <description>Recent content in Server-rsses on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jun 2016 10:14:43 +0800</lastBuildDate>
@@ -480,7 +480,7 @@ request.post(options, (err, res, body) =&amp;gt; {
     </item>
     
     <item>
-      <title>4-3 Routing in web app</title>
+      <title>4-3 Routing in web apps</title>
       <link>http://philiplei.github.io/server/4-3/</link>
       <pubDate>Wed, 27 Jul 2016 10:29:04 +0800</pubDate>
       
@@ -490,17 +490,17 @@ request.post(options, (err, res, body) =&amp;gt; {
 &lt;p&gt;In this lab, we&amp;rsquo;ll use the Express.js framework and some other modules to build
 web app server.&lt;/p&gt;
 
-&lt;h2 id=&#34;express-js&#34;&gt;Express.js&lt;/h2&gt;
-
-&lt;p&gt;Express.js &lt;a href=&#34;http://expressjs.com/&#34;&gt;(website)&lt;/a&gt; is a web framework to simplify development of Web applications.&lt;/p&gt;
+&lt;p&gt;Express.js &lt;a href=&#34;http://expressjs.com/&#34;&gt;(website)&lt;/a&gt; is a web framework to simplify development of Web applications. It supports:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Middleware – chainable processing of requests and responses&lt;/li&gt;
 &lt;li&gt;Routing – different request processing based on URL patterns&lt;/li&gt;
+&lt;li&gt;Middleware – chainable processing of requests and responses&lt;/li&gt;
 &lt;li&gt;Template – generate HTML output from variables&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Basic structure of an express app.&lt;/p&gt;
+&lt;h2 id=&#34;routes&#34;&gt;Routes&lt;/h2&gt;
+
+&lt;p&gt;This example shows the basic structure of an Express app.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var express = require(&#39;express&#39;);
 // create an Express application, which will handle HTTP requests
@@ -517,12 +517,10 @@ app.get(&#39;/&#39;, (req, res) =&amp;gt; {
 app.listen(3000);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;routes&#34;&gt;Routes&lt;/h2&gt;
-
-&lt;p&gt;When a web server receives an HTTP request, it has to decide how to handle the request, and return the result as an HTTP response.  Such decision usually depends on the HTTP method (either GET or POST in most cases) and the path in the URL (e.g. &amp;ldquo;/about.html&amp;rdquo;).   The combination of HTTP method and the URL path is usually referred to as an endpoint of the web service.&lt;/p&gt;
+&lt;p&gt;When a web app receives an HTTP request, it has to decide how to handle the request, and return the result as an HTTP response.  Such decision usually depends on the HTTP method (either GET or POST in most cases) and the path in the URL (e.g. &amp;ldquo;/about.html&amp;rdquo;).   The combination of HTTP method and the URL path is usually referred to as an endpoint of the web app or web service.&lt;/p&gt;
 
 &lt;p&gt;In an Express app, we define a &lt;strong&gt;route&lt;/strong&gt; to describe how to process HTTP requests at an endpoint.
-The general syntax is &lt;code&gt;app.get(path, callback)&lt;/code&gt; and &lt;code&gt;app.post(path, callback)&lt;/code&gt;. The callback can take 2 or more parameters.  Often, we only use the first two parameters called &lt;code&gt;req&lt;/code&gt; and &lt;code&gt;res&lt;/code&gt;. &lt;code&gt;req&lt;/code&gt; refers to the incoming HTTP request, and &lt;code&gt;res&lt;/code&gt; can be used to build the HTTP response.&lt;/p&gt;
+The general syntax is &lt;code&gt;app.get(path, callback)&lt;/code&gt; and &lt;code&gt;app.post(path, callback)&lt;/code&gt;. The callback can take 2 or more parameters.  Often, we only use the first two parameters called &lt;code&gt;req&lt;/code&gt; and &lt;code&gt;res&lt;/code&gt;: &lt;code&gt;req&lt;/code&gt; refers to the incoming HTTP request, and &lt;code&gt;res&lt;/code&gt; is an object that is used to build the HTTP response. The following is a route for GET request at URL &amp;lsquo;/about.html&amp;rsquo;. The route returns a text response.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// app is an Express app
 
@@ -533,9 +531,9 @@ app.get(&#39;/about.html&#39;, (req, res) =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Some web apps include parameters in the URL path. For example, the URL &lt;code&gt;https://www.google.com/maps/place/Macao+Polytechnic+Institute/&lt;/code&gt; refers to the place &amp;lsquo;Macao Polytechnic Institute&amp;rsquo; in the web app Google Maps.  You can easily extract these parameters in Express routes.&lt;/p&gt;
+&lt;p&gt;Some web apps include parameters in the URL path. For example, the URL &lt;code&gt;https://www.google.com/maps/place/Macao+Polytechnic+Institute/&lt;/code&gt; refers to the place &amp;lsquo;Macao Polytechnic Institute&amp;rsquo; in the Google Maps web app.  You can easily extract these parameters in Express routes.&lt;/p&gt;
 
-&lt;p&gt;Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &amp;lsquo;/lecture/comp312&amp;rsquo;, it returns a response of its lecture hours. The parameters are available in the object &lt;code&gt;req.params&lt;/code&gt;. (The full source is &lt;a href=&#34;http://philiplei.github.io/chap4-4/app1.js&#34;&gt;app1.js&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &amp;lsquo;/lecture/comp312&amp;rsquo;, it returns a response of its lecture hours. The parameters are available in the object &lt;code&gt;req.params&lt;/code&gt;. (The full source is &lt;a href=&#34;http://philiplei.github.io/chap4-3/app1.js&#34;&gt;app1.js&lt;/a&gt;).&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// retrieve the lecture time
 app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
@@ -563,19 +561,19 @@ app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
 &lt;li&gt;&lt;code&gt;res.redirect(path)&lt;/code&gt; redirects to the given URL.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Check the source code of &lt;a href=&#34;http://philiplei.github.io/chap4-4/app2.js&#34;&gt;app2.js&lt;/a&gt; for demonstration of how to build responses with these methods.&lt;/p&gt;
+&lt;p&gt;Check the source code of &lt;a href=&#34;http://philiplei.github.io/chap4-3/app2.js&#34;&gt;app2.js&lt;/a&gt; for demonstration of how to build responses with these methods.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>4-4 Middleware in web app</title>
+      <title>4-4 Middleware in web apps</title>
       <link>http://philiplei.github.io/server/4-4/</link>
       <pubDate>Tue, 09 Aug 2016 15:10:00 +0800</pubDate>
       
       <guid>http://philiplei.github.io/server/4-4/</guid>
       <description>
 
-&lt;p&gt;This lab demonstrate how to use middleware and how to handle form submit using GET and POST. We&amp;rsquo;ll end this part with the implementation of a classic web app. (i.e. before AJAX).&lt;/p&gt;
+&lt;p&gt;This lab demonstrates how to use middleware and how to handle form submit using GET and POST. We&amp;rsquo;ll end this part with the implementation of a classic web app. (i.e. before AJAX).&lt;/p&gt;
 
 &lt;h2 id=&#34;middlewares&#34;&gt;Middlewares&lt;/h2&gt;
 
@@ -635,7 +633,7 @@ app.listen(3000, () =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;In general, routes should be placed before the &amp;lsquo;static&amp;rsquo; middleware. Otherwise, a static file that matches the URL path will be handled by the &amp;lsquo;static&amp;rsquo; middleware and will not be handled by any routes after the middleware.  Try to move the specified route in &lt;a href=&#34;http://philiplei.github.io/chap4-5/app4.js&#34;&gt;app4.js&lt;/a&gt; to experiment.&lt;/p&gt;
+&lt;p&gt;In general, routes should be placed before the &amp;lsquo;static&amp;rsquo; middleware. Otherwise, a static file that matches the URL path will be handled by the &amp;lsquo;static&amp;rsquo; middleware and will not be handled by any routes after the middleware.  Try to move the specified route in &lt;a href=&#34;http://philiplei.github.io/chap4-4/app4.js&#34;&gt;app4.js&lt;/a&gt; to experiment.&lt;/p&gt;
 
 &lt;h2 id=&#34;handling-form-submit&#34;&gt;Handling form submit&lt;/h2&gt;
 
@@ -667,7 +665,7 @@ app.get(&#39;/add&#39;, (req, res) =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You&amp;rsquo;ll need a middleware to extract data from the message body of a POST request. A popular choice is the middleware &lt;code&gt;body-parser&lt;/code&gt;. This middleware parses the request message body (if any) and populate the object &lt;code&gt;req.body&lt;/code&gt;. In the route in the sample code below (see full source at &lt;a href=&#34;http://philiplei.github.io/chap4-5/app6.js&#34;&gt;app6.js&lt;/a&gt;), data submitted in POST request are accessible in &lt;code&gt;req.body.mesg&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll need a middleware to extract data from the message body of a POST request. A popular choice is the middleware &lt;code&gt;body-parser&lt;/code&gt;. This middleware parses the request message body (if any) and populate the object &lt;code&gt;req.body&lt;/code&gt;. In the route in the sample code below (see full source at &lt;a href=&#34;http://philiplei.github.io/chap4-4/app6.js&#34;&gt;app6.js&lt;/a&gt;), data submitted in POST request are accessible in &lt;code&gt;req.body.mesg&lt;/code&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// excerpt from app6.js
 
@@ -724,7 +722,7 @@ app.set(&#39;view engine&#39;, &#39;hbs&#39;);
 
 &lt;h2 id=&#34;writing-modules&#34;&gt;Writing modules??&lt;/h2&gt;
 
-&lt;h2 id=&#34;example-of-query&#34;&gt;example of query??&lt;/h2&gt;
+&lt;p&gt;TODO&lt;/p&gt;
 </description>
     </item>
     
