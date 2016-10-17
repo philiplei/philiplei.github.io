@@ -337,7 +337,7 @@
 
 
 
-<p>This lab demonstrates how to use middleware and how to handle form submit using GET and POST. We&rsquo;ll end this part with the implementation of a classic web app. (i.e. before AJAX).</p>
+<p>This lab demonstrates how to use middleware in general. It introduces a few common middleware, and also covers a middleware that handles form submit using GET and POST.</p>
 
 <h2 id="middlewares">Middlewares</h2>
 
@@ -345,7 +345,7 @@
 
 <p>The above notion is simplification. An Express app is in fact a sequence of middlewares and routes. An incoming request will go through the middlewares and routes in sequential order until a response is generated.</p>
 
-<p>Middlewares are JavaScript functions in Express. Most middlewares are not included in Express module, and must be installed using <code>npm install</code> or <code>package.json</code>.  Install the middlewares and Express with <code>npm install</code> before running the example app3.js, which demonstrate the
+<p>Middlewares are JavaScript functions in Express. Most middlewares are not included in Express module, and must be installed using <code>npm install</code> or <code>package.json</code> separately.  Install the middlewares and Express with <code>npm install</code> before running the example <a href="/chap4-4/app3.js">app3.js</a>, which demonstrate the
 basic structure of an Express app with middlewares.</p>
 
 <pre><code class="language-JavaScript">// app3.js

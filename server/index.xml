@@ -487,16 +487,15 @@ request.post(options, (err, res, body) =&amp;gt; {
       <guid>http://philiplei.github.io/server/4-3/</guid>
       <description>
 
-&lt;p&gt;In this lab, we&amp;rsquo;ll use the Express.js framework and some other modules to build
-web app server.&lt;/p&gt;
-
-&lt;p&gt;Express.js &lt;a href=&#34;http://expressjs.com/&#34;&gt;(website)&lt;/a&gt; is a web framework to simplify development of Web applications. It supports:&lt;/p&gt;
+&lt;p&gt;Express.js &lt;a href=&#34;http://expressjs.com/&#34;&gt;(official website)&lt;/a&gt; is a web framework to simplify development of Web applications. It supports:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Routing – different request processing based on URL patterns&lt;/li&gt;
 &lt;li&gt;Middleware – chainable processing of requests and responses&lt;/li&gt;
 &lt;li&gt;Template – generate HTML output from variables&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;This lab covers how to define routes to capture HTTP requests for a web app / service endpoints. In addition, we&amp;rsquo;ll discuss how to generate simple HTTP responses.&lt;/p&gt;
 
 &lt;h2 id=&#34;routes&#34;&gt;Routes&lt;/h2&gt;
 
@@ -517,7 +516,7 @@ app.get(&#39;/&#39;, (req, res) =&amp;gt; {
 app.listen(3000);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;When a web app receives an HTTP request, it has to decide how to handle the request, and return the result as an HTTP response.  Such decision usually depends on the HTTP method (either GET or POST in most cases) and the path in the URL (e.g. &amp;ldquo;/about.html&amp;rdquo;).   The combination of HTTP method and the URL path is usually referred to as an endpoint of the web app or web service.&lt;/p&gt;
+&lt;p&gt;When a web app receives an HTTP request, it has to decide how to handle the request, and return the result as an HTTP response.  Such decision usually depends on the HTTP method (either GET or POST in most cases) and the path in the URL (e.g. &amp;ldquo;/about.html&amp;rdquo;).   The combination of HTTP method and the URL path is usually referred to as an &lt;strong&gt;endpoint&lt;/strong&gt; of the web app or web service.&lt;/p&gt;
 
 &lt;p&gt;In an Express app, we define a &lt;strong&gt;route&lt;/strong&gt; to describe how to process HTTP requests at an endpoint.
 The general syntax is &lt;code&gt;app.get(path, callback)&lt;/code&gt; and &lt;code&gt;app.post(path, callback)&lt;/code&gt;. The callback can take 2 or more parameters.  Often, we only use the first two parameters called &lt;code&gt;req&lt;/code&gt; and &lt;code&gt;res&lt;/code&gt;: &lt;code&gt;req&lt;/code&gt; refers to the incoming HTTP request, and &lt;code&gt;res&lt;/code&gt; is an object that is used to build the HTTP response. The following is a route for GET request at URL &amp;lsquo;/about.html&amp;rsquo;. The route returns a text response.&lt;/p&gt;
@@ -531,7 +530,7 @@ app.get(&#39;/about.html&#39;, (req, res) =&amp;gt; {
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Some web apps include parameters in the URL path. For example, the URL &lt;code&gt;https://www.google.com/maps/place/Macao+Polytechnic+Institute/&lt;/code&gt; refers to the place &amp;lsquo;Macao Polytechnic Institute&amp;rsquo; in the Google Maps web app.  You can easily extract these parameters in Express routes.&lt;/p&gt;
+&lt;p&gt;Some web apps include parameters in the URL path. For example, the URL &lt;a href=&#34;https://www.google.com/maps/place/Macao+Polytechnic+Institute/&#34;&gt;https://www.google.com/maps/place/Macao+Polytechnic+Institute/&lt;/a&gt; refers to the place &amp;lsquo;Macao Polytechnic Institute&amp;rsquo; in the Google Maps web app.  You can easily extract these parameters in Express routes.&lt;/p&gt;
 
 &lt;p&gt;Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &amp;lsquo;/lecture/comp312&amp;rsquo;, it returns a response of its lecture hours. The parameters are available in the object &lt;code&gt;req.params&lt;/code&gt;. (The full source is &lt;a href=&#34;http://philiplei.github.io/chap4-3/app1.js&#34;&gt;app1.js&lt;/a&gt;).&lt;/p&gt;
 
@@ -549,6 +548,23 @@ app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
 &lt;p&gt;The above only describes the basics of routing in Express. Refer to the &lt;a href=&#34;http://expressjs.com/en/guide/routing.html&#34;&gt;online guide&lt;/a&gt; for more possibilities.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;The order of routes is significant!&lt;/strong&gt;  An Express app checks the routes in the order they are defined. When a route matches the HTTP methods and URL path, the Express app executes its callback function to handle the request.  The callback usually returns an HTTP response with &lt;code&gt;res.send()&lt;/code&gt; or similar methods. When a response is returned, the Express app will &lt;strong&gt;stop&lt;/strong&gt; checking the remaining routes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;app.get(&#39;/lecture/comp312&#39;, (req, res) =&amp;gt; {
+  // special response for comp312
+  res.send(&#39;...&#39;);
+});
+
+// retrieve the lecture time
+app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
+  // search database, return a response
+  res.send(&#39;...&#39;);
+});
+
+app.get(&#39;/lecture/comp113&#39;, (req, res) =&amp;gt; {
+  // special response for comp113. But sorry, this route never runs!
+  res.send(&#39;...&#39;);
+});
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;making-responses&#34;&gt;Making responses&lt;/h2&gt;
 
@@ -573,7 +589,7 @@ app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
       <guid>http://philiplei.github.io/server/4-4/</guid>
       <description>
 
-&lt;p&gt;This lab demonstrates how to use middleware and how to handle form submit using GET and POST. We&amp;rsquo;ll end this part with the implementation of a classic web app. (i.e. before AJAX).&lt;/p&gt;
+&lt;p&gt;This lab demonstrates how to use middleware in general. It introduces a few common middleware, and also covers a middleware that handles form submit using GET and POST.&lt;/p&gt;
 
 &lt;h2 id=&#34;middlewares&#34;&gt;Middlewares&lt;/h2&gt;
 
@@ -581,7 +597,7 @@ app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
 
 &lt;p&gt;The above notion is simplification. An Express app is in fact a sequence of middlewares and routes. An incoming request will go through the middlewares and routes in sequential order until a response is generated.&lt;/p&gt;
 
-&lt;p&gt;Middlewares are JavaScript functions in Express. Most middlewares are not included in Express module, and must be installed using &lt;code&gt;npm install&lt;/code&gt; or &lt;code&gt;package.json&lt;/code&gt;.  Install the middlewares and Express with &lt;code&gt;npm install&lt;/code&gt; before running the example app3.js, which demonstrate the
+&lt;p&gt;Middlewares are JavaScript functions in Express. Most middlewares are not included in Express module, and must be installed using &lt;code&gt;npm install&lt;/code&gt; or &lt;code&gt;package.json&lt;/code&gt; separately.  Install the middlewares and Express with &lt;code&gt;npm install&lt;/code&gt; before running the example &lt;a href=&#34;http://philiplei.github.io/chap4-4/app3.js&#34;&gt;app3.js&lt;/a&gt;, which demonstrate the
 basic structure of an Express app with middlewares.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// app3.js
@@ -693,6 +709,10 @@ app.post(&#39;/append&#39;, (req, res) =&amp;gt; {
       <description>
 
 &lt;p&gt;This lab demonstrates how to use templates in Express app.&lt;/p&gt;
+
+&lt;p&gt;modules&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll end this part with the implementation of a classic web app. (i.e. before AJAX).&lt;/p&gt;
 
 &lt;h2 id=&#34;template-engine&#34;&gt;Template engine&lt;/h2&gt;
 
