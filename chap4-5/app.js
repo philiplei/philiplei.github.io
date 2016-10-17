@@ -1,6 +1,5 @@
 // app.js: template
 var tt = require('./timetab.js');
-var timetab = tt.timetab;
 
 var express = require('express');
 var app = express();
@@ -12,29 +11,20 @@ app.use(morgan('short'));
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-  res.redirect('/year/3');
+  res.redirect('/usage.html');
 });
 
 app.get('/year/:y', (req, res) => {
   var year = parseInt(req.params.y);
-  var coursesInTheYear = timetab.courses.filter((c)=>c.year==year);
-  var context = {
-    year: year,
-    acadYear: timetab.acadYear,
-    semester: timetab.semester,
-    courses: coursesInTheYear
-  };
+  var context = tt.searchByYear(year);
   res.render('list', context);
 });
 
-app.get('/searchByRoom', (req, res) => {
-  var room = req.query.room;
-  if (room==undefined) { throw { message: 'no room defined in query' }; }
-  var x = tt.flattenLectures(timetab);
-  x.lectures = x.lectures.filter((y)=>{ return (y.room==room); });
-  console.dir(x.lectures);
-  res.status(500).end();
-  //res.render('listbyroom', x);
+app.get('/instructor/:instructor', (req, res) => {
+  var instructor = req.params.instructor;
+  if (instructor==undefined) { throw { message: 'no instructor defined in query' }; }
+  var context = tt.searchByInstructor(instructor);
+  res.render('list', context);
 });
 
 app.use(express.static(__dirname + '/public'));

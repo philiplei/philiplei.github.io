@@ -1,3 +1,5 @@
+// this variable is private for this module
+
 var timetab = {
   acadYear: '2015/16',
   semester: 1,
@@ -20,14 +22,14 @@ var timetab = {
        year: 1,
        code: 'COMP113',
        title: 'Web Technologies',
-       instructor: 'Philip Lei Iat Seng' },
+       instructor: 'Philip Lei' },
      { lectures:
         [ { room: 'A309', dow: 1, start: '09:30', end: '11:00' },
           { room: 'A317', dow: 5, start: '14:30', end: '16:00' } ],
        year: 1,
        code: 'MATH111',
        title: 'Essential Computer Mathematics',
-       instructor: 'Yung Yau Kong Edmund' },
+       instructor: 'Edmund Yung' },
      { lectures:
         [ { room: 'A309', dow: 2, start: '10:00', end: '11:30' },
           { room: 'A309', dow: 2, start: '11:30', end: '13:00' } ],
@@ -48,14 +50,14 @@ var timetab = {
        year: 2,
        code: 'COMP211',
        title: 'Database Design',
-       instructor: 'Calana Chan Mei Pou' },
+       instructor: 'Calana Chan' },
      { lectures:
         [ { room: 'A312', dow: 4, start: '14:30', end: '16:00' },
           { room: 'A202', dow: 4, start: '16:00', end: '17:30' } ],
        year: 2,
        code: 'COMP212',
        title: 'Programming Ii',
-       instructor: 'Ng Koon Kei Benjamin' },
+       instructor: 'Benjamin Ng' },
      { lectures:
         [ { room: 'A312', dow: 2, start: '10:00', end: '11:30' },
           { room: 'A312', dow: 4, start: '11:30', end: '13:00' } ],
@@ -76,7 +78,7 @@ var timetab = {
        year: 2,
        code: 'MATH211',
        title: 'Statistics I',
-       instructor: 'Yung Yau Kong Edmund' },
+       instructor: 'Edmund Yung' },
      { lectures:
         [ { room: 'A301', dow: 2, start: '14:30', end: '16:30' },
           { room: 'A301', dow: 5, start: '14:30', end: '16:30' } ],
@@ -97,7 +99,7 @@ var timetab = {
        year: 3,
        code: 'COMP312',
        title: 'Internet Programming II',
-       instructor: 'Philip Lei Iat Seng' },
+       instructor: 'Philip Lei' },
      { lectures: [ { room: 'A303', dow: 1, start: '14:30', end: '17:30' } ],
        year: 3,
        code: 'COMP313',
@@ -137,14 +139,14 @@ var timetab = {
        year: 4,
        code: 'COMP404',
        title: 'Ip Routing',
-       instructor: 'Jacky Tang Su Kit' },
+       instructor: 'Jacky Tang' },
      { lectures:
         [ { room: 'A321', dow: 4, start: '10:00', end: '11:30' },
           { room: 'A321', dow: 4, start: '11:30', end: '13:00' } ],
        year: 4,
        code: 'COMP405',
        title: 'Mobile Computing And Wireless Networks',
-       instructor: 'Ng Koon Kei Benjamin' },
+       instructor: 'Benjamin Ng' },
      { lectures:
         [ { room: 'A107', dow: 1, start: '16:00', end: '17:30' },
           { room: 'A115', dow: 5, start: '16:00', end: '17:30' } ],
@@ -158,7 +160,7 @@ var timetab = {
        year: 4,
        code: 'COMP412',
        title: 'Computer Security',
-       instructor: 'Jacky Tang Su Kit' },
+       instructor: 'Jacky Tang' },
      { lectures:
         [ { room: 'A207', dow: 2, start: '13:30', end: '14:30' },
           { room: 'A207', dow: 5, start: '17:30', end: '19:30' } ],
@@ -172,7 +174,7 @@ var timetab = {
        year: 4,
        code: 'COMP414',
        title: 'Gaming Technology II',
-       instructor: 'Philip Lei Iat Seng' } ] };
+       instructor: 'Philip Lei' } ] };
 
 
 //console.dir(timetab, { depth: 4, colors: true });
@@ -191,7 +193,7 @@ function enrichData(timetab) {
 
 timetab = enrichData(timetab);
 
-function flattenLectures (timetab) {
+function getLectures () {
   var lect = [];
   for (var c of timetab.courses) {
     for (var l of c.lectures) {
@@ -203,12 +205,29 @@ function flattenLectures (timetab) {
       lect.push(x);
     }
   }
+  return lect;
+}
+
+function searchCourseByYear (year) {
+  var courses = timetab.courses;
+  var coursesInTheYear = courses.filter((c)=>c.year==year);
   return {
     acadYear: timetab.acadYear,
     semester: timetab.semester,
-    lectures: lect
+    courses: coursesInTheYear
   };
 }
 
-exports.timetab = timetab;
-exports.flattenLectures = flattenLectures;
+function searchCourseByInstructor (instructor) {
+  var courses = timetab.courses;
+  var coursesTaughtByInstructor = courses.filter((c)=>c.instructor==instructor);
+  return {
+    acadYear: timetab.acadYear,
+    semester: timetab.semester,
+    courses: coursesTaughtByInstructor
+  };
+}
+
+
+exports.searchByYear = searchCourseByYear;
+exports.searchByInstructor = searchCourseByInstructor;

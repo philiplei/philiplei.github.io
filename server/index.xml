@@ -718,9 +718,12 @@ app.post(&#39;/append&#39;, (req, res) =&amp;gt; {
 
 &lt;p&gt;In previous lab, we embedded HTML template inside JavaScript code to render data. This approach becomes impractical when the HTML code or the data become more complicated.  A better approach is to use some template system to render data in the server side.&lt;/p&gt;
 
-&lt;p&gt;We studied how to use the Handlebars template system in &lt;a href=&#34;http://philiplei.github.io/client/3-6&#34;&gt;Lab 3-6&lt;/a&gt; for client-side. It is also possible to use the template system in an Express app with a suitable template engine. A popular module is &lt;code&gt;hbs&lt;/code&gt;.  Install in with the command &lt;code&gt;npm install hbs --save&lt;/code&gt;.  Then, in the Express app, add one line:&lt;/p&gt;
+&lt;p&gt;We studied how to use the Handlebars template system in &lt;a href=&#34;http://philiplei.github.io/client/3-6&#34;&gt;Lab 3-6&lt;/a&gt; for client-side. It is also possible to use the template system in an Express app with a suitable template engine. A popular module is &lt;code&gt;hbs&lt;/code&gt;.  Install in with the command &lt;code&gt;npm install hbs --save&lt;/code&gt; or &lt;code&gt;npm install&lt;/code&gt; with suitable entry in &lt;code&gt;package.json&lt;/code&gt;. Then, in the Express app, load the engine with the following line:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// set the template engine to handlebars
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// curiously, you don&#39;t load with ..
+// var hbs = require(&#39;hbs&#39;);
+
+// set the template engine to handlebars
 app.set(&#39;view engine&#39;, &#39;hbs&#39;);
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -740,7 +743,7 @@ app.set(&#39;view engine&#39;, &#39;hbs&#39;);
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;writing-modules&#34;&gt;Writing modules??&lt;/h2&gt;
+&lt;h2 id=&#34;file-modules&#34;&gt;File modules&lt;/h2&gt;
 
 &lt;p&gt;TODO&lt;/p&gt;
 </description>

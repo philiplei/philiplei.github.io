@@ -318,7 +318,7 @@
 <li>
 <ul>
 <li><a href="#template-engine">Template engine</a></li>
-<li><a href="#writing-modules">Writing modules??</a></li>
+<li><a href="#file-modules">File modules</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -346,9 +346,12 @@
 
 <p>In previous lab, we embedded HTML template inside JavaScript code to render data. This approach becomes impractical when the HTML code or the data become more complicated.  A better approach is to use some template system to render data in the server side.</p>
 
-<p>We studied how to use the Handlebars template system in <a href="/client/3-6">Lab 3-6</a> for client-side. It is also possible to use the template system in an Express app with a suitable template engine. A popular module is <code>hbs</code>.  Install in with the command <code>npm install hbs --save</code>.  Then, in the Express app, add one line:</p>
+<p>We studied how to use the Handlebars template system in <a href="/client/3-6">Lab 3-6</a> for client-side. It is also possible to use the template system in an Express app with a suitable template engine. A popular module is <code>hbs</code>.  Install in with the command <code>npm install hbs --save</code> or <code>npm install</code> with suitable entry in <code>package.json</code>. Then, in the Express app, load the engine with the following line:</p>
 
-<pre><code class="language-JavaScript">// set the template engine to handlebars
+<pre><code class="language-JavaScript">// curiously, you don't load with ..
+// var hbs = require('hbs');
+
+// set the template engine to handlebars
 app.set('view engine', 'hbs');
 </code></pre>
 
@@ -368,7 +371,7 @@ app.set('view engine', 'hbs');
 });
 </code></pre>
 
-<h2 id="writing-modules">Writing modules??</h2>
+<h2 id="file-modules">File modules</h2>
 
 <p>TODO</p>
 
