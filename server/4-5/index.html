@@ -373,7 +373,40 @@ app.set('view engine', 'hbs');
 
 <h2 id="file-modules">File modules</h2>
 
-<p>TODO</p>
+<p>In addition to built-in modules and NPM modules, there is a third kind in Node.js.
+A <em>file module</em> is a <code>*.js</code> file that exports some functions or objects. The module exports functions by adding them to the special object <code>exports</code>.</p>
+
+<pre><code class="language-JavaScript">// dice.js
+// private function
+function randomInteger(min,max) {
+  return Math.floor(Math.random()*(max-min+1)) + min;
+}
+
+// functions to be exported
+function rollDice() { return randomInteger(1,6); }
+
+function rollDiceN(n) {
+  var ans = [];
+  for (var k=0; k&lt;n; k++) { ans.push(randomInteger(1,6)); }
+  return ans;
+}
+
+function drawOne(items) {
+  // assume item is a non-empty array
+  var k = randomInteger(0, items.length-1);
+  return items[k];
+}
+
+exports.rollDice = rollDice;
+exports.rollDiceN = rollDiceN;
+exports.drawOne = drawOne;
+</code></pre>
+
+<pre><code class="language-JavaScript">var d = require('./dice.js');
+var letters = 'ABCDEFG'.split('');
+console.log(`Roll dice 10 times: ${d.rollDiceN(10)}`);
+console.log(`Draw a letter from 'ABCDEFG': ${d.drawOne(letters)}`);
+</code></pre>
 
 
       
