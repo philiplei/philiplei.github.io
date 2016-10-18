@@ -2,5 +2,8 @@
   "name": "comp312-examples",
   "description": "Examples for comp312",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "sqlite3": "^3.1.4"
+  }
 }

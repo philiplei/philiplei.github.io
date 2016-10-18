@@ -1,7 +1,9 @@
 var fs = require('fs');
 
 var fname = 'todo.sqlite';
+// delete the file if it exists
 if (fs.exists(fname)) { fs.unlinkSync(fname); }
+
 var sql = fs.readFileSync("todoinit.sql", "utf8");
 
 var sqlite3 = require('sqlite3').verbose();

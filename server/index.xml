@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Server-rsses on COMP312 labs</title>
-    <link>http://philiplei.github.io/server/index.xml</link>
-    <description>Recent content in Server-rsses on COMP312 labs</description>
+    <title>Servers on COMP312 labs</title>
+    <link>http://philiplei.github.io/server/</link>
+    <description>Recent content in Servers on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jun 2016 10:14:43 +0800</lastBuildDate>
@@ -480,7 +480,7 @@ request.post(options, (err, res, body) =&amp;gt; {
     </item>
     
     <item>
-      <title>4-3 Routing in web apps</title>
+      <title>4-3 Web App Routing</title>
       <link>http://philiplei.github.io/server/4-3/</link>
       <pubDate>Wed, 27 Jul 2016 10:29:04 +0800</pubDate>
       
@@ -582,7 +582,7 @@ app.get(&#39;/lecture/comp113&#39;, (req, res) =&amp;gt; {
     </item>
     
     <item>
-      <title>4-4 Middleware in web apps</title>
+      <title>4-4 Web app middlewares</title>
       <link>http://philiplei.github.io/server/4-4/</link>
       <pubDate>Tue, 09 Aug 2016 15:10:00 +0800</pubDate>
       
@@ -701,18 +701,14 @@ app.post(&#39;/append&#39;, (req, res) =&amp;gt; {
     </item>
     
     <item>
-      <title>4-5 Template in web app</title>
+      <title>4-5 Templates and file modules</title>
       <link>http://philiplei.github.io/server/4-5/</link>
       <pubDate>Wed, 10 Aug 2016 16:21:00 +0800</pubDate>
       
       <guid>http://philiplei.github.io/server/4-5/</guid>
       <description>
 
-&lt;p&gt;This lab demonstrates how to use templates in Express app.&lt;/p&gt;
-
-&lt;p&gt;modules&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ll end this part with the implementation of a classic web app. (i.e. before AJAX).&lt;/p&gt;
+&lt;p&gt;This lab demonstrates how to use templates in Express app. In addition, it shows how to break a JavaScript program into modules by using &amp;lsquo;file modules&amp;rsquo;.&lt;/p&gt;
 
 &lt;h2 id=&#34;template-engine&#34;&gt;Template engine&lt;/h2&gt;
 
@@ -748,7 +744,8 @@ app.set(&#39;view engine&#39;, &#39;hbs&#39;);
 &lt;p&gt;In addition to built-in modules and NPM modules, there is a third kind in Node.js.
 A &lt;em&gt;file module&lt;/em&gt; is a &lt;code&gt;*.js&lt;/code&gt; file that exports some functions or objects. The module exports functions by adding them to the special object &lt;code&gt;exports&lt;/code&gt;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// dice.js
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// module dice.js
+
 // private function
 function randomInteger(min,max) {
   return Math.floor(Math.random()*(max-min+1)) + min;
@@ -769,12 +766,23 @@ function drawOne(items) {
   return items[k];
 }
 
+// export functions, classes, variables by attaching them
+// as properties to the special object &#39;exports&#39;
 exports.rollDice = rollDice;
 exports.rollDiceN = rollDiceN;
 exports.drawOne = drawOne;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var d = require(&#39;./dice.js&#39;);
+&lt;p&gt;The following &amp;lsquo;main program&amp;rsquo; imports the file module and uses the exported funtions.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// main.js
+
+// import a file module by specifiying a file name with path
+// here, the module is in the same folder as main.js
+var d = require(&#39;./dice.js&#39;);
+
+// now the exported functions are accessible as
+//   d.rollDice, d.rollDiceN, and d.drawOne
 var letters = &#39;ABCDEFG&#39;.split(&#39;&#39;);
 console.log(`Roll dice 10 times: ${d.rollDiceN(10)}`);
 console.log(`Draw a letter from &#39;ABCDEFG&#39;: ${d.drawOne(letters)}`);
@@ -799,9 +807,11 @@ The whole database is stored in a file, and an application can open this databas
 
 &lt;p&gt;A popular module to access SQLite in Node is &lt;code&gt;sqlite3&lt;/code&gt;. Install this module and update &lt;code&gt;package.json&lt;/code&gt; with the command &lt;code&gt;npm install sqlite3 --save&lt;/code&gt;.  Then create and initialize the sample database &lt;code&gt;todo.sqlite&lt;/code&gt; with the program &lt;code&gt;node init.js&lt;/code&gt;. That program runs the following SQL scripts to create a table and populate it.&lt;/p&gt;
 
+&lt;p&gt;Note: an INTEGER primary key in Sqlite is auto-increment.&lt;/p&gt;
+
 &lt;pre&gt;&lt;code class=&#34;language-SQL&#34;&gt;DROP TABLE IF EXISTS `task`;
 CREATE TABLE IF NOT EXISTS `task` (
-  `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  `id` INTEGER PRIMARY KEY,
   `due` TEXT NOT NULL,
   `what` TEXT NOT NULL,
   `category` TEXT NOT NULL,
@@ -874,6 +884,27 @@ db.each(&amp;quot;SELECT due, what FROM task WHERE done=? AND category=?&amp;quo
   }
 );
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next is an example of DELETE.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// delete all completed tasks
+db.run(&#39;DELETE FROM task WHERE done=1&#39;,
+  function(err) {
+    if (err) throw err;
+    console.log(&#39;Number of rows deleted = &#39;, this.changes);
+  }
+);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>4-7 A sample web app</title>
+      <link>http://philiplei.github.io/server/4-7/</link>
+      <pubDate>Tue, 18 Oct 2016 09:11:00 +0800</pubDate>
+      
+      <guid>http://philiplei.github.io/server/4-7/</guid>
+      <description>&lt;p&gt;We&amp;rsquo;ll end this chapter with the implementation of a classic web app. The app folder is &lt;code&gt;/chap4-7&lt;/code&gt;.  Copy it to a local folder, and install dependencies with the command &lt;code&gt;npm install&lt;/code&gt;. Then run the app with the command &lt;code&gt;node app.js&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Next is an example of DELETE.&lt;/p&gt;
 

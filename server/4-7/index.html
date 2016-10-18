@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
     
-    <title>4-7 Database access</title>
+    <title>4-7 A sample web app</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/hybrid.css" rel="stylesheet">
@@ -227,7 +227,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-2/">
               <a href="/server/4-2/">
-                <span>4-2 Events     </i></span>
+                <span>4-2 NPM modules     </i></span>
               </a>
             </li>
           
@@ -235,7 +235,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-3/">
               <a href="/server/4-3/">
-                <span>4-3 Web client     </i></span>
+                <span>4-3 Web App Routing     </i></span>
               </a>
             </li>
           
@@ -243,7 +243,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-4/">
               <a href="/server/4-4/">
-                <span>4-4 Routing in web app     </i></span>
+                <span>4-4 Web app middlewares     </i></span>
               </a>
             </li>
           
@@ -251,7 +251,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-5/">
               <a href="/server/4-5/">
-                <span>4-5 Middleware in web app     </i></span>
+                <span>4-5 Templates and file modules     </i></span>
               </a>
             </li>
           
@@ -259,7 +259,7 @@
           
             <li class="dd-item " data-nav-id="/server/4-6/">
               <a href="/server/4-6/">
-                <span>4-6 Template in web app     </i></span>
+                <span>4-6 Database access     </i></span>
               </a>
             </li>
           
@@ -267,7 +267,7 @@
           
             <li class="dd-item active" data-nav-id="/server/4-7/">
               <a href="/server/4-7/">
-                <span>4-7 Database access     </i></span>
+                <span>4-7 A sample web app     </i></span>
               </a>
             </li>
           
@@ -316,22 +316,12 @@
                     
                   
                 
-                <span itemprop="title"> 4-7 Database access</span>
+                <span itemprop="title"> 4-7 A sample web app</span>
               </div>
               
                   <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#sqlite">SQLite</a></li>
-<li><a href="#retrieve-data-with-select">Retrieve data with SELECT</a></li>
-<li><a href="#placeholders">Placeholders</a></li>
-<li><a href="#insert-update-and-delete">INSERT, UPDATE and DELETE</a></li>
-</ul></li>
-</ul>
-</nav>
+
     </div>
 </div>
 
@@ -341,95 +331,10 @@
             
     	        <div id="body-inner">
                 
-                <h1>4-7 Database access</h1>
+                <h1>4-7 A sample web app</h1>
                 
 
-
-
-<p>This lab demonstrate how to use a file-based database <code>sqlite</code>.</p>
-
-<h2 id="sqlite">SQLite</h2>
-
-<p>SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine (from <a href="https://www.sqlite.org/">https://www.sqlite.org/</a>).
-The whole database is stored in a file, and an application can open this database directly without connecting to any server.</p>
-
-<p>A popular module to access SQLite in Node is <code>sqlite3</code>. Install this module and update <code>package.json</code> with the command <code>npm install sqlite3 --save</code>.  Then create and initialize the sample database <code>todo.sqlite</code> with the program <code>node init.js</code>. That program runs the following SQL scripts to create a table and populate it.</p>
-
-<pre><code class="language-SQL">DROP TABLE IF EXISTS `task`;
-CREATE TABLE IF NOT EXISTS `task` (
-  `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  `due` TEXT NOT NULL,
-  `what` TEXT NOT NULL,
-  `category` TEXT NOT NULL,
-  `done` INTEGER NOT NULL
-);
-
-INSERT INTO `task` (`due`, `what`, `category`, `done`) VALUES
-  ('2016-10-27', 'COMP312 Test 1', 'study', 0),
-  ('2016-10-28', 'Project presentation', 'study', 0),
-  ('2016-10-29', 'Buy bday gift', 'home', 1),
-  ('2016-10-31', 'Mary''s birthday', 'home', 0),
-  ('2016-10-31', 'COMP312 HW 2', 'study', 0);
-</code></pre>
-
-<h2 id="retrieve-data-with-select">Retrieve data with SELECT</h2>
-
-<p>SQLite supports both basic and advanced features of SELECT statement. The following demonstrates the steps to read data from a database.</p>
-
-<pre><code class="language-JavaScript">var sqlite3 = require('sqlite3').verbose();
-// open the database at the given file name
-var db = new sqlite3.Database(&quot;todo.sqlite&quot;);
-
-// retrieve result set 1 row at a time
-db.each(&quot;SELECT * FROM task&quot;, function(err, row) {
-  if (err) throw err;
-  console.log(row.due + &quot;: &quot; + row.what);
-});
-
-// retrieve complete result set in an array of rows
-db.all(&quot;SELECT * from task&quot;, function(err, rows) {
-  if (err) throw err;
-  console.dir(rows);
-})
-
-// close the database
-db.close();
-</code></pre>
-
-<p>After importing the module <code>sqlite3</code>, specify the file name of the database and open it with the constructor <code>sqlite3.Database()</code>.  Use the methods <code>db.each()</code> or <code>db.all()</code> to run a SELECT query. The callback to these methods have two parameters (similar to file I/O functions is <code>fs</code>). The first parameter is error. If the error is <code>null</code>, the SQL runs successfully, and the result is available in the second parameter.</p>
-
-<p>The first method <code>db.each()</code> returns the result set row by row. Each row is represented by a JavaScript object, with one property for each column.  This is suitable for reading data from a large result set.</p>
-
-<p>The second method <code>db.all()</code> returns the complete result set in an array <code>rows</code>. This is more convenient, and easier to use for relatively small result set.</p>
-
-<p>You might notice that we use the <code>function</code> expression in callback. This is required because <code>sqlite3</code> uses the <code>this</code> keyword for result in UPDATE, DELETE and INSERT. For consistency, we&rsquo;ll use <code>function</code> expression instead of arrow functions in all callbacks for our SQLite examples.</p>
-
-<h2 id="placeholders">Placeholders</h2>
-
-<p>You can supply parameters to fill in placeholders in SQL statements in <code>sqlite3</code>. This is especially useful because the module will perform suitable quoting for string. Please refer to <a href="https://github.com/mapbox/node-sqlite3/wiki/API">online reference</a> for more ways to use placeholders.</p>
-
-<pre><code class="language-JavaScript">// show due date and task description for completed tasks in the study category
-db.each(&quot;SELECT due, what FROM task WHERE done=? AND category=?&quot;,
-  [1, 'study'],
-  function(err, row) {
-    if (err) throw err;
-    console.log(row.due + &quot;: &quot; + row.what);
-  }
-);
-</code></pre>
-
-<h2 id="insert-update-and-delete">INSERT, UPDATE and DELETE</h2>
-
-<p>Use the method <code>db.run()</code> to execute INSERT, UPDATE and DELETE statements. In the callback to this method, the property <code>this.changes</code> indicates the number of rows affected by the query, and the property <code>this.lastID</code> contains the value of the last inserted row ID.  (That is the INTEGER PRIMARY KEY in our table. Refer to this for <a href="https://www.sqlite.org/autoinc.html">more info</a>.)</p>
-
-<pre><code class="language-JavaScript">db.run('INSERT INTO task (due, what, category, done) VALUES (?,?,?,?)',
-  [ '2016-11-11', 'comp312 test', 'study', 0 ],
-  function(err) {
-    if (err) throw err;
-    console.log('id of the new row = ', this.lastID);
-  }
-);
-</code></pre>
+<p>We&rsquo;ll end this chapter with the implementation of a classic web app. The app folder is <code>/chap4-7</code>.  Copy it to a local folder, and install dependencies with the command <code>npm install</code>. Then run the app with the command <code>node app.js</code>.</p>
 
 <p>Next is an example of DELETE.</p>
 

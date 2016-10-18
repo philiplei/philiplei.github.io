@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>COMP312 labs</title>
-    <link>http://philiplei.github.io/index.xml</link>
+    <link>http://philiplei.github.io/</link>
     <description>Recent content on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -768,6 +768,148 @@ console.log(sqr);
     </item>
     
     <item>
+      <title>4-2 NPM modules</title>
+      <link>http://philiplei.github.io/server/4-2/</link>
+      <pubDate>Mon, 25 Jul 2016 10:05:01 +0800</pubDate>
+      
+      <guid>http://philiplei.github.io/server/4-2/</guid>
+      <description>
+
+&lt;p&gt;In this lab, we will&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;install module with &lt;code&gt;npm install&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;demonstrate how send HTTP requests using the &lt;code&gt;request&lt;/code&gt; modules.&lt;/li&gt;
+&lt;li&gt;cover the concept of a Node app and dependency management in package.json&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;installing-modules&#34;&gt;Installing Modules&lt;/h2&gt;
+
+&lt;p&gt;Node.js has a built-in module called &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt; for making HTTP clients and servers. They are efficient implementation of the HTTP protocol. However, the modules are low-level and not convenient to use. Therefore, the Node community has developed several modules for writing HTTP clients and servers. These modules are published in &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;https://www.npmjs.com/&lt;/a&gt;. A popular choice for HTTP clients is the &lt;code&gt;request&lt;/code&gt; module. &lt;a href=&#34;https://www.npmjs.com/package/request&#34;&gt;(online reference)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;using-request-to-get-an-url&#34;&gt;Using Request to GET an URL&lt;/h2&gt;
+
+&lt;p&gt;The following example fetches the current weather report from &lt;a href=&#34;http://rss.smg.gov.mo/e_ActualWeather_rss.xml&#34;&gt;http://rss.smg.gov.mo/e_ActualWeather_rss.xml&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p301.js
+var request = require(&#39;request&#39;);
+
+var url = &#39;http://rss.smg.gov.mo/e_ActualWeather_rss.xml&#39;;
+request.get(url, (err, res, body) =&amp;gt; {
+  console.log(&#39;STATUS: &#39; + res.statusCode);
+  console.log(&#39;HEADERS: &#39;);
+  console.dir(res.headers);
+  console.log(body);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In order to run this program, you have to put the program in a project folder. Change the current directory to the project folder, then install the module with the command &lt;code&gt;npm install request&lt;/code&gt;. (Note: the installation is also done once.) You&amp;rsquo;ll see that the command &lt;code&gt;npm&lt;/code&gt; installs the module in a local folder called &lt;code&gt;node_modules&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install request
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The callback for &lt;code&gt;request.get&lt;/code&gt; takes three parameters. The first is the error object. The second is an object of class &lt;code&gt;http.IncomingMessage&lt;/code&gt; &lt;a href=&#34;https://nodejs.org/api/http.html#http_class_http_incomingmessage&#34;&gt;(online reference)&lt;/a&gt;. It represents the HTTP response message. You can use it to check HTTP status code and headers. The last parameter is the message body of the HTTP response.&lt;/p&gt;
+
+&lt;h2 id=&#34;options-object-pattern&#34;&gt;Options object pattern&lt;/h2&gt;
+
+&lt;p&gt;The next example downloads an image from IPM website and saves it.&lt;/p&gt;
+
+&lt;p&gt;The JavaScript programming language does not support named parameters.  Some APIs make use of a pattern caled &lt;strong&gt;options object pattern&lt;/strong&gt; to pass named parameters to a function. For example, if you need to give more information about the HTTP request in addition to URL, you can group these information in an option object and pass it as the first parameter of &lt;code&gt;reqeust.get()&lt;/code&gt;. Refer to online reference for &lt;a href=&#34;https://www.npmjs.com/package/request#requestoptions-callback&#34;&gt;all available options&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p302.js
+// - Download and save an image file from www.ipm.edu.mo
+
+var fs = require(&#39;fs&#39;);
+var request = require(&#39;request&#39;);
+
+// options object pattern
+// use a JS object to group named parameters
+// encoding = null is required to get binary data
+var options = {
+  url: &#39;http://www.ipm.edu.mo/cntfiles/upload/images/common/campus/campusmap_btn_chi_un_img.jpg&#39;,
+  encoding: null
+};
+
+request.get(options, (err, res, body) =&amp;gt; {
+  if (err) throw err;
+  if (res.statusCode!==200) {
+    console.log(&#39;HTTP status not ok. code = &#39;, res.statusCode);
+    return;
+  }
+  console.log(&#39;HTTP request is successful. Saving file...&#39;);
+  fs.writeFile(&#39;campus.jpg&#39;, body, (err) =&amp;gt; {
+    if (err) throw err;
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;making-post-request&#34;&gt;Making POST request&lt;/h2&gt;
+
+&lt;p&gt;In the next example, we want to download the class time table from the IPM web app at
+&lt;a href=&#34;https://wapps.ipm.edu.mo/siweb/time_prog.asp&#34;&gt;https://wapps.ipm.edu.mo/siweb/time_prog.asp&lt;/a&gt;.
+The web app uses HTTPS (instead of plain HTTP) and the POST method to send query to the server.
+The query data can be sent using the &lt;code&gt;form&lt;/code&gt; property in the &lt;code&gt;options&lt;/code&gt; object in &lt;code&gt;request.post&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p303.js
+// - saves the response of a POST request to the file timetab.html
+
+var request = require(&#39;request&#39;);
+var fs = require(&#39;fs&#39;);
+
+var form = {
+  p_escl_cod: 5, /* ... */
+  p_year_sem: &#39;2015/2016-1&#39;,
+  p_sp_year: 3,
+  p_class_code: &#39;31121&#39;
+};
+
+var options = {
+  url: &#39;https://wapps.ipm.edu.mo/siweb/time_prog.asp&#39;,
+  form: form
+};
+
+request.post(options, (err, res, body) =&amp;gt; {
+  if (err) throw err;
+  console.log(&#39;HTTP status: &#39; + res.statusCode);
+  // write the HTML response body to an HTML file
+  fs.writeFile(&#39;timetab.html&#39;, body, &#39;utf8&#39;, (err)=&amp;gt; {} );
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;node-app-and-package-json&#34;&gt;Node app and package.json&lt;/h2&gt;
+
+&lt;p&gt;As an Node application makes use of more NPM modules, it becomes difficult to install the modules manually with the command &lt;code&gt;npm install module-name&lt;/code&gt;. Instead, you can describe the dependencies of a Node app in a JSON txt file called &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can create a &lt;code&gt;package.json&lt;/code&gt; file for a Node app by running this command in the project folder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A Node app contains 1 or more JavaScript file (&lt;code&gt;*.js&lt;/code&gt;) together with modules and other assets (e.g. HTML files, images). All these file are put in a folder. A special file &lt;code&gt;package.json&lt;/code&gt; describes the app. It defines the &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt;, which identifies the app in the &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;www.npmjs.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JSON&#34;&gt;{
+  &amp;quot;name&amp;quot;: &amp;quot;comp312-examples&amp;quot;,
+  &amp;quot;description&amp;quot;: &amp;quot;Examples of web client&amp;quot;,
+  &amp;quot;version&amp;quot;: &amp;quot;0.0.1&amp;quot;,
+  &amp;quot;private&amp;quot;: true,
+  &amp;quot;dependencies&amp;quot;: {
+    &amp;quot;request&amp;quot;: &amp;quot;^2.75&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The config file above indicates that our app depends on the &amp;lsquo;request&amp;rsquo; module. It requires a version &lt;em&gt;compatible&lt;/em&gt; with 2.75.  For more detail about the version specification, refer to the &lt;a href=&#34;https://docs.npmjs.com/getting-started/semantic-versioning&#34;&gt;online document for Semver&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After listing all the required modules for the current app in &lt;code&gt;package.json&lt;/code&gt;, you can install all the dependencies with the command &lt;code&gt;npm install&lt;/code&gt;. If later, you need to add a dependency (e.g. &lt;code&gt;cheerio&lt;/code&gt; module), run the following command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install cheerio --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This command installs the latest version of specified module. In addition, it updates &lt;code&gt;package.json&lt;/code&gt; and adds the module to the dependencies.  Try the command and check the change in &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>3-2 Select and change</title>
       <link>http://philiplei.github.io/client/3-2/</link>
       <pubDate>Mon, 30 May 2016 10:36:44 +0800</pubDate>
@@ -1139,144 +1281,104 @@ console.log(search(x, 1)); // should print -1;
     </item>
     
     <item>
-      <title>4-2 NPM modules</title>
-      <link>http://philiplei.github.io/server/4-2/</link>
-      <pubDate>Mon, 25 Jul 2016 10:05:01 +0800</pubDate>
+      <title>4-3 Web App Routing</title>
+      <link>http://philiplei.github.io/server/4-3/</link>
+      <pubDate>Wed, 27 Jul 2016 10:29:04 +0800</pubDate>
       
-      <guid>http://philiplei.github.io/server/4-2/</guid>
+      <guid>http://philiplei.github.io/server/4-3/</guid>
       <description>
 
-&lt;p&gt;In this lab, we will&lt;/p&gt;
+&lt;p&gt;Express.js &lt;a href=&#34;http://expressjs.com/&#34;&gt;(official website)&lt;/a&gt; is a web framework to simplify development of Web applications. It supports:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;install module with &lt;code&gt;npm install&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;demonstrate how send HTTP requests using the &lt;code&gt;request&lt;/code&gt; modules.&lt;/li&gt;
-&lt;li&gt;cover the concept of a Node app and dependency management in package.json&lt;/li&gt;
+&lt;li&gt;Routing – different request processing based on URL patterns&lt;/li&gt;
+&lt;li&gt;Middleware – chainable processing of requests and responses&lt;/li&gt;
+&lt;li&gt;Template – generate HTML output from variables&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;installing-modules&#34;&gt;Installing Modules&lt;/h2&gt;
+&lt;p&gt;This lab covers how to define routes to capture HTTP requests for a web app / service endpoints. In addition, we&amp;rsquo;ll discuss how to generate simple HTTP responses.&lt;/p&gt;
 
-&lt;p&gt;Node.js has a built-in module called &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt; for making HTTP clients and servers. They are efficient implementation of the HTTP protocol. However, the modules are low-level and not convenient to use. Therefore, the Node community has developed several modules for writing HTTP clients and servers. These modules are published in &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;https://www.npmjs.com/&lt;/a&gt;. A popular choice for HTTP clients is the &lt;code&gt;request&lt;/code&gt; module. &lt;a href=&#34;https://www.npmjs.com/package/request&#34;&gt;(online reference)&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;routes&#34;&gt;Routes&lt;/h2&gt;
 
-&lt;h2 id=&#34;using-request-to-get-an-url&#34;&gt;Using Request to GET an URL&lt;/h2&gt;
+&lt;p&gt;This example shows the basic structure of an Express app.&lt;/p&gt;
 
-&lt;p&gt;The following example fetches the current weather report from &lt;a href=&#34;http://rss.smg.gov.mo/e_ActualWeather_rss.xml&#34;&gt;http://rss.smg.gov.mo/e_ActualWeather_rss.xml&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var express = require(&#39;express&#39;);
+// create an Express application, which will handle HTTP requests
+var app = express();
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p301.js
-var request = require(&#39;request&#39;);
+// a route in the app, which handles GET request for the path &#39;/&#39;
+app.get(&#39;/&#39;, (req, res) =&amp;gt; {
+  res.send(&#39;hello world&#39;);
+});
 
-var url = &#39;http://rss.smg.gov.mo/e_ActualWeather_rss.xml&#39;;
-request.get(url, (err, res, body) =&amp;gt; {
-  console.log(&#39;STATUS: &#39; + res.statusCode);
-  console.log(&#39;HEADERS: &#39;);
-  console.dir(res.headers);
-  console.log(body);
+// more routes ...
+
+// start listening at TCP port 3000
+app.listen(3000);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When a web app receives an HTTP request, it has to decide how to handle the request, and return the result as an HTTP response.  Such decision usually depends on the HTTP method (either GET or POST in most cases) and the path in the URL (e.g. &amp;ldquo;/about.html&amp;rdquo;).   The combination of HTTP method and the URL path is usually referred to as an &lt;strong&gt;endpoint&lt;/strong&gt; of the web app or web service.&lt;/p&gt;
+
+&lt;p&gt;In an Express app, we define a &lt;strong&gt;route&lt;/strong&gt; to describe how to process HTTP requests at an endpoint.
+The general syntax is &lt;code&gt;app.get(path, callback)&lt;/code&gt; and &lt;code&gt;app.post(path, callback)&lt;/code&gt;. The callback can take 2 or more parameters.  Often, we only use the first two parameters called &lt;code&gt;req&lt;/code&gt; and &lt;code&gt;res&lt;/code&gt;: &lt;code&gt;req&lt;/code&gt; refers to the incoming HTTP request, and &lt;code&gt;res&lt;/code&gt; is an object that is used to build the HTTP response. The following is a route for GET request at URL &amp;lsquo;/about.html&amp;rsquo;. The route returns a text response.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// app is an Express app
+
+app.get(&#39;/about.html&#39;, (req, res) =&amp;gt; {
+  // When the Express app receives a GET request
+  // for the path &#39;/about.html&#39;, it returns a text response
+  res.send(&#39;This is a simple example of route&#39;)
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;In order to run this program, you have to put the program in a project folder. Change the current directory to the project folder, then install the module with the command &lt;code&gt;npm install request&lt;/code&gt;. (Note: the installation is also done once.) You&amp;rsquo;ll see that the command &lt;code&gt;npm&lt;/code&gt; installs the module in a local folder called &lt;code&gt;node_modules&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Some web apps include parameters in the URL path. For example, the URL &lt;a href=&#34;https://www.google.com/maps/place/Macao+Polytechnic+Institute/&#34;&gt;https://www.google.com/maps/place/Macao+Polytechnic+Institute/&lt;/a&gt; refers to the place &amp;lsquo;Macao Polytechnic Institute&amp;rsquo; in the Google Maps web app.  You can easily extract these parameters in Express routes.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;npm install request
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &amp;lsquo;/lecture/comp312&amp;rsquo;, it returns a response of its lecture hours. The parameters are available in the object &lt;code&gt;req.params&lt;/code&gt;. (The full source is &lt;a href=&#34;http://philiplei.github.io/chap4-3/app1.js&#34;&gt;app1.js&lt;/a&gt;).&lt;/p&gt;
 
-&lt;p&gt;The callback for &lt;code&gt;request.get&lt;/code&gt; takes three parameters. The first is the error object. The second is an object of class &lt;code&gt;http.IncomingMessage&lt;/code&gt; &lt;a href=&#34;https://nodejs.org/api/http.html#http_class_http_incomingmessage&#34;&gt;(online reference)&lt;/a&gt;. It represents the HTTP response message. You can use it to check HTTP status code and headers. The last parameter is the message body of the HTTP response.&lt;/p&gt;
-
-&lt;h2 id=&#34;options-object-pattern&#34;&gt;Options object pattern&lt;/h2&gt;
-
-&lt;p&gt;The next example downloads an image from IPM website and saves it.&lt;/p&gt;
-
-&lt;p&gt;The JavaScript programming language does not support named parameters.  Some APIs make use of a pattern caled &lt;strong&gt;options object pattern&lt;/strong&gt; to pass named parameters to a function. For example, if you need to give more information about the HTTP request in addition to URL, you can group these information in an option object and pass it as the first parameter of &lt;code&gt;reqeust.get()&lt;/code&gt;. Refer to online reference for &lt;a href=&#34;https://www.npmjs.com/package/request#requestoptions-callback&#34;&gt;all available options&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p302.js
-// - Download and save an image file from www.ipm.edu.mo
-
-var fs = require(&#39;fs&#39;);
-var request = require(&#39;request&#39;);
-
-// options object pattern
-// use a JS object to group named parameters
-// encoding = null is required to get binary data
-var options = {
-  url: &#39;http://www.ipm.edu.mo/cntfiles/upload/images/common/campus/campusmap_btn_chi_un_img.jpg&#39;,
-  encoding: null
-};
-
-request.get(options, (err, res, body) =&amp;gt; {
-  if (err) throw err;
-  if (res.statusCode!==200) {
-    console.log(&#39;HTTP status not ok. code = &#39;, res.statusCode);
-    return;
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// retrieve the lecture time
+app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
+  // in a real app, we&#39;d query a database ...
+  if (req.params.code==&#39;comp312&#39;) {
+    res.send(&#39;Tue, Thu: 10:00-11:30am&#39;)
+  } else if (req.params.code==&#39;comp311&#39;) {
+    // ...
   }
-  console.log(&#39;HTTP request is successful. Saving file...&#39;);
-  fs.writeFile(&#39;campus.jpg&#39;, body, (err) =&amp;gt; {
-    if (err) throw err;
-  });
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above only describes the basics of routing in Express. Refer to the &lt;a href=&#34;http://expressjs.com/en/guide/routing.html&#34;&gt;online guide&lt;/a&gt; for more possibilities.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The order of routes is significant!&lt;/strong&gt;  An Express app checks the routes in the order they are defined. When a route matches the HTTP methods and URL path, the Express app executes its callback function to handle the request.  The callback usually returns an HTTP response with &lt;code&gt;res.send()&lt;/code&gt; or similar methods. When a response is returned, the Express app will &lt;strong&gt;stop&lt;/strong&gt; checking the remaining routes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;app.get(&#39;/lecture/comp312&#39;, (req, res) =&amp;gt; {
+  // special response for comp312
+  res.send(&#39;...&#39;);
+});
+
+// retrieve the lecture time
+app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
+  // search database, return a response
+  res.send(&#39;...&#39;);
+});
+
+app.get(&#39;/lecture/comp113&#39;, (req, res) =&amp;gt; {
+  // special response for comp113. But sorry, this route never runs!
+  res.send(&#39;...&#39;);
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;making-post-request&#34;&gt;Making POST request&lt;/h2&gt;
+&lt;h2 id=&#34;making-responses&#34;&gt;Making responses&lt;/h2&gt;
 
-&lt;p&gt;In the next example, we want to download the class time table from the IPM web app at
-&lt;a href=&#34;https://wapps.ipm.edu.mo/siweb/time_prog.asp&#34;&gt;https://wapps.ipm.edu.mo/siweb/time_prog.asp&lt;/a&gt;.
-The web app uses HTTPS (instead of plain HTTP) and the POST method to send query to the server.
-The query data can be sent using the &lt;code&gt;form&lt;/code&gt; property in the &lt;code&gt;options&lt;/code&gt; object in &lt;code&gt;request.post&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can use the &lt;code&gt;res&lt;/code&gt; object in the route callback to build a response. &lt;a href=&#34;http://expressjs.com/en/4x/api.html#res&#34;&gt;(online reference)&lt;/a&gt; The &lt;code&gt;res&lt;/code&gt; object has several common methods:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// p303.js
-// - saves the response of a POST request to the file timetab.html
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;res.send(body)&lt;/code&gt; sends a response with the specified body. The body is usually a string, but it can also be JavaScript objects or others.  The method determines the suitable MIME type.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;res.sendFile(path)&lt;/code&gt; returns a file as response.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;res.status(code)&lt;/code&gt; sets the HTTP response code. This function is chainable.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;res.redirect(path)&lt;/code&gt; redirects to the given URL.&lt;/li&gt;
+&lt;/ul&gt;
 
-var request = require(&#39;request&#39;);
-var fs = require(&#39;fs&#39;);
-
-var form = {
-  p_escl_cod: 5, /* ... */
-  p_year_sem: &#39;2015/2016-1&#39;,
-  p_sp_year: 3,
-  p_class_code: &#39;31121&#39;
-};
-
-var options = {
-  url: &#39;https://wapps.ipm.edu.mo/siweb/time_prog.asp&#39;,
-  form: form
-};
-
-request.post(options, (err, res, body) =&amp;gt; {
-  if (err) throw err;
-  console.log(&#39;HTTP status: &#39; + res.statusCode);
-  // write the HTML response body to an HTML file
-  fs.writeFile(&#39;timetab.html&#39;, body, &#39;utf8&#39;, (err)=&amp;gt; {} );
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;node-app-and-package-json&#34;&gt;Node app and package.json&lt;/h2&gt;
-
-&lt;p&gt;As an Node application makes use of more NPM modules, it becomes difficult to install the modules manually with the command &lt;code&gt;npm install module-name&lt;/code&gt;. Instead, you can describe the dependencies of a Node app in a JSON txt file called &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;You can create a &lt;code&gt;package.json&lt;/code&gt; file for a Node app by running this command in the project folder.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm init
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A Node app contains 1 or more JavaScript file (&lt;code&gt;*.js&lt;/code&gt;) together with modules and other assets (e.g. HTML files, images). All these file are put in a folder. A special file &lt;code&gt;package.json&lt;/code&gt; describes the app. It defines the &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;version&lt;/code&gt;, which identifies the app in the &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;www.npmjs.com&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JSON&#34;&gt;{
-  &amp;quot;name&amp;quot;: &amp;quot;comp312-examples&amp;quot;,
-  &amp;quot;description&amp;quot;: &amp;quot;Examples of web client&amp;quot;,
-  &amp;quot;version&amp;quot;: &amp;quot;0.0.1&amp;quot;,
-  &amp;quot;private&amp;quot;: true,
-  &amp;quot;dependencies&amp;quot;: {
-    &amp;quot;request&amp;quot;: &amp;quot;^2.75&amp;quot;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The config file above indicates that our app depends on the &amp;lsquo;request&amp;rsquo; module. It requires a version &lt;em&gt;compatible&lt;/em&gt; with 2.75.  For more detail about the version specification, refer to the &lt;a href=&#34;https://docs.npmjs.com/getting-started/semantic-versioning&#34;&gt;online document for Semver&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;After listing all the required modules for the current app in &lt;code&gt;package.json&lt;/code&gt;, you can install all the dependencies with the command &lt;code&gt;npm install&lt;/code&gt;. If later, you need to add a dependency (e.g. &lt;code&gt;cheerio&lt;/code&gt; module), run the following command.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm install cheerio --save
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This command installs the latest version of specified module. In addition, it updates &lt;code&gt;package.json&lt;/code&gt; and adds the module to the dependencies.  Try the command and check the change in &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Check the source code of &lt;a href=&#34;http://philiplei.github.io/chap4-3/app2.js&#34;&gt;app2.js&lt;/a&gt; for demonstration of how to build responses with these methods.&lt;/p&gt;
 </description>
     </item>
     
@@ -1518,104 +1620,121 @@ cn2en[&#39;春&#39;]  // &#39;spring&#39;
     </item>
     
     <item>
-      <title>4-3 Routing in web apps</title>
-      <link>http://philiplei.github.io/server/4-3/</link>
-      <pubDate>Wed, 27 Jul 2016 10:29:04 +0800</pubDate>
+      <title>4-4 Web app middlewares</title>
+      <link>http://philiplei.github.io/server/4-4/</link>
+      <pubDate>Tue, 09 Aug 2016 15:10:00 +0800</pubDate>
       
-      <guid>http://philiplei.github.io/server/4-3/</guid>
+      <guid>http://philiplei.github.io/server/4-4/</guid>
       <description>
 
-&lt;p&gt;Express.js &lt;a href=&#34;http://expressjs.com/&#34;&gt;(official website)&lt;/a&gt; is a web framework to simplify development of Web applications. It supports:&lt;/p&gt;
+&lt;p&gt;This lab demonstrates how to use middleware in general. It introduces a few common middleware, and also covers a middleware that handles form submit using GET and POST.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Routing – different request processing based on URL patterns&lt;/li&gt;
-&lt;li&gt;Middleware – chainable processing of requests and responses&lt;/li&gt;
-&lt;li&gt;Template – generate HTML output from variables&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&#34;middlewares&#34;&gt;Middlewares&lt;/h2&gt;
 
-&lt;p&gt;This lab covers how to define routes to capture HTTP requests for a web app / service endpoints. In addition, we&amp;rsquo;ll discuss how to generate simple HTTP responses.&lt;/p&gt;
+&lt;p&gt;In the previous lab, we saw that an Express app is essentially a sequence of routes.  When a request arrives at an Express app, the app tries to find a match of the path in the order of routes in the sequence.  If there is a match, the app assumes the callback of the route will generate a response, and skip any remaining routes.&lt;/p&gt;
 
-&lt;h2 id=&#34;routes&#34;&gt;Routes&lt;/h2&gt;
+&lt;p&gt;The above notion is simplification. An Express app is in fact a sequence of middlewares and routes. An incoming request will go through the middlewares and routes in sequential order until a response is generated.&lt;/p&gt;
 
-&lt;p&gt;This example shows the basic structure of an Express app.&lt;/p&gt;
+&lt;p&gt;Middlewares are JavaScript functions in Express. Most middlewares are not included in Express module, and must be installed using &lt;code&gt;npm install&lt;/code&gt; or &lt;code&gt;package.json&lt;/code&gt; separately.  Install the middlewares and Express with &lt;code&gt;npm install&lt;/code&gt; before running the example &lt;a href=&#34;http://philiplei.github.io/chap4-4/app3.js&#34;&gt;app3.js&lt;/a&gt;, which demonstrate the
+basic structure of an Express app with middlewares.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var express = require(&#39;express&#39;);
-// create an Express application, which will handle HTTP requests
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// app3.js
+// middlewares
+
+var express = require(&#39;express&#39;);
 var app = express();
 
-// a route in the app, which handles GET request for the path &#39;/&#39;
+// import a middleware, which logs the request
+var morgan = require(&#39;morgan&#39;);
+// install the middleware into the app
+app.use(morgan(&#39;short&#39;));
+
+// import another middleware, which secures the app with HTTP headers
+var helmet = require(&#39;helmet&#39;);
+// install the middleware
+app.use(helmet());
+
+// routes ...
+
 app.get(&#39;/&#39;, (req, res) =&amp;gt; {
-  res.send(&#39;hello world&#39;);
+  res.send(&#39;Hello world&#39;);
 });
 
-// more routes ...
+app.get(&#39;*&#39;, (req, res) =&amp;gt; {
+  res.status(404).send(&#39;No match&#39;);
+});
 
 // start listening at TCP port 3000
 app.listen(3000);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;When a web app receives an HTTP request, it has to decide how to handle the request, and return the result as an HTTP response.  Such decision usually depends on the HTTP method (either GET or POST in most cases) and the path in the URL (e.g. &amp;ldquo;/about.html&amp;rdquo;).   The combination of HTTP method and the URL path is usually referred to as an &lt;strong&gt;endpoint&lt;/strong&gt; of the web app or web service.&lt;/p&gt;
+&lt;p&gt;When the app receives an HTTP request, the first middleware &amp;lsquo;morgan&amp;rsquo; prints a log message in the console. Next, the middleware &amp;lsquo;helmet&amp;rsquo; adds some HTTP headers (e.g. &lt;code&gt;X-XSS-Protection&lt;/code&gt;) to the response to secure the app. Afterwards, the request is checked against each route in sequence.&lt;/p&gt;
 
-&lt;p&gt;In an Express app, we define a &lt;strong&gt;route&lt;/strong&gt; to describe how to process HTTP requests at an endpoint.
-The general syntax is &lt;code&gt;app.get(path, callback)&lt;/code&gt; and &lt;code&gt;app.post(path, callback)&lt;/code&gt;. The callback can take 2 or more parameters.  Often, we only use the first two parameters called &lt;code&gt;req&lt;/code&gt; and &lt;code&gt;res&lt;/code&gt;: &lt;code&gt;req&lt;/code&gt; refers to the incoming HTTP request, and &lt;code&gt;res&lt;/code&gt; is an object that is used to build the HTTP response. The following is a route for GET request at URL &amp;lsquo;/about.html&amp;rsquo;. The route returns a text response.&lt;/p&gt;
+&lt;p&gt;Most middlewares should be registered &lt;em&gt;before routes&lt;/em&gt;. If a middleware is registered after a route, and the route returns a response for a request, the middleware will NOT run for this request. As an experiment, move the middleware &amp;lsquo;morgan&amp;rsquo; between the two routes.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// app is an Express app
+&lt;h2 id=&#34;serving-static-content&#34;&gt;Serving static content&lt;/h2&gt;
 
-app.get(&#39;/about.html&#39;, (req, res) =&amp;gt; {
-  // When the Express app receives a GET request
-  // for the path &#39;/about.html&#39;, it returns a text response
-  res.send(&#39;This is a simple example of route&#39;)
+&lt;p&gt;There is a special middleware bundled with Express. This middleware &lt;code&gt;express-session&lt;/code&gt; serves static assets (typically HTML, CSS, images, and client-side library) to clients. The middleware tries to match the files in a folder against the URL path of the request. If there is a match, it returns the file, with a suitable MIME-type, in a response. This makes it simple to creates a simplistic HTTP server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// excerpt from app4.js
+var express = require(&#39;express&#39;);
+var app = express();
+
+app.use(express.static(__dirname + &#39;/public&#39;));
+
+app.listen(3000, () =&amp;gt; {
+  console.log(&#39;Server running at http://localhost:3000/&#39;);
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Some web apps include parameters in the URL path. For example, the URL &lt;a href=&#34;https://www.google.com/maps/place/Macao+Polytechnic+Institute/&#34;&gt;https://www.google.com/maps/place/Macao+Polytechnic+Institute/&lt;/a&gt; refers to the place &amp;lsquo;Macao Polytechnic Institute&amp;rsquo; in the Google Maps web app.  You can easily extract these parameters in Express routes.&lt;/p&gt;
+&lt;p&gt;In general, routes should be placed before the &amp;lsquo;static&amp;rsquo; middleware. Otherwise, a static file that matches the URL path will be handled by the &amp;lsquo;static&amp;rsquo; middleware and will not be handled by any routes after the middleware.  Try to move the specified route in &lt;a href=&#34;http://philiplei.github.io/chap4-4/app4.js&#34;&gt;app4.js&lt;/a&gt; to experiment.&lt;/p&gt;
 
-&lt;p&gt;Consider the sample code below, which shows a web app to check lecture hours. When the app receives a GET request for the path &amp;lsquo;/lecture/comp312&amp;rsquo;, it returns a response of its lecture hours. The parameters are available in the object &lt;code&gt;req.params&lt;/code&gt;. (The full source is &lt;a href=&#34;http://philiplei.github.io/chap4-3/app1.js&#34;&gt;app1.js&lt;/a&gt;).&lt;/p&gt;
+&lt;h2 id=&#34;handling-form-submit&#34;&gt;Handling form submit&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// retrieve the lecture time
-app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
-  // in a real app, we&#39;d query a database ...
-  if (req.params.code==&#39;comp312&#39;) {
-    res.send(&#39;Tue, Thu: 10:00-11:30am&#39;)
-  } else if (req.params.code==&#39;comp311&#39;) {
-    // ...
-  }
-})
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Data that are submitted using GET method are available in the object &lt;code&gt;req.query&lt;/code&gt;. In the following example, the route GET &amp;lsquo;/add&amp;rsquo; obtains the two numbers &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; from a GET request, and returns the result of &amp;lsquo;a+b&amp;rsquo; in response.&lt;/p&gt;
 
-&lt;p&gt;The above only describes the basics of routing in Express. Refer to the &lt;a href=&#34;http://expressjs.com/en/guide/routing.html&#34;&gt;online guide&lt;/a&gt; for more possibilities.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// app5.js
 
-&lt;p&gt;&lt;strong&gt;The order of routes is significant!&lt;/strong&gt;  An Express app checks the routes in the order they are defined. When a route matches the HTTP methods and URL path, the Express app executes its callback function to handle the request.  The callback usually returns an HTTP response with &lt;code&gt;res.send()&lt;/code&gt; or similar methods. When a response is returned, the Express app will &lt;strong&gt;stop&lt;/strong&gt; checking the remaining routes.&lt;/p&gt;
+var express = require(&#39;express&#39;);
+var app = express();
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;app.get(&#39;/lecture/comp312&#39;, (req, res) =&amp;gt; {
-  // special response for comp312
-  res.send(&#39;...&#39;);
+app.get(&#39;/form1.html&#39;, (req, res) =&amp;gt; {
+  res.send(`&amp;lt;!doctype html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;body&amp;gt;
+  &amp;lt;p&amp;gt;Enter 2 numbers to add:&amp;lt;/p&amp;gt;
+  &amp;lt;form action=&#39;/add&#39; method=&#39;GET&#39;&amp;gt;
+    &amp;lt;p&amp;gt;a: &amp;lt;input name=&#39;a&#39; type=&#39;text&#39;/&amp;gt;
+    &amp;lt;p&amp;gt;b: &amp;lt;input name=&#39;b&#39; type=&#39;text&#39;/&amp;gt;
+    &amp;lt;p&amp;gt;&amp;lt;button type=&#39;submit&#39;&amp;gt;Calculate a+b&amp;lt;/button&amp;gt;
+  &amp;lt;/form&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;`);
 });
 
-// retrieve the lecture time
-app.get(&#39;/lecture/:code&#39;, (req, res) =&amp;gt; {
-  // search database, return a response
-  res.send(&#39;...&#39;);
-});
-
-app.get(&#39;/lecture/comp113&#39;, (req, res) =&amp;gt; {
-  // special response for comp113. But sorry, this route never runs!
-  res.send(&#39;...&#39;);
+app.get(&#39;/add&#39;, (req, res) =&amp;gt; {
+  var a = parseFloat(req.query.a);
+  var b = parseFloat(req.query.b);
+  res.send(`${a} + ${b} = ${a+b}`);
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;making-responses&#34;&gt;Making responses&lt;/h2&gt;
+&lt;p&gt;You&amp;rsquo;ll need a middleware to extract data from the message body of a POST request. A popular choice is the middleware &lt;code&gt;body-parser&lt;/code&gt;. This middleware parses the request message body (if any) and populate the object &lt;code&gt;req.body&lt;/code&gt;. In the route in the sample code below (see full source at &lt;a href=&#34;http://philiplei.github.io/chap4-4/app6.js&#34;&gt;app6.js&lt;/a&gt;), data submitted in POST request are accessible in &lt;code&gt;req.body.mesg&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;You can use the &lt;code&gt;res&lt;/code&gt; object in the route callback to build a response. &lt;a href=&#34;http://expressjs.com/en/4x/api.html#res&#34;&gt;(online reference)&lt;/a&gt; The &lt;code&gt;res&lt;/code&gt; object has several common methods:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// excerpt from app6.js
 
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;res.send(body)&lt;/code&gt; sends a response with the specified body. The body is usually a string, but it can also be JavaScript objects or others.  The method determines the suitable MIME type.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;res.sendFile(path)&lt;/code&gt; returns a file as response.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;res.status(code)&lt;/code&gt; sets the HTTP response code. This function is chainable.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;res.redirect(path)&lt;/code&gt; redirects to the given URL.&lt;/li&gt;
-&lt;/ul&gt;
+var bodyParser = require(&#39;body-parser&#39;);
+app.use(bodyParser.urlencoded({extended:false}));
 
-&lt;p&gt;Check the source code of &lt;a href=&#34;http://philiplei.github.io/chap4-3/app2.js&#34;&gt;app2.js&lt;/a&gt; for demonstration of how to build responses with these methods.&lt;/p&gt;
+app.post(&#39;/append&#39;, (req, res) =&amp;gt; {
+  var mesg = req.body.mesg;
+  fs.appendFile(__dirname+&#39;/log.txt&#39;, mesg+&#39;\n&#39;, &#39;utf8&#39;, (err)=&amp;gt;{
+    if (err) throw err;
+    res.send(`Append successful.
+      You can &amp;lt;a href=&amp;quot;/getlog&amp;quot;&amp;gt;retrieve the log&amp;lt;/a&amp;gt; now.`);
+  })
+});
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -2010,125 +2129,6 @@ f = e.filter(s =&amp;gt; s.length&amp;lt;5);
 &lt;li&gt;Calculate the average test mark&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>4-4 Middleware in web apps</title>
-      <link>http://philiplei.github.io/server/4-4/</link>
-      <pubDate>Tue, 09 Aug 2016 15:10:00 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/server/4-4/</guid>
-      <description>
-
-&lt;p&gt;This lab demonstrates how to use middleware in general. It introduces a few common middleware, and also covers a middleware that handles form submit using GET and POST.&lt;/p&gt;
-
-&lt;h2 id=&#34;middlewares&#34;&gt;Middlewares&lt;/h2&gt;
-
-&lt;p&gt;In the previous lab, we saw that an Express app is essentially a sequence of routes.  When a request arrives at an Express app, the app tries to find a match of the path in the order of routes in the sequence.  If there is a match, the app assumes the callback of the route will generate a response, and skip any remaining routes.&lt;/p&gt;
-
-&lt;p&gt;The above notion is simplification. An Express app is in fact a sequence of middlewares and routes. An incoming request will go through the middlewares and routes in sequential order until a response is generated.&lt;/p&gt;
-
-&lt;p&gt;Middlewares are JavaScript functions in Express. Most middlewares are not included in Express module, and must be installed using &lt;code&gt;npm install&lt;/code&gt; or &lt;code&gt;package.json&lt;/code&gt; separately.  Install the middlewares and Express with &lt;code&gt;npm install&lt;/code&gt; before running the example &lt;a href=&#34;http://philiplei.github.io/chap4-4/app3.js&#34;&gt;app3.js&lt;/a&gt;, which demonstrate the
-basic structure of an Express app with middlewares.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// app3.js
-// middlewares
-
-var express = require(&#39;express&#39;);
-var app = express();
-
-// import a middleware, which logs the request
-var morgan = require(&#39;morgan&#39;);
-// install the middleware into the app
-app.use(morgan(&#39;short&#39;));
-
-// import another middleware, which secures the app with HTTP headers
-var helmet = require(&#39;helmet&#39;);
-// install the middleware
-app.use(helmet());
-
-// routes ...
-
-app.get(&#39;/&#39;, (req, res) =&amp;gt; {
-  res.send(&#39;Hello world&#39;);
-});
-
-app.get(&#39;*&#39;, (req, res) =&amp;gt; {
-  res.status(404).send(&#39;No match&#39;);
-});
-
-// start listening at TCP port 3000
-app.listen(3000);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When the app receives an HTTP request, the first middleware &amp;lsquo;morgan&amp;rsquo; prints a log message in the console. Next, the middleware &amp;lsquo;helmet&amp;rsquo; adds some HTTP headers (e.g. &lt;code&gt;X-XSS-Protection&lt;/code&gt;) to the response to secure the app. Afterwards, the request is checked against each route in sequence.&lt;/p&gt;
-
-&lt;p&gt;Most middlewares should be registered &lt;em&gt;before routes&lt;/em&gt;. If a middleware is registered after a route, and the route returns a response for a request, the middleware will NOT run for this request. As an experiment, move the middleware &amp;lsquo;morgan&amp;rsquo; between the two routes.&lt;/p&gt;
-
-&lt;h2 id=&#34;serving-static-content&#34;&gt;Serving static content&lt;/h2&gt;
-
-&lt;p&gt;There is a special middleware bundled with Express. This middleware &lt;code&gt;express-session&lt;/code&gt; serves static assets (typically HTML, CSS, images, and client-side library) to clients. The middleware tries to match the files in a folder against the URL path of the request. If there is a match, it returns the file, with a suitable MIME-type, in a response. This makes it simple to creates a simplistic HTTP server.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// excerpt from app4.js
-var express = require(&#39;express&#39;);
-var app = express();
-
-app.use(express.static(__dirname + &#39;/public&#39;));
-
-app.listen(3000, () =&amp;gt; {
-  console.log(&#39;Server running at http://localhost:3000/&#39;);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In general, routes should be placed before the &amp;lsquo;static&amp;rsquo; middleware. Otherwise, a static file that matches the URL path will be handled by the &amp;lsquo;static&amp;rsquo; middleware and will not be handled by any routes after the middleware.  Try to move the specified route in &lt;a href=&#34;http://philiplei.github.io/chap4-4/app4.js&#34;&gt;app4.js&lt;/a&gt; to experiment.&lt;/p&gt;
-
-&lt;h2 id=&#34;handling-form-submit&#34;&gt;Handling form submit&lt;/h2&gt;
-
-&lt;p&gt;Data that are submitted using GET method are available in the object &lt;code&gt;req.query&lt;/code&gt;. In the following example, the route GET &amp;lsquo;/add&amp;rsquo; obtains the two numbers &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; from a GET request, and returns the result of &amp;lsquo;a+b&amp;rsquo; in response.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// app5.js
-
-var express = require(&#39;express&#39;);
-var app = express();
-
-app.get(&#39;/form1.html&#39;, (req, res) =&amp;gt; {
-  res.send(`&amp;lt;!doctype html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;body&amp;gt;
-  &amp;lt;p&amp;gt;Enter 2 numbers to add:&amp;lt;/p&amp;gt;
-  &amp;lt;form action=&#39;/add&#39; method=&#39;GET&#39;&amp;gt;
-    &amp;lt;p&amp;gt;a: &amp;lt;input name=&#39;a&#39; type=&#39;text&#39;/&amp;gt;
-    &amp;lt;p&amp;gt;b: &amp;lt;input name=&#39;b&#39; type=&#39;text&#39;/&amp;gt;
-    &amp;lt;p&amp;gt;&amp;lt;button type=&#39;submit&#39;&amp;gt;Calculate a+b&amp;lt;/button&amp;gt;
-  &amp;lt;/form&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;`);
-});
-
-app.get(&#39;/add&#39;, (req, res) =&amp;gt; {
-  var a = parseFloat(req.query.a);
-  var b = parseFloat(req.query.b);
-  res.send(`${a} + ${b} = ${a+b}`);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You&amp;rsquo;ll need a middleware to extract data from the message body of a POST request. A popular choice is the middleware &lt;code&gt;body-parser&lt;/code&gt;. This middleware parses the request message body (if any) and populate the object &lt;code&gt;req.body&lt;/code&gt;. In the route in the sample code below (see full source at &lt;a href=&#34;http://philiplei.github.io/chap4-4/app6.js&#34;&gt;app6.js&lt;/a&gt;), data submitted in POST request are accessible in &lt;code&gt;req.body.mesg&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// excerpt from app6.js
-
-var bodyParser = require(&#39;body-parser&#39;);
-app.use(bodyParser.urlencoded({extended:false}));
-
-app.post(&#39;/append&#39;, (req, res) =&amp;gt; {
-  var mesg = req.body.mesg;
-  fs.appendFile(__dirname+&#39;/log.txt&#39;, mesg+&#39;\n&#39;, &#39;utf8&#39;, (err)=&amp;gt;{
-    if (err) throw err;
-    res.send(`Append successful.
-      You can &amp;lt;a href=&amp;quot;/getlog&amp;quot;&amp;gt;retrieve the log&amp;lt;/a&amp;gt; now.`);
-  })
-});
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

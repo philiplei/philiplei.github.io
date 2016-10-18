@@ -1,4 +1,5 @@
-// dice.js
+// module dice.js
+
 // private function
 function randomInteger(min,max) {
   return Math.floor(Math.random()*(max-min+1)) + min;
@@ -19,6 +20,8 @@ function drawOne(items) {
   return items[k];
 }
 
+// export functions, classes, variables by attaching them
+// as properties to the special object 'exports'
 exports.rollDice = rollDice;
 exports.rollDiceN = rollDiceN;
 exports.drawOne = drawOne;

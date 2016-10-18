@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Client-rsses on COMP312 labs</title>
-    <link>http://philiplei.github.io/client/index.xml</link>
-    <description>Recent content in Client-rsses on COMP312 labs</description>
+    <title>Clients on COMP312 labs</title>
+    <link>http://philiplei.github.io/client/</link>
+    <description>Recent content in Clients on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 May 2016 10:14:43 +0800</lastBuildDate>
