@@ -480,7 +480,7 @@ request.post(options, (err, res, body) =&amp;gt; {
     </item>
     
     <item>
-      <title>4-3 Web App Routing</title>
+      <title>4-3 Web app routing</title>
       <link>http://philiplei.github.io/server/4-3/</link>
       <pubDate>Wed, 27 Jul 2016 10:29:04 +0800</pubDate>
       
@@ -906,16 +906,7 @@ db.run(&#39;DELETE FROM task WHERE done=1&#39;,
       <guid>http://philiplei.github.io/server/4-7/</guid>
       <description>&lt;p&gt;We&amp;rsquo;ll end this chapter with the implementation of a classic web app. The app folder is &lt;code&gt;/chap4-7&lt;/code&gt;.  Copy it to a local folder, and install dependencies with the command &lt;code&gt;npm install&lt;/code&gt;. Then run the app with the command &lt;code&gt;node app.js&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Next is an example of DELETE.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// delete all completed tasks
-db.run(&#39;DELETE FROM task WHERE done=1&#39;,
-  function(err) {
-    if (err) throw err;
-    console.log(&#39;Number of rows deleted = &#39;, this.changes);
-  }
-);
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

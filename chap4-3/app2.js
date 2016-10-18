@@ -24,12 +24,12 @@ app.get('/tiger.png', (req, res) => {
 });
 
 // redirect to IPM site
-app.get('/ipm', function(req, res) {
+app.get('/ipm', (req, res) => {
 	res.redirect('http://www.ipm.edu.mo/');
 });
 
 // matches any URL
-app.get('*', function(req, res) {
+app.get('*', (req, res) => {
 	res.status(404).send(`<!doctype html>
 <html>
 <body>

@@ -24,10 +24,10 @@ app.get('/lecture/:code', (req, res) => {
   if (req.params.code=='comp312') {
     res.send('comp312 Tue, Thu: 10:00-11:30am')
   } else if (req.params.code=='comp311') {
-		res.send('comp311 Mon, Fri: 11:30-01:00pm')
+	res.send('comp311 Mon, Fri: 11:30-01:00pm')
   } else {
-		res.status(404).send('Lecture no found')
-	}
+	res.status(404).send('Lecture no found')
+  }
 });
 
 app.listen(3000, () => {
