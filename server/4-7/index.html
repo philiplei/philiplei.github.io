@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.16" />
+    <meta name="generator" content="Hugo 0.17-DEV" />
     <meta name="description" content="">
 
 
@@ -336,7 +336,24 @@
 
 <p>We&rsquo;ll end this chapter with the implementation of a classic web app. The app folder is <code>/chap4-7</code>.  Copy it to a local folder, and install dependencies with the command <code>npm install</code>. Then run the app with the command <code>node app.js</code>.</p>
 
-<pre><code class="language-JavaScript"></code></pre>
+<p>The app has the following <em>views</em>. These views contain buttons or links to initiate actions through controllers. E.g. the view <code>GET /list.html</code> has a link to delete the todos.</p>
+
+<ul>
+<li><code>GET /list.html</code> - lists all tasks in a <code>&lt;table&gt;</code></li>
+<li><code>GET /edit.html?id=x</code> - a web form to show existing value of the todo with id ‘x’,
+and the user can edit the value</li>
+<li><code>GET /add.html</code> - a web form to input a new todo</li>
+</ul>
+
+<p>The sample app has the following <em>controllers</em>.</p>
+
+<ul>
+<li><code>POST /add</code> - adds a new todo. Request body contains urlencoded name-value pairs of the new todo</li>
+<li><code>POST /update</code> - updates an existing todo. Request body contains urlencoded name-value pairs of the updated todo</li>
+<li><code>POST /delete</code> - deletes an existing todo. Request body contains the id of the todo to delete. Urlencoded.</li>
+</ul>
+
+<p>The app implements Post-Redirect-Get patterns. The controllers above redirects to the view <code>GET /list.html</code>.</p>
 
 
       

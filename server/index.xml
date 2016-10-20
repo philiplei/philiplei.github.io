@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Servers on COMP312 labs</title>
-    <link>http://philiplei.github.io/server/</link>
-    <description>Recent content in Servers on COMP312 labs</description>
+    <title>Server-rsses on COMP312 labs</title>
+    <link>http://philiplei.github.io/server/index.xml</link>
+    <description>Recent content in Server-rsses on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jun 2016 10:14:43 +0800</lastBuildDate>
@@ -901,12 +901,29 @@ db.run(&#39;DELETE FROM task WHERE done=1&#39;,
     <item>
       <title>4-7 A sample web app</title>
       <link>http://philiplei.github.io/server/4-7/</link>
-      <pubDate>Tue, 18 Oct 2016 09:11:00 +0800</pubDate>
+      <pubDate>Thu, 20 Oct 2016 08:25:00 +0800</pubDate>
       
       <guid>http://philiplei.github.io/server/4-7/</guid>
       <description>&lt;p&gt;We&amp;rsquo;ll end this chapter with the implementation of a classic web app. The app folder is &lt;code&gt;/chap4-7&lt;/code&gt;.  Copy it to a local folder, and install dependencies with the command &lt;code&gt;npm install&lt;/code&gt;. Then run the app with the command &lt;code&gt;node app.js&lt;/code&gt;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The app has the following &lt;em&gt;views&lt;/em&gt;. These views contain buttons or links to initiate actions through controllers. E.g. the view &lt;code&gt;GET /list.html&lt;/code&gt; has a link to delete the todos.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;GET /list.html&lt;/code&gt; - lists all tasks in a &lt;code&gt;&amp;lt;table&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GET /edit.html?id=x&lt;/code&gt; - a web form to show existing value of the todo with id ‘x’,
+and the user can edit the value&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GET /add.html&lt;/code&gt; - a web form to input a new todo&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The sample app has the following &lt;em&gt;controllers&lt;/em&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;POST /add&lt;/code&gt; - adds a new todo. Request body contains urlencoded name-value pairs of the new todo&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;POST /update&lt;/code&gt; - updates an existing todo. Request body contains urlencoded name-value pairs of the updated todo&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;POST /delete&lt;/code&gt; - deletes an existing todo. Request body contains the id of the todo to delete. Urlencoded.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The app implements Post-Redirect-Get patterns. The controllers above redirects to the view &lt;code&gt;GET /list.html&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     

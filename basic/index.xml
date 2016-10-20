@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Basics on COMP312 labs</title>
-    <link>http://philiplei.github.io/basic/</link>
-    <description>Recent content in Basics on COMP312 labs</description>
+    <title>Basic-rsses on COMP312 labs</title>
+    <link>http://philiplei.github.io/basic/index.xml</link>
+    <description>Recent content in Basic-rsses on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 26 May 2016 10:14:43 +0800</lastBuildDate>

@@ -37,6 +37,9 @@ app.post('/add', (req, res) => {
   db.run("INSERT INTO task (due, what, category, done) VALUES (?,?,?,?)",
     [obj.due, obj.what, obj.category, obj.done],
     function(err) {
+      // throw exception and quit the app server ...
+      // it would be better to return an error message to user,
+      // write a log for error, and continue the server if possible
       if (err) throw err;
       //res.send('Add operation is successful. POST content '+JSON.stringify(req.body));
       res.redirect('/list.html');
@@ -57,7 +60,7 @@ app.get('/edit.html', (req, res) => {
 app.post('/update', (req, res) => {
   if (req.body.id===undefined || req.body.due===undefined
          || req.body.what===undefined) {
-    res.send('Cannot update. '+'content '+JSON.stringify(req.body), 500);
+    res.status(500).send('Cannot update. content: '+JSON.stringify(req.body));
     return;
   }
   var obj = { due: req.body.due, what: req.body.what };
@@ -89,13 +92,14 @@ app.use(express.static(__dirname + '/public'));
 var server = app.listen(3000, () => {
   console.log('Server running at http://localhost:3000/');
 });
+
 /*
 process.on('SIGINT', () => {
-  console.log('Server closing ...');
+  console.log('Server to close, wait for existing connections to close first')
   server.close();
-}); */
-/*
+});
+
 server.on('close', ()=>{
-  console.log('closing...')
+  console.log('Server closed')
 });
 */
