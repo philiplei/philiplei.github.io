@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.17-DEV" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -306,7 +306,7 @@
           
             <li class="dd-item " data-nav-id="/webapi/5-2/">
               <a href="/webapi/5-2/">
-                <span>5-2 Implmenting a Web API     </i></span>
+                <span>5-2 Implementing a Web API     </i></span>
               </a>
             </li>
           
@@ -428,7 +428,7 @@
 </tbody>
 </table>
 
-<p>In jQuery, the basic method to send Ajax call with GET method is <code>$.get(url, callback)</code>. The callback runs if the browser receives a successful response (with status code 200 or other 2xx values). If the response message body has <code>Content-type: application/json</code>, jQuery will convert the message body into JavaScript.</p>
+<p>In jQuery, the basic method to send Ajax call with GET method is <code>$.get(url, callback)</code>. The callback runs if the browser receives a successful response (with status code 200 or other 2xx values). If the response message body has <code>Content-type: application/json</code>, jQuery will convert the message body into a JavaScript object.</p>
 
 <pre><code class="language-JavaScript">$.get('/getTodo', (data) =&gt; {
   // data is JavaScript object derived from the JSON payload in response
@@ -449,9 +449,10 @@
 <p>One of the endpoint that use POST method in our sample app is <code>/addTodo</code>. The following code sends a POST request to the URL. The request body encodes the properties <code>due</code>, <code>what</code>, <code>category</code> in urlencoded format.</p>
 
 <pre><code class="language-JavaScript">$.post('/addTodo',
-   { due: '2016-12-13', what: 'comp312 final exam', category: 'study' },
+   { due: '2016-12-12', what: 'comp312 final exam', category: 'study' },
    (data) =&gt; {
-      // data is undefined because the endpoint returns 204 response with empty body
+      // data is JavaScript object derived from the JSON payload in response
+      // in this case, it is something like { id: 123 }
       console.dir(data);
    }
 );
@@ -483,13 +484,14 @@ $.post('/updateTodo',
 
 <h2 id="advanced-topics">Advanced topics</h2>
 
-<p>The following examples are some advanced example. They are included for your information only, and not used in our sample app.</p>
+<p>The following advanced examples are included for your information only. They are  not used in our sample app.</p>
 
 <h3 id="error-handling">Error handling</h3>
 
 <p>The callback as the second parameter of <code>$.get()</code> and <code>$.post()</code> only runs when the browser receives a successful response (usually with status code 200 or 204). To handle a response with error status code (e.g. 400, 404 and 500), you can register a callback with the method <code>.fail()</code>.</p>
 
 <pre><code class="language-JavaScript">$.post('/updateTodo',
+  // 'xxid' should be 'id'
   { xxid: 3, what: 'Woow!' },
   (data) =&gt; {
     console.log('success');  // data is undefined for 204 responses
@@ -501,7 +503,7 @@ $.post('/updateTodo',
 })
 </code></pre>
 
-<p>The first parameter of the callback is a <a href="http://api.jquery.com/jQuery.ajax/#jqXHR">jqXHR</a> object, which provides various information about the Ajax call.</p>
+<p>The first parameter of the callback is a <a href="http://api.jquery.com/jQuery.ajax/#jqXHR">jqXHR</a> object, which provides various information about the Ajax call. In case of <code>400</code> response, <code>jqXHR.status = 400</code> and <code>jqXHR.statusText = 'Bad Request'</code>.</p>
 
 <h3 id="sending-json-data-in-post-request">Sending JSON data in POST request</h3>
 
@@ -520,12 +522,13 @@ Content-length: 80
 
 <pre><code class="language-JavaScript">var query = { due: '2017-01-06', task: 'Makeup exam',
      category: 'study', done: 0 };
+
 $.ajax('/addTodo', {
    type: 'POST',
    data: JSON.stringify(query),
    contentType: 'application/json',
    success: (data) =&gt; {
-      // data is undefined for 204 response
+      // ...
    }
 });
 </code></pre>

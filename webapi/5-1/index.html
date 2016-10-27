@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.17-DEV" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
@@ -306,7 +306,7 @@
           
             <li class="dd-item " data-nav-id="/webapi/5-2/">
               <a href="/webapi/5-2/">
-                <span>5-2 Implmenting a Web API     </i></span>
+                <span>5-2 Implementing a Web API     </i></span>
               </a>
             </li>
           
@@ -403,7 +403,7 @@
 
 <h2 id="rpc-style-web-api">RPC-style Web API</h2>
 
-<p>A common design style of Web API is RPC-style (Remote Procedure Call). A RPC-style Web API consists of one URL for each <em>function or operation</em>.  These URLs represent an action and are usually named with a verb.  The following table shows the five endpoints in the Web API of our sample web app. They implement four common operations on data known as CRUD (Create, Retrieve, Update an Delete).</p>
+<p>A common design style of Web API is RPC-style (Remote Procedure Call). A RPC-style Web API allocates <em>one URL for each function or operation</em>.  These URLs represent an action and are usually named with a verb.  The following table shows the five endpoints in the Web API of our sample web app. They implement four common operations on data known as CRUD (Create, Retrieve, Update and Delete).</p>
 
 <table>
 <thead>
@@ -418,7 +418,7 @@
 <tr>
 <td>GET</td>
 <td>/getTodo</td>
-<td>List all tasks in json format</td>
+<td>List all tasks</td>
 </tr>
 
 <tr>
@@ -430,29 +430,38 @@
 <tr>
 <td>POST</td>
 <td>/addTodo</td>
-<td>Add a task. Message body contains properties of the new task, except id.</td>
+<td>Add a new task</td>
 </tr>
 
 <tr>
 <td>POST</td>
 <td>/updateTodo</td>
-<td>Update a task. Message body contains id of the updated todo and properties with new value</td>
+<td>Update a task</td>
 </tr>
 
 <tr>
 <td>POST</td>
 <td>/deleteTodo</td>
-<td>Delete the task with id included in message body</td>
+<td>Delete a task</td>
 </tr>
 </tbody>
 </table>
 
-<p>An endpoint uses <strong>GET</strong> if the operation is <em>read-only</em>. If the operation may causes some action or side-effect on the server side, the endpoint must use <strong>POST</strong>.</p>
+<p>Each endpoint is identified with the HTTP method (either GET or POST) and an URL.
+An endpoint uses <strong>GET</strong> if the operation is <em>read-only</em>. If the operation may causes some action or side-effect on the server side, the endpoint must use <strong>POST</strong>.</p>
+
+<p>In addition, when you design a Web API, you also need to specify:</p>
+
+<ul>
+<li>input parameters, whether they are urlencoded or json format, and whether to pass them in URL query or request message body</li>
+<li>results, whether they are urlencoded or json format</li>
+<li>error reporting</li>
+</ul>
 
 <h3 id="read-only-operations">Read-only operations</h3>
 
 <p>A Web API may return result in either key-value pairs (www-url-encoded) or JSON.
-Key-value pairs are only suitable for simple values. JSON is more flexible in representing data structure.</p>
+Key-value pairs are only suitable for simple values. JSON is more flexible in representing data structure. Therefore, we&rsquo;ll use JSON payload as result in responses of Web API.</p>
 
 <p>Sample request message to retrieve tasks:</p>
 
@@ -478,7 +487,7 @@ Content-length: 234
 }
 </code></pre>
 
-<p>A client may pass simple parameters to the Web API using <em>query</em>. This is similar to web search form submission. Below is a request for the endpoint <code>GET /searchTodo</code> to search tasks that are due before a given date. Note that HTTP GET requests <em>cannot</em> contain a body, so any data must be passed in the URL.</p>
+<p>A client may pass simple parameters to the Web API using <em>query</em>. This is similar to web search form submission. Below is a request for the endpoint <code>GET /searchTodo</code> to search tasks that are due before a given date. Note that HTTP GET requests <em>cannot</em> contain a body, so any data must be passed in the URL. We cannot use JSON format for input parameters to GET endpoints.</p>
 
 <pre><code class="language-HTTP">GET /searchTodo?before=2016-12-01 HTTP/1.1
 Host: example.com
@@ -488,29 +497,29 @@ Host: example.com
 <p>Some designers use HTTP status codes like <code>400</code> and <code>500</code> to report runtime error. Other designers choose to use the JSON payload to report error. What is important is that you should be consistent.</p>
 
 <pre><code class="language-HTTP">HTTP/1.1 400 Bad Request
-Content-type: text/plain
-Content-length: 26
+Content-type: application/json
+Content-length: 62
 
-Date format error in input
+{ &quot;errorCode&quot;: 1001, &quot;message&quot;: &quot;Date format error in input&quot; }
 </code></pre>
 
 <pre><code class="language-HTTP">HTTP/1.1 500 Internal Server Error
 Content-type: application/json
 Content-length: 63
 
-{ &quot;errorCode&quot;: 1001, &quot;message&quot;: &quot;Database connection problem&quot; }
+{ &quot;errorCode&quot;: 1002, &quot;message&quot;: &quot;Database connection problem&quot; }
 </code></pre>
 
 <pre><code class="language-HTTP">HTTP/1.1 200 Ok
 Content-type: application/json
 Content-length: 63
 
-{ &quot;errorCode&quot;: 1001, &quot;message&quot;: &quot;Database connection problem&quot; }
+{ &quot;errorCode&quot;: 1002, &quot;message&quot;: &quot;Database connection problem&quot; }
 </code></pre>
 
 <h3 id="update-operations">Update operations</h3>
 
-<p>The endpoints of any update operations <strong>must use POST</strong>. It informs that any web proxy servers between the client and the Web API should not cache response of the operations. In update operations, there are usually some input parameters. You can pass simple parameters as key-value pairs (i.e. <code>www-form-urlencoded</code>) in the request message body. Key-value pairs are usually easier to work with in client-side programming (e.g. using jQuery).</p>
+<p>The endpoints of any update operations <strong>must use POST</strong>. It informs that any web proxy servers between the client and the Web API should not cache responses of the operations. In update operations, there are usually some input parameters. You can pass simple parameters as key-value pairs (i.e. <code>www-form-urlencoded</code>) in the request message body.</p>
 
 <p>Below is a sample request for adding a task in the Web API.</p>
 
@@ -533,22 +542,33 @@ Content-length: 80
   &quot;category&quot;: &quot;study&quot;, &quot;done&quot;: 0 }
 </code></pre>
 
-<p>A <em>successful response</em> from an update operation may not contain any payload. You can use HTTP status code <code>204</code> in this case.</p>
+<p>Urlencoded payload is usually preferred for Web APIs in an Ajax web app. First, the input parameters are usually simple. Furthermore, it is easier to work with
+key-value pairs in client-side programming (e.g. using jQuery).</p>
+
+<p>A <em>successful response</em> from an update operation may provide some info about the update operation, e.g. the id of the newly created record.</p>
+
+<pre><code class="language-HTTP">HTTP/1.1 200 Ok
+Content-type: application/json
+Content-length: 11
+
+{ &quot;id&quot;:21 }
+</code></pre>
+
+<p>For the delete operation, the client must specify the <code>id</code> of the task to delete.</p>
+
+<pre><code class="language-HTTP">POST /deleteTodo HTTP/1.1
+Host: example.com
+Content-type: application/x-www-form-urlencoded
+Content-length: 4
+
+id=3
+</code></pre>
+
+<p>A <em>successful</em> response for the delete operation may have empty body. In this case, use HTTP status code <code>204</code> instead of <code>200</code>.</p>
 
 <pre><code class="language-HTTP">HTTP/1.1 204 No content
 
 </code></pre>
-
-<p>On the other hand, if the Web API provides some info about the update operation, include the data as urlencoded or JSON payload.</p>
-
-<pre><code class="language-HTTP">HTTP/1.1 200 Ok
-Content-type: application/x-www-form-urlencoded
-Content-length: 4
-
-id=21
-</code></pre>
-
-<p>We finish this section with sample HTTP request and response messages for the remaining two endpoints of the Web API, namely <code>POST /updateTodo</code> and <code>POST /deleteTodo</code>.</p>
 
 <p>In the updateTodo operation, the client must specify the <code>id</code> of the task to change, and then list the properties and their new values.</p>
 
@@ -559,25 +579,6 @@ Content-length: 53
 
 id=21&amp;what=Makeup+exam+COMP312
 </code></pre>
-
-<p>For the delete operation, the client must specify the <code>id</code> of the task to delete. The input parameter is very simple. There are two common designs for this case.</p>
-
-<pre><code class="language-HTTP">POST /deleteTodo HTTP/1.1
-Host: example.com
-Content-type: application/x-www-form-urlencoded
-Content-length: 4
-
-id=3
-</code></pre>
-
-<p>or</p>
-
-<pre><code class="language-HTTP">POST /deleteTodo?id=3 HTTP/1.1
-Host: example.com
-
-</code></pre>
-
-<p>We&rsquo;ll use the first design in our sample app for consistency. I.e. we also pass input parameters to POST endpoints in request message body.</p>
 
 <h2 id="exercise">Exercise</h2>
 

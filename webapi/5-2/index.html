@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.17-DEV" />
+    <meta name="generator" content="Hugo 0.16" />
     <meta name="description" content="">
 
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
     
-    <title>5-2 Implmenting a Web API</title>
+    <title>5-2 Implementing a Web API</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/hybrid.css" rel="stylesheet">
@@ -306,7 +306,7 @@
           
             <li class="dd-item active" data-nav-id="/webapi/5-2/">
               <a href="/webapi/5-2/">
-                <span>5-2 Implmenting a Web API     </i></span>
+                <span>5-2 Implementing a Web API     </i></span>
               </a>
             </li>
           
@@ -365,7 +365,7 @@
                     
                   
                 
-                <span itemprop="title"> 5-2 Implmenting a Web API</span>
+                <span itemprop="title"> 5-2 Implementing a Web API</span>
               </div>
               
                   <div class="progress">
@@ -389,7 +389,7 @@
             
     	        <div id="body-inner">
                 
-                <h1>5-2 Implmenting a Web API</h1>
+                <h1>5-2 Implementing a Web API</h1>
                 
 
 
@@ -398,7 +398,7 @@
 
 <h2 id="endpoints-with-get-method">Endpoints with GET method</h2>
 
-<p>This section implements two endpoints of a Web API. Both are read-only and use GET method. They return the result in JSON data format.</p>
+<p>This section discusses the implementation of two endpoints of the Web API. Both are read-only and use GET method. They return the result in JSON data format.</p>
 
 <table>
 <thead>
@@ -440,7 +440,9 @@ Below is a simple implementation of retrieval of all tasks from a database.  You
 });
 </code></pre>
 
-<p>A web API endpoint with GET method may take input parameters in query part of the URL (e.g. <code>/searchTodo?before=2016-10-27</code>)  These parameters are available in <code>req.query</code> in an Express route. Below is an example of another endpoint for searching tasks due before a given date. This example also demonstrates sanity check of input parameters and error reporting. When the app server receives a request for <code>/searchTodo?before=2016-10-27</code>, it sets the query object <code>req.query = { before: '2016-10-27' }</code>.</p>
+<p>A Web API endpoint with GET method may take input parameters in query part of the URL. These parameters are available in <code>req.query</code> in an Express route. When the app server receives a request for <code>/searchTodo?before=2016-10-27</code>, it sets the query object <code>req.query = { before: '2016-10-27' }</code>.</p>
+
+<p>The following code implements this endpoint. This example also demonstrates sanity check of input parameters and error reporting.</p>
 
 <pre><code class="language-JavaScript">app.get('/searchTodo', (req, res) =&gt; {
   // parameter sanity check
@@ -501,7 +503,7 @@ They take input parameters in <em>urlencoded</em> format which are enclosed in t
 </table>
 
 <p>The route below is a simple implementation of adding a new task to the database.
-The route obtains the input parameters from <code>req.body</code> instead of <code>req.query</code> because the input parameters are passed in the request message body. After error checking of input parameters, the code executes <code>INSERT</code> SQL statement to add a task to the database. It returns HTTP status code <code>204</code> if <code>INSERT</code> is successful. Otherwise, it returns status code <code>500</code>.</p>
+The route obtains the input parameters from <code>req.body</code> instead of <code>req.query</code> because the input parameters are passed in the request message body. After error checking of input parameters, the code executes <code>INSERT</code> SQL statement to add a task to the database. It returns HTTP status code <code>200</code> and the id of the new record in JSON format if <code>INSERT</code> is successful. Otherwise, it returns status code <code>500</code>.</p>
 
 <pre><code class="language-JavaScript">app.post('/addTodo', (req, res) =&gt; {
   // obtain the input parameters from the message body
@@ -524,11 +526,16 @@ The route obtains the input parameters from <code>req.body</code> instead of <co
       if (err) {
         res.status(500).send(err);
       } else {
-        res.status(204).end();
+        res.send({ id: this.lastId });
       }
   });
 
 });
+</code></pre>
+
+<p>An endpoint may have no data to return in case of successful operation. For example, the endpoint <code>POST /deleteTodo</code> returns a response with empty body in successful deletion. In this case, the route can return a <code>204</code> response with the following line.</p>
+
+<pre><code class="language-JavaScript">res.status(204).end();
 </code></pre>
 
 <p>Refer to the <a href="/chap5-app/app.js">source code</a> of <code>app.js</code> in the Ajax web app for the implementation of the endpoints <code>POST /updateTodo</code> and <code>POST /deleteTodo</code>.</p>

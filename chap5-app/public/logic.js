@@ -8,6 +8,7 @@ function addTodoAction() {
     done: $('#addform input[name=done]').val()
   };
   $.post('/addTodo', query, (data) => {
+    // data.id is the id of the newly created record
     // insert successful, go to refresh the task table
     $.magnificPopup.close();
     refreshTable();

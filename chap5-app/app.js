@@ -76,7 +76,7 @@ app.post('/addTodo', (req, res) => {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.status(204).end();
+        res.send({ id: this.lastID });
       }
   });
 

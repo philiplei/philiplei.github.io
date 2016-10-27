@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Webapi-rsses on COMP312 labs</title>
-    <link>http://philiplei.github.io/webapi/index.xml</link>
-    <description>Recent content in Webapi-rsses on COMP312 labs</description>
+    <title>Webapis on COMP312 labs</title>
+    <link>http://philiplei.github.io/webapi/</link>
+    <description>Recent content in Webapis on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 26 Oct 2016 08:36:00 +0800</lastBuildDate>
@@ -58,7 +58,7 @@
 
 &lt;h2 id=&#34;rpc-style-web-api&#34;&gt;RPC-style Web API&lt;/h2&gt;
 
-&lt;p&gt;A common design style of Web API is RPC-style (Remote Procedure Call). A RPC-style Web API consists of one URL for each &lt;em&gt;function or operation&lt;/em&gt;.  These URLs represent an action and are usually named with a verb.  The following table shows the five endpoints in the Web API of our sample web app. They implement four common operations on data known as CRUD (Create, Retrieve, Update an Delete).&lt;/p&gt;
+&lt;p&gt;A common design style of Web API is RPC-style (Remote Procedure Call). A RPC-style Web API allocates &lt;em&gt;one URL for each function or operation&lt;/em&gt;.  These URLs represent an action and are usually named with a verb.  The following table shows the five endpoints in the Web API of our sample web app. They implement four common operations on data known as CRUD (Create, Retrieve, Update and Delete).&lt;/p&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
@@ -73,7 +73,7 @@
 &lt;tr&gt;
 &lt;td&gt;GET&lt;/td&gt;
 &lt;td&gt;/getTodo&lt;/td&gt;
-&lt;td&gt;List all tasks in json format&lt;/td&gt;
+&lt;td&gt;List all tasks&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -85,29 +85,38 @@
 &lt;tr&gt;
 &lt;td&gt;POST&lt;/td&gt;
 &lt;td&gt;/addTodo&lt;/td&gt;
-&lt;td&gt;Add a task. Message body contains properties of the new task, except id.&lt;/td&gt;
+&lt;td&gt;Add a new task&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;POST&lt;/td&gt;
 &lt;td&gt;/updateTodo&lt;/td&gt;
-&lt;td&gt;Update a task. Message body contains id of the updated todo and properties with new value&lt;/td&gt;
+&lt;td&gt;Update a task&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;POST&lt;/td&gt;
 &lt;td&gt;/deleteTodo&lt;/td&gt;
-&lt;td&gt;Delete the task with id included in message body&lt;/td&gt;
+&lt;td&gt;Delete a task&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;An endpoint uses &lt;strong&gt;GET&lt;/strong&gt; if the operation is &lt;em&gt;read-only&lt;/em&gt;. If the operation may causes some action or side-effect on the server side, the endpoint must use &lt;strong&gt;POST&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Each endpoint is identified with the HTTP method (either GET or POST) and an URL.
+An endpoint uses &lt;strong&gt;GET&lt;/strong&gt; if the operation is &lt;em&gt;read-only&lt;/em&gt;. If the operation may causes some action or side-effect on the server side, the endpoint must use &lt;strong&gt;POST&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In addition, when you design a Web API, you also need to specify:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;input parameters, whether they are urlencoded or json format, and whether to pass them in URL query or request message body&lt;/li&gt;
+&lt;li&gt;results, whether they are urlencoded or json format&lt;/li&gt;
+&lt;li&gt;error reporting&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&#34;read-only-operations&#34;&gt;Read-only operations&lt;/h3&gt;
 
 &lt;p&gt;A Web API may return result in either key-value pairs (www-url-encoded) or JSON.
-Key-value pairs are only suitable for simple values. JSON is more flexible in representing data structure.&lt;/p&gt;
+Key-value pairs are only suitable for simple values. JSON is more flexible in representing data structure. Therefore, we&amp;rsquo;ll use JSON payload as result in responses of Web API.&lt;/p&gt;
 
 &lt;p&gt;Sample request message to retrieve tasks:&lt;/p&gt;
 
@@ -133,7 +142,7 @@ Content-length: 234
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;A client may pass simple parameters to the Web API using &lt;em&gt;query&lt;/em&gt;. This is similar to web search form submission. Below is a request for the endpoint &lt;code&gt;GET /searchTodo&lt;/code&gt; to search tasks that are due before a given date. Note that HTTP GET requests &lt;em&gt;cannot&lt;/em&gt; contain a body, so any data must be passed in the URL.&lt;/p&gt;
+&lt;p&gt;A client may pass simple parameters to the Web API using &lt;em&gt;query&lt;/em&gt;. This is similar to web search form submission. Below is a request for the endpoint &lt;code&gt;GET /searchTodo&lt;/code&gt; to search tasks that are due before a given date. Note that HTTP GET requests &lt;em&gt;cannot&lt;/em&gt; contain a body, so any data must be passed in the URL. We cannot use JSON format for input parameters to GET endpoints.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;GET /searchTodo?before=2016-12-01 HTTP/1.1
 Host: example.com
@@ -143,29 +152,29 @@ Host: example.com
 &lt;p&gt;Some designers use HTTP status codes like &lt;code&gt;400&lt;/code&gt; and &lt;code&gt;500&lt;/code&gt; to report runtime error. Other designers choose to use the JSON payload to report error. What is important is that you should be consistent.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 400 Bad Request
-Content-type: text/plain
-Content-length: 26
+Content-type: application/json
+Content-length: 62
 
-Date format error in input
+{ &amp;quot;errorCode&amp;quot;: 1001, &amp;quot;message&amp;quot;: &amp;quot;Date format error in input&amp;quot; }
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 500 Internal Server Error
 Content-type: application/json
 Content-length: 63
 
-{ &amp;quot;errorCode&amp;quot;: 1001, &amp;quot;message&amp;quot;: &amp;quot;Database connection problem&amp;quot; }
+{ &amp;quot;errorCode&amp;quot;: 1002, &amp;quot;message&amp;quot;: &amp;quot;Database connection problem&amp;quot; }
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 200 Ok
 Content-type: application/json
 Content-length: 63
 
-{ &amp;quot;errorCode&amp;quot;: 1001, &amp;quot;message&amp;quot;: &amp;quot;Database connection problem&amp;quot; }
+{ &amp;quot;errorCode&amp;quot;: 1002, &amp;quot;message&amp;quot;: &amp;quot;Database connection problem&amp;quot; }
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;update-operations&#34;&gt;Update operations&lt;/h3&gt;
 
-&lt;p&gt;The endpoints of any update operations &lt;strong&gt;must use POST&lt;/strong&gt;. It informs that any web proxy servers between the client and the Web API should not cache response of the operations. In update operations, there are usually some input parameters. You can pass simple parameters as key-value pairs (i.e. &lt;code&gt;www-form-urlencoded&lt;/code&gt;) in the request message body. Key-value pairs are usually easier to work with in client-side programming (e.g. using jQuery).&lt;/p&gt;
+&lt;p&gt;The endpoints of any update operations &lt;strong&gt;must use POST&lt;/strong&gt;. It informs that any web proxy servers between the client and the Web API should not cache responses of the operations. In update operations, there are usually some input parameters. You can pass simple parameters as key-value pairs (i.e. &lt;code&gt;www-form-urlencoded&lt;/code&gt;) in the request message body.&lt;/p&gt;
 
 &lt;p&gt;Below is a sample request for adding a task in the Web API.&lt;/p&gt;
 
@@ -188,22 +197,33 @@ Content-length: 80
   &amp;quot;category&amp;quot;: &amp;quot;study&amp;quot;, &amp;quot;done&amp;quot;: 0 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;A &lt;em&gt;successful response&lt;/em&gt; from an update operation may not contain any payload. You can use HTTP status code &lt;code&gt;204&lt;/code&gt; in this case.&lt;/p&gt;
+&lt;p&gt;Urlencoded payload is usually preferred for Web APIs in an Ajax web app. First, the input parameters are usually simple. Furthermore, it is easier to work with
+key-value pairs in client-side programming (e.g. using jQuery).&lt;/p&gt;
+
+&lt;p&gt;A &lt;em&gt;successful response&lt;/em&gt; from an update operation may provide some info about the update operation, e.g. the id of the newly created record.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 200 Ok
+Content-type: application/json
+Content-length: 11
+
+{ &amp;quot;id&amp;quot;:21 }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For the delete operation, the client must specify the &lt;code&gt;id&lt;/code&gt; of the task to delete.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;POST /deleteTodo HTTP/1.1
+Host: example.com
+Content-type: application/x-www-form-urlencoded
+Content-length: 4
+
+id=3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A &lt;em&gt;successful&lt;/em&gt; response for the delete operation may have empty body. In this case, use HTTP status code &lt;code&gt;204&lt;/code&gt; instead of &lt;code&gt;200&lt;/code&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 204 No content
 
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;On the other hand, if the Web API provides some info about the update operation, include the data as urlencoded or JSON payload.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 200 Ok
-Content-type: application/x-www-form-urlencoded
-Content-length: 4
-
-id=21
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We finish this section with sample HTTP request and response messages for the remaining two endpoints of the Web API, namely &lt;code&gt;POST /updateTodo&lt;/code&gt; and &lt;code&gt;POST /deleteTodo&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;In the updateTodo operation, the client must specify the &lt;code&gt;id&lt;/code&gt; of the task to change, and then list the properties and their new values.&lt;/p&gt;
 
@@ -214,25 +234,6 @@ Content-length: 53
 
 id=21&amp;amp;what=Makeup+exam+COMP312
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For the delete operation, the client must specify the &lt;code&gt;id&lt;/code&gt; of the task to delete. The input parameter is very simple. There are two common designs for this case.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;POST /deleteTodo HTTP/1.1
-Host: example.com
-Content-type: application/x-www-form-urlencoded
-Content-length: 4
-
-id=3
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;or&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;POST /deleteTodo?id=3 HTTP/1.1
-Host: example.com
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We&amp;rsquo;ll use the first design in our sample app for consistency. I.e. we also pass input parameters to POST endpoints in request message body.&lt;/p&gt;
 
 &lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
 
@@ -247,7 +248,7 @@ Host: example.com
     </item>
     
     <item>
-      <title>5-2 Implmenting a Web API</title>
+      <title>5-2 Implementing a Web API</title>
       <link>http://philiplei.github.io/webapi/5-2/</link>
       <pubDate>Wed, 26 Oct 2016 13:43:00 +0800</pubDate>
       
@@ -258,7 +259,7 @@ Host: example.com
 
 &lt;h2 id=&#34;endpoints-with-get-method&#34;&gt;Endpoints with GET method&lt;/h2&gt;
 
-&lt;p&gt;This section implements two endpoints of a Web API. Both are read-only and use GET method. They return the result in JSON data format.&lt;/p&gt;
+&lt;p&gt;This section discusses the implementation of two endpoints of the Web API. Both are read-only and use GET method. They return the result in JSON data format.&lt;/p&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
@@ -300,7 +301,9 @@ Below is a simple implementation of retrieval of all tasks from a database.  You
 });
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;A web API endpoint with GET method may take input parameters in query part of the URL (e.g. &lt;code&gt;/searchTodo?before=2016-10-27&lt;/code&gt;)  These parameters are available in &lt;code&gt;req.query&lt;/code&gt; in an Express route. Below is an example of another endpoint for searching tasks due before a given date. This example also demonstrates sanity check of input parameters and error reporting. When the app server receives a request for &lt;code&gt;/searchTodo?before=2016-10-27&lt;/code&gt;, it sets the query object &lt;code&gt;req.query = { before: &#39;2016-10-27&#39; }&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;A Web API endpoint with GET method may take input parameters in query part of the URL. These parameters are available in &lt;code&gt;req.query&lt;/code&gt; in an Express route. When the app server receives a request for &lt;code&gt;/searchTodo?before=2016-10-27&lt;/code&gt;, it sets the query object &lt;code&gt;req.query = { before: &#39;2016-10-27&#39; }&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The following code implements this endpoint. This example also demonstrates sanity check of input parameters and error reporting.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;app.get(&#39;/searchTodo&#39;, (req, res) =&amp;gt; {
   // parameter sanity check
@@ -361,7 +364,7 @@ They take input parameters in &lt;em&gt;urlencoded&lt;/em&gt; format which are e
 &lt;/table&gt;
 
 &lt;p&gt;The route below is a simple implementation of adding a new task to the database.
-The route obtains the input parameters from &lt;code&gt;req.body&lt;/code&gt; instead of &lt;code&gt;req.query&lt;/code&gt; because the input parameters are passed in the request message body. After error checking of input parameters, the code executes &lt;code&gt;INSERT&lt;/code&gt; SQL statement to add a task to the database. It returns HTTP status code &lt;code&gt;204&lt;/code&gt; if &lt;code&gt;INSERT&lt;/code&gt; is successful. Otherwise, it returns status code &lt;code&gt;500&lt;/code&gt;.&lt;/p&gt;
+The route obtains the input parameters from &lt;code&gt;req.body&lt;/code&gt; instead of &lt;code&gt;req.query&lt;/code&gt; because the input parameters are passed in the request message body. After error checking of input parameters, the code executes &lt;code&gt;INSERT&lt;/code&gt; SQL statement to add a task to the database. It returns HTTP status code &lt;code&gt;200&lt;/code&gt; and the id of the new record in JSON format if &lt;code&gt;INSERT&lt;/code&gt; is successful. Otherwise, it returns status code &lt;code&gt;500&lt;/code&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;app.post(&#39;/addTodo&#39;, (req, res) =&amp;gt; {
   // obtain the input parameters from the message body
@@ -384,11 +387,16 @@ The route obtains the input parameters from &lt;code&gt;req.body&lt;/code&gt; in
       if (err) {
         res.status(500).send(err);
       } else {
-        res.status(204).end();
+        res.send({ id: this.lastId });
       }
   });
 
 });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;An endpoint may have no data to return in case of successful operation. For example, the endpoint &lt;code&gt;POST /deleteTodo&lt;/code&gt; returns a response with empty body in successful deletion. In this case, the route can return a &lt;code&gt;204&lt;/code&gt; response with the following line.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;res.status(204).end();
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Refer to the &lt;a href=&#34;http://philiplei.github.io/chap5-app/app.js&#34;&gt;source code&lt;/a&gt; of &lt;code&gt;app.js&lt;/code&gt; in the Ajax web app for the implementation of the endpoints &lt;code&gt;POST /updateTodo&lt;/code&gt; and &lt;code&gt;POST /deleteTodo&lt;/code&gt;.&lt;/p&gt;
@@ -437,7 +445,7 @@ The route obtains the input parameters from &lt;code&gt;req.body&lt;/code&gt; in
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;In jQuery, the basic method to send Ajax call with GET method is &lt;code&gt;$.get(url, callback)&lt;/code&gt;. The callback runs if the browser receives a successful response (with status code 200 or other 2xx values). If the response message body has &lt;code&gt;Content-type: application/json&lt;/code&gt;, jQuery will convert the message body into JavaScript.&lt;/p&gt;
+&lt;p&gt;In jQuery, the basic method to send Ajax call with GET method is &lt;code&gt;$.get(url, callback)&lt;/code&gt;. The callback runs if the browser receives a successful response (with status code 200 or other 2xx values). If the response message body has &lt;code&gt;Content-type: application/json&lt;/code&gt;, jQuery will convert the message body into a JavaScript object.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;$.get(&#39;/getTodo&#39;, (data) =&amp;gt; {
   // data is JavaScript object derived from the JSON payload in response
@@ -458,9 +466,10 @@ The route obtains the input parameters from &lt;code&gt;req.body&lt;/code&gt; in
 &lt;p&gt;One of the endpoint that use POST method in our sample app is &lt;code&gt;/addTodo&lt;/code&gt;. The following code sends a POST request to the URL. The request body encodes the properties &lt;code&gt;due&lt;/code&gt;, &lt;code&gt;what&lt;/code&gt;, &lt;code&gt;category&lt;/code&gt; in urlencoded format.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;$.post(&#39;/addTodo&#39;,
-   { due: &#39;2016-12-13&#39;, what: &#39;comp312 final exam&#39;, category: &#39;study&#39; },
+   { due: &#39;2016-12-12&#39;, what: &#39;comp312 final exam&#39;, category: &#39;study&#39; },
    (data) =&amp;gt; {
-      // data is undefined because the endpoint returns 204 response with empty body
+      // data is JavaScript object derived from the JSON payload in response
+      // in this case, it is something like { id: 123 }
       console.dir(data);
    }
 );
@@ -492,13 +501,14 @@ $.post(&#39;/updateTodo&#39;,
 
 &lt;h2 id=&#34;advanced-topics&#34;&gt;Advanced topics&lt;/h2&gt;
 
-&lt;p&gt;The following examples are some advanced example. They are included for your information only, and not used in our sample app.&lt;/p&gt;
+&lt;p&gt;The following advanced examples are included for your information only. They are  not used in our sample app.&lt;/p&gt;
 
 &lt;h3 id=&#34;error-handling&#34;&gt;Error handling&lt;/h3&gt;
 
 &lt;p&gt;The callback as the second parameter of &lt;code&gt;$.get()&lt;/code&gt; and &lt;code&gt;$.post()&lt;/code&gt; only runs when the browser receives a successful response (usually with status code 200 or 204). To handle a response with error status code (e.g. 400, 404 and 500), you can register a callback with the method &lt;code&gt;.fail()&lt;/code&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;$.post(&#39;/updateTodo&#39;,
+  // &#39;xxid&#39; should be &#39;id&#39;
   { xxid: 3, what: &#39;Woow!&#39; },
   (data) =&amp;gt; {
     console.log(&#39;success&#39;);  // data is undefined for 204 responses
@@ -510,7 +520,7 @@ $.post(&#39;/updateTodo&#39;,
 })
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The first parameter of the callback is a &lt;a href=&#34;http://api.jquery.com/jQuery.ajax/#jqXHR&#34;&gt;jqXHR&lt;/a&gt; object, which provides various information about the Ajax call.&lt;/p&gt;
+&lt;p&gt;The first parameter of the callback is a &lt;a href=&#34;http://api.jquery.com/jQuery.ajax/#jqXHR&#34;&gt;jqXHR&lt;/a&gt; object, which provides various information about the Ajax call. In case of &lt;code&gt;400&lt;/code&gt; response, &lt;code&gt;jqXHR.status = 400&lt;/code&gt; and &lt;code&gt;jqXHR.statusText = &#39;Bad Request&#39;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;sending-json-data-in-post-request&#34;&gt;Sending JSON data in POST request&lt;/h3&gt;
 
@@ -529,12 +539,13 @@ Content-length: 80
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var query = { due: &#39;2017-01-06&#39;, task: &#39;Makeup exam&#39;,
      category: &#39;study&#39;, done: 0 };
+
 $.ajax(&#39;/addTodo&#39;, {
    type: &#39;POST&#39;,
    data: JSON.stringify(query),
    contentType: &#39;application/json&#39;,
    success: (data) =&amp;gt; {
-      // data is undefined for 204 response
+      // ...
    }
 });
 &lt;/code&gt;&lt;/pre&gt;
