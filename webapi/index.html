@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
     
-    <title>3-4 Handling events</title>
+    <title>Ajax and Web API</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/hybrid.css" rel="stylesheet">
@@ -23,7 +23,7 @@
     
 
   </head>
-  <body class="" data-url="/client/3-4/">
+  <body class="" data-url="/webapi/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -114,7 +114,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/client/">
+      <li class="dd-item  " data-nav-id="/client/">
         <a href="/client/">
           <span>
             
@@ -154,7 +154,7 @@
           
           
           
-            <li class="dd-item active" data-nav-id="/client/3-4/">
+            <li class="dd-item " data-nav-id="/client/3-4/">
               <a href="/client/3-4/">
                 <span>3-4 Handling events     </i></span>
               </a>
@@ -280,7 +280,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/webapi/">
+      <li class="dd-item active parent" data-nav-id="/webapi/">
         <a href="/webapi/">
           <span>
             
@@ -347,202 +347,61 @@
                       </a>
                   </span>
                 
-                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
                 
                 
                 
+                  
+                
+                  
                 
                   
                 
                   
                     
                     
-                <a href="/client/" itemprop="url"><span itemprop="title">Client-side programming</span></a> <i class="fa fa-angle-right"></i>
-                    
                   
                 
-                  
-                
-                  
-                
-                <span itemprop="title"> 3-4 Handling events</span>
+                <span itemprop="title"> Ajax and Web API</span>
               </div>
-              
-                  <div class="progress">
-    <div class="wrapper">
-<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#basic-event-handling">Basic event handling</a></li>
-<li><a href="#mouse-event-and-event-object">Mouse event and event object</a></li>
-<li><a href="#attach-data-to-dom-elements">Attach data to DOM elements</a></li>
-<li><a href="#pass-data-to-event-handler">Pass data to event handler</a></li>
-</ul></li>
-</ul>
-</nav>
-    </div>
-</div>
-
               
 
             </div>
             
+              <div id="chapter">
+            
     	        <div id="body-inner">
                 
-                <h1>3-4 Handling events</h1>
-                
 
 
 
-<p>This lab covers how to handle events with event handlers using the jQuery library.</p>
+<h2 id="ajax-and-web-api">Ajax and Web API</h2>
 
-<h2 id="basic-event-handling">Basic event handling</h2>
+<p>This chapter goes through the design, implementation and consumption of a Web API. We conclude this chapter with an Ajax web app.</p>
 
-<p>The basic function to register event handler is <code>$().on(events, handler)</code> <a href="https://api.jquery.com/on/">(online reference)</a> This method attaches the event handler (a function) to handle the events (e.g &lsquo;click&rsquo;, &lsquo;mousemove&rsquo;) to each element in the jQuery collection. There are different ways to attach event handlers, as shown below.</p>
+<ul>
+<li>5-1. Desigining a Web API
 
-<pre><code class="language-JavaScript">$('button#btn1').on('click', function(event) {
-  // do something when the button with id=btn1 is clicked
-});
+<ul>
+<li>URL as operation, GET vs. POST</li>
+<li>input parameters as urlencoded or JSON</li>
+<li>output payload as urlencoded or JSON</li>
+<li>RPC-style</li>
+</ul></li>
+<li>5-2. Implementing a Web API
 
-// rewrite using arrow function
-$('button#btn1').on('click', (event) =&gt; {
-  // ...
-});
+<ul>
+<li>Implement using Express</li>
+</ul></li>
+<li>5-3. A client that consumes the Web API
 
-// shorthand notation is available for common events
-// .. but this is not recommended in this course
-$('button#btn1').click( (event) =&gt; {
-  // ...
-});
-
-// your can also define a standalone function and later use it as event handler
-function btn1_click (event) {
-  // ...
-}
-
-$('button#btn1').on('click', btn1_click);
-</code></pre>
-
-<h2 id="mouse-event-and-event-object">Mouse event and event object</h2>
-
-<p>The browser triggers several mouse-related events when the user interacts with the HTML elements using the mouse. Some common mouse events are: <code>click</code>, <code>mouseenter</code>, <code>mouseleave</code> and <code>mousemove</code>.
-The first parameter of an event handler is an <a href="http://api.jquery.com/category/events/event-object/">Event object</a>.
-This object includes several useful properties and methods. One of them is the property <code>.target</code>, which is the HTML element that triggers the event. The event type is given in the property <code>.type</code>. The location of the mouse cursor is given in the properties <code>.pageX</code> and <code>.pageY</code>. The following code shows how to handle common mouse events. Check a live demo at <a href="/chap3/p321.html">p321.html</a>.</p>
-
-<pre><code class="language-JavaScript">// this event handler handles 'click'
-$('#box1').on('click', event =&gt; {
-  var x = event.pageX;
-  var y = event.pageY;
-  console.log(`click: #box1 at (${x}, ${y})`);
-});
-
-// this event handler handles both 'mouseenter' and 'mouseleave'
-$('#box1').on('mouseenter mouseleave', event =&gt; {
-  var x = event.pageX;
-  var y = event.pageY;
-  var type = event.type;
-  console.log(`${type}: #box1 at (${x}, ${y})`);
-});
-</code></pre>
-
-<p>In some cases, we need to handle the same event type triggered at many elements. For example,
-in <a href="/chap3/p322.html">p322.html</a>, when the user clicks at one of the 12 images, it slowly fades out (to 0.1 opacity), and then slowly fades in (back to 1.0 opacity). (This example uses the jQuery method <code>$().fadeTo</code> <a href="http://api.jquery.com/fadeTo/">(online reference)</a> to do the animation.)
-This animation is done with one event handler, which needs to find out which image is clicked via <code>event.target</code>. Notice that in order to apply jQuery methods, we have to wrap the DOM element <code>event.target</code> as a jQuery collection <code>$(event.target)</code>.</p>
-
-<pre><code class="language-JavaScript">// register the same event handler function to the 12 images
-$('#zodiac img').on('click', event =&gt; {
-  // use event.target to find out which image is clicked
-  // do something on it, e.g. $(event.target).fadeOut();
-  $(event.target).fadeTo(1000, 0.1,
-    ()=&gt;{$(event.target).fadeTo(3000, 1)});
-});
-</code></pre>
-
-<h2 id="attach-data-to-dom-elements">Attach data to DOM elements</h2>
-
-<p>Although we can distinguish which element triggers an event with <code>event.target</code>, usually it is more convenient if we can pass some application specific information (e.g. record id) to the event handler.  There are several ways to do this.  The code below are extracted from a simple Tic-tac-toe example <a href="/chap3/p323.html">p323.html</a> and uses the jQuery method <code>$().data(name, value)</code> to attach any JavaScript data to a DOM element.</p>
-
-<pre><code class="language-HTML">&lt;!-- the tic tac toe game board is a 3x3 table --&gt;
-&lt;table id='tic' class='gameboard'&gt;
-  &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;script&gt;
-// attach pos=0, pos=1, .., pos=8 to the 9 table cells
-for (var k=0; k&lt;$('#tic td').length; k++) {
-  $('#tic td').eq(k).data('pos', k);
-}
-&lt;/script&gt;
-</code></pre>
-
-<p>Then in the event handler for click on the table cells <code>#tic td</code>, we use <code>$(event.target).data('pos')</code> to retrieve the position (0-8) of the clicked cell, and update the game board data structure accordingly.</p>
-
-<pre><code class="language-JavaScript">var board = [9,9,9,9,9,9,9,9,9];
-// player 'circle' plays first
-var current = 0;
-
-$('#tic td').on('click', (event)=&gt;{
-  // which position (0-8) is clicked?
-  var pos = $(event.target).data('pos');
-  // update the game board data structure
-  board[pos] = current;
-  // display a circle or cross
-  var image = (current==0) ? 'url(circle.png)' : 'url(cross.png)';
-  $(event.target).css('background-image', image);
-  // change player
-  current = (current==0) ? 1 : 0;
-});
-</code></pre>
-
-<h2 id="pass-data-to-event-handler">Pass data to event handler</h2>
-
-<p>Instead of attaching JavaScript data to DOM element, you can specify these JavaScript data when registering an event handler. When the event triggers, jQuery passes the specified data to the event handler as <code>event.data</code>.</p>
-
-<p>This example (<a href="/chap3/p324.html">p324.html</a>) specifies a row number while it registers an event handler for each row in an existing HTML table.</p>
-
-<pre><code class="language-JavaScript">var $rows = $('#marks tbody tr');
-for (var i=0; i&lt;$rows.length; i++) {
-  $rows.eq(i).on('click', { rowNum: i }, (event) =&gt; {
-    var n = event.data.rowNum;
-    console.log(`click row ${n}`);
-  });
-}
-</code></pre>
-
-<p>The following code snippet comes from the example (<a href="/chap3/p325.html">p325.html</a>). This app populates an HTML table with some mark data for students in runtime, and attaches the event handler to a newly created table row for each student.</p>
-
-<pre><code class="language-JavaScript">function populateMarkTable (marks) {
-  $('#marks caption').text(`Marks for ${marks.courseCode}`);
-  $('#marks tbody').empty();
-  for (var k=0; k&lt;marks.student.length; k++) {
-    var stud=marks.student[k];
-    // calculate course, exam and final for this student
-    // ...
-    var $r = $('&lt;tr&gt;');
-    $('&lt;td&gt;').text(stud.name).appendTo($r);
-    $('&lt;td&gt;').text(course).appendTo($r);
-    $('&lt;td&gt;').text(exam).appendTo($r);
-    $('&lt;td&gt;').text(final).appendTo($r);
-    // pass a student record to the event handler
-    // when the mouse is over this row
-    $r.on('mouseenter', { stud: stud }, displayMarkDetail);
-    $('#marks tbody').append($r);
-  }
-}
-
-function displayMarkDetail (event) {
-  // event.data.stud is the record of the student selected
-  var stud = event.data.stud;
-  var s = `The student ${stud.name} has got ${stud.hw.join(',')} in assignments, `;
-  s += `${stud.test.join(',')} in tests, and ${stud.exam} in exam.`;
-  $('p#detail').text(s);
-}
-</code></pre>
+<ul>
+<li>Implement using jQuery</li>
+</ul></li>
+</ul>
 
 
+      
+        </div> 
       
       </div>
     </div>

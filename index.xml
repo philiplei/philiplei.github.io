@@ -6,8 +6,43 @@
     <description>Recent content on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Jun 2016 10:14:43 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 26 Oct 2016 08:36:00 +0800</lastBuildDate>
     <atom:link href="http://philiplei.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Ajax and Web API</title>
+      <link>http://philiplei.github.io/webapi/</link>
+      <pubDate>Wed, 26 Oct 2016 08:36:00 +0800</pubDate>
+      
+      <guid>http://philiplei.github.io/webapi/</guid>
+      <description>
+
+&lt;h2 id=&#34;ajax-and-web-api&#34;&gt;Ajax and Web API&lt;/h2&gt;
+
+&lt;p&gt;This chapter goes through the design, implementation and consumption of a Web API. We conclude this chapter with an Ajax web app.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;5-1. Desigining a Web API
+
+&lt;ul&gt;
+&lt;li&gt;URL as operation, GET vs. POST&lt;/li&gt;
+&lt;li&gt;input parameters as urlencoded or JSON&lt;/li&gt;
+&lt;li&gt;output payload as urlencoded or JSON&lt;/li&gt;
+&lt;li&gt;RPC-style&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;5-2. Implementing a Web API
+
+&lt;ul&gt;
+&lt;li&gt;Implement using Express&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;5-3. A client that consumes the Web API
+
+&lt;ul&gt;
+&lt;li&gt;Implement using jQuery&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Server-side programming</title>
@@ -222,6 +257,208 @@ A condensed view of this chap
 &lt;/ul&gt;
 
 &lt;!-- Others: exception, closure --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>5-1 Designing a Web API</title>
+      <link>http://philiplei.github.io/webapi/5-1/</link>
+      <pubDate>Wed, 26 Oct 2016 08:23:00 +0800</pubDate>
+      
+      <guid>http://philiplei.github.io/webapi/5-1/</guid>
+      <description>
+
+&lt;p&gt;In an Ajax web app, the application server implements a Web API that provides service to the front-end JavaScript code.&lt;/p&gt;
+
+&lt;p&gt;A &lt;dfn&gt;Web API&lt;/dfn&gt; is a defined set of HTTP request messages along with a definition of the structure of response messages, usually expressed in an XML or JSON format (from &lt;a href=&#34;https://en.wikipedia.org/wiki/Web_API&#34;&gt;Wikipedia&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h2 id=&#34;rpc-style-web-api&#34;&gt;RPC-style Web API&lt;/h2&gt;
+
+&lt;p&gt;A common design style of Web API is RPC-style (Remote Procedure Call). A RPC-style Web API consists of one URL for each &lt;em&gt;function or operation&lt;/em&gt;.  These URLs represent an action and are usually named with a verb.  The following table shows the five endpoints in the Web API of our sample web app. They implement four common operations on data known as CRUD (Create, Retrieve, Update an Delete).&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;method&lt;/th&gt;
+&lt;th&gt;URL&lt;/th&gt;
+&lt;th&gt;function&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;GET&lt;/td&gt;
+&lt;td&gt;/getTodo&lt;/td&gt;
+&lt;td&gt;List all tasks in json format&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;GET&lt;/td&gt;
+&lt;td&gt;/searchTodo&lt;/td&gt;
+&lt;td&gt;Search tasks that are due before the given date.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;POST&lt;/td&gt;
+&lt;td&gt;/addTodo&lt;/td&gt;
+&lt;td&gt;Add a task. Message body contains properties of the new task, except id.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;POST&lt;/td&gt;
+&lt;td&gt;/updateTodo&lt;/td&gt;
+&lt;td&gt;Update a task. Message body contains id of the updated todo and properties with new value&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;POST&lt;/td&gt;
+&lt;td&gt;/deleteTodo&lt;/td&gt;
+&lt;td&gt;Delete the task with id included in message body&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;An endpoint uses &lt;strong&gt;GET&lt;/strong&gt; if the operation is &lt;em&gt;read-only&lt;/em&gt;. If the operation may causes some action or side-effect on the server side, the endpoint must use &lt;strong&gt;POST&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;read-only-operations&#34;&gt;Read-only operations&lt;/h3&gt;
+
+&lt;p&gt;A Web API may return result in either key-value pairs (www-url-encoded) or JSON.
+Key-value pairs are only suitable for simple values. JSON is more flexible in representing data structure.&lt;/p&gt;
+
+&lt;p&gt;Sample request message to retrieve tasks:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;GET /getTodo HTTP/1.1
+Host: example.com
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Below is a sample response message returned by the Web API. The JSON payload has &lt;code&gt;Content-type: applicatin/json&lt;/code&gt;. The &lt;a href=&#34;http://www.json.org/&#34;&gt;JSON data format&lt;/a&gt; is mostly the same as JavaScript object syntax. But it can only contain simple values (namely numbers, strings and boolean) and all property names must be quoted.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 200 Ok
+Content-type: application/json
+Content-length: 234
+
+{
+  &amp;quot;count&amp;quot;: 2,
+  &amp;quot;task&amp;quot;: [     
+    { &amp;quot;id&amp;quot;: 1, &amp;quot;due&amp;quot;: &amp;quot;2016-11-11&amp;quot;, &amp;quot;what&amp;quot;: &amp;quot;Test&amp;quot;,
+      &amp;quot;category&amp;quot;: &amp;quot;study&amp;quot;, &amp;quot;done&amp;quot;: 0 },
+    { &amp;quot;id&amp;quot;: 2, &amp;quot;due&amp;quot;: &amp;quot;2016-12-13&amp;quot;, &amp;quot;what&amp;quot;: &amp;quot;Final exam&amp;quot;,
+      &amp;quot;category&amp;quot;: &amp;quot;study&amp;quot;, &amp;quot;done&amp;quot;: 0 }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A client may pass simple parameters to the Web API using &lt;em&gt;query&lt;/em&gt;. This is similar to web search form submission. Below is a request for the endpoint &lt;code&gt;GET /searchTodo&lt;/code&gt; to search tasks that are due before a given date. Note that HTTP GET requests &lt;em&gt;cannot&lt;/em&gt; contain a body, so any data must be passed in the URL.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;GET /searchTodo?before=2016-12-01 HTTP/1.1
+Host: example.com
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Some designers use HTTP status codes like &lt;code&gt;400&lt;/code&gt; and &lt;code&gt;500&lt;/code&gt; to report runtime error. Other designers choose to use the JSON payload to report error. What is important is that you should be consistent.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 400 Bad Request
+Content-type: text/plain
+Content-length: 26
+
+Date format error in input
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 500 Internal Server Error
+Content-type: application/json
+Content-length: 63
+
+{ &amp;quot;errorCode&amp;quot;: 1001, &amp;quot;message&amp;quot;: &amp;quot;Database connection problem&amp;quot; }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 200 Ok
+Content-type: application/json
+Content-length: 63
+
+{ &amp;quot;errorCode&amp;quot;: 1001, &amp;quot;message&amp;quot;: &amp;quot;Database connection problem&amp;quot; }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;update-operations&#34;&gt;Update operations&lt;/h3&gt;
+
+&lt;p&gt;The endpoints of any update operations &lt;strong&gt;must use POST&lt;/strong&gt;. It informs that any web proxy servers between the client and the Web API should not cache response of the operations. In update operations, there are usually some input parameters. You can pass simple parameters as key-value pairs (i.e. &lt;code&gt;www-form-urlencoded&lt;/code&gt;) in the request message body. Key-value pairs are usually easier to work with in client-side programming (e.g. using jQuery).&lt;/p&gt;
+
+&lt;p&gt;Below is a sample request for adding a task in the Web API.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;POST /addTodo HTTP/1.1
+Host: example.com
+Content-type: application/x-www-form-urlencoded
+Content-length: 53
+
+due=2017-01-06&amp;amp;what=Makeup+exam&amp;amp;category=study&amp;amp;done=0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more complicated data, use JSON data format.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;POST /addTodo HTTP/1.1
+Host: example.com
+Content-type: application/json
+Content-length: 80
+
+{ &amp;quot;due&amp;quot;: &amp;quot;2017-01-06&amp;quot;, &amp;quot;what&amp;quot;: &amp;quot;Makeup exam&amp;quot;,
+  &amp;quot;category&amp;quot;: &amp;quot;study&amp;quot;, &amp;quot;done&amp;quot;: 0 }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A &lt;em&gt;successful response&lt;/em&gt; from an update operation may not contain any payload. You can use HTTP status code &lt;code&gt;204&lt;/code&gt; in this case.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 204 No content
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On the other hand, if the Web API provides some info about the update operation, include the data as urlencoded or JSON payload.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;HTTP/1.1 200 Ok
+Content-type: application/x-www-form-urlencoded
+Content-length: 4
+
+id=21
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We finish this section with sample HTTP request and response messages for the remaining two endpoints of the Web API, namely &lt;code&gt;POST /updateTodo&lt;/code&gt; and &lt;code&gt;POST /deleteTodo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the updateTodo operation, the client must specify the &lt;code&gt;id&lt;/code&gt; of the task to change, and then list the properties and their new values.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;POST /updateTodo HTTP/1.1
+Host: example.com
+Content-type: application/x-www-form-urlencoded
+Content-length: 53
+
+id=21&amp;amp;what=Makeup+exam+COMP312
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For the delete operation, the client must specify the &lt;code&gt;id&lt;/code&gt; of the task to delete. The input parameter is very simple. There are two common designs for this case.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;POST /deleteTodo HTTP/1.1
+Host: example.com
+Content-type: application/x-www-form-urlencoded
+Content-length: 4
+
+id=3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;POST /deleteTodo?id=3 HTTP/1.1
+Host: example.com
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ll use the first design in our sample app for consistency. I.e. we also pass input parameters to POST endpoints in request message body.&lt;/p&gt;
+
+&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Write sample response messages for the &lt;code&gt;POST /updateTodo&lt;/code&gt; endpoint for successful update, and unsuccessful update because the record with the given id does not exist.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Design a new endpoint &lt;code&gt;GET /getTodoWithId&lt;/code&gt;, to retrieve a task with a given &lt;code&gt;id&lt;/code&gt;. Write sample response messages for successful and unsuccessful retrieval.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Design a new endpoint for the Web API for the operation of marking a task as done (i.e. set the done property to 1 in the server database.) Write sample response messages for successful and unsuccessful retrieval. In your answer, describe what input parameters are required.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     
@@ -768,6 +1005,159 @@ console.log(sqr);
     </item>
     
     <item>
+      <title>5-2 Implmenting a Web API</title>
+      <link>http://philiplei.github.io/webapi/5-2/</link>
+      <pubDate>Wed, 26 Oct 2016 13:43:00 +0800</pubDate>
+      
+      <guid>http://philiplei.github.io/webapi/5-2/</guid>
+      <description>
+
+&lt;p&gt;In this lab, we&amp;rsquo;ll discuss implementation of the Web API in last section using Express framework.&lt;/p&gt;
+
+&lt;h2 id=&#34;endpoints-with-get-method&#34;&gt;Endpoints with GET method&lt;/h2&gt;
+
+&lt;p&gt;This section implements two endpoints of a Web API. Both are read-only and use GET method. They return the result in JSON data format.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;method&lt;/th&gt;
+&lt;th&gt;URL&lt;/th&gt;
+&lt;th&gt;function&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;GET&lt;/td&gt;
+&lt;td&gt;/getTodo&lt;/td&gt;
+&lt;td&gt;List all tasks&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;GET&lt;/td&gt;
+&lt;td&gt;/searchTodo&lt;/td&gt;
+&lt;td&gt;Search tasks that are due before the given date.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Typically, we define a route in an Express app to implement an endpoint in a Web API.
+Below is a simple implementation of retrieval of all tasks from a database.  You can easily test this route by loading an URL like &lt;code&gt;http://localhost:3000/getTodo&lt;/code&gt; in a browser.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;app.get(&#39;/getTodo&#39;, (req, res) =&amp;gt; {
+  db.all(&amp;quot;SELECT * FROM task ORDER BY due DESC&amp;quot;, function(err, rows) {
+    if (err) {
+      // return HTTP status code 500 to report internal server error
+      res.status(500).send(err);
+    } else {
+      // sending JavaScript object creates a JSON response
+      res.send({ count: rows.length, task: rows });
+    }
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A web API endpoint with GET method may take input parameters in query part of the URL (e.g. &lt;code&gt;/searchTodo?before=2016-10-27&lt;/code&gt;)  These parameters are available in &lt;code&gt;req.query&lt;/code&gt; in an Express route. Below is an example of another endpoint for searching tasks due before a given date. This example also demonstrates sanity check of input parameters and error reporting. When the app server receives a request for &lt;code&gt;/searchTodo?before=2016-10-27&lt;/code&gt;, it sets the query object &lt;code&gt;req.query = { before: &#39;2016-10-27&#39; }&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;app.get(&#39;/searchTodo&#39;, (req, res) =&amp;gt; {
+  // parameter sanity check
+  var before = req.query.before;
+  if (/^\d\d\d\d-\d\d-\d\d$/.test(before)===false) {
+    // error in input parameters
+    res.status(400).end();
+    return;
+  }
+  db.all(&amp;quot;SELECT * FROM task WHERE due &amp;lt;= ? ORDER BY due DESC&amp;quot;,
+    [ before ],
+    function(err, rows) {
+      if (err) {
+        // internal server error
+        res.status(500).send(err);
+      } else {
+        // sending JavaScript object creates a JSON response
+        res.send({ count: rows.length, task: rows });
+      }
+    }
+  );
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;endpoints-with-post-method&#34;&gt;Endpoints with POST method&lt;/h2&gt;
+
+&lt;p&gt;This section discusses implementation of three endpoints (listed below) that use POST method.
+They take input parameters in &lt;em&gt;urlencoded&lt;/em&gt; format which are enclosed in the message body of the requests.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;method&lt;/th&gt;
+&lt;th&gt;URL&lt;/th&gt;
+&lt;th&gt;function&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;POST&lt;/td&gt;
+&lt;td&gt;/addTodo&lt;/td&gt;
+&lt;td&gt;Add a task. Message body contains properties of the new task, except id.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;POST&lt;/td&gt;
+&lt;td&gt;/updateTodo&lt;/td&gt;
+&lt;td&gt;Update a task. Message body contains id of the updated todo and properties with new value&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;POST&lt;/td&gt;
+&lt;td&gt;/deleteTodo&lt;/td&gt;
+&lt;td&gt;Delete the task with id included in message body&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The route below is a simple implementation of adding a new task to the database.
+The route obtains the input parameters from &lt;code&gt;req.body&lt;/code&gt; instead of &lt;code&gt;req.query&lt;/code&gt; because the input parameters are passed in the request message body. After error checking of input parameters, the code executes &lt;code&gt;INSERT&lt;/code&gt; SQL statement to add a task to the database. It returns HTTP status code &lt;code&gt;204&lt;/code&gt; if &lt;code&gt;INSERT&lt;/code&gt; is successful. Otherwise, it returns status code &lt;code&gt;500&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;app.post(&#39;/addTodo&#39;, (req, res) =&amp;gt; {
+  // obtain the input parameters from the message body
+  var due = req.body.due;
+  var what = req.body.what;
+  var category = req.body.category;
+  var done = req.body.done;
+  if (done==undefined) done = 0;  // default value
+
+  // sanity check of input parameters
+  if (due===undefined || what===undefined || category===undefined) {
+    res.status(400).send(&#39;Cannot add new. &#39;+&#39;content &#39;+JSON.stringify(req.body));
+    // console.log(req.body);
+    return;
+  }
+
+  db.run(&amp;quot;INSERT INTO task (due, what, category, done) VALUES (?,?,?,?)&amp;quot;,
+    [due, what, category, done],
+    function(err) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(204).end();
+      }
+  });
+
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Refer to the &lt;a href=&#34;http://philiplei.github.io/chap5-app/app.js&#34;&gt;source code&lt;/a&gt; of &lt;code&gt;app.js&lt;/code&gt; in the Ajax web app for the implementation of the endpoints &lt;code&gt;POST /updateTodo&lt;/code&gt; and &lt;code&gt;POST /deleteTodo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
+
+&lt;p&gt;Implement the endpoint for the operation of marking a task as done (the last question in the previous section).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>4-2 NPM modules</title>
       <link>http://philiplei.github.io/server/4-2/</link>
       <pubDate>Mon, 25 Jul 2016 10:05:01 +0800</pubDate>
@@ -1281,6 +1671,148 @@ console.log(search(x, 1)); // should print -1;
     </item>
     
     <item>
+      <title>5-3 Consuming a Web API</title>
+      <link>http://philiplei.github.io/webapi/5-3/</link>
+      <pubDate>Thu, 27 Oct 2016 08:43:00 +0800</pubDate>
+      
+      <guid>http://philiplei.github.io/webapi/5-3/</guid>
+      <description>
+
+&lt;p&gt;In this lab, we&amp;rsquo;ll write &lt;em&gt;client-side&lt;/em&gt; JavaScript to consume a Web API. We&amp;rsquo;ll use jQuery library to send GET and POST requests to the Web API.&lt;/p&gt;
+
+&lt;h2 id=&#34;endpoints-with-get-method&#34;&gt;Endpoints with GET method&lt;/h2&gt;
+
+&lt;p&gt;There are two endpoints with GET method in our sample app.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;method&lt;/th&gt;
+&lt;th&gt;URL&lt;/th&gt;
+&lt;th&gt;function&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;GET&lt;/td&gt;
+&lt;td&gt;/getTodo&lt;/td&gt;
+&lt;td&gt;List all tasks&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;GET&lt;/td&gt;
+&lt;td&gt;/searchTodo&lt;/td&gt;
+&lt;td&gt;Search tasks that are due before the given date.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In jQuery, the basic method to send Ajax call with GET method is &lt;code&gt;$.get(url, callback)&lt;/code&gt;. The callback runs if the browser receives a successful response (with status code 200 or other 2xx values). If the response message body has &lt;code&gt;Content-type: application/json&lt;/code&gt;, jQuery will convert the message body into JavaScript.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;$.get(&#39;/getTodo&#39;, (data) =&amp;gt; {
+  // data is JavaScript object derived from the JSON payload in response
+  console.dir(data);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Adding input parameters to GET requests is also simple. Use a JavaScript object to encode key-value pairs. The following code sends a GET request to the URL &lt;code&gt;/searchTodo?before=2016-10-10&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;$.get(&#39;/searchTodo&#39;, { before: &#39;2016-10-10&#39; }, (data) =&amp;gt; {
+  // data is JavaScript object derived from the JSON payload in response
+  console.dir(data);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;endpoints-with-post-method&#34;&gt;Endpoints with POST method&lt;/h2&gt;
+
+&lt;p&gt;One of the endpoint that use POST method in our sample app is &lt;code&gt;/addTodo&lt;/code&gt;. The following code sends a POST request to the URL. The request body encodes the properties &lt;code&gt;due&lt;/code&gt;, &lt;code&gt;what&lt;/code&gt;, &lt;code&gt;category&lt;/code&gt; in urlencoded format.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;$.post(&#39;/addTodo&#39;,
+   { due: &#39;2016-12-13&#39;, what: &#39;comp312 final exam&#39;, category: &#39;study&#39; },
+   (data) =&amp;gt; {
+      // data is undefined because the endpoint returns 204 response with empty body
+      console.dir(data);
+   }
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Below is a sample HTTP request that the above code sends.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;POST /addTodo HTTP/1.1
+Host: example.com
+Content-type: application/x-www-form-urlencoded
+Content-length: 53
+
+due=2016-12-12&amp;amp;what=comp312+final+exam&amp;amp;category=study
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;!--
+```JavaScript
+$.post(&#39;/updateTodo&#39;,
+   { id: 3, what: &#39;An very important task..&#39; },
+   (data) =&gt; {
+      // data is JavaScript object derived from the JSON payload in response
+      console.dir(data);
+   }
+);
+```
+--&gt;
+
+&lt;p&gt;Refer to the &lt;a href=&#34;http://philiplei.github.io/chap5-app/public/logic.js&#34;&gt;source code&lt;/a&gt; of &lt;code&gt;logic.js&lt;/code&gt; in the Ajax web app for how to use jQuery &lt;code&gt;$.post()&lt;/code&gt; to consume the other endpoints in the web app.&lt;/p&gt;
+
+&lt;h2 id=&#34;advanced-topics&#34;&gt;Advanced topics&lt;/h2&gt;
+
+&lt;p&gt;The following examples are some advanced example. They are included for your information only, and not used in our sample app.&lt;/p&gt;
+
+&lt;h3 id=&#34;error-handling&#34;&gt;Error handling&lt;/h3&gt;
+
+&lt;p&gt;The callback as the second parameter of &lt;code&gt;$.get()&lt;/code&gt; and &lt;code&gt;$.post()&lt;/code&gt; only runs when the browser receives a successful response (usually with status code 200 or 204). To handle a response with error status code (e.g. 400, 404 and 500), you can register a callback with the method &lt;code&gt;.fail()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;$.post(&#39;/updateTodo&#39;,
+  { xxid: 3, what: &#39;Woow!&#39; },
+  (data) =&amp;gt; {
+    console.log(&#39;success&#39;);  // data is undefined for 204 responses
+  }
+).fail( (jqXHR) =&amp;gt; {
+  console.log(&#39;error&#39;);
+  console.log(jqXHR.status);
+  console.log(jqXHR.statusText);
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first parameter of the callback is a &lt;a href=&#34;http://api.jquery.com/jQuery.ajax/#jqXHR&#34;&gt;jqXHR&lt;/a&gt; object, which provides various information about the Ajax call.&lt;/p&gt;
+
+&lt;h3 id=&#34;sending-json-data-in-post-request&#34;&gt;Sending JSON data in POST request&lt;/h3&gt;
+
+&lt;p&gt;You have to use the low-level jQuery Ajax function &lt;code&gt;$.ajax()&lt;/code&gt; to send JSON format data in POST requests. For example, to send the following HTTP request:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-HTTP&#34;&gt;POST /addTodo HTTP/1.1
+Host: example.com
+Content-type: application/json
+Content-length: 80
+
+{ &amp;quot;due&amp;quot;: &amp;quot;2017-01-06&amp;quot;, &amp;quot;what&amp;quot;: &amp;quot;Makeup exam&amp;quot;,
+  &amp;quot;category&amp;quot;: &amp;quot;study&amp;quot;, &amp;quot;done&amp;quot;: 0 }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip; use the following code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var query = { due: &#39;2017-01-06&#39;, task: &#39;Makeup exam&#39;,
+     category: &#39;study&#39;, done: 0 };
+$.ajax(&#39;/addTodo&#39;, {
+   type: &#39;POST&#39;,
+   data: JSON.stringify(query),
+   contentType: &#39;application/json&#39;,
+   success: (data) =&amp;gt; {
+      // data is undefined for 204 response
+   }
+});
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>4-3 Web app routing</title>
       <link>http://philiplei.github.io/server/4-3/</link>
       <pubDate>Wed, 27 Jul 2016 10:29:04 +0800</pubDate>
@@ -1465,670 +1997,6 @@ for (var k=16; k&amp;lt;32; k++) {
 &lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
 
 &lt;p&gt;In this exercise, you have to populate an HTML table with JSON data in &lt;a href=&#34;http://philiplei.github.io/chap3/p314.html&#34;&gt;p314.html&lt;/a&gt;.  Refer to the &lt;a href=&#34;http://philiplei.github.io/chap3/p314-done.html&#34;&gt;sample answer&lt;/a&gt; for the required output format.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>2-3 Objects and JSON data</title>
-      <link>http://philiplei.github.io/basic/2-3/</link>
-      <pubDate>Thu, 26 May 2016 19:13:37 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/basic/2-3/</guid>
-      <description>
-
-&lt;p&gt;This lab covers the basics of objects (as data structure). It also covers part of JSON.&lt;/p&gt;
-
-&lt;h2 id=&#34;objects&#34;&gt;Objects&lt;/h2&gt;
-
-&lt;p&gt;In JavaScript, an &lt;dfn&gt;object&lt;/dfn&gt; is a collection of properties. Each property
-is a pair of name and value. You can access each property with the dot notation.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// define an object with 3 properties
-var peter = {
-  firstName: &amp;quot;Peter&amp;quot;,
-  lastName: &amp;quot;Chan&amp;quot;,
-  age: 19
-};
-console.log(peter.lastName)  // &amp;quot;Chan&amp;quot;
-peter.age ++;
-console.log(`${peter.firstName} is now ${peter.age} years old.`);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Use assignment to change value of an existing property, or add a new property.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var point = { };  // empty objects
-point.x = 10; // add property
-point.y = 8;
-dir(point); // show structure, only avail in Chrome console
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Functions can accept objects, and return objects. In the following, objects with the two properties &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; represent points on a plane.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function distance (p1, p2) {
-  // the function Math.hypot() can also be used here
-  var sum_sqr = Math.pow(p1.x-p2.x, 2) + Math.pow(p1.y-p2.y, 2);
-  return Math.sqrt(sum_sqr);
-}
-
-function midpoint (p1, p2) {
-  return {
-    x: (p1.x+p2.x) / 2,
-    y: (p1.y+p2.y) / 2
-  }
-}
-
-var p1 = { x: 0, y: 0 }, p2 = { x: 3, y: 4 };
-console.log(`Distance = ${distance(p1,p2)}`);
-var mid = midpoint(p1, p2);
-dir(mid);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;complicated-data&#34;&gt;Complicated data&lt;/h2&gt;
-
-&lt;p&gt;A property can take another object as value. This put an object inside another object.
-Use nesting objects to represent a hierarchy of properties.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var flight = {
-  airline: &amp;quot;Oceanic&amp;quot;,
-  number: 815,
-  departure: {
-     IATA: &amp;quot;SYD&amp;quot;,
-     time: &amp;quot;2004-09-22 14:55&amp;quot;,
-     city: &amp;quot;Sydney&amp;quot;
-  },
-  arrival: {
-     IATA: &amp;quot;LAX&amp;quot;,
-     time: &amp;quot;2004-09-23 10:42&amp;quot;,
-     city: &amp;quot;Los Angeles&amp;quot;
-  }
-};
-
-console.log(
-   &#39;This flight goes from &#39;,
-   flight.departure.city,
-   &#39; to &#39;,
-   flight.arrival.city
-);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;By mixing arrays and objects, you can use JavaScript data structure to represent some complicated data. This forms the basis of the JSON data format.&lt;/p&gt;
-
-&lt;p&gt;In the following example, the object &lt;code&gt;timetab&lt;/code&gt; represents the lecture timetable for &lt;sup&gt;2016&lt;/sup&gt;&amp;frasl;&lt;sub&gt;17&lt;/sub&gt;, semester 1. The property &lt;code&gt;courses&lt;/code&gt; has array value, and contains an object for each course.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var timetab = {
-  acadYear: &amp;quot;2016/17&amp;quot;,
-  semester: 1,
-  courses: [
-    {
-      code: &#39;comp211&#39;, title: &#39;Database design&#39;, year: 2,
-      lectures: [
-        { dow: 2, start: 1130, end: 1300, room: &#39;A203&#39; },
-        { dow: 4, start: 1000, end: 1130, room: &#39;A318&#39; }
-      ]
-    },
-    {
-      code: &#39;comp212&#39;, title: &#39;Programming II&#39;, year: 2,
-      lectures: [
-        { dow: 4, start: 1430, end: 1600, room: &#39;A317&#39; },
-        { dow: 3, start: 1600, end: 1730, room: &#39;A210&#39; }
-      ]
-    },
-    {
-      code: &#39;comp214&#39;, title: &#39;Computer networks&#39;, year: 2,
-      lectures: [
-        { dow: 5, start: 1000, end: 1300, room: &#39;A206&#39; }
-      ]
-    }
-  ]
-};
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;a-note-on-object-notation&#34;&gt;A note on object notation&lt;/h2&gt;
-
-&lt;p&gt;In addition to the dot notation, you can also use array notation to access a property in objects.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var person = { name: &#39;Peter&#39; };
-// same as person.age = 20;
-person[&#39;age&#39;] = 20;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The array notation is necessary if you only know the property names in run-time, or the property names contains non-ASCII characters.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var cn2en = {
-  &#39;春&#39;: &#39;spring&#39;, &#39;夏&#39;: &#39;summer&#39;,
-  &#39;秋&#39;: &#39;autumn&#39;, &#39;冬&#39; : &#39;winter&#39;
-};
-cn2en[&#39;春&#39;]  // &#39;spring&#39;
-// the following has syntax error
-//cn2en.春
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The JavaScript language also has a &lt;code&gt;for .. in&lt;/code&gt; control structure to enumerate the properties of an object. We skip its discussion because it is tricky to use.&lt;/p&gt;
-
-&lt;h2 id=&#34;exercise&#34;&gt;Exercise&lt;/h2&gt;
-
-&lt;p&gt;Use the time table data structure above to complete this exercise. Refer to the sample answers for sample output: &lt;a href=&#34;http://philiplei.github.io/chap2/p204.js&#34;&gt;p204.js&lt;/a&gt;, &lt;a href=&#34;http://philiplei.github.io/chap2/p205.js&#34;&gt;p205.js&lt;/a&gt; and &lt;a href=&#34;http://philiplei.github.io/chap2/p206.js&#34;&gt;p206.js&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Write a program to show the number of lectures of each course. The output should include course code, course title, and number of lectures per week.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Write a program to print the content of the time table.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Write a program to list the lectures on Thursday &lt;code&gt;dow==4&lt;/code&gt;. The output should include course code, start and end time, and room.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>4-4 Web app middlewares</title>
-      <link>http://philiplei.github.io/server/4-4/</link>
-      <pubDate>Tue, 09 Aug 2016 15:10:00 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/server/4-4/</guid>
-      <description>
-
-&lt;p&gt;This lab demonstrates how to use middleware in general. It introduces a few common middleware, and also covers a middleware that handles form submit using GET and POST.&lt;/p&gt;
-
-&lt;h2 id=&#34;middlewares&#34;&gt;Middlewares&lt;/h2&gt;
-
-&lt;p&gt;In the previous lab, we saw that an Express app is essentially a sequence of routes.  When a request arrives at an Express app, the app tries to find a match of the path in the order of routes in the sequence.  If there is a match, the app assumes the callback of the route will generate a response, and skip any remaining routes.&lt;/p&gt;
-
-&lt;p&gt;The above notion is simplification. An Express app is in fact a sequence of middlewares and routes. An incoming request will go through the middlewares and routes in sequential order until a response is generated.&lt;/p&gt;
-
-&lt;p&gt;Middlewares are JavaScript functions in Express. Most middlewares are not included in Express module, and must be installed using &lt;code&gt;npm install&lt;/code&gt; or &lt;code&gt;package.json&lt;/code&gt; separately.  Install the middlewares and Express with &lt;code&gt;npm install&lt;/code&gt; before running the example &lt;a href=&#34;http://philiplei.github.io/chap4-4/app3.js&#34;&gt;app3.js&lt;/a&gt;, which demonstrate the
-basic structure of an Express app with middlewares.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// app3.js
-// middlewares
-
-var express = require(&#39;express&#39;);
-var app = express();
-
-// import a middleware, which logs the request
-var morgan = require(&#39;morgan&#39;);
-// install the middleware into the app
-app.use(morgan(&#39;short&#39;));
-
-// import another middleware, which secures the app with HTTP headers
-var helmet = require(&#39;helmet&#39;);
-// install the middleware
-app.use(helmet());
-
-// routes ...
-
-app.get(&#39;/&#39;, (req, res) =&amp;gt; {
-  res.send(&#39;Hello world&#39;);
-});
-
-app.get(&#39;*&#39;, (req, res) =&amp;gt; {
-  res.status(404).send(&#39;No match&#39;);
-});
-
-// start listening at TCP port 3000
-app.listen(3000);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When the app receives an HTTP request, the first middleware &amp;lsquo;morgan&amp;rsquo; prints a log message in the console. Next, the middleware &amp;lsquo;helmet&amp;rsquo; adds some HTTP headers (e.g. &lt;code&gt;X-XSS-Protection&lt;/code&gt;) to the response to secure the app. Afterwards, the request is checked against each route in sequence.&lt;/p&gt;
-
-&lt;p&gt;Most middlewares should be registered &lt;em&gt;before routes&lt;/em&gt;. If a middleware is registered after a route, and the route returns a response for a request, the middleware will NOT run for this request. As an experiment, move the middleware &amp;lsquo;morgan&amp;rsquo; between the two routes.&lt;/p&gt;
-
-&lt;h2 id=&#34;serving-static-content&#34;&gt;Serving static content&lt;/h2&gt;
-
-&lt;p&gt;There is a special middleware bundled with Express. This middleware &lt;code&gt;express-session&lt;/code&gt; serves static assets (typically HTML, CSS, images, and client-side library) to clients. The middleware tries to match the files in a folder against the URL path of the request. If there is a match, it returns the file, with a suitable MIME-type, in a response. This makes it simple to creates a simplistic HTTP server.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// excerpt from app4.js
-var express = require(&#39;express&#39;);
-var app = express();
-
-app.use(express.static(__dirname + &#39;/public&#39;));
-
-app.listen(3000, () =&amp;gt; {
-  console.log(&#39;Server running at http://localhost:3000/&#39;);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In general, routes should be placed before the &amp;lsquo;static&amp;rsquo; middleware. Otherwise, a static file that matches the URL path will be handled by the &amp;lsquo;static&amp;rsquo; middleware and will not be handled by any routes after the middleware.  Try to move the specified route in &lt;a href=&#34;http://philiplei.github.io/chap4-4/app4.js&#34;&gt;app4.js&lt;/a&gt; to experiment.&lt;/p&gt;
-
-&lt;h2 id=&#34;handling-form-submit&#34;&gt;Handling form submit&lt;/h2&gt;
-
-&lt;p&gt;Data that are submitted using GET method are available in the object &lt;code&gt;req.query&lt;/code&gt;. In the following example, the route GET &amp;lsquo;/add&amp;rsquo; obtains the two numbers &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; from a GET request, and returns the result of &amp;lsquo;a+b&amp;rsquo; in response.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// app5.js
-
-var express = require(&#39;express&#39;);
-var app = express();
-
-app.get(&#39;/form1.html&#39;, (req, res) =&amp;gt; {
-  res.send(`&amp;lt;!doctype html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;body&amp;gt;
-  &amp;lt;p&amp;gt;Enter 2 numbers to add:&amp;lt;/p&amp;gt;
-  &amp;lt;form action=&#39;/add&#39; method=&#39;GET&#39;&amp;gt;
-    &amp;lt;p&amp;gt;a: &amp;lt;input name=&#39;a&#39; type=&#39;text&#39;/&amp;gt;
-    &amp;lt;p&amp;gt;b: &amp;lt;input name=&#39;b&#39; type=&#39;text&#39;/&amp;gt;
-    &amp;lt;p&amp;gt;&amp;lt;button type=&#39;submit&#39;&amp;gt;Calculate a+b&amp;lt;/button&amp;gt;
-  &amp;lt;/form&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;`);
-});
-
-app.get(&#39;/add&#39;, (req, res) =&amp;gt; {
-  var a = parseFloat(req.query.a);
-  var b = parseFloat(req.query.b);
-  res.send(`${a} + ${b} = ${a+b}`);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You&amp;rsquo;ll need a middleware to extract data from the message body of a POST request. A popular choice is the middleware &lt;code&gt;body-parser&lt;/code&gt;. This middleware parses the request message body (if any) and populate the object &lt;code&gt;req.body&lt;/code&gt;. In the route in the sample code below (see full source at &lt;a href=&#34;http://philiplei.github.io/chap4-4/app6.js&#34;&gt;app6.js&lt;/a&gt;), data submitted in POST request are accessible in &lt;code&gt;req.body.mesg&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// excerpt from app6.js
-
-var bodyParser = require(&#39;body-parser&#39;);
-app.use(bodyParser.urlencoded({extended:false}));
-
-app.post(&#39;/append&#39;, (req, res) =&amp;gt; {
-  var mesg = req.body.mesg;
-  fs.appendFile(__dirname+&#39;/log.txt&#39;, mesg+&#39;\n&#39;, &#39;utf8&#39;, (err)=&amp;gt;{
-    if (err) throw err;
-    res.send(`Append successful.
-      You can &amp;lt;a href=&amp;quot;/getlog&amp;quot;&amp;gt;retrieve the log&amp;lt;/a&amp;gt; now.`);
-  })
-});
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>3-4 Handling events</title>
-      <link>http://philiplei.github.io/client/3-4/</link>
-      <pubDate>Wed, 08 Jun 2016 15:46:00 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/client/3-4/</guid>
-      <description>
-
-&lt;p&gt;This lab covers how to handle events with event handlers using the jQuery library.&lt;/p&gt;
-
-&lt;h2 id=&#34;basic-event-handling&#34;&gt;Basic event handling&lt;/h2&gt;
-
-&lt;p&gt;The basic function to register event handler is &lt;code&gt;$().on(events, handler)&lt;/code&gt; &lt;a href=&#34;https://api.jquery.com/on/&#34;&gt;(online reference)&lt;/a&gt; This method attaches the event handler (a function) to handle the events (e.g &amp;lsquo;click&amp;rsquo;, &amp;lsquo;mousemove&amp;rsquo;) to each element in the jQuery collection. There are different ways to attach event handlers, as shown below.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;$(&#39;button#btn1&#39;).on(&#39;click&#39;, function(event) {
-  // do something when the button with id=btn1 is clicked
-});
-
-// rewrite using arrow function
-$(&#39;button#btn1&#39;).on(&#39;click&#39;, (event) =&amp;gt; {
-  // ...
-});
-
-// shorthand notation is available for common events
-// .. but this is not recommended in this course
-$(&#39;button#btn1&#39;).click( (event) =&amp;gt; {
-  // ...
-});
-
-// your can also define a standalone function and later use it as event handler
-function btn1_click (event) {
-  // ...
-}
-
-$(&#39;button#btn1&#39;).on(&#39;click&#39;, btn1_click);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;mouse-event-and-event-object&#34;&gt;Mouse event and event object&lt;/h2&gt;
-
-&lt;p&gt;The browser triggers several mouse-related events when the user interacts with the HTML elements using the mouse. Some common mouse events are: &lt;code&gt;click&lt;/code&gt;, &lt;code&gt;mouseenter&lt;/code&gt;, &lt;code&gt;mouseleave&lt;/code&gt; and &lt;code&gt;mousemove&lt;/code&gt;.
-The first parameter of an event handler is an &lt;a href=&#34;http://api.jquery.com/category/events/event-object/&#34;&gt;Event object&lt;/a&gt;.
-This object includes several useful properties and methods. One of them is the property &lt;code&gt;.target&lt;/code&gt;, which is the HTML element that triggers the event. The event type is given in the property &lt;code&gt;.type&lt;/code&gt;. The location of the mouse cursor is given in the properties &lt;code&gt;.pageX&lt;/code&gt; and &lt;code&gt;.pageY&lt;/code&gt;. The following code shows how to handle common mouse events. Check a live demo at &lt;a href=&#34;http://philiplei.github.io/chap3/p321.html&#34;&gt;p321.html&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// this event handler handles &#39;click&#39;
-$(&#39;#box1&#39;).on(&#39;click&#39;, event =&amp;gt; {
-  var x = event.pageX;
-  var y = event.pageY;
-  console.log(`click: #box1 at (${x}, ${y})`);
-});
-
-// this event handler handles both &#39;mouseenter&#39; and &#39;mouseleave&#39;
-$(&#39;#box1&#39;).on(&#39;mouseenter mouseleave&#39;, event =&amp;gt; {
-  var x = event.pageX;
-  var y = event.pageY;
-  var type = event.type;
-  console.log(`${type}: #box1 at (${x}, ${y})`);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In some cases, we need to handle the same event type triggered at many elements. For example,
-in &lt;a href=&#34;http://philiplei.github.io/chap3/p322.html&#34;&gt;p322.html&lt;/a&gt;, when the user clicks at one of the 12 images, it slowly fades out (to 0.1 opacity), and then slowly fades in (back to 1.0 opacity). (This example uses the jQuery method &lt;code&gt;$().fadeTo&lt;/code&gt; &lt;a href=&#34;http://api.jquery.com/fadeTo/&#34;&gt;(online reference)&lt;/a&gt; to do the animation.)
-This animation is done with one event handler, which needs to find out which image is clicked via &lt;code&gt;event.target&lt;/code&gt;. Notice that in order to apply jQuery methods, we have to wrap the DOM element &lt;code&gt;event.target&lt;/code&gt; as a jQuery collection &lt;code&gt;$(event.target)&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// register the same event handler function to the 12 images
-$(&#39;#zodiac img&#39;).on(&#39;click&#39;, event =&amp;gt; {
-  // use event.target to find out which image is clicked
-  // do something on it, e.g. $(event.target).fadeOut();
-  $(event.target).fadeTo(1000, 0.1,
-    ()=&amp;gt;{$(event.target).fadeTo(3000, 1)});
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;attach-data-to-dom-elements&#34;&gt;Attach data to DOM elements&lt;/h2&gt;
-
-&lt;p&gt;Although we can distinguish which element triggers an event with &lt;code&gt;event.target&lt;/code&gt;, usually it is more convenient if we can pass some application specific information (e.g. record id) to the event handler.  There are several ways to do this.  The code below are extracted from a simple Tic-tac-toe example &lt;a href=&#34;http://philiplei.github.io/chap3/p323.html&#34;&gt;p323.html&lt;/a&gt; and uses the jQuery method &lt;code&gt;$().data(name, value)&lt;/code&gt; to attach any JavaScript data to a DOM element.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;&amp;lt;!-- the tic tac toe game board is a 3x3 table --&amp;gt;
-&amp;lt;table id=&#39;tic&#39; class=&#39;gameboard&#39;&amp;gt;
-  &amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
-  &amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
-  &amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
-&amp;lt;/table&amp;gt;
-
-&amp;lt;script&amp;gt;
-// attach pos=0, pos=1, .., pos=8 to the 9 table cells
-for (var k=0; k&amp;lt;$(&#39;#tic td&#39;).length; k++) {
-  $(&#39;#tic td&#39;).eq(k).data(&#39;pos&#39;, k);
-}
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then in the event handler for click on the table cells &lt;code&gt;#tic td&lt;/code&gt;, we use &lt;code&gt;$(event.target).data(&#39;pos&#39;)&lt;/code&gt; to retrieve the position (0-8) of the clicked cell, and update the game board data structure accordingly.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var board = [9,9,9,9,9,9,9,9,9];
-// player &#39;circle&#39; plays first
-var current = 0;
-
-$(&#39;#tic td&#39;).on(&#39;click&#39;, (event)=&amp;gt;{
-  // which position (0-8) is clicked?
-  var pos = $(event.target).data(&#39;pos&#39;);
-  // update the game board data structure
-  board[pos] = current;
-  // display a circle or cross
-  var image = (current==0) ? &#39;url(circle.png)&#39; : &#39;url(cross.png)&#39;;
-  $(event.target).css(&#39;background-image&#39;, image);
-  // change player
-  current = (current==0) ? 1 : 0;
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;pass-data-to-event-handler&#34;&gt;Pass data to event handler&lt;/h2&gt;
-
-&lt;p&gt;Instead of attaching JavaScript data to DOM element, you can specify these JavaScript data when registering an event handler. When the event triggers, jQuery passes the specified data to the event handler as &lt;code&gt;event.data&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;This example (&lt;a href=&#34;http://philiplei.github.io/chap3/p324.html&#34;&gt;p324.html&lt;/a&gt;) specifies a row number while it registers an event handler for each row in an existing HTML table.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var $rows = $(&#39;#marks tbody tr&#39;);
-for (var i=0; i&amp;lt;$rows.length; i++) {
-  $rows.eq(i).on(&#39;click&#39;, { rowNum: i }, (event) =&amp;gt; {
-    var n = event.data.rowNum;
-    console.log(`click row ${n}`);
-  });
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The following code snippet comes from the example (&lt;a href=&#34;http://philiplei.github.io/chap3/p325.html&#34;&gt;p325.html&lt;/a&gt;). This app populates an HTML table with some mark data for students in runtime, and attaches the event handler to a newly created table row for each student.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function populateMarkTable (marks) {
-  $(&#39;#marks caption&#39;).text(`Marks for ${marks.courseCode}`);
-  $(&#39;#marks tbody&#39;).empty();
-  for (var k=0; k&amp;lt;marks.student.length; k++) {
-    var stud=marks.student[k];
-    // calculate course, exam and final for this student
-    // ...
-    var $r = $(&#39;&amp;lt;tr&amp;gt;&#39;);
-    $(&#39;&amp;lt;td&amp;gt;&#39;).text(stud.name).appendTo($r);
-    $(&#39;&amp;lt;td&amp;gt;&#39;).text(course).appendTo($r);
-    $(&#39;&amp;lt;td&amp;gt;&#39;).text(exam).appendTo($r);
-    $(&#39;&amp;lt;td&amp;gt;&#39;).text(final).appendTo($r);
-    // pass a student record to the event handler
-    // when the mouse is over this row
-    $r.on(&#39;mouseenter&#39;, { stud: stud }, displayMarkDetail);
-    $(&#39;#marks tbody&#39;).append($r);
-  }
-}
-
-function displayMarkDetail (event) {
-  // event.data.stud is the record of the student selected
-  var stud = event.data.stud;
-  var s = `The student ${stud.name} has got ${stud.hw.join(&#39;,&#39;)} in assignments, `;
-  s += `${stud.test.join(&#39;,&#39;)} in tests, and ${stud.exam} in exam.`;
-  $(&#39;p#detail&#39;).text(s);
-}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>2-4 Callbacks and arrow functions</title>
-      <link>http://philiplei.github.io/basic/2-4/</link>
-      <pubDate>Thu, 26 May 2016 19:13:42 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/basic/2-4/</guid>
-      <description>
-
-&lt;h2 id=&#34;functions-as-first-class-values&#34;&gt;Functions as first-class values&lt;/h2&gt;
-
-&lt;p&gt;Functions in JavaScript are often described as first-class values. (In fact, functions are objects, with their own properties and methods.) This means that, in many cases, if you can do something on numbers or strings, you can also do the same on functions. In particular,
-you can save a function in a variable, pass a function to another function, or return a function from a function.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function add (a,b) { return a+b; }
-var f = add;
-f(1,2); // returns 3;
-add(1,2); // same
-// dir(f)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Passing a function to another function is possible. This is an example of &lt;dfn&gt;callback&lt;/dfn&gt;, and can change the behavior of another function.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// use a function op(x,y) to combine 3 values
-function combine (op, a, b, c) {
-  var t = op(a,b);
-  var ans = op(t,c);
-  return ans;
-}
-
-// define an anonymous function, and save it in the variable &#39;add&#39;
-var add = function(a,b) { return a+b; }
-combine(add, 6, 7, 8); // returns 21
-
-var mul = function(a,b) { return a*b; }
-combine(mul, 6, 7, 8); // returns 336
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;map-and-filter&#34;&gt;Map and filter&lt;/h2&gt;
-
-&lt;p&gt;A common case in processing a large amount of data in arrays is to iterate the elements and perform some processing or filtering on each element.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1/2, 1/3, 1/4, 1/5, 1/6];
-var b = [];
-// round the numbers to 2 decimal places
-for (var n of a) {
-  var n2 = Math.round(n*100) / 100;
-  b.push(n2);
-}
-// print a and b
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// an array of objects, each one is a rectangle with given width and height
-var c = [ { w: 4, h: 5 }, { w: 2, h: 3 } ];
-var d = [];
-// calculate the area of the rectangles
-for (var k=0; k&amp;lt;c.length; k++) {
-  var area = c[k].w * c[k].h;
-  d.push(area);
-}
-// print c and d
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is a common scenario in programming. Therefore, the JavaScript Array objects provide built-in methods to iterate their content. One of the simplest is &lt;code&gt;.map()&lt;/code&gt;, which accepts a function as parameter. The function takes 1 input, perform some processing, and returns the result. &lt;code&gt;.map()&lt;/code&gt; collects these results into an output array.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;function round2(n) { return Math.round(n*100) / 100; }
-
-var a = [1/2, 1/3, 1/4, 1/5, 1/6];
-var b = a.map(round2);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The function &lt;code&gt;round2&lt;/code&gt; is another example of &lt;dfn&gt;callback&lt;/dfn&gt; function. This callback function is not called directly by your code. Instead, after definition, you pass the callback function to someone else&amp;rsquo;s code, and their code will call back your function later.&lt;/p&gt;
-
-&lt;p&gt;If this function is not used anywhere else, you can define it in the parameter list of &lt;code&gt;.map()&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1/2, 1/3, 1/4, 1/5, 1/6];
-var b = a.map(function round2(n) {
-   return Math.round(n*100) / 100;
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And you can even omit the function name. This defines an &lt;dfn&gt;anonymous function&lt;/dfn&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1/2, 1/3, 1/4, 1/5, 1/6];
-var b = a.map(function(n) {
-   return Math.round(n*100) / 100;
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Another way to look at this is that a callback function can customize / modify the functionality of an existing function. For example, to calculate areas of rectangles in an array, we can write another callback function and pass it to &lt;code&gt;.map()&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// an array of objects, each one is a rectangle with given width and height
-var c = [ { w: 4, h: 5 }, { w: 2, h: 3 } ];
-var d = c.map(function (r) {
-  return r.w * r.h;
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In addition to &lt;code&gt;.map()&lt;/code&gt;, another popular iteration function in Array is &lt;code&gt;.filter()&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var e = [&#39;joy&#39;, &#39;sadness&#39;, &#39;anger&#39;, &#39;disgust&#39;, &#39;fear&#39;];
-var f = [];
-for (var s of e) {
-  if (s.length&amp;lt;5) f.push(s);
-}
-// print e and f
-
-// same as the for loop above
-f = e.filter(function(s) { return (s.length&amp;lt;5); });
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;sorting&#34;&gt;Sorting&lt;/h2&gt;
-
-&lt;p&gt;JavaScript arrays have a built-in &lt;code&gt;sort&lt;/code&gt; method. It can sort numbers and strings, but it does not know how to sort other objects.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [5, 4, 1, 2, 3];
-a.sort();  // a becomes [1,2,3,4,5]
-var b = [&#39;apple&#39;, &#39;orange&#39;, &#39;banana&#39;];
-b.sort(); // b becomes [&#39;apple&#39;, &#39;banana&#39;, &#39;orange&#39;]
-
-var p = [
-  { name: &#39;Peter&#39;, age: 10 }, { name: &#39;Mary&#39;, age: 9 },
-  { name: &#39;John&#39;, age: 11 } ];
-p.sort(); // sort by name? by age?
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can teach &lt;code&gt;.sort()&lt;/code&gt; how to compare two objects with a callback function.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var p = [
-  { name: &#39;Peter&#39;, age: 10 }, { name: &#39;Mary&#39;, age: 9 },
-  { name: &#39;John&#39;, age: 11 } ];
-
-// compare two persons by age
-function cmp (p1, p2) {
-  if (p1.age&amp;lt;p2.age) return -1;  // p1 should be put before p2
-  if (p1.age==p2.age) return 0;  // order not important
-  return 1;                      // p1 should be put after p2
-}
-
-// sort by age
-p.sort(cmp);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;timer&#34;&gt;Timer&lt;/h2&gt;
-
-&lt;p&gt;Both browsers and Node.js support timers. Timers allow schedule of execution of a function in the future. There are two kinds of timers: one time (&lt;code&gt;setTimeout()&lt;/code&gt;), and periodic (&lt;code&gt;setInterval()&lt;/code&gt;). In either case, you pass the function to execute as a callback. Refer to the &lt;a href=&#34;https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers&#34;&gt;online reference&lt;/a&gt; for detail.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;// say &#39;hello&#39; every 3 seconds
-var id = setInterval(function() { console.log(&#39;hello&#39;);}, 3000);
-
-// cancel the timer
-//clearInterval(id)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The following is a countdown example.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var n = 10;
-function tick() {
-  console.log(&#39;count down &#39;, n);
-  n--;
-  // if not down to 0, schedule myself to run 1s later
-  if (n&amp;gt;0) { setTimeout(tick, 1000); }
-}
-// tick, the first time!
-tick();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;arrow-functions&#34;&gt;Arrow functions&lt;/h2&gt;
-
-&lt;p&gt;Anonymous functions are very common in JavaScript programming because of the asynchronous nature of client-side or server-side programming. (E.g. register a callback to handle mouse click). Therefore, ES6 defines a more concise syntax called &lt;dfn&gt;arrow functions&lt;/dfn&gt; to define anonymous function. Usually, arrow functions are defined and passed directly to another function.&lt;/p&gt;
-
-&lt;p&gt;Compare the two ways to write functions below.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var f1 = (a,b) =&amp;gt; { return a+b; };
-var f2 = function (a,b) { return a+b; }
-
-setTimeout(function() { console.log(&#39;hello&#39;);}, 2000);
-setTimeout( () =&amp;gt; { console.log(&#39;hello&#39;);}, 2000 );
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Although we&amp;rsquo;ll mainly use arrow functions in the same way as functions defined with &lt;code&gt;function&lt;/code&gt; keyword, there are in fact some technical differences. One important difference is about the &lt;code&gt;this&lt;/code&gt; pointer. Please refer to the &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions&#34;&gt;online reference&lt;/a&gt; for detail.&lt;/p&gt;
-
-&lt;p&gt;Array functions also provide some shorthand notation when the function body only returns an expression.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var f1 = (a,b) =&amp;gt; a+b;  // same as below
-var f2 = (a,b) =&amp;gt; { return a+b; }
-
-var f3 = a =&amp;gt; a+1; // same as below
-var f4 = (a) =&amp;gt; { return a+1; }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here are more examples to demonstrate the usage of arrow functions.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var a = [1/2, 1/3, 1/4, 1/5, 1/6];
-var b = a.map(n =&amp;gt; Math.round(n*100) / 100);
-
-var c = [3, 5, 2, 1];
-c.sort((a,b)=&amp;gt;b-a); // sort in descending order
-
-var e = [&#39;joy&#39;, &#39;sadness&#39;, &#39;anger&#39;, &#39;disgust&#39;, &#39;fear&#39;];
-f = e.filter(s =&amp;gt; s.length&amp;lt;5);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;excersie&#34;&gt;Excersie&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Given an array &lt;code&gt;var N = [ 32, 53, 42, 25, 48, 10 ]&lt;/code&gt;, write a program to do the following. You should use callback functions. &lt;a href=&#34;http://philiplei.github.io/chap2/p211.js&#34;&gt;(sample answer)&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Obtain an array of hexadecimal representation of the numbers in &lt;code&gt;N&lt;/code&gt;. (Hints: use &lt;code&gt;n.toString(16)&lt;/code&gt; to convert a number &lt;code&gt;n&lt;/code&gt; to hexadecimal)&lt;/li&gt;
-&lt;li&gt;Obtain an array of the numbers in &lt;code&gt;N&lt;/code&gt; between 20 and 40 inclusively&lt;/li&gt;
-&lt;li&gt;Count how many of the numbers  in &lt;code&gt;N&lt;/code&gt; are odd&lt;/li&gt;
-&lt;li&gt;Calculate the sum of the numbers in &lt;code&gt;N&lt;/code&gt;. Try to use &lt;code&gt;.reduce()&lt;/code&gt; in Array. &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce&#34;&gt;(online reference)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;The variable &lt;code&gt;comp312&lt;/code&gt; is an array that contains records of student marks in the comp312 class. Each student record has three fields: name, test and exam. Write programs to do the following. Use an Array iteration method (i.e. &lt;code&gt;.map()&lt;/code&gt;, &lt;code&gt;.filter()&lt;/code&gt;, &lt;code&gt;.reduce()&lt;/code&gt;, etc) at least once in each case. &lt;a href=&#34;http://philiplei.github.io/chap2/p212.js&#34;&gt;(sample answer)&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;var comp312 = [
-  { name: &#39;Peter&#39;, test: 80, exam: 70 },
-  { name: &#39;John&#39;, test: 60, exam: 65 },
-  { name: &#39;Mary&#39;, test: 90, exam: 85 },
-  { name: &#39;Christine&#39;, test: 70, exam: 76 }
-];
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Get a list of student names in the comp312 class&lt;/li&gt;
-&lt;li&gt;Get a list of student record with test mark &amp;gt;= 75&lt;/li&gt;
-&lt;li&gt;Get a list of student name whose test mark is greater than exam mark&lt;/li&gt;
-&lt;li&gt;Assume final mark = 0.6 * test + 0.4 * exam. Make an array with records showing the final mark and name for each student.&lt;/li&gt;
-&lt;li&gt;Sort the list in descending order of exam mark&lt;/li&gt;
-&lt;li&gt;Show the student record with the highest exam mark&lt;/li&gt;
-&lt;li&gt;Calculate the average test mark&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
 </description>
     </item>
     

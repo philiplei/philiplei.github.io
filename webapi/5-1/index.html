@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
     
-    <title>3-4 Handling events</title>
+    <title>5-1 Designing a Web API</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/hybrid.css" rel="stylesheet">
@@ -23,7 +23,7 @@
     
 
   </head>
-  <body class="" data-url="/client/3-4/">
+  <body class="" data-url="/webapi/5-1/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -114,7 +114,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/client/">
+      <li class="dd-item  " data-nav-id="/client/">
         <a href="/client/">
           <span>
             
@@ -154,7 +154,7 @@
           
           
           
-            <li class="dd-item active" data-nav-id="/client/3-4/">
+            <li class="dd-item " data-nav-id="/client/3-4/">
               <a href="/client/3-4/">
                 <span>3-4 Handling events     </i></span>
               </a>
@@ -280,7 +280,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/webapi/">
+      <li class="dd-item  parent" data-nav-id="/webapi/">
         <a href="/webapi/">
           <span>
             
@@ -296,7 +296,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/webapi/5-1/">
+            <li class="dd-item active" data-nav-id="/webapi/5-1/">
               <a href="/webapi/5-1/">
                 <span>5-1 Designing a Web API     </i></span>
               </a>
@@ -355,17 +355,17 @@
                   
                 
                   
-                    
-                    
-                <a href="/client/" itemprop="url"><span itemprop="title">Client-side programming</span></a> <i class="fa fa-angle-right"></i>
-                    
-                  
                 
                   
                 
                   
+                    
+                    
+                <a href="/webapi/" itemprop="url"><span itemprop="title">Ajax and Web API</span></a> <i class="fa fa-angle-right"></i>
+                    
+                  
                 
-                <span itemprop="title"> 3-4 Handling events</span>
+                <span itemprop="title"> 5-1 Designing a Web API</span>
               </div>
               
                   <div class="progress">
@@ -374,10 +374,12 @@
 <ul>
 <li>
 <ul>
-<li><a href="#basic-event-handling">Basic event handling</a></li>
-<li><a href="#mouse-event-and-event-object">Mouse event and event object</a></li>
-<li><a href="#attach-data-to-dom-elements">Attach data to DOM elements</a></li>
-<li><a href="#pass-data-to-event-handler">Pass data to event handler</a></li>
+<li><a href="#rpc-style-web-api">RPC-style Web API</a>
+<ul>
+<li><a href="#read-only-operations">Read-only operations</a></li>
+<li><a href="#update-operations">Update operations</a></li>
+</ul></li>
+<li><a href="#exercise">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -390,157 +392,202 @@
             
     	        <div id="body-inner">
                 
-                <h1>3-4 Handling events</h1>
+                <h1>5-1 Designing a Web API</h1>
                 
 
 
 
-<p>This lab covers how to handle events with event handlers using the jQuery library.</p>
+<p>In an Ajax web app, the application server implements a Web API that provides service to the front-end JavaScript code.</p>
 
-<h2 id="basic-event-handling">Basic event handling</h2>
+<p>A <dfn>Web API</dfn> is a defined set of HTTP request messages along with a definition of the structure of response messages, usually expressed in an XML or JSON format (from <a href="https://en.wikipedia.org/wiki/Web_API">Wikipedia</a>).</p>
 
-<p>The basic function to register event handler is <code>$().on(events, handler)</code> <a href="https://api.jquery.com/on/">(online reference)</a> This method attaches the event handler (a function) to handle the events (e.g &lsquo;click&rsquo;, &lsquo;mousemove&rsquo;) to each element in the jQuery collection. There are different ways to attach event handlers, as shown below.</p>
+<h2 id="rpc-style-web-api">RPC-style Web API</h2>
 
-<pre><code class="language-JavaScript">$('button#btn1').on('click', function(event) {
-  // do something when the button with id=btn1 is clicked
-});
+<p>A common design style of Web API is RPC-style (Remote Procedure Call). A RPC-style Web API consists of one URL for each <em>function or operation</em>.  These URLs represent an action and are usually named with a verb.  The following table shows the five endpoints in the Web API of our sample web app. They implement four common operations on data known as CRUD (Create, Retrieve, Update an Delete).</p>
 
-// rewrite using arrow function
-$('button#btn1').on('click', (event) =&gt; {
-  // ...
-});
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>URL</th>
+<th>function</th>
+</tr>
+</thead>
 
-// shorthand notation is available for common events
-// .. but this is not recommended in this course
-$('button#btn1').click( (event) =&gt; {
-  // ...
-});
+<tbody>
+<tr>
+<td>GET</td>
+<td>/getTodo</td>
+<td>List all tasks in json format</td>
+</tr>
 
-// your can also define a standalone function and later use it as event handler
-function btn1_click (event) {
-  // ...
-}
+<tr>
+<td>GET</td>
+<td>/searchTodo</td>
+<td>Search tasks that are due before the given date.</td>
+</tr>
 
-$('button#btn1').on('click', btn1_click);
+<tr>
+<td>POST</td>
+<td>/addTodo</td>
+<td>Add a task. Message body contains properties of the new task, except id.</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>/updateTodo</td>
+<td>Update a task. Message body contains id of the updated todo and properties with new value</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>/deleteTodo</td>
+<td>Delete the task with id included in message body</td>
+</tr>
+</tbody>
+</table>
+
+<p>An endpoint uses <strong>GET</strong> if the operation is <em>read-only</em>. If the operation may causes some action or side-effect on the server side, the endpoint must use <strong>POST</strong>.</p>
+
+<h3 id="read-only-operations">Read-only operations</h3>
+
+<p>A Web API may return result in either key-value pairs (www-url-encoded) or JSON.
+Key-value pairs are only suitable for simple values. JSON is more flexible in representing data structure.</p>
+
+<p>Sample request message to retrieve tasks:</p>
+
+<pre><code class="language-HTTP">GET /getTodo HTTP/1.1
+Host: example.com
+
 </code></pre>
 
-<h2 id="mouse-event-and-event-object">Mouse event and event object</h2>
+<p>Below is a sample response message returned by the Web API. The JSON payload has <code>Content-type: applicatin/json</code>. The <a href="http://www.json.org/">JSON data format</a> is mostly the same as JavaScript object syntax. But it can only contain simple values (namely numbers, strings and boolean) and all property names must be quoted.</p>
 
-<p>The browser triggers several mouse-related events when the user interacts with the HTML elements using the mouse. Some common mouse events are: <code>click</code>, <code>mouseenter</code>, <code>mouseleave</code> and <code>mousemove</code>.
-The first parameter of an event handler is an <a href="http://api.jquery.com/category/events/event-object/">Event object</a>.
-This object includes several useful properties and methods. One of them is the property <code>.target</code>, which is the HTML element that triggers the event. The event type is given in the property <code>.type</code>. The location of the mouse cursor is given in the properties <code>.pageX</code> and <code>.pageY</code>. The following code shows how to handle common mouse events. Check a live demo at <a href="/chap3/p321.html">p321.html</a>.</p>
+<pre><code class="language-HTTP">HTTP/1.1 200 Ok
+Content-type: application/json
+Content-length: 234
 
-<pre><code class="language-JavaScript">// this event handler handles 'click'
-$('#box1').on('click', event =&gt; {
-  var x = event.pageX;
-  var y = event.pageY;
-  console.log(`click: #box1 at (${x}, ${y})`);
-});
-
-// this event handler handles both 'mouseenter' and 'mouseleave'
-$('#box1').on('mouseenter mouseleave', event =&gt; {
-  var x = event.pageX;
-  var y = event.pageY;
-  var type = event.type;
-  console.log(`${type}: #box1 at (${x}, ${y})`);
-});
-</code></pre>
-
-<p>In some cases, we need to handle the same event type triggered at many elements. For example,
-in <a href="/chap3/p322.html">p322.html</a>, when the user clicks at one of the 12 images, it slowly fades out (to 0.1 opacity), and then slowly fades in (back to 1.0 opacity). (This example uses the jQuery method <code>$().fadeTo</code> <a href="http://api.jquery.com/fadeTo/">(online reference)</a> to do the animation.)
-This animation is done with one event handler, which needs to find out which image is clicked via <code>event.target</code>. Notice that in order to apply jQuery methods, we have to wrap the DOM element <code>event.target</code> as a jQuery collection <code>$(event.target)</code>.</p>
-
-<pre><code class="language-JavaScript">// register the same event handler function to the 12 images
-$('#zodiac img').on('click', event =&gt; {
-  // use event.target to find out which image is clicked
-  // do something on it, e.g. $(event.target).fadeOut();
-  $(event.target).fadeTo(1000, 0.1,
-    ()=&gt;{$(event.target).fadeTo(3000, 1)});
-});
-</code></pre>
-
-<h2 id="attach-data-to-dom-elements">Attach data to DOM elements</h2>
-
-<p>Although we can distinguish which element triggers an event with <code>event.target</code>, usually it is more convenient if we can pass some application specific information (e.g. record id) to the event handler.  There are several ways to do this.  The code below are extracted from a simple Tic-tac-toe example <a href="/chap3/p323.html">p323.html</a> and uses the jQuery method <code>$().data(name, value)</code> to attach any JavaScript data to a DOM element.</p>
-
-<pre><code class="language-HTML">&lt;!-- the tic tac toe game board is a 3x3 table --&gt;
-&lt;table id='tic' class='gameboard'&gt;
-  &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;script&gt;
-// attach pos=0, pos=1, .., pos=8 to the 9 table cells
-for (var k=0; k&lt;$('#tic td').length; k++) {
-  $('#tic td').eq(k).data('pos', k);
-}
-&lt;/script&gt;
-</code></pre>
-
-<p>Then in the event handler for click on the table cells <code>#tic td</code>, we use <code>$(event.target).data('pos')</code> to retrieve the position (0-8) of the clicked cell, and update the game board data structure accordingly.</p>
-
-<pre><code class="language-JavaScript">var board = [9,9,9,9,9,9,9,9,9];
-// player 'circle' plays first
-var current = 0;
-
-$('#tic td').on('click', (event)=&gt;{
-  // which position (0-8) is clicked?
-  var pos = $(event.target).data('pos');
-  // update the game board data structure
-  board[pos] = current;
-  // display a circle or cross
-  var image = (current==0) ? 'url(circle.png)' : 'url(cross.png)';
-  $(event.target).css('background-image', image);
-  // change player
-  current = (current==0) ? 1 : 0;
-});
-</code></pre>
-
-<h2 id="pass-data-to-event-handler">Pass data to event handler</h2>
-
-<p>Instead of attaching JavaScript data to DOM element, you can specify these JavaScript data when registering an event handler. When the event triggers, jQuery passes the specified data to the event handler as <code>event.data</code>.</p>
-
-<p>This example (<a href="/chap3/p324.html">p324.html</a>) specifies a row number while it registers an event handler for each row in an existing HTML table.</p>
-
-<pre><code class="language-JavaScript">var $rows = $('#marks tbody tr');
-for (var i=0; i&lt;$rows.length; i++) {
-  $rows.eq(i).on('click', { rowNum: i }, (event) =&gt; {
-    var n = event.data.rowNum;
-    console.log(`click row ${n}`);
-  });
+{
+  &quot;count&quot;: 2,
+  &quot;task&quot;: [     
+    { &quot;id&quot;: 1, &quot;due&quot;: &quot;2016-11-11&quot;, &quot;what&quot;: &quot;Test&quot;,
+      &quot;category&quot;: &quot;study&quot;, &quot;done&quot;: 0 },
+    { &quot;id&quot;: 2, &quot;due&quot;: &quot;2016-12-13&quot;, &quot;what&quot;: &quot;Final exam&quot;,
+      &quot;category&quot;: &quot;study&quot;, &quot;done&quot;: 0 }
+  ]
 }
 </code></pre>
 
-<p>The following code snippet comes from the example (<a href="/chap3/p325.html">p325.html</a>). This app populates an HTML table with some mark data for students in runtime, and attaches the event handler to a newly created table row for each student.</p>
+<p>A client may pass simple parameters to the Web API using <em>query</em>. This is similar to web search form submission. Below is a request for the endpoint <code>GET /searchTodo</code> to search tasks that are due before a given date. Note that HTTP GET requests <em>cannot</em> contain a body, so any data must be passed in the URL.</p>
 
-<pre><code class="language-JavaScript">function populateMarkTable (marks) {
-  $('#marks caption').text(`Marks for ${marks.courseCode}`);
-  $('#marks tbody').empty();
-  for (var k=0; k&lt;marks.student.length; k++) {
-    var stud=marks.student[k];
-    // calculate course, exam and final for this student
-    // ...
-    var $r = $('&lt;tr&gt;');
-    $('&lt;td&gt;').text(stud.name).appendTo($r);
-    $('&lt;td&gt;').text(course).appendTo($r);
-    $('&lt;td&gt;').text(exam).appendTo($r);
-    $('&lt;td&gt;').text(final).appendTo($r);
-    // pass a student record to the event handler
-    // when the mouse is over this row
-    $r.on('mouseenter', { stud: stud }, displayMarkDetail);
-    $('#marks tbody').append($r);
-  }
-}
+<pre><code class="language-HTTP">GET /searchTodo?before=2016-12-01 HTTP/1.1
+Host: example.com
 
-function displayMarkDetail (event) {
-  // event.data.stud is the record of the student selected
-  var stud = event.data.stud;
-  var s = `The student ${stud.name} has got ${stud.hw.join(',')} in assignments, `;
-  s += `${stud.test.join(',')} in tests, and ${stud.exam} in exam.`;
-  $('p#detail').text(s);
-}
 </code></pre>
+
+<p>Some designers use HTTP status codes like <code>400</code> and <code>500</code> to report runtime error. Other designers choose to use the JSON payload to report error. What is important is that you should be consistent.</p>
+
+<pre><code class="language-HTTP">HTTP/1.1 400 Bad Request
+Content-type: text/plain
+Content-length: 26
+
+Date format error in input
+</code></pre>
+
+<pre><code class="language-HTTP">HTTP/1.1 500 Internal Server Error
+Content-type: application/json
+Content-length: 63
+
+{ &quot;errorCode&quot;: 1001, &quot;message&quot;: &quot;Database connection problem&quot; }
+</code></pre>
+
+<pre><code class="language-HTTP">HTTP/1.1 200 Ok
+Content-type: application/json
+Content-length: 63
+
+{ &quot;errorCode&quot;: 1001, &quot;message&quot;: &quot;Database connection problem&quot; }
+</code></pre>
+
+<h3 id="update-operations">Update operations</h3>
+
+<p>The endpoints of any update operations <strong>must use POST</strong>. It informs that any web proxy servers between the client and the Web API should not cache response of the operations. In update operations, there are usually some input parameters. You can pass simple parameters as key-value pairs (i.e. <code>www-form-urlencoded</code>) in the request message body. Key-value pairs are usually easier to work with in client-side programming (e.g. using jQuery).</p>
+
+<p>Below is a sample request for adding a task in the Web API.</p>
+
+<pre><code class="language-HTTP">POST /addTodo HTTP/1.1
+Host: example.com
+Content-type: application/x-www-form-urlencoded
+Content-length: 53
+
+due=2017-01-06&amp;what=Makeup+exam&amp;category=study&amp;done=0
+</code></pre>
+
+<p>For more complicated data, use JSON data format.</p>
+
+<pre><code class="language-HTTP">POST /addTodo HTTP/1.1
+Host: example.com
+Content-type: application/json
+Content-length: 80
+
+{ &quot;due&quot;: &quot;2017-01-06&quot;, &quot;what&quot;: &quot;Makeup exam&quot;,
+  &quot;category&quot;: &quot;study&quot;, &quot;done&quot;: 0 }
+</code></pre>
+
+<p>A <em>successful response</em> from an update operation may not contain any payload. You can use HTTP status code <code>204</code> in this case.</p>
+
+<pre><code class="language-HTTP">HTTP/1.1 204 No content
+
+</code></pre>
+
+<p>On the other hand, if the Web API provides some info about the update operation, include the data as urlencoded or JSON payload.</p>
+
+<pre><code class="language-HTTP">HTTP/1.1 200 Ok
+Content-type: application/x-www-form-urlencoded
+Content-length: 4
+
+id=21
+</code></pre>
+
+<p>We finish this section with sample HTTP request and response messages for the remaining two endpoints of the Web API, namely <code>POST /updateTodo</code> and <code>POST /deleteTodo</code>.</p>
+
+<p>In the updateTodo operation, the client must specify the <code>id</code> of the task to change, and then list the properties and their new values.</p>
+
+<pre><code class="language-HTTP">POST /updateTodo HTTP/1.1
+Host: example.com
+Content-type: application/x-www-form-urlencoded
+Content-length: 53
+
+id=21&amp;what=Makeup+exam+COMP312
+</code></pre>
+
+<p>For the delete operation, the client must specify the <code>id</code> of the task to delete. The input parameter is very simple. There are two common designs for this case.</p>
+
+<pre><code class="language-HTTP">POST /deleteTodo HTTP/1.1
+Host: example.com
+Content-type: application/x-www-form-urlencoded
+Content-length: 4
+
+id=3
+</code></pre>
+
+<p>or</p>
+
+<pre><code class="language-HTTP">POST /deleteTodo?id=3 HTTP/1.1
+Host: example.com
+
+</code></pre>
+
+<p>We&rsquo;ll use the first design in our sample app for consistency. I.e. we also pass input parameters to POST endpoints in request message body.</p>
+
+<h2 id="exercise">Exercise</h2>
+
+<ol>
+<li><p>Write sample response messages for the <code>POST /updateTodo</code> endpoint for successful update, and unsuccessful update because the record with the given id does not exist.</p></li>
+
+<li><p>Design a new endpoint <code>GET /getTodoWithId</code>, to retrieve a task with a given <code>id</code>. Write sample response messages for successful and unsuccessful retrieval.</p></li>
+
+<li><p>Design a new endpoint for the Web API for the operation of marking a task as done (i.e. set the done property to 1 in the server database.) Write sample response messages for successful and unsuccessful retrieval. In your answer, describe what input parameters are required.</p></li>
+</ol>
 
 
       

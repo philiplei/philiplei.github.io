@@ -20,8 +20,8 @@ app.get('/form1.html', (req, res) => {
 
 app.get('/add', (req, res) => {
   var a = parseFloat(req.query.a);
-	var b = parseFloat(req.query.b);
-	res.send(`${a} + ${b} = ${a+b}`);
+  var b = parseFloat(req.query.b);
+  res.send(`${a} + ${b} = ${a+b}`);
 });
 
 // matches any URL

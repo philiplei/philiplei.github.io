@@ -1,0 +1,12 @@
+{
+  "name": "comp312-todo",
+  "description": "A simple CRUD web app on task management. Ajax version",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "^4.14",
+    "morgan": "^1.7",
+    "sqlite3": "^3.1.4",
+    "body-parser": "^1.15"
+  }
+}

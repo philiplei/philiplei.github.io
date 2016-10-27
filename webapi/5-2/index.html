@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
     
-    <title>3-4 Handling events</title>
+    <title>5-2 Implmenting a Web API</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/hybrid.css" rel="stylesheet">
@@ -23,7 +23,7 @@
     
 
   </head>
-  <body class="" data-url="/client/3-4/">
+  <body class="" data-url="/webapi/5-2/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -114,7 +114,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/client/">
+      <li class="dd-item  " data-nav-id="/client/">
         <a href="/client/">
           <span>
             
@@ -154,7 +154,7 @@
           
           
           
-            <li class="dd-item active" data-nav-id="/client/3-4/">
+            <li class="dd-item " data-nav-id="/client/3-4/">
               <a href="/client/3-4/">
                 <span>3-4 Handling events     </i></span>
               </a>
@@ -280,7 +280,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/webapi/">
+      <li class="dd-item  parent" data-nav-id="/webapi/">
         <a href="/webapi/">
           <span>
             
@@ -304,7 +304,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/webapi/5-2/">
+            <li class="dd-item active" data-nav-id="/webapi/5-2/">
               <a href="/webapi/5-2/">
                 <span>5-2 Implmenting a Web API     </i></span>
               </a>
@@ -355,17 +355,17 @@
                   
                 
                   
-                    
-                    
-                <a href="/client/" itemprop="url"><span itemprop="title">Client-side programming</span></a> <i class="fa fa-angle-right"></i>
-                    
-                  
                 
                   
                 
                   
+                    
+                    
+                <a href="/webapi/" itemprop="url"><span itemprop="title">Ajax and Web API</span></a> <i class="fa fa-angle-right"></i>
+                    
+                  
                 
-                <span itemprop="title"> 3-4 Handling events</span>
+                <span itemprop="title"> 5-2 Implmenting a Web API</span>
               </div>
               
                   <div class="progress">
@@ -374,10 +374,9 @@
 <ul>
 <li>
 <ul>
-<li><a href="#basic-event-handling">Basic event handling</a></li>
-<li><a href="#mouse-event-and-event-object">Mouse event and event object</a></li>
-<li><a href="#attach-data-to-dom-elements">Attach data to DOM elements</a></li>
-<li><a href="#pass-data-to-event-handler">Pass data to event handler</a></li>
+<li><a href="#endpoints-with-get-method">Endpoints with GET method</a></li>
+<li><a href="#endpoints-with-post-method">Endpoints with POST method</a></li>
+<li><a href="#exercise">Exercise</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -390,157 +389,153 @@
             
     	        <div id="body-inner">
                 
-                <h1>3-4 Handling events</h1>
+                <h1>5-2 Implmenting a Web API</h1>
                 
 
 
 
-<p>This lab covers how to handle events with event handlers using the jQuery library.</p>
+<p>In this lab, we&rsquo;ll discuss implementation of the Web API in last section using Express framework.</p>
 
-<h2 id="basic-event-handling">Basic event handling</h2>
+<h2 id="endpoints-with-get-method">Endpoints with GET method</h2>
 
-<p>The basic function to register event handler is <code>$().on(events, handler)</code> <a href="https://api.jquery.com/on/">(online reference)</a> This method attaches the event handler (a function) to handle the events (e.g &lsquo;click&rsquo;, &lsquo;mousemove&rsquo;) to each element in the jQuery collection. There are different ways to attach event handlers, as shown below.</p>
+<p>This section implements two endpoints of a Web API. Both are read-only and use GET method. They return the result in JSON data format.</p>
 
-<pre><code class="language-JavaScript">$('button#btn1').on('click', function(event) {
-  // do something when the button with id=btn1 is clicked
-});
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>URL</th>
+<th>function</th>
+</tr>
+</thead>
 
-// rewrite using arrow function
-$('button#btn1').on('click', (event) =&gt; {
-  // ...
-});
+<tbody>
+<tr>
+<td>GET</td>
+<td>/getTodo</td>
+<td>List all tasks</td>
+</tr>
 
-// shorthand notation is available for common events
-// .. but this is not recommended in this course
-$('button#btn1').click( (event) =&gt; {
-  // ...
-});
+<tr>
+<td>GET</td>
+<td>/searchTodo</td>
+<td>Search tasks that are due before the given date.</td>
+</tr>
+</tbody>
+</table>
 
-// your can also define a standalone function and later use it as event handler
-function btn1_click (event) {
-  // ...
-}
+<p>Typically, we define a route in an Express app to implement an endpoint in a Web API.
+Below is a simple implementation of retrieval of all tasks from a database.  You can easily test this route by loading an URL like <code>http://localhost:3000/getTodo</code> in a browser.</p>
 
-$('button#btn1').on('click', btn1_click);
-</code></pre>
-
-<h2 id="mouse-event-and-event-object">Mouse event and event object</h2>
-
-<p>The browser triggers several mouse-related events when the user interacts with the HTML elements using the mouse. Some common mouse events are: <code>click</code>, <code>mouseenter</code>, <code>mouseleave</code> and <code>mousemove</code>.
-The first parameter of an event handler is an <a href="http://api.jquery.com/category/events/event-object/">Event object</a>.
-This object includes several useful properties and methods. One of them is the property <code>.target</code>, which is the HTML element that triggers the event. The event type is given in the property <code>.type</code>. The location of the mouse cursor is given in the properties <code>.pageX</code> and <code>.pageY</code>. The following code shows how to handle common mouse events. Check a live demo at <a href="/chap3/p321.html">p321.html</a>.</p>
-
-<pre><code class="language-JavaScript">// this event handler handles 'click'
-$('#box1').on('click', event =&gt; {
-  var x = event.pageX;
-  var y = event.pageY;
-  console.log(`click: #box1 at (${x}, ${y})`);
-});
-
-// this event handler handles both 'mouseenter' and 'mouseleave'
-$('#box1').on('mouseenter mouseleave', event =&gt; {
-  var x = event.pageX;
-  var y = event.pageY;
-  var type = event.type;
-  console.log(`${type}: #box1 at (${x}, ${y})`);
-});
-</code></pre>
-
-<p>In some cases, we need to handle the same event type triggered at many elements. For example,
-in <a href="/chap3/p322.html">p322.html</a>, when the user clicks at one of the 12 images, it slowly fades out (to 0.1 opacity), and then slowly fades in (back to 1.0 opacity). (This example uses the jQuery method <code>$().fadeTo</code> <a href="http://api.jquery.com/fadeTo/">(online reference)</a> to do the animation.)
-This animation is done with one event handler, which needs to find out which image is clicked via <code>event.target</code>. Notice that in order to apply jQuery methods, we have to wrap the DOM element <code>event.target</code> as a jQuery collection <code>$(event.target)</code>.</p>
-
-<pre><code class="language-JavaScript">// register the same event handler function to the 12 images
-$('#zodiac img').on('click', event =&gt; {
-  // use event.target to find out which image is clicked
-  // do something on it, e.g. $(event.target).fadeOut();
-  $(event.target).fadeTo(1000, 0.1,
-    ()=&gt;{$(event.target).fadeTo(3000, 1)});
-});
-</code></pre>
-
-<h2 id="attach-data-to-dom-elements">Attach data to DOM elements</h2>
-
-<p>Although we can distinguish which element triggers an event with <code>event.target</code>, usually it is more convenient if we can pass some application specific information (e.g. record id) to the event handler.  There are several ways to do this.  The code below are extracted from a simple Tic-tac-toe example <a href="/chap3/p323.html">p323.html</a> and uses the jQuery method <code>$().data(name, value)</code> to attach any JavaScript data to a DOM element.</p>
-
-<pre><code class="language-HTML">&lt;!-- the tic tac toe game board is a 3x3 table --&gt;
-&lt;table id='tic' class='gameboard'&gt;
-  &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;script&gt;
-// attach pos=0, pos=1, .., pos=8 to the 9 table cells
-for (var k=0; k&lt;$('#tic td').length; k++) {
-  $('#tic td').eq(k).data('pos', k);
-}
-&lt;/script&gt;
-</code></pre>
-
-<p>Then in the event handler for click on the table cells <code>#tic td</code>, we use <code>$(event.target).data('pos')</code> to retrieve the position (0-8) of the clicked cell, and update the game board data structure accordingly.</p>
-
-<pre><code class="language-JavaScript">var board = [9,9,9,9,9,9,9,9,9];
-// player 'circle' plays first
-var current = 0;
-
-$('#tic td').on('click', (event)=&gt;{
-  // which position (0-8) is clicked?
-  var pos = $(event.target).data('pos');
-  // update the game board data structure
-  board[pos] = current;
-  // display a circle or cross
-  var image = (current==0) ? 'url(circle.png)' : 'url(cross.png)';
-  $(event.target).css('background-image', image);
-  // change player
-  current = (current==0) ? 1 : 0;
-});
-</code></pre>
-
-<h2 id="pass-data-to-event-handler">Pass data to event handler</h2>
-
-<p>Instead of attaching JavaScript data to DOM element, you can specify these JavaScript data when registering an event handler. When the event triggers, jQuery passes the specified data to the event handler as <code>event.data</code>.</p>
-
-<p>This example (<a href="/chap3/p324.html">p324.html</a>) specifies a row number while it registers an event handler for each row in an existing HTML table.</p>
-
-<pre><code class="language-JavaScript">var $rows = $('#marks tbody tr');
-for (var i=0; i&lt;$rows.length; i++) {
-  $rows.eq(i).on('click', { rowNum: i }, (event) =&gt; {
-    var n = event.data.rowNum;
-    console.log(`click row ${n}`);
+<pre><code class="language-JavaScript">app.get('/getTodo', (req, res) =&gt; {
+  db.all(&quot;SELECT * FROM task ORDER BY due DESC&quot;, function(err, rows) {
+    if (err) {
+      // return HTTP status code 500 to report internal server error
+      res.status(500).send(err);
+    } else {
+      // sending JavaScript object creates a JSON response
+      res.send({ count: rows.length, task: rows });
+    }
   });
-}
+});
 </code></pre>
 
-<p>The following code snippet comes from the example (<a href="/chap3/p325.html">p325.html</a>). This app populates an HTML table with some mark data for students in runtime, and attaches the event handler to a newly created table row for each student.</p>
+<p>A web API endpoint with GET method may take input parameters in query part of the URL (e.g. <code>/searchTodo?before=2016-10-27</code>)  These parameters are available in <code>req.query</code> in an Express route. Below is an example of another endpoint for searching tasks due before a given date. This example also demonstrates sanity check of input parameters and error reporting. When the app server receives a request for <code>/searchTodo?before=2016-10-27</code>, it sets the query object <code>req.query = { before: '2016-10-27' }</code>.</p>
 
-<pre><code class="language-JavaScript">function populateMarkTable (marks) {
-  $('#marks caption').text(`Marks for ${marks.courseCode}`);
-  $('#marks tbody').empty();
-  for (var k=0; k&lt;marks.student.length; k++) {
-    var stud=marks.student[k];
-    // calculate course, exam and final for this student
-    // ...
-    var $r = $('&lt;tr&gt;');
-    $('&lt;td&gt;').text(stud.name).appendTo($r);
-    $('&lt;td&gt;').text(course).appendTo($r);
-    $('&lt;td&gt;').text(exam).appendTo($r);
-    $('&lt;td&gt;').text(final).appendTo($r);
-    // pass a student record to the event handler
-    // when the mouse is over this row
-    $r.on('mouseenter', { stud: stud }, displayMarkDetail);
-    $('#marks tbody').append($r);
+<pre><code class="language-JavaScript">app.get('/searchTodo', (req, res) =&gt; {
+  // parameter sanity check
+  var before = req.query.before;
+  if (/^\d\d\d\d-\d\d-\d\d$/.test(before)===false) {
+    // error in input parameters
+    res.status(400).end();
+    return;
   }
-}
-
-function displayMarkDetail (event) {
-  // event.data.stud is the record of the student selected
-  var stud = event.data.stud;
-  var s = `The student ${stud.name} has got ${stud.hw.join(',')} in assignments, `;
-  s += `${stud.test.join(',')} in tests, and ${stud.exam} in exam.`;
-  $('p#detail').text(s);
-}
+  db.all(&quot;SELECT * FROM task WHERE due &lt;= ? ORDER BY due DESC&quot;,
+    [ before ],
+    function(err, rows) {
+      if (err) {
+        // internal server error
+        res.status(500).send(err);
+      } else {
+        // sending JavaScript object creates a JSON response
+        res.send({ count: rows.length, task: rows });
+      }
+    }
+  );
+});
 </code></pre>
+
+<h2 id="endpoints-with-post-method">Endpoints with POST method</h2>
+
+<p>This section discusses implementation of three endpoints (listed below) that use POST method.
+They take input parameters in <em>urlencoded</em> format which are enclosed in the message body of the requests.</p>
+
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>URL</th>
+<th>function</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>POST</td>
+<td>/addTodo</td>
+<td>Add a task. Message body contains properties of the new task, except id.</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>/updateTodo</td>
+<td>Update a task. Message body contains id of the updated todo and properties with new value</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>/deleteTodo</td>
+<td>Delete the task with id included in message body</td>
+</tr>
+</tbody>
+</table>
+
+<p>The route below is a simple implementation of adding a new task to the database.
+The route obtains the input parameters from <code>req.body</code> instead of <code>req.query</code> because the input parameters are passed in the request message body. After error checking of input parameters, the code executes <code>INSERT</code> SQL statement to add a task to the database. It returns HTTP status code <code>204</code> if <code>INSERT</code> is successful. Otherwise, it returns status code <code>500</code>.</p>
+
+<pre><code class="language-JavaScript">app.post('/addTodo', (req, res) =&gt; {
+  // obtain the input parameters from the message body
+  var due = req.body.due;
+  var what = req.body.what;
+  var category = req.body.category;
+  var done = req.body.done;
+  if (done==undefined) done = 0;  // default value
+
+  // sanity check of input parameters
+  if (due===undefined || what===undefined || category===undefined) {
+    res.status(400).send('Cannot add new. '+'content '+JSON.stringify(req.body));
+    // console.log(req.body);
+    return;
+  }
+
+  db.run(&quot;INSERT INTO task (due, what, category, done) VALUES (?,?,?,?)&quot;,
+    [due, what, category, done],
+    function(err) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(204).end();
+      }
+  });
+
+});
+</code></pre>
+
+<p>Refer to the <a href="/chap5-app/app.js">source code</a> of <code>app.js</code> in the Ajax web app for the implementation of the endpoints <code>POST /updateTodo</code> and <code>POST /deleteTodo</code>.</p>
+
+<h2 id="exercise">Exercise</h2>
+
+<p>Implement the endpoint for the operation of marking a task as done (the last question in the previous section).</p>
 
 
       

@@ -3,7 +3,12 @@
   
   <url>
     <loc>http://philiplei.github.io/</loc>
-    <lastmod>2016-06-30T10:14:43+08:00</lastmod>
+    <lastmod>2016-10-26T08:36:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://philiplei.github.io/webapi/</loc>
+    <lastmod>2016-10-26T08:36:00+08:00</lastmod>
   </url>
   
   <url>
@@ -22,6 +27,11 @@
   </url>
   
   <url>
+    <loc>http://philiplei.github.io/webapi/5-1/</loc>
+    <lastmod>2016-10-26T08:23:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://philiplei.github.io/server/4-1/</loc>
     <lastmod>2016-06-30T10:36:44+08:00</lastmod>
   </url>
@@ -37,6 +47,11 @@
   </url>
   
   <url>
+    <loc>http://philiplei.github.io/webapi/5-2/</loc>
+    <lastmod>2016-10-26T13:43:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://philiplei.github.io/server/4-2/</loc>
     <lastmod>2016-07-25T10:05:01+08:00</lastmod>
   </url>
@@ -49,6 +64,11 @@
   <url>
     <loc>http://philiplei.github.io/basic/2-2/</loc>
     <lastmod>2016-05-26T10:36:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://philiplei.github.io/webapi/5-3/</loc>
+    <lastmod>2016-10-27T08:43:00+08:00</lastmod>
   </url>
   
   <url>
