@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Webapis on COMP312 labs</title>
-    <link>http://philiplei.github.io/webapi/</link>
-    <description>Recent content in Webapis on COMP312 labs</description>
+    <title>Webapi-rsses on COMP312 labs</title>
+    <link>http://philiplei.github.io/webapi/index.xml</link>
+    <description>Recent content in Webapi-rsses on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 26 Oct 2016 08:36:00 +0800</lastBuildDate>
