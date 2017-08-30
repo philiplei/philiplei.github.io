@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Clients on COMP312 labs</title>
+    <title>Client-side programming on COMP312 labs</title>
     <link>http://philiplei.github.io/client/</link>
-    <description>Recent content in Clients on COMP312 labs</description>
+    <description>Recent content in Client-side programming on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 May 2016 10:36:44 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 May 2016 10:14:43 +0800</lastBuildDate>
     
 	<atom:link href="http://philiplei.github.io/client/index.xml" rel="self" type="application/rss+xml" />
     
@@ -40,16 +40,6 @@ The jQuery library provides a powerful function to select elements from the docu
       <guid>http://philiplei.github.io/client/3-3/</guid>
       <description>This lab covers how to create new content into the document tree using $() jQuery functions and methods.
 Create new HTML content You can create new HTML content by passing HTML code to the jQuery function $(htmlCode). The newly created elements are detached from the current document tree, and not displayed. To show the content, you have to attach the elements to the document tree. Run the following code in p311.</description>
-    </item>
-    
-    <item>
-      <title>Client-side programming</title>
-      <link>http://philiplei.github.io/client/</link>
-      <pubDate>Mon, 30 May 2016 10:14:43 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/client/</guid>
-      <description>Client-side programming This chapter goes through the basics of the JavaScript programming inside the Web browser environment.
- 3-1 Quick start  document tree, first jQuery example select $(), change content .html(), .val(), event  3-2 select and change  select nodes in DOM tree. $(selector). jQuery collection read / change content .html() .text() .attr() .css() .addClass() fine tune jQuery collection (.eq(), .slice())  3-3 create new content  add new HTML content $(&#39;&amp;lt;html code&amp;gt;&#39;) add new / move existing.</description>
     </item>
     
     <item>

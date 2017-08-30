@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Servers on COMP312 labs</title>
+    <title>Server-side programming on COMP312 labs</title>
     <link>http://philiplei.github.io/server/</link>
-    <description>Recent content in Servers on COMP312 labs</description>
+    <description>Recent content in Server-side programming on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Jun 2016 10:36:44 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jun 2016 10:14:43 +0800</lastBuildDate>
     
 	<atom:link href="http://philiplei.github.io/server/index.xml" rel="self" type="application/rss+xml" />
     
@@ -50,16 +50,6 @@ Quick start Node.js (https://nodejs.org) is a platform built on Chrome&amp;rsquo
       <guid>http://philiplei.github.io/server/4-4/</guid>
       <description>This lab demonstrates how to use middleware in general. It introduces a few common middleware, and also covers a middleware that handles form submit using GET and POST.
 Middlewares In the previous lab, we saw that an Express app is essentially a sequence of routes. When a request arrives at an Express app, the app tries to find a match of the path in the order of routes in the sequence.</description>
-    </item>
-    
-    <item>
-      <title>Server-side programming</title>
-      <link>http://philiplei.github.io/server/</link>
-      <pubDate>Thu, 30 Jun 2016 10:14:43 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/server/</guid>
-      <description>Server-side programming This chapter goes through the basics of the JavaScript programming on the server side using Node.js.
- 4-1. Node primer  compare node.js and browser env install, run *.js require module event loop. timer built-in modules file I/O. fs.readFile, fs.writeFile. callback: (err, result) =&amp;gt; { } how to manage control flow. sequential.  4-2. NPM modules  npm install module request sending GET and POST. options object pattern Node app.</description>
     </item>
     
     <item>

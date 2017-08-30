@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Webapis on COMP312 labs</title>
+    <title>Ajax and Web API on COMP312 labs</title>
     <link>http://philiplei.github.io/webapi/</link>
-    <description>Recent content in Webapis on COMP312 labs</description>
+    <description>Recent content in Ajax and Web API on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Oct 2016 08:23:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 26 Oct 2016 08:36:00 +0800</lastBuildDate>
     
 	<atom:link href="http://philiplei.github.io/webapi/index.xml" rel="self" type="application/rss+xml" />
     
@@ -42,16 +42,6 @@ Endpoints with GET method This section discusses the implementation of two endpo
       <description>In this lab, we&amp;rsquo;ll write client-side JavaScript to consume a Web API. We&amp;rsquo;ll use jQuery library to send GET and POST requests to the Web API.
 Endpoints with GET method There are two endpoints with GET method in our sample app.
    method URL function     GET /getTodo List all tasks   GET /searchTodo Search tasks that are due before the given date.    In jQuery, the basic method to send Ajax call with GET method is $.</description>
-    </item>
-    
-    <item>
-      <title>Ajax and Web API</title>
-      <link>http://philiplei.github.io/webapi/</link>
-      <pubDate>Wed, 26 Oct 2016 08:36:00 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/webapi/</guid>
-      <description> Ajax and Web API This chapter goes through the design, implementation and consumption of a Web API. We conclude this chapter with an Ajax web app.
- 5-1. Desigining a Web API  URL as operation, GET vs. POST input parameters as urlencoded or JSON output payload as urlencoded or JSON RPC-style  5-2. Implementing a Web API  Implement using Express  5-3. A client that consumes the Web API  Implement using jQuery   </description>
     </item>
     
   </channel>

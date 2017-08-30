@@ -143,12 +143,6 @@
   </url>
   
   <url>
-    <loc>http://philiplei.github.io/basic/</loc>
-    <lastmod>2016-05-26T10:36:44+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://philiplei.github.io/</loc>
     <lastmod>2016-10-26T08:23:00+08:00</lastmod>
     <priority>0</priority>
@@ -160,25 +154,7 @@
   </url>
   
   <url>
-    <loc>http://philiplei.github.io/client/</loc>
-    <lastmod>2016-05-30T10:36:44+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://philiplei.github.io/server/</loc>
-    <lastmod>2016-06-30T10:36:44+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://philiplei.github.io/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://philiplei.github.io/webapi/</loc>
-    <lastmod>2016-10-26T08:23:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   

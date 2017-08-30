@@ -98,16 +98,6 @@ var a = [ 1, 3, 5, 7, 9 ]; console.log(`The second odd number is ${a[1]}.`); var
     </item>
     
     <item>
-      <title>JavaScript basics</title>
-      <link>http://philiplei.github.io/basic/</link>
-      <pubDate>Thu, 26 May 2016 10:14:43 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/basic/</guid>
-      <description>JavaScript Basics This chapter goes through the basics of the JavaScript programming language.
- 2-1. Basic data types and control structures  numbers, strings, conversion, selection and looping  2-2. Arrays and functions  array basics. function statement  2-3. Objects and JSON data format  model data by mixing arrays and objects  2-4. Callbacks and arrow functions  functions as values, callback, timer, arrow function  2-5. Some built-in class: Collections and iterable objects  Object literal built-in classes: Array, Date, Map define class  2-6.</description>
-    </item>
-    
-    <item>
       <title>5-3 Consuming a Web API</title>
       <link>http://philiplei.github.io/webapi/5-3/</link>
       <pubDate>Thu, 27 Oct 2016 08:43:00 +0800</pubDate>
@@ -139,16 +129,6 @@ Create new HTML content You can create new HTML content by passing HTML code to 
     </item>
     
     <item>
-      <title>Client-side programming</title>
-      <link>http://philiplei.github.io/client/</link>
-      <pubDate>Mon, 30 May 2016 10:14:43 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/client/</guid>
-      <description>Client-side programming This chapter goes through the basics of the JavaScript programming inside the Web browser environment.
- 3-1 Quick start  document tree, first jQuery example select $(), change content .html(), .val(), event  3-2 select and change  select nodes in DOM tree. $(selector). jQuery collection read / change content .html() .text() .attr() .css() .addClass() fine tune jQuery collection (.eq(), .slice())  3-3 create new content  add new HTML content $(&#39;&amp;lt;html code&amp;gt;&#39;) add new / move existing.</description>
-    </item>
-    
-    <item>
       <title>2-3 Objects and JSON data</title>
       <link>http://philiplei.github.io/basic/2-3/</link>
       <pubDate>Thu, 26 May 2016 19:13:37 +0800</pubDate>
@@ -170,16 +150,6 @@ Middlewares In the previous lab, we saw that an Express app is essentially a seq
     </item>
     
     <item>
-      <title>Server-side programming</title>
-      <link>http://philiplei.github.io/server/</link>
-      <pubDate>Thu, 30 Jun 2016 10:14:43 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/server/</guid>
-      <description>Server-side programming This chapter goes through the basics of the JavaScript programming on the server side using Node.js.
- 4-1. Node primer  compare node.js and browser env install, run *.js require module event loop. timer built-in modules file I/O. fs.readFile, fs.writeFile. callback: (err, result) =&amp;gt; { } how to manage control flow. sequential.  4-2. NPM modules  npm install module request sending GET and POST. options object pattern Node app.</description>
-    </item>
-    
-    <item>
       <title>3-4 Handling events</title>
       <link>http://philiplei.github.io/client/3-4/</link>
       <pubDate>Wed, 08 Jun 2016 15:46:00 +0800</pubDate>
@@ -197,16 +167,6 @@ $(&#39;button#btn1&#39;).on(&#39;click&#39;, function(event) { // do something w
       
       <guid>http://philiplei.github.io/basic/2-4/</guid>
       <description>Functions as first-class values Functions in JavaScript are often described as first-class values. (In fact, functions are objects, with their own properties and methods.) This means that, in many cases, if you can do something on numbers or strings, you can also do the same on functions. In particular, you can save a function in a variable, pass a function to another function, or return a function from a function.</description>
-    </item>
-    
-    <item>
-      <title>Ajax and Web API</title>
-      <link>http://philiplei.github.io/webapi/</link>
-      <pubDate>Wed, 26 Oct 2016 08:36:00 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/webapi/</guid>
-      <description> Ajax and Web API This chapter goes through the design, implementation and consumption of a Web API. We conclude this chapter with an Ajax web app.
- 5-1. Desigining a Web API  URL as operation, GET vs. POST input parameters as urlencoded or JSON output payload as urlencoded or JSON RPC-style  5-2. Implementing a Web API  Implement using Express  5-3. A client that consumes the Web API  Implement using jQuery   </description>
     </item>
     
     <item>

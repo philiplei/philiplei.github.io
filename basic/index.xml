@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Basics on COMP312 labs</title>
+    <title>JavaScript basics on COMP312 labs</title>
     <link>http://philiplei.github.io/basic/</link>
-    <description>Recent content in Basics on COMP312 labs</description>
+    <description>Recent content in JavaScript basics on COMP312 labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 May 2016 10:36:44 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 May 2016 10:14:43 +0800</lastBuildDate>
     
 	<atom:link href="http://philiplei.github.io/basic/index.xml" rel="self" type="application/rss+xml" />
     
@@ -31,16 +31,6 @@ var a = 1; var b = 2e3; /* 2 * (10*10*10) */ var c; /* c is undefined */ c = a *
       <description>This lab goes through the basics of the JavaScript arrays and functions.
 Array An array keeps values in a sequence. Arrays can change size in run-time. You retrieve an element from an array by position. Use the operator [] to locate an element at the given index.
 var a = [ 1, 3, 5, 7, 9 ]; console.log(`The second odd number is ${a[1]}.`); var empty = [ ]; // empty array empty[1] // undefined  The length property refers to the number of elements inside the array.</description>
-    </item>
-    
-    <item>
-      <title>JavaScript basics</title>
-      <link>http://philiplei.github.io/basic/</link>
-      <pubDate>Thu, 26 May 2016 10:14:43 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/basic/</guid>
-      <description>JavaScript Basics This chapter goes through the basics of the JavaScript programming language.
- 2-1. Basic data types and control structures  numbers, strings, conversion, selection and looping  2-2. Arrays and functions  array basics. function statement  2-3. Objects and JSON data format  model data by mixing arrays and objects  2-4. Callbacks and arrow functions  functions as values, callback, timer, arrow function  2-5. Some built-in class: Collections and iterable objects  Object literal built-in classes: Array, Date, Map define class  2-6.</description>
     </item>
     
     <item>
