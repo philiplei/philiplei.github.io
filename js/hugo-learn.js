@@ -21,7 +21,9 @@ var images = $("div#body-inner img").not(".inline");
 // Wrap image inside a featherlight (to get a full size view in a popup)
 images.wrap(function(){
   var image =$(this);
-  return "<a href='" + image[0].src + "' data-featherlight='image'></a>";
+  if (!image.parent("a").length) {
+    return "<a href='" + image[0].src + "' data-featherlight='image'></a>";
+  }
 });
 
 // Change styles, depending on parameters set to the image
@@ -54,13 +56,6 @@ images.each(function(index){
     }
   }
 });
-
-// Stick the top to the top of the screen when  scrolling
-$("#top-bar").stick_in_parent( {
- parent: ".sticky-parent",
- spacer: ".sticky-spacer",
-});
-
 
 jQuery(document).ready(function() {
   // Add link button for every
