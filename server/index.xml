@@ -53,6 +53,16 @@ Middlewares In the previous lab, we saw that an Express app is essentially a seq
     </item>
     
     <item>
+      <title>Server-side programming</title>
+      <link>http://philiplei.github.io/server/</link>
+      <pubDate>Thu, 30 Jun 2016 10:14:43 +0800</pubDate>
+      
+      <guid>http://philiplei.github.io/server/</guid>
+      <description>Server-side programming This chapter goes through the basics of the JavaScript programming on the server side using Node.js.
+ 4-1. Node primer  compare node.js and browser env install, run *.js require module event loop. timer built-in modules file I/O. fs.readFile, fs.writeFile. callback: (err, result) =&amp;gt; { } how to manage control flow. sequential.  4-2. NPM modules  npm install module request sending GET and POST. options object pattern Node app.</description>
+    </item>
+    
+    <item>
       <title>4-5 Templates and file modules</title>
       <link>http://philiplei.github.io/server/4-5/</link>
       <pubDate>Wed, 10 Aug 2016 16:21:00 +0800</pubDate>
@@ -82,16 +92,6 @@ A popular module to access SQLite in Node is sqlite3. Install this module and up
       <description>We&amp;rsquo;ll end this chapter with the implementation of a classic web app. The app folder is /chap4-7. Copy it to a local folder, and install dependencies with the command npm install. Then run the app with the command node app.js.
 The app has the following views. These views contain buttons or links to initiate actions through controllers. E.g. the view GET /list.html has a link to delete the todos.
  GET /list.</description>
-    </item>
-    
-    <item>
-      <title>Server-side programming</title>
-      <link>http://philiplei.github.io/server/</link>
-      <pubDate>Thu, 30 Jun 2016 10:14:43 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/server/</guid>
-      <description>Server-side programming This chapter goes through the basics of the JavaScript programming on the server side using Node.js.
- 4-1. Node primer  compare node.js and browser env install, run *.js require module event loop. timer built-in modules file I/O. fs.readFile, fs.writeFile. callback: (err, result) =&amp;gt; { } how to manage control flow. sequential.  4-2. NPM modules  npm install module request sending GET and POST. options object pattern Node app.</description>
     </item>
     
   </channel>

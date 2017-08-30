@@ -43,6 +43,16 @@ Create new HTML content You can create new HTML content by passing HTML code to 
     </item>
     
     <item>
+      <title>Client-side programming</title>
+      <link>http://philiplei.github.io/client/</link>
+      <pubDate>Mon, 30 May 2016 10:14:43 +0800</pubDate>
+      
+      <guid>http://philiplei.github.io/client/</guid>
+      <description>Client-side programming This chapter goes through the basics of the JavaScript programming inside the Web browser environment.
+ 3-1 Quick start  document tree, first jQuery example select $(), change content .html(), .val(), event  3-2 select and change  select nodes in DOM tree. $(selector). jQuery collection read / change content .html() .text() .attr() .css() .addClass() fine tune jQuery collection (.eq(), .slice())  3-3 create new content  add new HTML content $(&#39;&amp;lt;html code&amp;gt;&#39;) add new / move existing.</description>
+    </item>
+    
+    <item>
       <title>3-4 Handling events</title>
       <link>http://philiplei.github.io/client/3-4/</link>
       <pubDate>Wed, 08 Jun 2016 15:46:00 +0800</pubDate>
@@ -92,16 +102,6 @@ Basic operation We call the constructor of class Chart to create a chart. The co
       <guid>http://philiplei.github.io/client/3-8/</guid>
       <description>In all previous example in this chapter, we put &amp;lt;script&amp;gt; elements near the end of an HTML document. The reason is that the document tree is (almost) complete when these &amp;lt;script&amp;gt; executes. Now, we&amp;rsquo;ll explain the rationale for this scheme and discuss the JavaScript execution in browsers.
 &amp;lt;!doctype html&amp;gt; ... &amp;lt;body&amp;gt; &amp;lt;p&amp;gt;content for building document tree&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;...&amp;lt;/p&amp;gt; &amp;lt;!-- load external script library --&amp;gt; &amp;lt;script src=&amp;quot;...&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; // embedded script &amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt;  Page load Page loading refers to the steps that a browser performs to load the various components of a web page.</description>
-    </item>
-    
-    <item>
-      <title>Client-side programming</title>
-      <link>http://philiplei.github.io/client/</link>
-      <pubDate>Mon, 30 May 2016 10:14:43 +0800</pubDate>
-      
-      <guid>http://philiplei.github.io/client/</guid>
-      <description>Client-side programming This chapter goes through the basics of the JavaScript programming inside the Web browser environment.
- 3-1 Quick start  document tree, first jQuery example select $(), change content .html(), .val(), event  3-2 select and change  select nodes in DOM tree. $(selector). jQuery collection read / change content .html() .text() .attr() .css() .addClass() fine tune jQuery collection (.eq(), .slice())  3-3 create new content  add new HTML content $(&#39;&amp;lt;html code&amp;gt;&#39;) add new / move existing.</description>
     </item>
     
   </channel>
