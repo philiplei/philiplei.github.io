@@ -18,8 +18,7 @@
       
       <guid>http://philiplei.github.io/basic/2-1/</guid>
       <description>This lab goes through the basic data types (Number and String) and control structures of the JavaScript programming language.
-Number Two basic data types in JavaScript are Number and String. There are no separate types for integers and doubles. (You define a variable x with var x. In ES6, you can also declare variables with let x and constants with const x.)
-var a = 1; var b = 2e3; /* 2 * (10*10*10) */ var c; /* c is undefined */ c = a * 1.</description>
+Number Two basic data types in JavaScript are Number and String. There are no separate types for integers and doubles. You define a variable x with var x. You don&amp;rsquo;t need to specify data type. (In ES6, you can also declare variables with let x and constants with const x.)</description>
     </item>
     
     <item>
